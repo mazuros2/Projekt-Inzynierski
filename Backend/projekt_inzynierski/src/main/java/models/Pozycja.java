@@ -1,15 +1,19 @@
 package models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 
 @Data
 @AllArgsConstructor
+@Getter
+@Setter
+@Table(name = "Pozycja")
 public class Pozycja {
     //dodawaj do każdego stringa NotBlank
     //do localeDate @NotNull

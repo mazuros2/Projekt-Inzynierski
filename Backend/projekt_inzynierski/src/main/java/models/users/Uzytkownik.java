@@ -1,21 +1,21 @@
 package models.users;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import models.Kraj_pochodzenia;
 
 import java.time.LocalDate;
+
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "Uzytkownik")
 public class Uzytkownik {
 
     //dodawaj do każdego stringa NotBlank
@@ -44,4 +44,9 @@ public class Uzytkownik {
 
     @NotNull
     private LocalDate data_Urodzenia;
+
+    @ManyToOne
+    @JoinColumn(name = "id_Kraj_pochodzenia", nullable = false)
+    private Kraj_pochodzenia kraj_pochodzenia;
+
 }

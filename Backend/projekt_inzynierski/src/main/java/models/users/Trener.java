@@ -1,14 +1,18 @@
 package models.users;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
+@Table(name = "Trener")
 public class Trener {
     // to id ogarniemy później bo musimy zrobić ogarnąć dziedziczenie po user -- Mazur
 

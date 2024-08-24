@@ -10,6 +10,7 @@ import models.users.Zawodnik;
 @Getter
 @Setter
 @AllArgsConstructor
+@Table(name = "Obserwowani_Zawodnicy_Menadzera")
 public class Obserwowani_Zawodnicy_Menadzera {
 
     @Id

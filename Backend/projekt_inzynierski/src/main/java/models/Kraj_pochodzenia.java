@@ -1,14 +1,18 @@
 package models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+
+@Getter
+@Setter
 @AllArgsConstructor
+@Table(name = "Kraj_pochodzenia")
 public class Kraj_pochodzenia {
     //dodawaj do każdego stringa NotBlank
     //do localeDate @NotNull
