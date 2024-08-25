@@ -1,14 +1,12 @@
 package models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import models.users.Zawodnik;
 
 import java.time.LocalDate;
 
@@ -24,6 +22,9 @@ public class Badania_lekarskie {
     private int id;
 
     //id zawodnika
+    @ManyToOne
+    @JoinColumn(name = "id_Zawodnik", nullable = false)
+    private Zawodnik zawodnik;
 
     @NotNull
     private LocalDate data_Od;
