@@ -21,7 +21,7 @@ public class Kraj_pochodzenia {
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id_Kraj;
+    private long id_Kraj;
 
     @NotBlank
     @Size(max = 120)

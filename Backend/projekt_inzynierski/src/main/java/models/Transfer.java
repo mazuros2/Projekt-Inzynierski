@@ -17,7 +17,7 @@ public class Transfer {
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
 
 

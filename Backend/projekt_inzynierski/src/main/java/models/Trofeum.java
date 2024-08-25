@@ -19,7 +19,7 @@ public class Trofeum {
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "id_Klub", nullable = false)

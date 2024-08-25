@@ -24,7 +24,7 @@ public class Pozycja {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id_Pozycja;
+    private long id_Pozycja;
     @Size(max = 50)
     @NotBlank
     private String nazwa_pozycji;

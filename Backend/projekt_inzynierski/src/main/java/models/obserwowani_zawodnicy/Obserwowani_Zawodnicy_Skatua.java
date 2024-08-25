@@ -16,7 +16,7 @@ public class Obserwowani_Zawodnicy_Skatua {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     @ManyToOne
     @MapsId("zawodnikId")

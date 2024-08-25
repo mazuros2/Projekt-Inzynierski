@@ -25,7 +25,7 @@ public class Uzytkownik {
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id_Uzytkownik;
+    private long id_Uzytkownik;
 
     @Size(max = 50)
     @NotBlank

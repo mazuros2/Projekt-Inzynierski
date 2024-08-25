@@ -19,7 +19,7 @@ public class Badania_lekarskie {
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     //id zawodnika
     @ManyToOne

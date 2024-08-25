@@ -20,7 +20,7 @@ public class Klub {
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     @NotBlank
     private String nazwa_klubu;

@@ -20,7 +20,7 @@ public class Obecny_klub {
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
     //klub FK PK
     //Zawodnik FK PK
