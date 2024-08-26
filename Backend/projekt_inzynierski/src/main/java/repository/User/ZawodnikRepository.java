@@ -1,6 +1,5 @@
-package repository;
+package repository.User;
 
-import models.users.Uzytkownik;
 import models.users.Zawodnik;
 import org.springframework.data.jpa.repository.JpaRepository;
 

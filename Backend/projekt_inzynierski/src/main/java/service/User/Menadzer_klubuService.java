@@ -1,7 +1,7 @@
-package service;
+package service.User;
 
 import org.springframework.stereotype.Service;
-import repository.Menadzer_klubuRepository;
+import repository.User.Menadzer_klubuRepository;
 
 @Service
 public class Menadzer_klubuService {

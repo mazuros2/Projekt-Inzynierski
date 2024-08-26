@@ -1,7 +1,7 @@
-package service;
+package service.User;
 
 import org.springframework.stereotype.Service;
-import repository.ZawodnikRepository;
+import repository.User.ZawodnikRepository;
 
 @Service
 public class ZawodnikService {

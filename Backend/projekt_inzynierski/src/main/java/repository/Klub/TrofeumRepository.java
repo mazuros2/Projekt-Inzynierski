@@ -1,4 +1,4 @@
-package repository;
+package repository.Klub;
 
 import models.Trofeum;
 import org.springframework.data.jpa.repository.JpaRepository;

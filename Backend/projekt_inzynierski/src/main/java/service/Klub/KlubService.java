@@ -1,7 +1,7 @@
-package service;
+package service.Klub;
 
 import org.springframework.stereotype.Service;
-import repository.KlubRepository;
+import repository.Klub.KlubRepository;
 
 @Service
 public class KlubService {

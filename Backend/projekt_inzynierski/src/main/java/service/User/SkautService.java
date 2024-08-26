@@ -1,7 +1,7 @@
-package service;
+package service.User;
 
 import org.springframework.stereotype.Service;
-import repository.SkautRepository;
+import repository.User.SkautRepository;
 
 @Service
 public class SkautService {

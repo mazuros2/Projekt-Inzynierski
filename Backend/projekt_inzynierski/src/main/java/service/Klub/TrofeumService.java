@@ -1,7 +1,7 @@
-package service;
+package service.Klub;
 
 import org.springframework.stereotype.Service;
-import repository.TrofeumRepository;
+import repository.Klub.TrofeumRepository;
 
 @Service
 public class TrofeumService {

@@ -1,7 +1,7 @@
-package service;
+package service.User;
 
 import org.springframework.stereotype.Service;
-import repository.TrenerRepository;
+import repository.User.TrenerRepository;
 
 @Service
 public class TrenerService {

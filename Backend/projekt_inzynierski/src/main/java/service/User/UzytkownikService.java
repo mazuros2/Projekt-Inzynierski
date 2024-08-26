@@ -1,7 +1,7 @@
-package service;
+package service.User;
 
 import org.springframework.stereotype.Service;
-import repository.UzytkownikRepository;
+import repository.User.UzytkownikRepository;
 
 @Service
 public class UzytkownikService {

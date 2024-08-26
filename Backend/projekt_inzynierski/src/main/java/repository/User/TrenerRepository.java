@@ -1,4 +1,4 @@
-package repository;
+package repository.User;
 
 import models.users.Trener;
 import org.springframework.data.jpa.repository.JpaRepository;
