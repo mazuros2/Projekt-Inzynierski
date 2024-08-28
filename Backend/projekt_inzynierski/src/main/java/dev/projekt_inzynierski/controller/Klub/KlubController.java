@@ -23,5 +23,9 @@ public class KlubController {
         return ResponseEntity.ok(kluby);
     }
 
-
+    @GetMapping("klub/{id}")
+    public ResponseEntity<Klub> getKlubById(@PathVariable long id) {
+        Klub klub = klubService.getKlubById(id);
+        return ResponseEntity.ok(klub);
+    }
 }

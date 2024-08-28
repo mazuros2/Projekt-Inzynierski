@@ -13,4 +13,6 @@ public interface KlubRepository extends JpaRepository<Klub,Long> {
     @Query("SELECT k FROM Klub k WHERE k.liga.id = :ligaId")
     List<Klub> findAllByLigaId(@Param("ligaId") long ligaId);
 
+    @Query("SELECT k FROM Klub k WHERE k.id = :id")
+    Klub findKlubById(@Param("id") long id);
 }
