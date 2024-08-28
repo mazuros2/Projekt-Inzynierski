@@ -25,7 +25,6 @@ public class Menadzer_klubu {
     @NotBlank
     private String imie;
 
-    @Max(50)
     @NotBlank
     private String nazwisko;
 

@@ -4,11 +4,7 @@ import dev.projekt_inzynierski.models.users.Zawodnik;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import models.users.Zawodnik;
+import lombok.*;
 
 import java.util.List;
 
@@ -18,6 +14,8 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "Pozycja")
+@Entity
+@NoArgsConstructor
 public class Pozycja {
     //dodawaj do każdego stringa NotBlank
     //do localeDate @NotNull

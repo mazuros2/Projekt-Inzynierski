@@ -1,12 +1,10 @@
 package dev.projekt_inzynierski.models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
@@ -15,6 +13,8 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @Table(name = "Obecny_klub")
+@Entity
+@NoArgsConstructor
 public class Obecny_klub {
 
     @NotNull

@@ -28,11 +28,11 @@ public class Trener {
     @NotBlank
     private String licencja_trenera;
 
-    @Max(50)
+
     @NotBlank
     private String imie;
 
-    @Max(50)
+
     @NotBlank
     private String nazwisko;
 
