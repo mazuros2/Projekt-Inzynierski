@@ -21,6 +21,8 @@ public class Kraj_pochodzenia {
     //do localeDate @NotNull
     //do int możemy dodać po prostu @Min() i jakaś wartość
 
+    //stworzyc jako kompozycje
+
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

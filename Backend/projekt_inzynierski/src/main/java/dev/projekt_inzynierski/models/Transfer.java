@@ -13,7 +13,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 public class Transfer {
-
+    //polaczenie transfer klub transfer zawodnik
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

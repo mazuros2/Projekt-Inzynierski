@@ -18,7 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Trener {
     // to id ogarniemy później bo musimy zrobić ogarnąć dziedziczenie po user -- Mazur
-
+    //dodac polaczenie z klubem
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

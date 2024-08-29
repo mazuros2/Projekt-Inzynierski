@@ -17,6 +17,8 @@ import java.util.List;
 @Table(name = "Klub")
 public class Klub {
 
+    //dodac polaczenie z trenerem i transferem
+
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

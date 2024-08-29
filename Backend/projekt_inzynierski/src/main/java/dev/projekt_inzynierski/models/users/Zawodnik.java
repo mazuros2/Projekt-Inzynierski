@@ -22,17 +22,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 public class Zawodnik {
-    //id Zawodnik to chyba ma byc id z uzytkownika ale zapisane jako idZawodnik bo FK na diagramie
-
-    /*
-    * to id ogarniemy później bo musimy zrobić ogarnąć dziedziczenie po user
-    *
-    * dodawaj do każdego stringa NotBlank --Mazur
-    * do localeDate @NotNull
-    * do int możemy dodać po prostu @Min() i jakaś wartość
-    *                                                               --Mazur
-    */
-
+    //trzeba ogarnac bo to ma byc dziedziczone
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
