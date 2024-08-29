@@ -25,8 +25,8 @@ public class Badania_lekarskie {
     private long id;
 
     //id zawodnika
-    @ManyToOne
-    @JoinColumn(name = "id_Zawodnik", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "zawodnik_id", nullable = false)
     private Zawodnik zawodnik;
 
     @NotNull
@@ -36,6 +36,7 @@ public class Badania_lekarskie {
 
     @NotBlank
     private String zatwierdzone_przez;
+
 
 
 }
