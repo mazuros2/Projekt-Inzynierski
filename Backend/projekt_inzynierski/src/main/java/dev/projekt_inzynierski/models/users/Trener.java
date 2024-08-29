@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.models.users;
 
+import dev.projekt_inzynierski.models.Klub;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
@@ -36,5 +37,8 @@ public class Trener {
     @NotBlank
     private String nazwisko;
 
+    @OneToOne
+    @JoinColumn(name="id_klub")
+    private Klub trenerKlub;
 
 }
