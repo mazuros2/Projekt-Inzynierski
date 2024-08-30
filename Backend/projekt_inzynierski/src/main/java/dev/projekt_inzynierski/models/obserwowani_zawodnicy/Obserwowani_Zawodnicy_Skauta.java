@@ -14,18 +14,17 @@ import dev.projekt_inzynierski.models.users.Zawodnik;
 @Entity
 @NoArgsConstructor
 @Table(name = "Obserwowani_Zawodnicy_Skauta")
-public class Obserwowani_Zawodnicy_Skatua {
+public class Obserwowani_Zawodnicy_Skauta {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @EmbeddedId
+    private ObserwowaniZawodnicySkautaId id;
 
     @ManyToOne
-    @JoinColumn(name = "id_Zawodnik", nullable = false)
+    @JoinColumn(name = "id_Zawodnik")
     private Zawodnik zawodnik;
 
     @ManyToOne
-    @JoinColumn(name = "id_Skaut", nullable = false)
+    @JoinColumn(name = "id_Skaut")
     private Skaut skaut;
 
 }

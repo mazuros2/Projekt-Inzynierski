@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.models;
 
+import dev.projekt_inzynierski.models.users.Menadzer_klubu;
 import dev.projekt_inzynierski.models.users.Trener;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -39,7 +40,13 @@ public class Klub {
     @OneToMany(mappedBy = "klub", cascade = CascadeType.ALL)
     private List<Trofeum> trofea;
 
-    @OneToOne(mappedBy = "klub", cascade = CascadeType.ALL, optional = true)
+    @ManyToOne
+    @JoinColumn(name="id_trener")
     private Trener trener;
+
+    @ManyToOne
+    @JoinColumn(name="id_menadzer_klubu")
+    private Menadzer_klubu menadzer_klubu;
+
     //FK keys do dodania
 }

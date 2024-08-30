@@ -3,6 +3,8 @@ package dev.projekt_inzynierski.models.users;
 import dev.projekt_inzynierski.models.Badania_lekarskie;
 import dev.projekt_inzynierski.models.Obecny_klub;
 import dev.projekt_inzynierski.models.Transfer;
+import dev.projekt_inzynierski.models.obserwowani_zawodnicy.Obserwowani_Zawodnicy_Menadzera;
+import dev.projekt_inzynierski.models.obserwowani_zawodnicy.Obserwowani_Zawodnicy_Skauta;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -53,5 +55,11 @@ public class Zawodnik {
 
     @OneToMany(mappedBy = "zawodnik", cascade = CascadeType.ALL)
     private List<Obecny_klub> obecny_klub;
+
+    @OneToMany(mappedBy = "zawodnik")
+    private List<Obserwowani_Zawodnicy_Skauta> obserwowaniPrzezSkauta;
+
+    @OneToMany(mappedBy = "zawodnik")
+    private List<Obserwowani_Zawodnicy_Menadzera> obserwowaniPrzezMenadzera;
 
 }

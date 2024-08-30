@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.models.obserwowani_zawodnicy;
 
+import dev.projekt_inzynierski.models.users.Skaut;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,15 +17,14 @@ import dev.projekt_inzynierski.models.users.Zawodnik;
 @Table(name = "Obserwowani_Zawodnicy_Menadzera")
 public class Obserwowani_Zawodnicy_Menadzera {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @EmbeddedId
+    private ObserwowaniZawodnicyMenadzeraId id;
 
     @ManyToOne
-    @JoinColumn(name = "id_Zawodnik", nullable = false)
+    @JoinColumn(name = "id_Zawodnik")
     private Zawodnik zawodnik;
 
     @ManyToOne
-    @JoinColumn(name = "id_Menadzer", nullable = false)
-    private Menadzer_klubu menadzer;
+    @JoinColumn(name = "id_Menadzer_klubu")
+    private Menadzer_klubu menadzer_klubu;
 }

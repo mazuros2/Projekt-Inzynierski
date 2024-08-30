@@ -1,6 +1,5 @@
 package dev.projekt_inzynierski.models.users;
 
-import dev.projekt_inzynierski.models.Badania_lekarskie;
 import dev.projekt_inzynierski.models.Klub;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
@@ -38,8 +37,8 @@ public class Trener {
     @NotBlank
     private String nazwisko;
 
-
-    @OneToOne(mappedBy = "trener", cascade = CascadeType.ALL, optional = true)
-    private Klub klub;
+    @OneToOne
+    @JoinColumn(name="id_klub")
+    private Klub trenerKlub;
 
 }
