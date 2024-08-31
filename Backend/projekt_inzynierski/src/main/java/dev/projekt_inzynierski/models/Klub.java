@@ -8,7 +8,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Builder
 @Getter
@@ -48,5 +50,9 @@ public class Klub {
     @JoinColumn(name="id_menadzer_klubu")
     private Menadzer_klubu menadzer_klubu;
 
+    @OneToMany(mappedBy = "klub",cascade = {CascadeType.REMOVE})
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private Set<Obecny_klub> setObecnyKlub = new HashSet<>();
     //FK keys do dodania
 }

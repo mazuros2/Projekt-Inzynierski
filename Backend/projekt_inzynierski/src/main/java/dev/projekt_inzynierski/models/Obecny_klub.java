@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import dev.projekt_inzynierski.models.users.Zawodnik;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,15 +19,11 @@ import java.util.List;
 @Table(name = "Obecny_klub")
 @Entity
 @NoArgsConstructor
-public class Obecny_klub {
+public class Obecny_klub implements java.io.Serializable{
 
-    @NotNull
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    //klub FK PK
-    //Zawodnik FK PK
+    //mozna te polaczenia zrobic tez w tej klasie obecnyklubId
+    @EmbeddedId
+    private Obecny_klubId id;
     @ManyToOne
     @JoinColumn(name = "zawodnik_id", nullable = false)
     private Zawodnik zawodnik;
@@ -35,5 +33,22 @@ public class Obecny_klub {
     private LocalDate data_Od;
 
     private LocalDate data_Do;
+//ta walidacje trzeba zrobic tez tak jak na masach trzeba bylo przez stworzenie customowych @
+    public void setData_Od(LocalDate data_Od) {
+        if(data_Od.isAfter(data_Do)){
+            throw new IllegalArgumentException("zla data dolaczenia");
+        }
+        this.data_Od = data_Od;
+    }
+
+    public void setData_Do(LocalDate data_Do) {
+        if (data_Do.isBefore(data_Od)){
+            throw new IllegalArgumentException("zla data odejscia");
+        }
+        this.data_Do = data_Do;
+    }
+    @ManyToOne
+    @JoinColumn(name="klub_id",nullable = false)
+    private Klub klub;
 
 }
