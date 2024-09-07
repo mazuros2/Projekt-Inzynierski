@@ -82,7 +82,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.build();
 
 		Klub ZaglebieLubin = Klub.builder()
-				.nazwa_klubu("KGHM Zagłębie Lubin")
+				.nazwa_klubu("KGHM Zaglebie Lubin")
 				.rok_zalozenia(LocalDate.of(1946,1,1))
 				.liga(Ekstraklasa)
 				.build();
