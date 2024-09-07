@@ -101,7 +101,6 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.trofea(new ArrayList<>())
 				.build();
 
-
 		Klub SlaskWroclaw = Klub.builder()
 				.nazwa_klubu("Slask Wroclaw")
 				.rok_zalozenia(LocalDate.of(1947, 1, 1))
@@ -116,6 +115,29 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.trofea(new ArrayList<>())
 				.build();
 
+		Klub WislaKrakow = Klub.builder()
+				.nazwa_klubu("Wisła Kraków")
+				.rok_zalozenia(LocalDate.of(1906, 1, 1))
+				.liga(Ekstraklasa)
+				.trofea(new ArrayList<>())
+				.build();
+
+		Klub JagielloniaBialystok = Klub.builder()
+				.nazwa_klubu("Jagiellonia Białystok")
+				.rok_zalozenia(LocalDate.of(1920, 1, 1))
+				.liga(Ekstraklasa)
+				.trofea(new ArrayList<>())
+				.build();
+
+		Klub PiastGliwice = Klub.builder()
+				.nazwa_klubu("Piast Gliwice")
+				.rok_zalozenia(LocalDate.of(1945, 1, 1))
+				.liga(Ekstraklasa)
+				.trofea(new ArrayList<>())
+				.build();
+
+
+
 		klubRepository.save(LegiaWarszawa);
 		klubRepository.save(LechPoznan);
 		klubRepository.save(GKSKatowice);
@@ -124,6 +146,10 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		klubRepository.save(ZaglebieLubin);
 		klubRepository.save(SlaskWroclaw);
 		klubRepository.save(RadomiakRadom);
+		klubRepository.save(WislaKrakow);
+		klubRepository.save(JagielloniaBialystok);
+		klubRepository.save(PiastGliwice);
+
 
 		//Kluby I Ligii
 		Klub RuchChorzow = Klub.builder()
@@ -183,6 +209,26 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.trofea(new ArrayList<>())
 				.build();
 
+		Klub WidzewLodz = Klub.builder()
+				.nazwa_klubu("Widzew Łódź")
+				.rok_zalozenia(LocalDate.of(1910, 1, 1))
+				.liga(ILiga)
+				.trofea(new ArrayList<>())
+				.build();
+
+		Klub KoronaKielce = Klub.builder()
+				.nazwa_klubu("Korona Kielce")
+				.rok_zalozenia(LocalDate.of(1973, 1, 1))
+				.liga(ILiga)
+				.trofea(new ArrayList<>())
+				.build();
+
+		Klub OdraOpole = Klub.builder()
+				.nazwa_klubu("Odra Opole")
+				.rok_zalozenia(LocalDate.of(1945, 1, 1))
+				.liga(ILiga)
+				.trofea(new ArrayList<>())
+				.build();
 
 		klubRepository.save(RuchChorzow);
 		klubRepository.save(ZniczPruszkow);
@@ -192,6 +238,10 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		klubRepository.save(ArkaGdynia);
 		klubRepository.save(MiedzLegnica);
 		klubRepository.save(GornikLeczna);
+		klubRepository.save(WidzewLodz);
+		klubRepository.save(KoronaKielce);
+		klubRepository.save(OdraOpole);
+
 
 		//Kluby z II Ligii
 		Klub RekordBB = Klub.builder()
@@ -250,6 +300,26 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.trofea(new ArrayList<>())
 				.build();
 
+		Klub MotorLublin = Klub.builder()
+				.nazwa_klubu("Motor Lublin")
+				.rok_zalozenia(LocalDate.of(1950, 1, 1))
+				.liga(IILiga)
+				.trofea(new ArrayList<>())
+				.build();
+
+		Klub GarbarniaKrakow = Klub.builder()
+				.nazwa_klubu("Garbarnia Kraków")
+				.rok_zalozenia(LocalDate.of(1921, 1, 1))
+				.liga(IILiga)
+				.trofea(new ArrayList<>())
+				.build();
+
+		Klub StalRzeszow = Klub.builder()
+				.nazwa_klubu("Stal Rzeszów")
+				.rok_zalozenia(LocalDate.of(1944, 1, 1))
+				.liga(IILiga)
+				.trofea(new ArrayList<>())
+				.build();
 		klubRepository.save(RekordBB);
 		klubRepository.save(PodbeskidzieBB);
 		klubRepository.save(KKSKalisz);
@@ -258,6 +328,10 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		klubRepository.save(ResoviaRzeszow);
 		klubRepository.save(PoloniaBytom);
 		klubRepository.save(OlimpiaGrudziac);
+		klubRepository.save(MotorLublin);
+		klubRepository.save(GarbarniaKrakow);
+		klubRepository.save(StalRzeszow);
+
 
 		//Legia
 		Trofeum PucharPolski2023 = Trofeum.builder()
