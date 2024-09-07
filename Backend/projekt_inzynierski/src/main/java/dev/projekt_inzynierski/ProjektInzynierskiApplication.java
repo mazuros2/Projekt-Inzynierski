@@ -286,12 +286,10 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		LegiaWarszawa.getTrofea().add(MistrzPolski2020);
 		LegiaWarszawa.getTrofea().add(MistrzPolski2021);
 		LegiaWarszawa.getTrofea().add(PucharPolski2023);
-
 		trofeumRepository.save(MistrzPolski2018);
 		trofeumRepository.save(MistrzPolski2020);
 		trofeumRepository.save(MistrzPolski2021);
 		trofeumRepository.save(PucharPolski2023);
-
 
 		//Górnik
 		Trofeum MistrzPolski1988= Trofeum.builder()
@@ -318,17 +316,58 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.klub(GornikZabrze)
 				.build();
 
-
 		GornikZabrze.getTrofea().add(MistrzPolski1985);
 		GornikZabrze.getTrofea().add(MistrzPolski1986);
 		GornikZabrze.getTrofea().add(MistrzPolski1987);
 		GornikZabrze.getTrofea().add(MistrzPolski1988);
-
 		trofeumRepository.save(MistrzPolski1985);
 		trofeumRepository.save(MistrzPolski1986);
 		trofeumRepository.save(MistrzPolski1987);
 		trofeumRepository.save(MistrzPolski1988);
 
+		//KGHM Zagłębie Lubin
+		Trofeum MistrzPolski1991 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(1991, 6, 19))
+				.nazwa("Mistrz Polski 1991")
+				.klub(ZaglebieLubin)
+				.build();
+
+		Trofeum MistrzPolski2007 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(2007, 5, 26))
+				.nazwa("Mistrz Polski 2007")
+				.klub(ZaglebieLubin)
+				.build();
+
+		ZaglebieLubin.getTrofea().add(MistrzPolski1991);
+		ZaglebieLubin.getTrofea().add(MistrzPolski2007);
+		trofeumRepository.save(MistrzPolski1991);
+		trofeumRepository.save(MistrzPolski2007);
+
+		//GKS Katowice
+		Trofeum PucharPolski1993 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(1993, 6, 23))
+				.nazwa("Puchar Polski 1993")
+				.klub(GKSKatowice)
+				.build();
+
+		Trofeum PucharPolski1991 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(1991, 6, 23))
+				.nazwa("Puchar Polski 1991")
+				.klub(GKSKatowice)
+				.build();
+
+		Trofeum PucharPolski1986 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(1986, 5, 1))
+				.nazwa("Puchar Polski 1986")
+				.klub(GKSKatowice)
+				.build();
+
+		GKSKatowice.getTrofea().add(PucharPolski1986);
+		GKSKatowice.getTrofea().add(PucharPolski1991);
+		GKSKatowice.getTrofea().add(PucharPolski1993);
+		trofeumRepository.save(PucharPolski1986);
+		trofeumRepository.save(PucharPolski1991);
+		trofeumRepository.save(PucharPolski1993);
 
 
 		System.out.println("\n");
@@ -342,6 +381,20 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		List<Trofeum> trofeaG = GornikZabrze.getTrofea();
 		System.out.println("Trofea Gornika Zabrze");
 		for (Trofeum trofeum : trofeaG) {
+			System.out.println("- " + trofeum.getNazwa() + " (Zdobyte: " + trofeum.getData_zdobycia() + ")");
+		}
+
+		System.out.println("");
+		List<Trofeum> trofeaZL = ZaglebieLubin.getTrofea();
+		System.out.println("Trofea KGHM Zaglebia Lubin");
+		for (Trofeum trofeum : trofeaZL) {
+			System.out.println("- " + trofeum.getNazwa() + " (Zdobyte: " + trofeum.getData_zdobycia() + ")");
+		}
+
+		System.out.println("");
+		List<Trofeum> trofeaGKSK = GKSKatowice.getTrofea();
+		System.out.println("Trofea GKS Katowice");
+		for (Trofeum trofeum : trofeaGKSK) {
 			System.out.println("- " + trofeum.getNazwa() + " (Zdobyte: " + trofeum.getData_zdobycia() + ")");
 		}
 
