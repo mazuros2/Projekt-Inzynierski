@@ -11,6 +11,6 @@ import java.io.Serializable;
 @Embeddable
 public class ObserwowaniZawodnicyMenadzeraId implements Serializable {
 
-    private int idMenadzer;
-    private int idZawodnik;
+    private int id_Menadzer;
+    private int id_Zawodnik;
 }

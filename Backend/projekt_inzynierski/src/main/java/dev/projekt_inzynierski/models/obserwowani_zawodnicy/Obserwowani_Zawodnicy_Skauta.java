@@ -20,11 +20,11 @@ public class Obserwowani_Zawodnicy_Skauta {
     private ObserwowaniZawodnicySkautaId id;
 
     @ManyToOne
-    @JoinColumn(name = "id_Zawodnik")
+    @JoinColumn(name = "id_Zawodnik", insertable = false, updatable = false)
     private Zawodnik zawodnik;
 
     @ManyToOne
-    @JoinColumn(name = "id_Skaut")
+    @JoinColumn(name = "id_Skaut", insertable = false, updatable = false)
     private Skaut skaut;
 
 }

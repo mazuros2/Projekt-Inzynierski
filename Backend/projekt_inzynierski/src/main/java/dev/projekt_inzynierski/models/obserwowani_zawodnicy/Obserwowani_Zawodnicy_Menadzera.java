@@ -21,10 +21,10 @@ public class Obserwowani_Zawodnicy_Menadzera {
     private ObserwowaniZawodnicyMenadzeraId id;
 
     @ManyToOne
-    @JoinColumn(name = "id_Zawodnik")
+    @JoinColumn(name = "id_Zawodnik", insertable = false, updatable = false)
     private Zawodnik zawodnik;
 
     @ManyToOne
-    @JoinColumn(name = "id_Menadzer_klubu")
+    @JoinColumn(name = "id_Menadzer_klubu", insertable = false, updatable = false)
     private Menadzer_klubu menadzer_klubu;
 }

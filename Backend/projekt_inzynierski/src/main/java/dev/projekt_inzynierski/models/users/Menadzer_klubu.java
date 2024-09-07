@@ -36,7 +36,7 @@ public class Menadzer_klubu {
     @JoinColumn(name="id_klub")
     private Klub menadzerKlubu;
 
-    @OneToMany(mappedBy = "menadzer")
+    @OneToMany
     private List<Obserwowani_Zawodnicy_Menadzera> obserwowaniZawodnicy;
 
 }
