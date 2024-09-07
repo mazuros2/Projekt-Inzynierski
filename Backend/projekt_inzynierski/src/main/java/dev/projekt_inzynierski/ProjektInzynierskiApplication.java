@@ -39,9 +39,15 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.poziom_Ligi(2)
 				.build();
 
+		Liga IILiga = Liga.builder()
+				.nazwa_Ligi("II Liga")
+				.poziom_Ligi(3)
+				.build();
+
 
 		ligaRepository.save(Ekstraklasa);
 		ligaRepository.save(ILiga);
+		ligaRepository.save(IILiga);
 
 		//Kluby Ekstraklasy
 		Klub LegiaWarszawa = Klub.builder()
@@ -163,10 +169,69 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		klubRepository.save(MiedzLegnica);
 		klubRepository.save(GornikLeczna);
 
+		//Kluby z II Ligii
+		Klub RekordBB = Klub.builder()
+				.nazwa_klubu("Rekord Bielsko-Biala")
+				.rok_zalozenia(LocalDate.of(1994,1,1))
+				.liga(IILiga)
+				.build();
+
+		Klub PodbeskidzieBB = Klub.builder()
+				.nazwa_klubu("TS Podbeskidzie Bielsko-Biala")
+				.rok_zalozenia(LocalDate.of(1995,1,1))
+				.liga(IILiga)
+				.build();
+
+		Klub KKSKalisz = Klub.builder()
+				.nazwa_klubu("KKS 1925 Kalisz")
+				.rok_zalozenia(LocalDate.of(1925,1,1))
+				.liga(IILiga)
+				.build();
+
+		Klub ZaglebieSosnowiec = Klub.builder()
+				.nazwa_klubu("Zaglebie Sosnowiec")
+				.rok_zalozenia(LocalDate.of(1918,1,1))
+				.liga(IILiga)
+				.build();
+
+		Klub KSWieczystaKrakow = Klub.builder()
+				.nazwa_klubu("KS Wieczysta Krakow")
+				.rok_zalozenia(LocalDate.of(1942,1,1))
+				.liga(IILiga)
+				.build();
+
+		Klub ResoviaRzeszow = Klub.builder()
+				.nazwa_klubu("Resovia Rzeszow")
+				.rok_zalozenia(LocalDate.of(1910,1,1))
+				.liga(IILiga)
+				.build();
+
+		Klub PoloniaBytom = Klub.builder()
+				.nazwa_klubu("Polonia Bytom")
+				.rok_zalozenia(LocalDate.of(1945,1,1))
+				.liga(IILiga)
+				.build();
+
+		Klub OlimpiaGrudziac = Klub.builder()
+				.nazwa_klubu("Olimpia Grudziac")
+				.rok_zalozenia(LocalDate.of(1923,6,30))
+				.liga(IILiga)
+				.build();
+
+		klubRepository.save(RekordBB);
+		klubRepository.save(PodbeskidzieBB);
+		klubRepository.save(KKSKalisz);
+		klubRepository.save(ZaglebieSosnowiec);
+		klubRepository.save(KSWieczystaKrakow);
+		klubRepository.save(ResoviaRzeszow);
+		klubRepository.save(PoloniaBytom);
+		klubRepository.save(OlimpiaGrudziac);
+
+
 		List<Klub> kluby = klubRepository.findAll();
 		System.out.println("Lista klubow:");
 		for (Klub klub : kluby) {
-			System.out.println("Klub: " + klub.getNazwa_klubu() + ", Rok zalozenia: " + klub.getRok_zalozenia()+ " Liga: " + klub.getLiga().getNazwa_Ligi());
+			System.out.println("Klub: " + klub.getNazwa_klubu() + ", Rok zalozenia: " + klub.getRok_zalozenia()+ ", Liga: " + klub.getLiga().getNazwa_Ligi());
 		}
 	}
 }
