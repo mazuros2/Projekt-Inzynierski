@@ -27,6 +27,8 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 	@Autowired
 	private TrofeumRepository trofeumRepository;
 
+
+
 	public static void main(String[] args) {
 		SpringApplication.run(ProjektInzynierskiApplication.class, args);
 	}
@@ -369,6 +371,69 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		trofeumRepository.save(PucharPolski1991);
 		trofeumRepository.save(PucharPolski1993);
 
+		Trofeum WicemistrzPolski2013 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(2013, 1, 1))
+				.nazwa("Wicemistrz Polski 2013")
+				.klub(LechPoznan)
+				.build();
+		Trofeum WicemistrzPolski2014 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(2014, 1, 1))
+				.nazwa("Wicemistrz Polski 2014")
+				.klub(LechPoznan)
+				.build();
+		Trofeum WicemistrzPolski2020 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(2020, 1, 1))
+				.nazwa("Wicemistrz Polski 2020")
+				.klub(LechPoznan)
+				.build();
+		Trofeum mistrzPolski2022 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(2022, 1, 1))
+				.nazwa("Mistrz Polski 2022")
+				.klub(LechPoznan)
+				.build();
+		LechPoznan.getTrofea().add(WicemistrzPolski2013);
+		LechPoznan.getTrofea().add(WicemistrzPolski2014);
+		LechPoznan.getTrofea().add(WicemistrzPolski2020);
+		LechPoznan.getTrofea().add(mistrzPolski2022);
+		trofeumRepository.save(WicemistrzPolski2013);
+		trofeumRepository.save(WicemistrzPolski2014);
+		trofeumRepository.save(WicemistrzPolski2020);
+		trofeumRepository.save(mistrzPolski2022);
+
+		Trofeum mistrzPolski1977 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(1977, 1, 1))
+				.nazwa("Mistrz Polski 1977")
+				.klub(SlaskWroclaw)
+				.build();
+		Trofeum wicemistrzPolski2024 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(2024, 1, 1))
+				.nazwa("Wicemistrz Polski 2024")
+				.klub(SlaskWroclaw)
+				.build();
+		Trofeum mistrzPolski2012 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(2012, 1, 1))
+				.nazwa("Mistrz Polski 2012")
+				.klub(SlaskWroclaw)
+				.build();
+		Trofeum wicemistrzPolski2011 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(2011, 1, 1))
+				.nazwa("Wicemistrz Polski 2011")
+				.klub(SlaskWroclaw)
+				.build();
+		Trofeum wicemistrzPolski1982 = Trofeum.builder()
+				.data_zdobycia(LocalDate.of(1982, 1, 1))
+				.nazwa("Wicemistrz Polski 1982")
+				.klub(SlaskWroclaw)
+				.build();
+		SlaskWroclaw.getTrofea().add(mistrzPolski2012);
+		SlaskWroclaw.getTrofea().add(wicemistrzPolski2024);
+		SlaskWroclaw.getTrofea().add(wicemistrzPolski2011);
+		SlaskWroclaw.getTrofea().add(wicemistrzPolski1982);
+		trofeumRepository.save(mistrzPolski2012);
+		trofeumRepository.save(wicemistrzPolski2024);
+		trofeumRepository.save(wicemistrzPolski2011);
+		trofeumRepository.save(wicemistrzPolski1982);
+
 
 		System.out.println("\n");
 		List<Trofeum> trofea = LegiaWarszawa.getTrofea();
@@ -398,6 +463,18 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 			System.out.println("- " + trofeum.getNazwa() + " (Zdobyte: " + trofeum.getData_zdobycia() + ")");
 		}
 
+		List<Trofeum> trofeaLech = LechPoznan.getTrofea();
+		System.out.println("Trofea Lecha Poznan");
+		for (Trofeum trofeum : trofeaLech) {
+			System.out.println("- " + trofeum.getNazwa() + " (Zdobyte: " + trofeum.getData_zdobycia().getYear() + ")");
+		}
+
+		List<Trofeum> trofeaSlaskWroclaw = LechPoznan.getTrofea();
+		System.out.println("Trofea Slaska Wroclaw");
+		for (Trofeum trofeum : trofeaSlaskWroclaw) {
+			System.out.println("- " + trofeum.getNazwa() + " (Zdobyte: " + trofeum.getData_zdobycia().getYear() + ")");
+		}
+		System.out.println("\n");
 		System.out.println("\n");
 
 
