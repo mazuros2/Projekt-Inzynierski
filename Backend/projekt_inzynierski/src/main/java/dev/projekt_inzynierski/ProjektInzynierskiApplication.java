@@ -372,22 +372,22 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		trofeumRepository.save(PucharPolski1993);
 
 		Trofeum WicemistrzPolski2013 = Trofeum.builder()
-				.data_zdobycia(LocalDate.of(2013, 1, 1))
+				.data_zdobycia(LocalDate.of(2013, 2, 6))
 				.nazwa("Wicemistrz Polski 2013")
 				.klub(LechPoznan)
 				.build();
 		Trofeum WicemistrzPolski2014 = Trofeum.builder()
-				.data_zdobycia(LocalDate.of(2014, 1, 1))
+				.data_zdobycia(LocalDate.of(2014, 5, 7))
 				.nazwa("Wicemistrz Polski 2014")
 				.klub(LechPoznan)
 				.build();
 		Trofeum WicemistrzPolski2020 = Trofeum.builder()
-				.data_zdobycia(LocalDate.of(2020, 1, 1))
+				.data_zdobycia(LocalDate.of(2020, 5, 21))
 				.nazwa("Wicemistrz Polski 2020")
 				.klub(LechPoznan)
 				.build();
 		Trofeum mistrzPolski2022 = Trofeum.builder()
-				.data_zdobycia(LocalDate.of(2022, 1, 1))
+				.data_zdobycia(LocalDate.of(2022, 5, 21))
 				.nazwa("Mistrz Polski 2022")
 				.klub(LechPoznan)
 				.build();
@@ -401,22 +401,22 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		trofeumRepository.save(mistrzPolski2022);
 
 		Trofeum mistrzPolski1977 = Trofeum.builder()
-				.data_zdobycia(LocalDate.of(1977, 1, 1))
+				.data_zdobycia(LocalDate.of(1977, 6, 1))
 				.nazwa("Mistrz Polski 1977")
 				.klub(SlaskWroclaw)
 				.build();
 		Trofeum wicemistrzPolski2024 = Trofeum.builder()
-				.data_zdobycia(LocalDate.of(2024, 1, 1))
+				.data_zdobycia(LocalDate.of(2024, 7, 20))
 				.nazwa("Wicemistrz Polski 2024")
 				.klub(SlaskWroclaw)
 				.build();
 		Trofeum mistrzPolski2012 = Trofeum.builder()
-				.data_zdobycia(LocalDate.of(2012, 1, 1))
+				.data_zdobycia(LocalDate.of(2012, 6, 2))
 				.nazwa("Mistrz Polski 2012")
 				.klub(SlaskWroclaw)
 				.build();
 		Trofeum wicemistrzPolski2011 = Trofeum.builder()
-				.data_zdobycia(LocalDate.of(2011, 1, 1))
+				.data_zdobycia(LocalDate.of(2011, 10, 28))
 				.nazwa("Wicemistrz Polski 2011")
 				.klub(SlaskWroclaw)
 				.build();
