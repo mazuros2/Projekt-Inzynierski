@@ -115,12 +115,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.trofea(new ArrayList<>())
 				.build();
 
-		Klub WislaKrakow = Klub.builder()
-				.nazwa_klubu("Wisła Kraków")
-				.rok_zalozenia(LocalDate.of(1906, 1, 1))
-				.liga(Ekstraklasa)
-				.trofea(new ArrayList<>())
-				.build();
+
 
 		Klub JagielloniaBialystok = Klub.builder()
 				.nazwa_klubu("Jagiellonia Białystok")
@@ -136,6 +131,12 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.trofea(new ArrayList<>())
 				.build();
 
+		Klub WidzewLodz = Klub.builder()
+				.nazwa_klubu("Widzew Łódź")
+				.rok_zalozenia(LocalDate.of(1910, 1, 1))
+				.liga(Ekstraklasa)
+				.trofea(new ArrayList<>())
+				.build();
 
 
 		klubRepository.save(LegiaWarszawa);
@@ -146,7 +147,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		klubRepository.save(ZaglebieLubin);
 		klubRepository.save(SlaskWroclaw);
 		klubRepository.save(RadomiakRadom);
-		klubRepository.save(WislaKrakow);
+		klubRepository.save(WidzewLodz);
 		klubRepository.save(JagielloniaBialystok);
 		klubRepository.save(PiastGliwice);
 
@@ -209,9 +210,9 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.trofea(new ArrayList<>())
 				.build();
 
-		Klub WidzewLodz = Klub.builder()
-				.nazwa_klubu("Widzew Łódź")
-				.rok_zalozenia(LocalDate.of(1910, 1, 1))
+		Klub WislaKrakow = Klub.builder()
+				.nazwa_klubu("Wisła Kraków")
+				.rok_zalozenia(LocalDate.of(1906, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
 				.build();
@@ -238,7 +239,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		klubRepository.save(ArkaGdynia);
 		klubRepository.save(MiedzLegnica);
 		klubRepository.save(GornikLeczna);
-		klubRepository.save(WidzewLodz);
+		klubRepository.save(WislaKrakow);
 		klubRepository.save(KoronaKielce);
 		klubRepository.save(OdraOpole);
 
