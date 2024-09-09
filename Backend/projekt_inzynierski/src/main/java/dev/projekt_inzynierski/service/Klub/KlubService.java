@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.service.Klub;
 
+import dev.projekt_inzynierski.DTO.*;
 import dev.projekt_inzynierski.models.Klub;
 import dev.projekt_inzynierski.repository.Klub.KlubRepository;
 import jakarta.persistence.NoResultException;
@@ -22,16 +23,12 @@ public class KlubService {
         return klubRepository.getKluby();
     }
 
-    public List<Klub> getAllKlubyByLigaId(long ligaId) {
+    public List<KlubFromLigaDTO> getAllKlubyByLigaId(long ligaId) {
         return klubRepository.findAllByLigaId(ligaId);
     }
 
-    public Klub getKlubById(long id) {
-        try {
-            return klubRepository.findKlubById(id);
-        } catch (NoResultException e) {
-            throw new ResourceNotFoundException("Klub not found with id " + id, e);
-        }
+    public KlubByIdDTO getKlubById(long id) {
+        return klubRepository.findKlubById(id);
     }
 
 }
