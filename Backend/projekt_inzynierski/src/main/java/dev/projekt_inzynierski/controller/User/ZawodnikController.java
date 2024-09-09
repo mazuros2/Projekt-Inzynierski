@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.controller.User;
 
+import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
 import dev.projekt_inzynierski.models.users.Zawodnik;
 import dev.projekt_inzynierski.repository.User.ZawodnikRepository;
 import dev.projekt_inzynierski.service.User.ZawodnikService;
@@ -21,9 +22,8 @@ public class ZawodnikController {
     }
 
     @GetMapping("/getZawodnik/{id_Uzytkownik}")
-    public ResponseEntity<Zawodnik> getZawodnikById(@PathVariable Long id_Uzytkownik) {
-        Optional<Zawodnik> zawodnik = zawodnikRepository.findById(id_Uzytkownik);
-        return zawodnik.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<ZawodnikByIdDTO> getZawodnikById(@PathVariable Long id_Uzytkownik) {
+        ZawodnikByIdDTO zawodnikById = zawodnikService.getZawodnikById(id_Uzytkownik);
+        return ResponseEntity.ok(zawodnikById);
     }
 }
