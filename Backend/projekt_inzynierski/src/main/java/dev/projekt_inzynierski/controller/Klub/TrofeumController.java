@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.controller.Klub;
 
+import dev.projekt_inzynierski.DTO.TrofeumDTO;
 import dev.projekt_inzynierski.models.Trofeum;
 import dev.projekt_inzynierski.service.Klub.TrofeumService;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,8 @@ public class TrofeumController {
     }
 
     @GetMapping("/klub/{klubId}/trofea")
-    public ResponseEntity<List<Trofeum>> getTrofeaDlaKlubu(@PathVariable long klubId) {
-        List<Trofeum> trofea = trofeumService.getTrofeaDlaKlubu(klubId);
+    public ResponseEntity<List<TrofeumDTO>> getTrofeaDlaKlubu(@PathVariable long klubId) {
+        List<TrofeumDTO> trofea = trofeumService.getTrofeaDlaKlubu(klubId);
         if (trofea.isEmpty()) {
             return ResponseEntity.noContent().build();
         }

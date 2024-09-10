@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.service.Klub;
 
+import dev.projekt_inzynierski.DTO.TrofeumDTO;
 import dev.projekt_inzynierski.models.Trofeum;
 import dev.projekt_inzynierski.repository.Klub.TrofeumRepository;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,8 @@ public class TrofeumService {
         this.trofeumRepository = trofeumRepository;
     }
 
-    public List<Trofeum> getTrofeaDlaKlubu(long klubId) {
-        return trofeumRepository.findByKlubId(klubId);
+    public List<TrofeumDTO> getTrofeaDlaKlubu(long klubId) {
+        return trofeumRepository.findAllByKlubId(klubId);
     }
 
 }
