@@ -14,11 +14,9 @@ import java.util.Optional;
 @RestController
 public class ZawodnikController {
     private final ZawodnikService zawodnikService;
-    private final ZawodnikRepository zawodnikRepository;
 
-    public ZawodnikController(ZawodnikService zawodnikService,ZawodnikRepository zawodnikRepository) {
+    public ZawodnikController(ZawodnikService zawodnikService) {
         this.zawodnikService = zawodnikService;
-        this.zawodnikRepository=zawodnikRepository;
     }
 
     @GetMapping("/getZawodnik/{id_Uzytkownik}")

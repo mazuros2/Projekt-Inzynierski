@@ -12,8 +12,11 @@ import java.util.List;
 
 @Repository
 public interface KlubRepository extends JpaRepository<Klub,Long> {
-    @Query("SELECT k.id,k.nazwa_klubu,l.nazwa_Ligi,k.rok_zalozenia as id FROM Klub k JOIN Liga l on k.liga.id = l.id")
-    List<Klub> getKluby();
+    @Query("SELECT new dev.projekt_inzynierski.DTO.KlubByIdDTO(" +
+            "k.id, k.nazwa_klubu, k.rok_zalozenia, " +
+            "k.liga.id, k.liga.nazwa_Ligi) " +
+            "FROM Klub k")
+    List<KlubByIdDTO> getKluby();
 
     @Query("SELECT new dev.projekt_inzynierski.DTO.KlubFromLigaDTO(k.id, k.nazwa_klubu) FROM Klub k WHERE k.liga.id = :ligaId")
     List<KlubFromLigaDTO> findAllByLigaId(@Param("ligaId") long ligaId);

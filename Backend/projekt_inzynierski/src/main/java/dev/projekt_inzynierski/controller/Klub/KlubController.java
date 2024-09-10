@@ -20,10 +20,10 @@ public class KlubController {
     public KlubController(KlubService klubService) {
         this.klubService = klubService;
     }
-    @GetMapping("/getKluby")
-    public List<Klub> getKluby(){
-        List<Klub> kluby = klubService.getKluby();
-        return kluby;
+    @GetMapping("/kluby")
+    public ResponseEntity<List<KlubByIdDTO>> getKluby(){
+        List<KlubByIdDTO> kluby = klubService.getKluby();
+        return ResponseEntity.ok(kluby);
     }
 
     @GetMapping("/{ligaId}/kluby")

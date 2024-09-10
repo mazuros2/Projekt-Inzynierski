@@ -19,7 +19,7 @@ public class KlubService {
         this.klubRepository = klubRepository;
     }
 
-    public List<Klub> getKluby() {
+    public List<KlubByIdDTO> getKluby() {
         return klubRepository.getKluby();
     }
 
