@@ -1,6 +1,7 @@
 package dev.projekt_inzynierski.controller.Klub;
 
 import dev.projekt_inzynierski.DTO.TrofeumDTO;
+import dev.projekt_inzynierski.DTO.TrofeumNazwaKlubuDTO;
 import dev.projekt_inzynierski.models.Trofeum;
 import dev.projekt_inzynierski.service.Klub.TrofeumService;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,18 @@ public class TrofeumController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(trofea);
+    }
+
+    @GetMapping("/trofeum/mistrzpolski")
+    public ResponseEntity<List<TrofeumNazwaKlubuDTO>> getMistrzPolski() {
+        List<TrofeumNazwaKlubuDTO> mistrzPolski = trofeumService.getMistrzPolski();
+        return ResponseEntity.ok(mistrzPolski);
+    }
+
+    @GetMapping("/trofeum/pucharpolski")
+    public ResponseEntity<List<TrofeumNazwaKlubuDTO>> getPucharPolski() {
+        List<TrofeumNazwaKlubuDTO> pucharPolski = trofeumService.getPucharPolski();
+        return ResponseEntity.ok(pucharPolski);
     }
 
 }
