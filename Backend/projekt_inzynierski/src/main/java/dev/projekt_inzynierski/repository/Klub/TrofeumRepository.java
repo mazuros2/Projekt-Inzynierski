@@ -20,13 +20,15 @@ public interface TrofeumRepository extends JpaRepository<Trofeum,Long> {
     @Query("SELECT new dev.projekt_inzynierski.DTO.TrofeumNazwaKlubuDTO(" +
             "t.nazwa, k.nazwa_klubu, t.data_zdobycia) " +
             "FROM Trofeum t INNER JOIN Klub k ON t.klub.id = k.id " +
-            "WHERE t.nazwa LIKE 'Mistrz Polski%'")
+            "WHERE t.nazwa LIKE 'Mistrz Polski%'" +
+            "ORDER BY t.data_zdobycia DESC")
     List<TrofeumNazwaKlubuDTO> findMistrzPolski();
 
     @Query("SELECT new dev.projekt_inzynierski.DTO.TrofeumNazwaKlubuDTO(" +
             "t.nazwa, k.nazwa_klubu, t.data_zdobycia) " +
             "FROM Trofeum t INNER JOIN Klub k ON t.klub.id = k.id " +
-            "WHERE t.nazwa LIKE 'Puchar Polski%'")
+            "WHERE t.nazwa LIKE 'Puchar Polski%'" +
+            "ORDER BY t.data_zdobycia DESC")
     List<TrofeumNazwaKlubuDTO> findPucharPolski();
 
 }
