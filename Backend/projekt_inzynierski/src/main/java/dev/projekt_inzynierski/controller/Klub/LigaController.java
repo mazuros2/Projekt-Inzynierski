@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.controller.Klub;
 
+import dev.projekt_inzynierski.DTO.LigaDTO;
 import dev.projekt_inzynierski.models.Liga;
 import dev.projekt_inzynierski.repository.Klub.LigaRepository;
 import dev.projekt_inzynierski.service.Klub.LigaService;
@@ -19,8 +20,8 @@ public class LigaController {
     }
 
     @GetMapping("/ligii")
-    public ResponseEntity<List<String>> getAllLigaNames() {
-        List<String> ligaNames = ligaService.getAllLigaNames();
+    public ResponseEntity<List<LigaDTO>> getAllLigaNames() {
+        List<LigaDTO> ligaNames = ligaService.getAllLigaNames();
         return ResponseEntity.ok(ligaNames);
     }
     @PostMapping("/addLiga")

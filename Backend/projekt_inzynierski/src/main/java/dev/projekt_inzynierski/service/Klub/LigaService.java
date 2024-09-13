@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.service.Klub;
 
+import dev.projekt_inzynierski.DTO.LigaDTO;
 import dev.projekt_inzynierski.models.Liga;
 import dev.projekt_inzynierski.repository.Klub.LigaRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class LigaService {
         this.ligaRepository = ligaRepository;
     }
 
-    public List<String> getAllLigaNames() {
+    public List<LigaDTO> getAllLigaNames() {
         return ligaRepository.findAllLigaNames();
     }
 

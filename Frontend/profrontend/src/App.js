@@ -15,6 +15,7 @@ function App() {
         <Route path="/" element={<WszystkieKluby />} /> 
         <Route path="/klub/:id" element={<Klub />} />
         <Route path=":ligaId/kluby" element={<LigaKluby />} />
+        <Route path="/ligii" element={<Liga />} /> 
         <Route path="/trofeum/mistrzpolski" element={<MistrzowiePolski />} /> 
         <Route path="/trofeum/pucharpolski" element={<PucharPolski />} /> 
       </Routes>

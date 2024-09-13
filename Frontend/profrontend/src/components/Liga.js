@@ -21,7 +21,19 @@ const Liga = () => {
 
   return (
     <div>
-
+      <h1>Wszystkie ligii</h1>
+      {liga.length === 0 ? (
+        <p>Brak danych</p>
+      ) : (
+        <ul>
+          {liga.map((liga, index) => (
+            <li key={index}>
+              <strong>Nazwa ligi:</strong> {liga.nazwaLigi || "Brak"}<br />
+              <strong>Poziom Ligi:</strong> {liga.poziomLigi || "Brak"}<br />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
 );
 }
