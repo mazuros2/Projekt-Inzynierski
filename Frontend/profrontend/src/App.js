@@ -1,17 +1,24 @@
 import React from 'react';
 import './App.css';
 import Liga from './components/Liga';
-import Mistrzowiepolski from './components/MistrzowiePolski';
+import MistrzowiePolski from './components/MistrzowiePolski';
 import PucharPolski from './components/PucharPolski';
 import WszystkieKluby from './components/WszystkieKluby';
 import Klub from './components/Klub';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LigaKluby from './components/LigaKluby';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Test</h1>
-      <WszystkieKluby />
-    </div>
+<Router>
+      <Routes>
+        <Route path="/" element={<WszystkieKluby />} /> 
+        <Route path="/klub/:id" element={<Klub />} />
+        <Route path=":ligaId/kluby" element={<LigaKluby />} />
+        <Route path="/trofeum/mistrzpolski" element={<MistrzowiePolski />} /> 
+        <Route path="/trofeum/pucharpolski" element={<PucharPolski />} /> 
+      </Routes>
+    </Router>
   );
 }
 
