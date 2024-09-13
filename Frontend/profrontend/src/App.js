@@ -4,11 +4,12 @@ import Liga from './components/Liga';
 import Mistrzowiepolski from './components/MistrzowiePolski';
 import PucharPolski from './components/PucharPolski';
 import WszystkieKluby from './components/WszystkieKluby';
+import Klub from './components/Klub';
 
 function App() {
   return (
     <div className="App">
-      <h1>Mistrzostwo Polski i kluby, które je wygrały</h1>
+      <h1>Test</h1>
       <WszystkieKluby />
     </div>
   );
