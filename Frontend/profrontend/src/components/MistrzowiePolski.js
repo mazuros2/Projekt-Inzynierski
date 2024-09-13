@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Trofea = () => {
-  const [trofea, setTrofea] = useState([]);
+const Mistrzowiepolski = () => {
+  const [mp, setMP] = useState([]);
 
   useEffect(() => {
     const authHeader = 'Basic ' + btoa('admin:admin');
@@ -12,7 +12,7 @@ const Trofea = () => {
       }
     })
     .then(response => {
-      setTrofea(response.data);
+      setMP(response.data);
     })
     .catch(error => {
       console.error('Error fetching data:', error);
@@ -21,12 +21,12 @@ const Trofea = () => {
 
   return (
     <div>
-        <h1>Trofea</h1>
-        {trofea.length === 0 ? (
+        <h1>Mistrzowie Polski</h1>
+        {mp.length === 0 ? (
             <p>Brak danych</p>
         ) : (
             <ul>
-                {trofea.map((trofeum, index) => (
+                {mp.map((trofeum, index) => (
                     <li key={index}>
                         <strong>Trofeum:</strong> {trofeum.nazwaTrofeum || "Brak"}<br />
                         <strong>Klub:</strong> {trofeum.nazwaKlubu || "Brak"}<br />
@@ -39,4 +39,4 @@ const Trofea = () => {
 );
 }
 
-export default Trofea;
+export default Mistrzowiepolski;
