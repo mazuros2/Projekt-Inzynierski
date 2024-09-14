@@ -20,4 +20,7 @@ public class LigaService {
         return ligaRepository.findAllLigaNames();
     }
 
+    public Liga addLiga(Liga liga){
+        return ligaRepository.save(liga);
+    };
 }

@@ -13,10 +13,8 @@ import java.util.List;
 @CrossOrigin
 public class LigaController {
     private final LigaService ligaService;
-    private final LigaRepository ligaRepository;
-    public LigaController(LigaService ligaService,LigaRepository ligaRepository) {
+    public LigaController(LigaService ligaService) {
         this.ligaService = ligaService;
-        this.ligaRepository = ligaRepository;
     }
 
     @GetMapping("/ligii")
@@ -25,8 +23,8 @@ public class LigaController {
         return ResponseEntity.ok(ligaNames);
     }
     @PostMapping("/addLiga")
-    Liga addLiga(@RequestBody Liga liga) {
-        return ligaRepository.save(liga);
+    public Liga addLiga(@RequestBody Liga liga) {
+        return ligaService.addLiga(liga);
     }
 
 }

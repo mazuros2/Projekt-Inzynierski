@@ -7,6 +7,7 @@ import WszystkieKluby from './components/WszystkieKluby';
 import Klub from './components/Klub';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LigaKluby from './components/LigaKluby';
+import UserProfile from './components/UserProfile';
 
 function App() {
   return (
