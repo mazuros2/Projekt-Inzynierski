@@ -18,4 +18,8 @@ public class ZawodnikService {
     public ZawodnikByIdDTO getZawodnikById(long id) {
         return zawodnikRepository.findZawodnikById(id);
     }
+
+//    public Zawodnik addZawodnik(Zawodnik zawodnik){
+//        return zawodnikRepository.addZawodnik(zawodnik);
+//    }
 }

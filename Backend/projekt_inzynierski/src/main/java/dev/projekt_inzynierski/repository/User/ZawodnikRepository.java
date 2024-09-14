@@ -15,4 +15,6 @@ public interface ZawodnikRepository extends JpaRepository<Zawodnik,Long> {
             "z.wzrost,z.pozycja.id_Pozycja, z.pozycja.nazwa_pozycji) " +
             "FROM Zawodnik z WHERE z.id_Uzytkownik = :id")
     ZawodnikByIdDTO findZawodnikById(@Param("id") long id);
+
+//    Zawodnik addZawodnik();
 }

@@ -13,6 +13,7 @@ function App() {
 <Router>
       <Routes>
         <Route path="/" element={<WszystkieKluby />} /> 
+        <Route path="/user-profile" component={UserProfile} />
         <Route path="/klub/:id" element={<Klub />} />
         <Route path=":ligaId/kluby" element={<LigaKluby />} />
         <Route path="/ligii" element={<Liga />} /> 
