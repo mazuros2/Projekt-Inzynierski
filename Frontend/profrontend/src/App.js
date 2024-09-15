@@ -8,6 +8,7 @@ import Klub from './components/Klub';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LigaKluby from './components/LigaKluby';
 import UserProfile from './components/UserProfile';
+import AddLiga from './components/AddLiga';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/klub/:id" element={<Klub />} />
         <Route path=":ligaId/kluby" element={<LigaKluby />} />
         <Route path="/ligii" element={<Liga />} /> 
+        <Route path="/addliga" element={<AddLiga />} /> 
         <Route path="/trofeum/mistrzpolski" element={<MistrzowiePolski />} /> 
         <Route path="/trofeum/pucharpolski" element={<PucharPolski />} /> 
       </Routes>
