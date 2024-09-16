@@ -1,0 +1,61 @@
+/* Pasek nawigacyjny */
+.navbar {
+    background-color: #b00; /* Czerwony kolor paska */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: 60px;
+    width: 100%;
+}
+
+.navbar-logo {
+    height: 40px;
+}
+
+.navbar-title {
+    color: white;
+    font-size: 20px;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.icons-container {
+    display: flex;
+    align-items: center;
+}
+
+.settings-icon, .user-icon {
+    width: 30px;
+    cursor: pointer;
+    margin-left: 10px; /* Odstęp między ikonami */
+}
+
+/* Stylizacja rozwijanego menu */
+.settings-menu {
+    position: absolute;
+    right: 0;
+    top: 60px; /* Ustawienie poniżej paska nawigacji */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.settings-menu ul {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
+}
+
+.settings-menu ul li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.settings-menu ul li:hover {
+    background-color: #f7f7f7;
+}

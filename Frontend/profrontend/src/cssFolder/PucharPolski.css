@@ -1,0 +1,35 @@
+/* Kontener na treść strony */
+.pucharpolski-container {
+    padding: 20px;
+    background-color: #f7f7f7;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    min-height: 100vh; /* Kontener zajmuje przynajmniej 100% wysokości okna przeglądarki */
+    text-align: center; /* Wycentrowanie treści */
+}
+
+h1 {
+    color: #b00;
+    text-align: center;
+}
+
+/* Stylizacja listy */
+.pp-list {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Automatyczne dopasowanie siatki */
+    gap: 20px; /* Odstępy między elementami */
+}
+
+/* Stylizacja pojedynczego elementu listy */
+.pp-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Delikatny cień */
+}

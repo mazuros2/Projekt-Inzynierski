@@ -1,135 +1,67 @@
 /* Rozciąganie kontenera na pełną szerokość */
 .kluby-container {
-    padding: 20px;
-    background-color: #f7f7f7;
-    width: 100%; /* Pełna szerokość ekranu */
-    max-width: 100%; /* Usunięcie maksymalnej szerokości */
-    margin: 0 auto; /* Wycentrowanie kontenera */
-    font-family: Arial, sans-serif;
-  }
-  html, body {
-    height: 100%;
-    margin: 0;
-  }
-  
-  .kluby-container {
-    min-height: 100vh; /* Kontener zajmuje przynajmniej 100% wysokości okna przeglądarki */
-  }
-  .icons-container {
-    display: flex;
-    align-items: center;
-  }
-/* Pasek nawigacyjny */
-.navbar {
-    background-color: #b00; /* Czerwony kolor paska */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    height: 60px;
-    width: 100%;
-  }
-  
-  .navbar-logo {
-    height: 40px;
-  }
-  
-  .navbar-title {
-    color: white;
-    font-size: 20px;
-    margin: 0;
-    flex-grow: 1;
-    text-align: center;
-  }
-  
-  .navbar-settings img {
-    height: 30px;
-    cursor: pointer;
-  }
-  /* Koniec paska nawigacyjnego */
-
-  /* Stylizacja rozwijanego menu */
-
-  .settings-icon, .user-icon {
-    width: 30px;
-    cursor: pointer;
-    margin-left: 10px; /* Odstęp między ikonami */
-  }
-  .settings-menu {
-    position: absolute;
-    right: 0;
-    top: 60px; /* Ustawienie poniżej paska nawigacji */
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 150px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .settings-menu ul {
-    list-style-type: none;
-    padding: 10px;
-    margin: 0;
-  }
-  
-  .settings-menu ul li {
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .settings-menu ul li:hover {
-    background-color: #f7f7f7;
-  }
-.kluby-container {
-    padding: 20px;
-    background-color: #f7f7f7;
-    border-radius: 10px;
-    width: 600px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f7f7f7;
+  width: 100%; /* Pełna szerokość ekranu */
+  max-width: 100%; /* Usunięcie maksymalnej szerokości */
+  margin: 0 auto; /* Wycentrowanie kontenera */
+  font-family: Arial, sans-serif;
+  min-height: 100vh; /* Kontener zajmuje przynajmniej 100% wysokości okna przeglądarki */
 }
 
-h1 {
-    color: #b00;
-    text-align: center;
+/* Stylizacja dla body i html */
+html, body {
+  height: 100%;
+  margin: 0;
 }
 
+/* Stylizacja listy klubów */
 .kluby-list {
-    list-style-type: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Siatka, która automatycznie dostosowuje liczbę kolumn */
-    gap: 20px; /* Odstępy między elementami */
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Siatka, która automatycznie dostosowuje liczbę kolumn */
+  gap: 20px; /* Odstępy między elementami */
 }
 
+/* Stylizacja dla pojedynczego klubu */
 .klub-item {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 10px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
 }
 
+/* Stylizacja logo klubu */
 .klub-logo img {
-    width: 50px;
-    height: 50px;
-    margin-right: 15px;
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
 }
 
+/* Stylizacja detali klubu */
 .klub-details {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Informacje o klubie */
 .klub-info {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
+/* Stylizacja dla tytułu klubu */
 .klub-details strong {
-    font-size: 18px;
-    color: #333;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Stylizacja tytułów na stronie */
+h1 {
+  color: #b00;
+  text-align: center;
 }
