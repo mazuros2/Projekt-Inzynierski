@@ -176,7 +176,7 @@ const WszystkieKluby = () => {
     <div className="kluby-container">
       {/* Pasek nawigacyjny */}
       <div className="navbar">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Logo_PZPN_%28transparent%29.jpg" alt="Logo" className="navbar-logo" />
+        <img src="https://lh3.googleusercontent.com/proxy/4C4zlh5y6xvZC7MWNsG_99nE1x8yqQnSczaCD2cUy4xlvPOQFcm5vLMoEhrcczwjBcfADm4La8Li__oU9Gzy1Whmwpj1U0BvwG6FlMpj6y7cQuI4IfftojBNTeKQocivQu7lbKfiKvXW30jdeizyGN6AHdIUSpc7mWw1" alt="Logo" className="navbar-logo" />
         <h1 className="navbar-title"></h1>
         
         <div className="icons-container">
