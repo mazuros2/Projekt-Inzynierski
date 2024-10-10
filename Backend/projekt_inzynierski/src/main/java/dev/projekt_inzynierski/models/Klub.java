@@ -34,6 +34,7 @@ public class Klub {
     @NotNull
     private LocalDate rok_zalozenia;
 
+    private String logo_url;
 
     @ManyToOne
     @JoinColumn(name = "id_Ligii", nullable = false)

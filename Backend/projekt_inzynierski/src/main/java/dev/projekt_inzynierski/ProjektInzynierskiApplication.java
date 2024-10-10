@@ -63,13 +63,17 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1916, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.logo_url("https://w7.pngwing.com/pngs/496/212/png-transparent-legia-warsaw-2018-19-uefa-champions-league-cork-city-f-c-ekstraklasa-football-logo-sports-football-team-thumbnail.png")
 				.build();
+
+		//.logo_url("")
 
 		Klub LechPoznan = Klub.builder()
 				.nazwa_klubu("Lech Poznan")
 				.rok_zalozenia(LocalDate.of(1922, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.logo_url("https://toppng.com/uploads/preview/kks-lech-poznan-sa-vector-logo-11574309108cx5yp3ke7h.png")
 				.build();
 
 		Klub GKSKatowice = Klub.builder()
@@ -77,6 +81,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1964, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/commons/d/dc/GKS_KATOWICE_LOGO.png")
 				.build();
 
 
@@ -85,6 +90,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1948, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.logo_url("https://toppng.com/uploads/preview/ssa-gornik-shirt-badge-vector-logo-11574309412s1qabidadm.png")
 				.build();
 
 		Klub RakowCzestochowa = Klub.builder()
@@ -92,6 +98,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1921, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.logo_url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkolGfLUeNumFwx_mPaq7KONaaRhtLTiv6ow&s")
 				.build();
 
 		Klub ZaglebieLubin = Klub.builder()
@@ -99,6 +106,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1946, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/en/thumb/2/20/Zag%C5%82%C4%99bie_Lubin_crest.svg/1200px-Zag%C5%82%C4%99bie_Lubin_crest.svg.png")
 				.build();
 
 		Klub SlaskWroclaw = Klub.builder()
@@ -106,6 +114,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1947, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Herb_%C5%9Al%C4%85ska_Wroc%C5%82aw.svg/1200px-Herb_%C5%9Al%C4%85ska_Wroc%C5%82aw.svg.png")
 				.build();
 
 		Klub RadomiakRadom = Klub.builder()
@@ -113,6 +122,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1910, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/commons/2/2b/Herb_radomiaka_300dpi.png")
 				.build();
 
 
