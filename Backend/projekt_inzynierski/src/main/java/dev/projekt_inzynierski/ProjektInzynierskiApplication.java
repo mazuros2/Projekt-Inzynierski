@@ -194,6 +194,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1971, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gkstychy.png/1200px-Gkstychy.png")
 				.build();
 
 		Klub BrukBetTermalica = Klub.builder()
@@ -201,6 +202,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1922, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://termalica.brukbet.com/wp-content/uploads/2021/11/BBTN-Herb-slider.png")
 				.build();
 
 		Klub ArkaGdynia = Klub.builder()
@@ -208,6 +210,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1929, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://arka.gdynia.pl/files/herb/arka_gdynia_mzks_kolor.png")
 				.build();
 
 		Klub MiedzLegnica = Klub.builder()
@@ -215,6 +218,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1971, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/commons/9/9a/Miedzherb.png")
 				.build();
 
 		Klub GornikLeczna = Klub.builder()
@@ -222,6 +226,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1979, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/en/thumb/8/82/Herb_gornik_leczna.svg/1200px-Herb_gornik_leczna.svg.png")
 				.build();
 
 		Klub WislaKrakow = Klub.builder()
@@ -229,6 +234,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1906, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://www.wikipasy.pl/images/f/f9/Wis%C5%82a_Krak%C3%B3w_stary_herb_7.png")
 				.build();
 
 		Klub KoronaKielce = Klub.builder()
@@ -236,6 +242,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1973, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://www.wikipasy.pl/images/f/f2/Korona_Kielce_herb.png")
 				.build();
 
 		Klub OdraOpole = Klub.builder()
@@ -243,6 +250,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1945, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://www.wikipasy.pl/images/2/20/Odra_Opole_herb.png")
 				.build();
 
 		klubRepository.save(RuchChorzow);
@@ -264,6 +272,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1994, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://bts.rekord.com.pl/static/images/logo.png")
 				.build();
 
 		Klub PodbeskidzieBB = Klub.builder()
@@ -271,6 +280,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1995, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://tspodbeskidzie.pl/static/upload/store/klub/herb/TSP_Herb.png")
 				.build();
 
 		Klub KKSKalisz = Klub.builder()
@@ -278,6 +288,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1925, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/commons/6/6a/KKS_herb.png")
 				.build();
 
 		Klub ZaglebieSosnowiec = Klub.builder()
@@ -285,6 +296,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1918, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://www.wikipasy.pl/images/5/54/Zag%C5%82%C4%99bie_Sosnowiec_herb.png")
 				.build();
 
 		Klub KSWieczystaKrakow = Klub.builder()
@@ -292,6 +304,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1942, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://bazaherbow.pl/wp-content/uploads/2022/05/WieczystaKrakow.png")
 				.build();
 
 		Klub ResoviaRzeszow = Klub.builder()
@@ -299,6 +312,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1910, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://www.wikipasy.pl/images/4/42/Resovia_Rzesz%C3%B3w_herb.png")
 				.build();
 
 		Klub PoloniaBytom = Klub.builder()
@@ -306,6 +320,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1945, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/commons/6/69/Polonia-Bytom01.png")
 				.build();
 
 		Klub OlimpiaGrudziac = Klub.builder()
@@ -313,6 +328,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1923, 6, 30))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://seeklogo.com/images/G/GKS_Olimpia_Grudziadz-logo-00C3DCF6AB-seeklogo.com.png")
 				.build();
 
 		Klub MotorLublin = Klub.builder()
@@ -320,6 +336,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1950, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://motorlublin.com/wp-content/uploads/2016/03/herb.png")
 				.build();
 
 		Klub GarbarniaKrakow = Klub.builder()
@@ -327,6 +344,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1921, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://bazaherbow.pl/wp-content/uploads/2021/10/GarbarniaKrakow.png")
 				.build();
 
 		Klub StalRzeszow = Klub.builder()
@@ -334,7 +352,9 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1944, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://stalrzeszow.pl/wp-content/uploads/2019/07/STAL-RZESZOW.png")
 				.build();
+
 		klubRepository.save(RekordBB);
 		klubRepository.save(PodbeskidzieBB);
 		klubRepository.save(KKSKalisz);
