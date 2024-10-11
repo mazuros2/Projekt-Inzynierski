@@ -130,6 +130,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1920, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/commons/f/f9/Logo_Jagielloni_Bia%C5%82ystok.png")
 				.build();
 
 		Klub PiastGliwice = Klub.builder()
@@ -137,6 +138,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1945, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.logo_url("https://iconape.com/wp-content/png_logo_vector/gks-gliwice-logo.png")
 				.build();
 
 		Klub WidzewLodz = Klub.builder()
@@ -144,6 +146,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1910, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.logo_url("https://seeklogo.com/images/W/Widzew_Lodz-logo-70992DF075-seeklogo.com.png")
 				.build();
 
 
@@ -166,6 +169,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1920, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Ruch_Chorz%C3%B3w_-_Herb_%282021%29.svg/1200px-Ruch_Chorz%C3%B3w_-_Herb_%282021%29.svg.png")
 				.build();
 
 		Klub ZniczPruszkow = Klub.builder()
@@ -173,6 +177,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1922, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/en/8/84/Znicz_Pruszkow.png")
 				.build();
 
 		Klub PogonSiedlce = Klub.builder()
@@ -180,6 +185,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1944, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.logo_url("https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/Herb_Pogo%C5%84.cdr.svg/1200px-Herb_Pogo%C5%84.cdr.svg.png")
 				.build();
 
 
