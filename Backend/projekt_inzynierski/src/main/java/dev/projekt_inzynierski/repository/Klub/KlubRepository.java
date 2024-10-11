@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface KlubRepository extends JpaRepository<Klub,Long> {
     @Query("SELECT new dev.projekt_inzynierski.DTO.KlubByIdDTO(" +
-            "k.id, k.nazwa_klubu, k.rok_zalozenia, " +
+            "k.id, k.nazwa_klubu, k.rok_zalozenia, k.logo_url, " +
             "k.liga.id, k.liga.nazwa_Ligi) " +
             "FROM Klub k")
     List<KlubByIdDTO> getKluby();
@@ -22,7 +22,7 @@ public interface KlubRepository extends JpaRepository<Klub,Long> {
     List<KlubFromLigaDTO> findAllByLigaId(@Param("ligaId") long ligaId);
 
     @Query("SELECT new dev.projekt_inzynierski.DTO.KlubByIdDTO(" +
-            "k.id, k.nazwa_klubu, k.rok_zalozenia, " +
+            "k.id, k.nazwa_klubu, k.rok_zalozenia, k.logo_url, " +
             "k.liga.id, k.liga.nazwa_Ligi) " +
             "FROM Klub k WHERE k.id = :id")
     KlubByIdDTO findKlubById(@Param("id") long id);

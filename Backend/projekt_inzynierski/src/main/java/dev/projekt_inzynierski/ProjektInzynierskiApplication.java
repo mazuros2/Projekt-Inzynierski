@@ -125,8 +125,6 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.logo_url("https://upload.wikimedia.org/wikipedia/commons/2/2b/Herb_radomiaka_300dpi.png")
 				.build();
 
-
-
 		Klub JagielloniaBialystok = Klub.builder()
 				.nazwa_klubu("Jagiellonia Białystok")
 				.rok_zalozenia(LocalDate.of(1920, 1, 1))

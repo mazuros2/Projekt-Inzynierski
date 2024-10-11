@@ -15,6 +15,7 @@ public class KlubByIdDTO {
     private Long id;
     private String nazwaKlubu;
     private LocalDate rokZalozenia;
+    private String logo_url;
     private Long ligaId;
     private String ligaNazwaLigi;
 }
