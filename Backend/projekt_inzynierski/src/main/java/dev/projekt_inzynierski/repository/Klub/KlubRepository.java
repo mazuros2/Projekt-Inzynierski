@@ -18,7 +18,7 @@ public interface KlubRepository extends JpaRepository<Klub,Long> {
             "FROM Klub k")
     List<KlubByIdDTO> getKluby();
 
-    @Query("SELECT new dev.projekt_inzynierski.DTO.KlubFromLigaDTO(k.id, k.nazwa_klubu) FROM Klub k WHERE k.liga.id = :ligaId")
+    @Query("SELECT new dev.projekt_inzynierski.DTO.KlubFromLigaDTO(k.id, k.nazwa_klubu,k.logo_url) FROM Klub k WHERE k.liga.id = :ligaId")
     List<KlubFromLigaDTO> findAllByLigaId(@Param("ligaId") long ligaId);
 
     @Query("SELECT new dev.projekt_inzynierski.DTO.KlubByIdDTO(" +

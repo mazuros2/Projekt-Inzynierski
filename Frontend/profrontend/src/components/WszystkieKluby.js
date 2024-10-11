@@ -214,7 +214,7 @@ const WszystkieKluby = () => {
                 <li key={index} className="klub-item">
                   <div className="klub-info">
                     <span className="klub-logo">
-                      <img src="URL_DO_LOGO" alt={klub.nazwaKlubu} />
+                      <img src={klub.logo_url} alt={klub.nazwaKlubu} />
                     </span>
                     <div className="klub-details">
                       <strong>{klub.nazwaKlubu || "Brak"}</strong><br />

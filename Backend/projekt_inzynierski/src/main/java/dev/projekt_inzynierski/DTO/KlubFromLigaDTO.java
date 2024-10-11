@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 public class KlubFromLigaDTO {
     private Long id;
     private String nazwaKlubu;
+    private String logo_url;
 }

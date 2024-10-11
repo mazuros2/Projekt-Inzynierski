@@ -45,6 +45,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom'; 
 import '../cssFolder/Navbar.css';
+import '../cssFolder/LigaKluby.css'; 
+
 
 const LigaKluby = () => {
   const { ligaId } = useParams(); 
@@ -119,7 +121,10 @@ const LigaKluby = () => {
           {kluby.map((klub, index) => (
             <li key={index} className="klub-item">
               <div className="klub-info">
-                <strong>Nazwa klubu: </strong> {klub.nazwaKlubu || "Brak"}<br />
+                    <span className="klub-logo">
+                      <img src={klub.logo_url} alt={klub.nazwaKlubu} />
+                    </span>
+                <strong> - </strong> {klub.nazwaKlubu || "Brak"}<br />
               </div>
             </li>
           ))}
