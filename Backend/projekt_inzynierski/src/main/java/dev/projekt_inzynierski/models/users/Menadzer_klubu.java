@@ -26,11 +26,6 @@ public class Menadzer_klubu {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_Uzytkownik;
 
-    @NotBlank
-    private String imie;
-
-    @NotBlank
-    private String nazwisko;
 
     @OneToOne
     @JoinColumn(name="id_klub")

@@ -32,12 +32,8 @@ public class Zawodnik {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_Uzytkownik;
 
-    @Size(max = 50)
-    @NotBlank
-    private String nazwa;
-    @Size(max = 50)
-    @NotBlank
-    private String nazwisko;
+    //@Size(max = 50)
+   // @NotBlank
     @Min(20)
     private int waga;
     @Min(140)

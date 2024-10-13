@@ -30,13 +30,6 @@ public class Trener {
     private String licencja_trenera;
 
 
-    @NotBlank
-    private String imie;
-
-
-    @NotBlank
-    private String nazwisko;
-
     @OneToOne
     @JoinColumn(name="id_klub")
     private Klub trenerKlub;

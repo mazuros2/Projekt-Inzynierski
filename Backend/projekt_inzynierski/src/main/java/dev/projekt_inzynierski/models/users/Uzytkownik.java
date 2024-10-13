@@ -40,6 +40,14 @@ public class Uzytkownik {
     @Email
     private String email;
 
+    @Size(max = 50)
+    @NotBlank
+    private String imie;
+
+    @Size(max = 50)
+    @NotBlank
+    private String nazwisko;
+
     @Column(unique=true)
     private int pesel;
 

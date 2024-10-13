@@ -27,13 +27,6 @@ public class Skaut {
     private long id_Uzytkownik;
 
 
-    @NotBlank
-    private String imie;
-
-    @Size(max = 50)
-    @NotBlank
-    private String nazwisko;
-
     @OneToMany(mappedBy = "skaut")
     private List<Obserwowani_Zawodnicy_Skauta> obserwowaniZawodnicy;
 
