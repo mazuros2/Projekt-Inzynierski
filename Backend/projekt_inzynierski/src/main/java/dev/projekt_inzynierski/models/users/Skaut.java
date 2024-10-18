@@ -19,7 +19,7 @@ import java.util.List;
 @Table(name = "Skaut")
 @NoArgsConstructor
 @Entity
-public class Skaut {
+public class Skaut extends Uzytkownik {
 
     @NotNull
     @Id

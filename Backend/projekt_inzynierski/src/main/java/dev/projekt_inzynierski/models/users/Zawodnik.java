@@ -25,7 +25,7 @@ import java.util.List;
 @Table(name = "Zawodnik")
 @Entity
 @NoArgsConstructor
-public class Zawodnik {
+public class Zawodnik extends Uzytkownik{
     //trzeba ogarnac bo to ma byc dziedziczone
     @NotNull
     @Id

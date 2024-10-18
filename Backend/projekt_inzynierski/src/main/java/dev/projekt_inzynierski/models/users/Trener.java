@@ -17,7 +17,7 @@ import lombok.Setter;
 @Table(name = "Trener")
 @Entity
 @NoArgsConstructor
-public class Trener {
+public class Trener extends Uzytkownik{
     // to id ogarniemy później bo musimy zrobić ogarnąć dziedziczenie po user -- Mazur
     //dodac polaczenie z klubem
     @NotNull

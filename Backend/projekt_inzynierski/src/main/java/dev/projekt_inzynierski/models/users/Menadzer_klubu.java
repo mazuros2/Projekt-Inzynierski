@@ -20,7 +20,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Table(name = "Menadzer_klubu")
-public class Menadzer_klubu {
+public class Menadzer_klubu extends Uzytkownik{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

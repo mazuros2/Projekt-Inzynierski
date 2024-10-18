@@ -17,6 +17,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Table(name = "Uzytkownik")
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Uzytkownik {
 
     //dodawaj do każdego stringa NotBlank
