@@ -65,3 +65,15 @@ h1 {
   color: #b00;
   text-align: center;
 }
+
+/* Stylizacja dla linków w detalu klubu */
+.klub-details a {
+  color: inherit; /*kolor tekstu dziedziczonego (zamiast domyślnego niebieskiego) */
+  text-decoration: none; /* Usuń podkreślenie */
+}
+
+/* Opcjonalnie: stylizacja na hover */
+.klub-details a:hover {
+  color: #b00; /* kolor na hover */
+  text-decoration: underline; /* podkreślenie na hover*/
+}
