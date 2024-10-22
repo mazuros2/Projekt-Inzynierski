@@ -140,7 +140,7 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../cssFolder/WszystkieKluby.css';
 import '../cssFolder/Navbar.css'; 
 
@@ -217,7 +217,11 @@ const WszystkieKluby = () => {
                       <img src={klub.logo_url} alt={klub.nazwaKlubu} />
                     </span>
                     <div className="klub-details">
-                      <strong>{klub.nazwaKlubu || "Brak"}</strong><br />
+                      <strong>
+                        <Link to={`/klub/${klub.id}`}>
+                          {klub.nazwaKlubu || "Brak"}
+                        </Link>
+                      </strong><br />
                       Rok założenia: {klub.rokZalozenia || "Brak"}<br />
                       Liga: {klub.ligaNazwaLigi || "Brak"}
                     </div>
