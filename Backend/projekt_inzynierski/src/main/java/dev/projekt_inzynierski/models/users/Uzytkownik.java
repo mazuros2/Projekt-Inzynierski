@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.models.users;
 
+import dev.projekt_inzynierski.configurationJWT.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -51,6 +52,10 @@ public class Uzytkownik {
 
     @Column(unique=true)
     private int pesel;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
     @NotNull
     private LocalDate data_Urodzenia;
