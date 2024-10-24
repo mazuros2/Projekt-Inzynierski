@@ -8,8 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import dev.projekt_inzynierski.models.Kraj_pochodzenia;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 
 @Getter
@@ -19,7 +24,7 @@ import java.time.LocalDate;
 @Table(name = "Uzytkownik")
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Uzytkownik {
+public class Uzytkownik implements UserDetails {
 
     //dodawaj do każdego stringa NotBlank
     //do localeDate @NotNull
@@ -64,4 +69,38 @@ public class Uzytkownik {
     @JoinColumn(name = "id_Kraj_pochodzenia", nullable = false)
     private Kraj_pochodzenia kraj_pochodzenia;
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public String getPassword() {
+        return haslo;
+    }
+
+    @Override
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

@@ -6,7 +6,8 @@ public enum Role implements GrantedAuthority {
     ZAWODNIK,
     MENADZER_KLUBU,
     TRENER,
-    SKAUT;
+    SKAUT,
+    ADMIN;
 
 
     @Override
