@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -32,5 +34,8 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 
         jwtToken = authorizationHeader.substring(7); // pozycja 7 ponieważ Bearer + spacja to 7 jak coś
         userLogin = jwtService.extractLogin(jwtToken);
+        if (userLogin !=null && SecurityContextHolder.getContext().getAuthentication() == null){
+            UserDetails detailsUser = this.userDetailsServive.loadUserByUsername(userLogin);
+        }
     }
 }
