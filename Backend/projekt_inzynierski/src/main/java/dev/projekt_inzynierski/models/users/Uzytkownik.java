@@ -3,10 +3,7 @@ package dev.projekt_inzynierski.models.users;
 import dev.projekt_inzynierski.configurationJWT.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import dev.projekt_inzynierski.models.Kraj_pochodzenia;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,6 +16,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Uzytkownik")
