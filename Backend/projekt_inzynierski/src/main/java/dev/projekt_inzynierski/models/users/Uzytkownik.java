@@ -67,6 +67,11 @@ public class Uzytkownik implements UserDetails {
     private LocalDate data_Urodzenia;
 
     @ManyToMany
+    @JoinTable(
+            name = "uzytkownik_kraj",
+            joinColumns = @JoinColumn(name = "id_uzytkownik"),
+            inverseJoinColumns = @JoinColumn(name = "id_kraj")
+    )
     private Set<Kraj_pochodzenia> kraj_pochodzenia = new HashSet<>();
 
     @Override
