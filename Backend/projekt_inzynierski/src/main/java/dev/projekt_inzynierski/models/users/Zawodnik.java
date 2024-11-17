@@ -12,13 +12,14 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import dev.projekt_inzynierski.models.Pozycja;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @Table(name = "Zawodnik")
 @Entity

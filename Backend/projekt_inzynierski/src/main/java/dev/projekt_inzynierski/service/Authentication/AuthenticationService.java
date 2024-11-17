@@ -26,7 +26,7 @@ public class AuthenticationService {
                         authenticationRequest.getHaslo()
                 )
         );
-        var uzytkownik = uzytkownikRepository.findByLogin(authenticationRequest.getLogin()).orElseThrow()
+        var uzytkownik = uzytkownikRepository.findByLogin(authenticationRequest.getLogin()).orElseThrow();
         var jwtToken = jwtService.tokenGenerator(uzytkownik);
 
 
