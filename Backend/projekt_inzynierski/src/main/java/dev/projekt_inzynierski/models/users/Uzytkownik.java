@@ -12,7 +12,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -64,9 +66,8 @@ public class Uzytkownik implements UserDetails {
     @NotNull
     private LocalDate data_Urodzenia;
 
-    @ManyToOne
-    @JoinColumn(name = "id_Kraj_pochodzenia", nullable = false)
-    private Kraj_pochodzenia kraj_pochodzenia;
+    @ManyToMany
+    private Set<Kraj_pochodzenia> kraj_pochodzenia = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

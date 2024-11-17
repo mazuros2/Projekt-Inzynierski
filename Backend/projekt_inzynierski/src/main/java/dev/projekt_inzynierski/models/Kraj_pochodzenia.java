@@ -6,14 +6,15 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @Table(name = "Kraj_pochodzenia")
 @Entity
@@ -38,10 +39,8 @@ public class Kraj_pochodzenia {
     @Size(max = 120)
     private String region;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_uzytkownik",nullable = false,updatable = false)
-    @JsonBackReference
-    private Uzytkownik uzytkownik;
+    @ManyToMany(mappedBy = "kraj_pochodzenia")
+    private Set<Uzytkownik> uzytkownicy = new HashSet<>();
 
     public Kraj_pochodzenia(String nazwa, String region, Uzytkownik uzytkownik) {
         if(uzytkownik == null){

@@ -1,11 +1,16 @@
 package dev.projekt_inzynierski;
 
+import dev.projekt_inzynierski.configurationJWT.Role;
 import dev.projekt_inzynierski.models.Klub;
+import dev.projekt_inzynierski.models.Kraj_pochodzenia;
 import dev.projekt_inzynierski.models.Liga;
 import dev.projekt_inzynierski.models.Trofeum;
+import dev.projekt_inzynierski.models.users.Uzytkownik;
 import dev.projekt_inzynierski.repository.Klub.KlubRepository;
 import dev.projekt_inzynierski.repository.Klub.LigaRepository;
 import dev.projekt_inzynierski.repository.Klub.TrofeumRepository;
+import dev.projekt_inzynierski.repository.Kraj_pochodzeniaRepository;
+import dev.projekt_inzynierski.repository.User.UzytkownikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +19,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @SpringBootApplication
 public class ProjektInzynierskiApplication implements CommandLineRunner {
@@ -27,6 +33,11 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 	@Autowired
 	private TrofeumRepository trofeumRepository;
 
+	@Autowired
+	private UzytkownikRepository uzytkownikRepository;
+
+	@Autowired
+	private Kraj_pochodzeniaRepository kraj_pochodzeniaRepository;
 
 
 	public static void main(String[] args) {
@@ -56,6 +67,48 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		ligaRepository.save(Ekstraklasa);
 		ligaRepository.save(ILiga);
 		ligaRepository.save(IILiga);
+
+		Kraj_pochodzenia PL = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Polska")
+				.build();
+
+		Kraj_pochodzenia BR = Kraj_pochodzenia.builder()
+				.region("Ameryka Południowa")
+				.nazwa("Brazylia")
+				.build();
+
+		kraj_pochodzeniaRepository.save(PL);
+		kraj_pochodzeniaRepository.save(BR);
+
+
+		Uzytkownik adminTest = Uzytkownik.builder()
+				.login("admin")
+				.email("admin@gmail.com")
+				.imie("Admin")
+				.kraj_pochodzenia(Set.of(PL))
+				.nazwisko("Adminowski")
+				.data_Urodzenia(LocalDate.now())
+				.pesel(12)
+				.haslo("admin")
+				.role(Role.ADMIN)
+				.build();
+
+
+		Uzytkownik skautTest = Uzytkownik.builder()
+				.login("skaut")
+				.email("skaut@gmail.com")
+				.imie("Skaut")
+				.nazwisko("Skautowski")
+				.kraj_pochodzenia(Set.of(PL,BR))
+				.data_Urodzenia(LocalDate.now())
+				.pesel(123)
+				.haslo("skaut")
+				.role(Role.SKAUT)
+				.build();
+
+		uzytkownikRepository.save(adminTest);
+		uzytkownikRepository.save(skautTest);
 
 		//Kluby Ekstraklasy
 		Klub LegiaWarszawa = Klub.builder()
