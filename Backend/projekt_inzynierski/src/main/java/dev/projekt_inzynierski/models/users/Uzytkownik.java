@@ -40,7 +40,6 @@ public class Uzytkownik implements UserDetails {
     @NotBlank
     private String login;
 
-    @Size(max = 50)
     @NotBlank
     private String haslo;
 

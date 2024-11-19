@@ -28,7 +28,7 @@ public class Security {
      *     Ustawia politykę sesji na STATELESS, co oznacza, że sesje nie są przechowywane na serwerze
      *     Konfiguruje podstawowe uwierzytelnianie HTTP (HTTP Basic Authentication)
      */
-    @Bean
+/*    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                         .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
@@ -36,7 +36,7 @@ public class Security {
                         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                         .httpBasic(Customizer.withDefaults())
                         .build();
-    }
+    }*/
 
     /**
      * Metoda: public InMemoryUserDetailsManager adminUser()
@@ -47,11 +47,11 @@ public class Security {
      *     password = "admin" ( "{noop}" oznacza brak hashowania)
      *     uprawnieniami ("read")
      */
-    @Bean
+/*    @Bean
     public InMemoryUserDetailsManager adminUser(){
         return new InMemoryUserDetailsManager(User.withUsername("admin")
                                             .password("{noop}admin")
                                             .authorities("read")
                                             .build());
-    }
+    }*/
 }
