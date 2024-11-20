@@ -1,0 +1,142 @@
+/* Ogólny kontener */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 100px; /* Odstęp od góry dla nawigacji */
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+/* Nawigacja (navbar) */
+.login-header {
+    background-color: #a80505; /* Czerwony kolor przycisku dla nawigacji */
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%; /* Rozciąga nawigację na całą szerokość */
+    position: fixed; /* Przypina nawigację na górze strony */
+    top: 0;
+    z-index: 10; /* Zapobiega nakładaniu się elementów */
+}
+
+/* Logo w nawigacji */
+.navbar-logo {
+    max-height: 50px;
+}
+
+/* Tytuł w nawigacji */
+.navbar-title {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* Przyciski w nawigacji */
+.nav-button {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.nav-button:hover {
+    background-color: white;
+    color: #a80505; /* Dopasowany kolor podczas najechania */
+}
+
+.nav-button.active {
+    background-color: white;
+    color: #a80505;
+}
+
+/* Box logowania */
+.login-box {
+    background-color: white; /* Jaśniejsze tło dla kontrastu */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    margin-top: 50px; /* Odstęp od nawigacji */
+}
+
+/* Formularz logowania */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styl dla pól input */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.input-wrapper .icon {
+    margin-right: 8px;
+}
+
+.input-wrapper input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+}
+
+/* Przycisk logowania */
+.login-button {
+    background-color: #333; /* Ciemny kolor dla przycisku (jak nawigacja wcześniej) */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.login-button:hover {
+    background-color: #555; /* Jaśniejszy odcień przy najechaniu */
+}
+
+/* Styl dla błędów */
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+}
+
+/* Sukces */
+.success-message {
+    color: green;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* Link do odzyskiwania hasła */
+.forgot-password {
+    text-align: right;
+}
+
+.forgot-password a {
+    text-decoration: none;
+    color: #555;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}

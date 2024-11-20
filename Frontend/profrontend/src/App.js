@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LigaKluby from './components/LigaKluby';
 import UserProfile from './components/UserProfile';
 import AddLiga from './components/AddLiga';
+import StronaLogowania from './components/LoginForm'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/addliga" element={<AddLiga />} /> 
         <Route path="/trofeum/mistrzpolski" element={<MistrzowiePolski />} /> 
         <Route path="/trofeum/pucharpolski" element={<PucharPolski />} /> 
+        <Route path="/logowanie" element={<StronaLogowania />} /> 
       </Routes>
     </Router>
   );

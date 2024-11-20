@@ -158,11 +158,18 @@ const WszystkieKluby = () => {
   };
 
   useEffect(() => {
-    const authHeader = 'Basic ' + btoa('admin:admin');
+    // Retrieve the JWT token from localStorage or another secure location
+    const token = localStorage.getItem('token'); // Adjust as needed
+    if (!token) {
+      console.error('No JWT token found. Please log in.');
+      return;
+    }
+
+    // Fetch clubs data with JWT authentication
     axios.get('http://localhost:8080/kluby', {
       headers: {
-        'Authorization': authHeader,
-      }
+        'Authorization': `Bearer ${token}`,
+      },
     })
         .then(response => {
           setKluby(response.data);
