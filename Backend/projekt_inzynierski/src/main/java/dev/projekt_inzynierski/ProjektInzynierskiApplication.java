@@ -39,6 +39,8 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 	@Autowired
 	private Kraj_pochodzeniaRepository kraj_pochodzeniaRepository;
 
+	
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjektInzynierskiApplication.class, args);

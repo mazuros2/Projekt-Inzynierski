@@ -30,6 +30,7 @@ public class AuthenticationController {
 
     @PostMapping("/authenticateUser")
     public ResponseEntity<AuthenticationResponse> registerNewUser(@RequestBody AuthenticationRequest authenticationRequest){
+        System.out.println("Otrzymano dane logowania: " + authenticationRequest.getLogin());
         return ResponseEntity.ok(authenticationService.authenticate(authenticationRequest));
     }
 
