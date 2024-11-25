@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../cssFolder/Klub.css'; // Zaktualizuj ścieżkę do pliku CSS, jeśli potrzeba
 import '../cssFolder/Navbar.css'; // Współdzielony plik CSS dla paska nawigacyjnego
 
 const Klub = () => {
   const { id } = useParams();
   const [klub, setKlub] = useState(null);
+  const [error, setError] = useState("");
   const [showSettings, setShowSettings] = useState(false);
   const navigate = useNavigate(); // Hook do przekierowania
 
@@ -23,19 +24,31 @@ const Klub = () => {
   };
 
   useEffect(() => {
-    const authHeader = 'Basic ' + btoa('admin:admin');
-    axios.get(`http://localhost:8080/klub/${id}`, {
-      headers: {
-        'Authorization': authHeader,
-      }
-    })
-    .then(response => {
-      setKlub(response.data);
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-    });
+    const token = sessionStorage.getItem("token"); // Pobranie tokena z sessionStorage
+
+    if (!token) {
+      setError("Brak tokena. Zaloguj się ponownie.");
+      return;
+    }
+
+    axios
+      .get(`http://localhost:8080/klub/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Przekazanie tokena w nagłówku
+        },
+      })
+      .then((response) => {
+        setKlub(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setError("Błąd podczas pobierania danych klubu. Sprawdź uprawnienia.");
+      });
   }, [id]);
+
+  if (error) {
+    return <p className="error-message">{error}</p>; // Wyświetlenie błędu, jeśli wystąpi
+  }
 
   if (!klub) {
     return <p>Brak danych</p>;
@@ -76,8 +89,6 @@ const Klub = () => {
           )}
         </div>
       </div>
-
-      
 
       {/* Szczegóły klubu */}
       <h1>Szczegóły Klubu</h1>
