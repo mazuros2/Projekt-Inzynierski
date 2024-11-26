@@ -10,26 +10,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ZawodnikByIdDTO {
-    private long id_Uzytkownik;
-    private String nazwa;
+
+    private String imie;
     private String nazwisko;
-    private int waga;
-    private int wzrost;
-    private long id_Pozycja;
+    private LocalDate dataUrodzenia;
+    private Set<String> krajePochodzenia;
     private String pozycja;
-//    private long obecny_klub;
-//    private String nazwa_klubu;
-
-
-
-
-
+    private String obecnyKlub;
+    private int wzrost;
+    private int waga;
 
 }

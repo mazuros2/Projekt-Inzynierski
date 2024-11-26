@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ZawodnikRepository extends JpaRepository<Zawodnik,Long> {
     @Query("SELECT new dev.projekt_inzynierski.DTO.ZawodnikByIdDTO(" +
@@ -17,4 +19,7 @@ public interface ZawodnikRepository extends JpaRepository<Zawodnik,Long> {
     ZawodnikByIdDTO findZawodnikById(@Param("id") long id);
 
 //    Zawodnik addZawodnik();
+
+    Optional<Zawodnik> findById(long id);
+
 }

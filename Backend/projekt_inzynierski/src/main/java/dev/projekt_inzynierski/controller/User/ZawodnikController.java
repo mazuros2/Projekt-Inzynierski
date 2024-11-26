@@ -28,4 +28,15 @@ public class ZawodnikController {
 //        zawodnikService.addZawodnik(zawodnik);
 //        return ResponseEntity.ok(zawodnik);
 //    }
+
+    //metoda do wyświetlenia profilu zawodnika
+    // /zawodnicy/profil/id
+
+    @GetMapping("/zawodnicy/profil/{id}")
+    public ResponseEntity<ZawodnikByIdDTO> getZawodnikDetails(@PathVariable Long id) {
+        ZawodnikByIdDTO details = zawodnikService.getZawodnikInfoById(id);
+        return ResponseEntity.ok(details);
+    }
+
+
 }

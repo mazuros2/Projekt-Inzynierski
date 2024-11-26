@@ -10,4 +10,9 @@ public class TrenerController {
     public TrenerController(TrenerService trenerService) {
         this.trenerService = trenerService;
     }
+
+
+    //metoda do wyświetlenia profilu trenera
+    // /trener/profil/id
+
 }

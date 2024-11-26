@@ -10,4 +10,9 @@ public class SkautController {
     public SkautController(SkautService skautService) {
         this.skautService = skautService;
     }
+
+
+    //metoda do wyświetlenia profilu skauta
+    // /skaut/profil/id
+
 }

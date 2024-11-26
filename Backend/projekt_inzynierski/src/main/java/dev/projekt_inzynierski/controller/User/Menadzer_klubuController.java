@@ -11,4 +11,8 @@ public class Menadzer_klubuController {
     public Menadzer_klubuController(Menadzer_klubuService menadzer_klubuService) {
         this.menadzer_klubuService = menadzer_klubuService;
     }
+
+    //metoda do wyświetlenia profilu menadzera
+    // /menadzer/profil/id
+
 }

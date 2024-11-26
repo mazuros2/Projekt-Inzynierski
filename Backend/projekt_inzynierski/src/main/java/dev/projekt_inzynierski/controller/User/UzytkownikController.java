@@ -10,4 +10,12 @@ public class UzytkownikController {
     public UzytkownikController(UzytkownikService uzytkownikService) {
         this.uzytkownikService = uzytkownikService;
     }
+
+    //metoda do zmiany hasla
+
+
+    //metoda do wyświetlenia szczegółów swojego profilu
+
+
+
 }
