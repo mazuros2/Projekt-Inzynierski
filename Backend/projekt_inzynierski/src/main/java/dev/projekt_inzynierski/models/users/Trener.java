@@ -24,10 +24,8 @@ public class Trener extends Uzytkownik{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_Uzytkownik;
 
-
     @NotBlank
     private String licencja_trenera;
-
 
     @OneToOne
     @JoinColumn(name="id_klub")

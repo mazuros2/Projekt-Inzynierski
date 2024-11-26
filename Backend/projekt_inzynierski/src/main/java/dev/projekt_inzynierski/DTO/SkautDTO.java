@@ -12,11 +12,10 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TrenerDTO {
+public class SkautDTO {
     private String imie;
     private String nazwisko;
     private LocalDate dataUrodzenia;
     private Set<String> krajePochodzenia;
-    private String licencjaTrenera;
     private String klub;
 }

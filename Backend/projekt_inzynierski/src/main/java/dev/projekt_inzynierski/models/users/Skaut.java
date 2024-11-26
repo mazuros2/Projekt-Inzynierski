@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.models.users;
 
+import dev.projekt_inzynierski.models.Klub;
 import dev.projekt_inzynierski.models.obserwowani_zawodnicy.Obserwowani_Zawodnicy_Skauta;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -25,6 +26,9 @@ public class Skaut extends Uzytkownik {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_Uzytkownik;
 
+    @OneToOne
+    @JoinColumn(name="id_klub")
+    private Klub skautKlubu;
 
     @OneToMany(mappedBy = "skaut")
     private List<Obserwowani_Zawodnicy_Skauta> obserwowaniZawodnicy;

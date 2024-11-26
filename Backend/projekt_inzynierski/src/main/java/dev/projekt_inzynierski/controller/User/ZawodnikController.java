@@ -29,13 +29,10 @@ public class ZawodnikController {
 //        return ResponseEntity.ok(zawodnik);
 //    }
 
-    //metoda do wyświetlenia profilu zawodnika
-    // /zawodnicy/profil/id
-
     @GetMapping("/zawodnicy/profil/{id}")
     public ResponseEntity<ZawodnikByIdDTO> getZawodnikDetails(@PathVariable Long id) {
-        ZawodnikByIdDTO details = zawodnikService.getZawodnikInfoById(id);
-        return ResponseEntity.ok(details);
+        ZawodnikByIdDTO zawodnikDetails = zawodnikService.getZawodnikInfoById(id);
+        return ResponseEntity.ok(zawodnikDetails);
     }
 
 

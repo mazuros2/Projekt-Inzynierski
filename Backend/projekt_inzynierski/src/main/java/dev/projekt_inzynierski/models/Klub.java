@@ -1,6 +1,7 @@
 package dev.projekt_inzynierski.models;
 
 import dev.projekt_inzynierski.models.users.Menadzer_klubu;
+import dev.projekt_inzynierski.models.users.Skaut;
 import dev.projekt_inzynierski.models.users.Trener;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -46,6 +47,10 @@ public class Klub {
     @ManyToOne
     @JoinColumn(name="id_trener")
     private Trener trener;
+
+    @ManyToOne
+    @JoinColumn(name="id_skaut")
+    private Skaut skaut;
 
     @ManyToOne
     @JoinColumn(name="id_menadzer_klubu")
