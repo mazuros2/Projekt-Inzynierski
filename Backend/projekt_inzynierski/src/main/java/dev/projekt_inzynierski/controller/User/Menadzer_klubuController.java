@@ -17,12 +17,13 @@ public class Menadzer_klubuController {
         this.menadzer_klubuService = menadzer_klubuService;
     }
 
-    //metoda do wyświetlenia profilu menadzera
-    // /menadzer/profil/id
-
     @GetMapping("/menadzer/profil/{id}")
     public ResponseEntity<MenadzerDTO> getSkautDetailsById(@PathVariable Long id){
         MenadzerDTO menadzerDetails = menadzer_klubuService.getMenadzerInfoById(id);
         return ResponseEntity.ok(menadzerDetails);
     }
+
+    //metoda do stworzenia profilu zawodnika
+    //metoda do stworzenia profilu skauta
+    //metoda do stworzenia profilu trenera
 }

@@ -15,7 +15,6 @@ public class UzytkownikController {
         this.uzytkownikService = uzytkownikService;
     }
 
-    //metoda do zmiany hasla
     @PostMapping("/api/config/zmianahasla")
     public ResponseEntity<String> zmienHaslo(@RequestBody HasloRequest request){
         uzytkownikService.zmianaHaslaUzytkownika(request.getLogin(), request.getStareHaslo(), request.getNoweHaslo());
@@ -25,5 +24,9 @@ public class UzytkownikController {
     //metoda do wyświetlenia szczegółów swojego profilu
 
 
+    //metoda do stworzenia profilu zawodnika
+    //metoda do stworzenia profilu skauta
+    //metoda do stworzenia profilu trenera
+    //metoda do stworzenia profilu menadzera
 
 }
