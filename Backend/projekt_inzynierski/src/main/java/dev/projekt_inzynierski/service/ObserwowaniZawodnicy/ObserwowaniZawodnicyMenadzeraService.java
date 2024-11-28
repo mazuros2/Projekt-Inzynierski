@@ -44,6 +44,17 @@ public class ObserwowaniZawodnicyMenadzeraService {
         obserwowaniZawodnicyMenadzeraRepository.save(listaObserwowanychZawodnikow);
     }
 
+    public void usunZawodnikaZListyObs(int id_Menadzer, int id_Zawodnika){
+        ObserwowaniZawodnicyMenadzeraId id = new ObserwowaniZawodnicyMenadzeraId();
+        id.setId_Menadzer(id_Menadzer);
+        id.setId_Zawodnik(id_Zawodnika);
+
+        if(!obserwowaniZawodnicyMenadzeraRepository.existsById(id)){
+            throw new EntityNotFoundException("Nie można znaleźć zawodnika o takim id na liście obserwowanych!");
+        }
+
+        obserwowaniZawodnicyMenadzeraRepository.deleteById(id);
+    }
 
 
 }

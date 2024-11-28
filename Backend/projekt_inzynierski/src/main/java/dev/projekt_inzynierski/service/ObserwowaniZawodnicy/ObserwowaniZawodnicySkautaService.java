@@ -22,15 +22,15 @@ public class ObserwowaniZawodnicySkautaService {
         this.skautRepository = skautRepository;
     }
 
-    public void dodanieZawodnikaDoListyObs(int id_Skauta, int id_Zawodnika){
-        Skaut skaut = skautRepository.findbyId(id_Skauta)
+    public void dodanieZawodnikaDoListyObs(int id_Skaut, int id_Zawodnika){
+        Skaut skaut = skautRepository.findbyId(id_Skaut)
                 .orElseThrow( () -> new EntityNotFoundException("Nie można znaleźć skauta o takim id!"));
 
         Zawodnik zawodnik = zawodnikRepository.findById(id_Zawodnika)
                 .orElseThrow( () -> new EntityNotFoundException("Nie można znaleźć zawodnika o takim id!"));
 
         ObserwowaniZawodnicySkautaId id = new ObserwowaniZawodnicySkautaId();
-        id.setId_Skaut(id_Skauta);
+        id.setId_Skaut(id_Skaut);
         id.setId_Zawodnik(id_Zawodnika);
 
         Obserwowani_Zawodnicy_Skauta listaObserwowanychZawodnikow = new Obserwowani_Zawodnicy_Skauta();
@@ -39,6 +39,18 @@ public class ObserwowaniZawodnicySkautaService {
         listaObserwowanychZawodnikow.setZawodnik(zawodnik);
 
         obserwowaniZawodnicySkautaRepository.save(listaObserwowanychZawodnikow);
+    }
+
+    public void usunZawodnikaZListyObs(int id_Skaut, int id_Zawodnika){
+        ObserwowaniZawodnicySkautaId id = new ObserwowaniZawodnicySkautaId();
+        id.setId_Skaut(id_Skaut);
+        id.setId_Zawodnik(id_Zawodnika);
+
+        if(!obserwowaniZawodnicySkautaRepository.existsById(id)){
+            throw new EntityNotFoundException("Nie można znaleźć zawodnika o takim id na liście obserwowanych!");
+        }
+
+        obserwowaniZawodnicySkautaRepository.deleteById(id);
     }
 
 }

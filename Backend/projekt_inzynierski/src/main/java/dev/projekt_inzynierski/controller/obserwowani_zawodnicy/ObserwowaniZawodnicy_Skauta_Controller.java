@@ -2,9 +2,7 @@ package dev.projekt_inzynierski.controller.obserwowani_zawodnicy;
 
 import dev.projekt_inzynierski.service.ObserwowaniZawodnicy.ObserwowaniZawodnicySkautaService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/skautingZawodnika/skaut")
@@ -17,11 +15,15 @@ public class ObserwowaniZawodnicy_Skauta_Controller {
     }
 
     @RequestMapping("/dodajZawodnika")
-    public ResponseEntity<String> dodajDoListyObserwowanych(@RequestBody int id_Skaut, @RequestBody int id_Zawodnik){
+    public ResponseEntity<String> dodajDoListyObserwowanych(@RequestParam int id_Skaut, @RequestParam int id_Zawodnik){
         obserwowaniZawodnicySkautaService.dodanieZawodnikaDoListyObs(id_Skaut,id_Zawodnik);
         return ResponseEntity.ok("Zawodnik został dodany do listy obserwowanych!");
     }
 
-
+    @DeleteMapping("/usunZawodnika")
+    public ResponseEntity<String> usunZListyObserwowanych(@RequestParam int idSkaut, @RequestParam int idZawodnik) {
+        obserwowaniZawodnicySkautaService.usunZawodnikaZListyObs(idSkaut, idZawodnik);
+        return ResponseEntity.ok("Zawodnik został usunięty z listy obserwowanych!");
+    }
 
 }
