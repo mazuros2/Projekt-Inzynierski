@@ -4,7 +4,9 @@ import dev.projekt_inzynierski.configurationJWT.Authentication.AuthenticationRes
 import dev.projekt_inzynierski.configurationJWT.Authentication.RegisterRequest;
 import dev.projekt_inzynierski.configurationJWT.JWTService;
 import dev.projekt_inzynierski.configurationJWT.Role;
+import dev.projekt_inzynierski.models.users.Trener;
 import dev.projekt_inzynierski.models.users.Uzytkownik;
+import dev.projekt_inzynierski.repository.User.TrenerRepository;
 import dev.projekt_inzynierski.repository.User.UzytkownikRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
