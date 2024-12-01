@@ -7,17 +7,23 @@ import dev.projekt_inzynierski.DTO.Register.RegisterZawodnikDTO;
 import dev.projekt_inzynierski.configurationJWT.Role;
 import dev.projekt_inzynierski.models.Klub;
 import dev.projekt_inzynierski.models.Kraj_pochodzenia;
+import dev.projekt_inzynierski.models.Obecny_klub;
+import dev.projekt_inzynierski.models.Pozycja;
 import dev.projekt_inzynierski.models.users.Menadzer_klubu;
 import dev.projekt_inzynierski.models.users.Skaut;
 import dev.projekt_inzynierski.models.users.Trener;
 import dev.projekt_inzynierski.models.users.Zawodnik;
 import dev.projekt_inzynierski.repository.Klub.KlubRepository;
 import dev.projekt_inzynierski.repository.Kraj_pochodzeniaRepository;
+import dev.projekt_inzynierski.repository.PozycjaRepository;
 import dev.projekt_inzynierski.repository.User.UzytkownikRepository;
+import org.springframework.cglib.core.Local;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -28,11 +34,14 @@ public class AdminService {
     private final Kraj_pochodzeniaRepository kraj_pochodzeniaRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public AdminService(UzytkownikRepository uzytkownikRepository, KlubRepository klubRepository, Kraj_pochodzeniaRepository kraj_pochodzeniaRepository, PasswordEncoder passwordEncoder) {
+    private final PozycjaRepository pozycjaRepository;
+
+    public AdminService(UzytkownikRepository uzytkownikRepository, KlubRepository klubRepository, Kraj_pochodzeniaRepository kraj_pochodzeniaRepository, PasswordEncoder passwordEncoder, PozycjaRepository pozycjaRepository) {
         this.uzytkownikRepository = uzytkownikRepository;
         this.klubRepository = klubRepository;
         this.kraj_pochodzeniaRepository = kraj_pochodzeniaRepository;
         this.passwordEncoder = passwordEncoder;
+        this.pozycjaRepository = pozycjaRepository;
     }
 
     public void createTrener(RegisterTrenerDTO request){
@@ -59,10 +68,13 @@ public class AdminService {
     }
 
     public void createZawodnik(RegisterZawodnikDTO request){
-        Klub klub = klubRepository.findById(request.getIdKlub())
+        Klub klub = klubRepository.findById(request.getKlubId())
                 .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
 
         Set<Kraj_pochodzenia> krajePochodzenia = new HashSet<>(kraj_pochodzeniaRepository.findAllById(request.getKrajePochodzenia()));
+
+        Pozycja pozycja = pozycjaRepository.findById(request.getPozycjaId())
+                .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono pozycji o takim id!"));
 
         Zawodnik zawodnik = Zawodnik.builder()
                 .imie(request.getImie())
@@ -73,10 +85,17 @@ public class AdminService {
                 .pesel(request.getPesel())
                 .data_Urodzenia(request.getDataUrodzenia())
                 .role(Role.ZAWODNIK)
-                //klub
-                //pozycja
+                .pozycja(pozycja)
                 .kraj_pochodzenia(krajePochodzenia)
                 .build();
+
+        Obecny_klub obecny_klub = Obecny_klub.builder()
+                .zawodnik(zawodnik)
+                .klub(klub)
+                .data_Od(LocalDate.now())
+                .build();
+
+        zawodnik.setObecny_klub(List.of(obecny_klub));
 
         uzytkownikRepository.save(zawodnik);
     }

@@ -11,11 +11,11 @@ public class RegisterZawodnikDTO {
     private String email;
     private String login;
     private String haslo;
-    private int pesel;
     private LocalDate dataUrodzenia;
-    private Long idKlub;
-    private Set<Long> krajePochodzenia;
-    private String pozycja;
+    private int pesel;
     private int wzrost;
     private int waga;
+    private Long pozycjaId;
+    private Long klubId;
+    private Set<Long> krajePochodzenia;
 }
