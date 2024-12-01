@@ -1,10 +1,16 @@
 package dev.projekt_inzynierski.service.User;
 
-import dev.projekt_inzynierski.DTO.RegisterTrenerDTO;
+import dev.projekt_inzynierski.DTO.Register.RegisterMenadzerDTO;
+import dev.projekt_inzynierski.DTO.Register.RegisterSkautDTO;
+import dev.projekt_inzynierski.DTO.Register.RegisterTrenerDTO;
+import dev.projekt_inzynierski.DTO.Register.RegisterZawodnikDTO;
 import dev.projekt_inzynierski.configurationJWT.Role;
 import dev.projekt_inzynierski.models.Klub;
 import dev.projekt_inzynierski.models.Kraj_pochodzenia;
+import dev.projekt_inzynierski.models.users.Menadzer_klubu;
+import dev.projekt_inzynierski.models.users.Skaut;
 import dev.projekt_inzynierski.models.users.Trener;
+import dev.projekt_inzynierski.models.users.Zawodnik;
 import dev.projekt_inzynierski.repository.Klub.KlubRepository;
 import dev.projekt_inzynierski.repository.Kraj_pochodzeniaRepository;
 import dev.projekt_inzynierski.repository.User.UzytkownikRepository;
@@ -29,7 +35,6 @@ public class AdminService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    //metoda do stworzenia trenera
     public void createTrener(RegisterTrenerDTO request){
         Klub klub = klubRepository.findById(request.getIdKlub())
                 .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
@@ -52,17 +57,72 @@ public class AdminService {
 
         uzytkownikRepository.save(trener);
     }
-    //metoda do stworzenia zawodnika
-    public void createZawodnik(){
 
+    public void createZawodnik(RegisterZawodnikDTO request){
+        Klub klub = klubRepository.findById(request.getIdKlub())
+                .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
+
+        Set<Kraj_pochodzenia> krajePochodzenia = new HashSet<>(kraj_pochodzeniaRepository.findAllById(request.getKrajePochodzenia()));
+
+        Zawodnik zawodnik = Zawodnik.builder()
+                .imie(request.getImie())
+                .nazwisko(request.getNazwisko())
+                .email(request.getEmail())
+                .login(request.getLogin())
+                .haslo(passwordEncoder.encode(request.getHaslo()))
+                .pesel(request.getPesel())
+                .data_Urodzenia(request.getDataUrodzenia())
+                .role(Role.ZAWODNIK)
+                //klub
+                //pozycja
+                .kraj_pochodzenia(krajePochodzenia)
+                .build();
+
+        uzytkownikRepository.save(zawodnik);
     }
-    //metoda do stworzenia skauta
-    public void createSkaut(){
 
+    public void createSkaut(RegisterSkautDTO request){
+        Klub klub = klubRepository.findById(request.getIdKlub())
+                .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
+
+        Set<Kraj_pochodzenia> krajePochodzenia = new HashSet<>(kraj_pochodzeniaRepository.findAllById(request.getKrajePochodzenia()));
+
+        Skaut skaut = Skaut.builder()
+                .imie(request.getImie())
+                .nazwisko(request.getNazwisko())
+                .email(request.getEmail())
+                .login(request.getLogin())
+                .haslo(passwordEncoder.encode(request.getHaslo()))
+                .pesel(request.getPesel())
+                .data_Urodzenia(request.getDataUrodzenia())
+                .role(Role.SKAUT)
+                .skautKlubu(klub)
+                .kraj_pochodzenia(krajePochodzenia)
+                .build();
+
+        uzytkownikRepository.save(skaut);
     }
-    //metoda do stworzenia menadzera
-    public void createMenadzer(){
 
+    public void createMenadzer(RegisterMenadzerDTO request){
+        Klub klub = klubRepository.findById(request.getIdKlub())
+                .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
+
+        Set<Kraj_pochodzenia> krajePochodzenia = new HashSet<>(kraj_pochodzeniaRepository.findAllById(request.getKrajePochodzenia()));
+
+        Menadzer_klubu menadzer = Menadzer_klubu.builder()
+                .imie(request.getImie())
+                .nazwisko(request.getNazwisko())
+                .email(request.getEmail())
+                .login(request.getLogin())
+                .haslo(passwordEncoder.encode(request.getHaslo()))
+                .pesel(request.getPesel())
+                .data_Urodzenia(request.getDataUrodzenia())
+                .role(Role.MENADZER_KLUBU)
+                .menadzerKlubu(klub)
+                .kraj_pochodzenia(krajePochodzenia)
+                .build();
+
+        uzytkownikRepository.save(menadzer);
     }
 
     //metoda do stworzenia admina ??? <- nie wiem czy to nam sie przyda

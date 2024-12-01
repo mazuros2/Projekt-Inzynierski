@@ -1,12 +1,11 @@
-package dev.projekt_inzynierski.DTO;
-
+package dev.projekt_inzynierski.DTO.Register;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.Set;
 
 @Data
-public class RegisterTrenerDTO {
+public class RegisterSkautDTO {
     private String imie;
     private String nazwisko;
     private String email;
@@ -14,7 +13,6 @@ public class RegisterTrenerDTO {
     private String haslo;
     private int pesel;
     private LocalDate dataUrodzenia;
-    private String licencjaTrenera;
     private Long idKlub;
     private Set<Long> krajePochodzenia;
 }
