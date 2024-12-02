@@ -11,6 +11,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
+@Builder
 @Getter
 @Setter
 @Table(name = "Pozycja")

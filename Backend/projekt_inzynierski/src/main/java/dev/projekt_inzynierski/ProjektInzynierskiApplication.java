@@ -1,20 +1,25 @@
 package dev.projekt_inzynierski;
 
 import dev.projekt_inzynierski.configurationJWT.Role;
-import dev.projekt_inzynierski.models.Klub;
-import dev.projekt_inzynierski.models.Kraj_pochodzenia;
-import dev.projekt_inzynierski.models.Liga;
-import dev.projekt_inzynierski.models.Trofeum;
+import dev.projekt_inzynierski.models.*;
+import dev.projekt_inzynierski.models.users.Skaut;
+import dev.projekt_inzynierski.models.users.Trener;
 import dev.projekt_inzynierski.models.users.Uzytkownik;
+import dev.projekt_inzynierski.models.users.Zawodnik;
 import dev.projekt_inzynierski.repository.Klub.KlubRepository;
 import dev.projekt_inzynierski.repository.Klub.LigaRepository;
 import dev.projekt_inzynierski.repository.Klub.TrofeumRepository;
 import dev.projekt_inzynierski.repository.Kraj_pochodzeniaRepository;
+import dev.projekt_inzynierski.repository.PozycjaRepository;
+import dev.projekt_inzynierski.repository.User.SkautRepository;
+import dev.projekt_inzynierski.repository.User.TrenerRepository;
 import dev.projekt_inzynierski.repository.User.UzytkownikRepository;
+import dev.projekt_inzynierski.repository.User.ZawodnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -39,7 +44,12 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 	@Autowired
 	private Kraj_pochodzeniaRepository kraj_pochodzeniaRepository;
 
-	
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private PozycjaRepository pozycjaRepository;
 
 
 	public static void main(String[] args) {
@@ -70,9 +80,46 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		ligaRepository.save(ILiga);
 		ligaRepository.save(IILiga);
 
+		Pozycja napastnikSN = Pozycja.builder()
+				.nazwa_pozycji("Środkowy napastnik")
+				.obszar_pozycji("Napastnik")
+				.build();
+
+		Pozycja bramkarzBR = Pozycja.builder()
+				.nazwa_pozycji("Bramkarz")
+				.obszar_pozycji("Bramkarz")
+				.build();
+
+		Pozycja obroncaLO = Pozycja.builder()
+				.nazwa_pozycji("Lewy obrońca")
+				.obszar_pozycji("Obrona")
+				.build();
+
+		Pozycja obroncaSO= Pozycja.builder()
+				.nazwa_pozycji("Środkowy obrońca")
+				.obszar_pozycji("Obrona")
+				.build();
+
+		Pozycja obroncaPO= Pozycja.builder()
+				.nazwa_pozycji("Prawy obrońca")
+				.obszar_pozycji("Obrona")
+				.build();
+
+		pozycjaRepository.save(napastnikSN);
+		pozycjaRepository.save(bramkarzBR);
+		pozycjaRepository.save(obroncaLO);
+		pozycjaRepository.save(obroncaSO);
+		pozycjaRepository.save(obroncaPO);
+
+
 		Kraj_pochodzenia PL = Kraj_pochodzenia.builder()
 				.region("Europa")
 				.nazwa("Polska")
+				.build();
+
+		Kraj_pochodzenia SR = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Serbia")
 				.build();
 
 		Kraj_pochodzenia BR = Kraj_pochodzenia.builder()
@@ -81,6 +128,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.build();
 
 		kraj_pochodzeniaRepository.save(PL);
+		kraj_pochodzeniaRepository.save(SR);
 		kraj_pochodzeniaRepository.save(BR);
 
 
@@ -421,6 +469,110 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		klubRepository.save(MotorLublin);
 		klubRepository.save(GarbarniaKrakow);
 		klubRepository.save(StalRzeszow);
+
+
+		//Zawodnicy
+		Zawodnik KT = Zawodnik.builder()
+				.login("KT1")
+				.email("KacperTobiasz1@gmail.com")
+				.imie("Kacper")
+				.nazwisko("Tobiasz")
+				.data_Urodzenia(LocalDate.of(2002, 11, 4))
+				.pesel(123456789)
+				.haslo(passwordEncoder.encode("zawodnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(80)
+				.wzrost(191)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(bramkarzBR)
+				.build();
+
+		Zawodnik PW = Zawodnik.builder()
+				.login("PW13")
+				.email("PawelWszolek13@gmail.com")
+				.imie("Paweł")
+				.nazwisko("Wszołek")
+				.data_Urodzenia(LocalDate.of(1992, 5, 30))
+				.pesel(123456789)
+				.haslo(passwordEncoder.encode("prawy1"))
+				.role(Role.ZAWODNIK)
+				.waga(78)
+				.wzrost(186)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(obroncaPO)
+				.build();
+
+		Zawodnik RP = Zawodnik.builder()
+				.login("RP12")
+				.email("RadovanPankov12@gmail.com")
+				.imie("Radovan")
+				.nazwisko("Pankov")
+				.data_Urodzenia(LocalDate.of(1995, 8, 5))
+				.pesel(123456789)
+				.haslo(passwordEncoder.encode("obronca1"))
+				.role(Role.ZAWODNIK)
+				.waga(80)
+				.wzrost(185)
+				.kraj_pochodzenia(Set.of(SR))
+				.pozycja(obroncaPO)
+				.build();
+
+		Obecny_klub KlubKT = Obecny_klub.builder()
+				.zawodnik(KT)
+				.klub(LegiaWarszawa)
+				.data_Od(LocalDate.now())
+				.build();
+
+		Obecny_klub KlubPW = Obecny_klub.builder()
+				.zawodnik(PW)
+				.klub(LegiaWarszawa)
+				.data_Od(LocalDate.now())
+				.build();
+
+		Obecny_klub KlubRP = Obecny_klub.builder()
+				.zawodnik(RP)
+				.klub(LegiaWarszawa)
+				.data_Od(LocalDate.now())
+				.build();
+
+		KT.setObecny_klub(List.of(KlubKT));
+		PW.setObecny_klub(List.of(KlubPW));
+		RP.setObecny_klub(List.of(KlubRP));
+
+
+		//Sztab klubu
+		Trener GF = Trener.builder()
+				.login("GF1")
+				.email("GF1@gmail.com")
+				.imie("Goncalo")
+				.nazwisko("Feio")
+				.data_Urodzenia(LocalDate.of(1990, 1, 17))
+				.pesel(987654321)
+				.haslo(passwordEncoder.encode("trener123"))
+				.role(Role.TRENER)
+				.kraj_pochodzenia(Set.of(PL))
+				.licencja_trenera("UEFA PRO")
+				.trenerKlub(LegiaWarszawa)
+				.build();
+
+		Skaut skaut = Skaut.builder()
+				.login("skaut1")
+				.email("skaut1@gmail.com")
+				.imie("Michał")
+				.nazwisko("Wiśniewski")
+				.data_Urodzenia(LocalDate.of(1990, 7, 25))
+				.pesel(567891234)
+				.haslo(passwordEncoder.encode("skaut123"))
+				.role(Role.SKAUT)
+				.kraj_pochodzenia(Set.of(PL))
+				.skautKlubu(LegiaWarszawa)
+				.build();
+
+		uzytkownikRepository.save(KT);
+		uzytkownikRepository.save(PW);
+		uzytkownikRepository.save(RP);
+		uzytkownikRepository.save(GF);
+		uzytkownikRepository.save(skaut);
 
 
 		//Legia
