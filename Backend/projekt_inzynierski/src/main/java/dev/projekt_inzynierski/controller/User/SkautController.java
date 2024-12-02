@@ -15,10 +15,10 @@ public class SkautController {
         this.skautService = skautService;
     }
 
-
     @GetMapping("/skaut/profil/{id}")
     public ResponseEntity<SkautDTO> getSkautDetailsById(@PathVariable Long id){
         SkautDTO skautDetails = skautService.getSkautInfoById(id);
         return ResponseEntity.ok(skautDetails);
     }
+
 }
