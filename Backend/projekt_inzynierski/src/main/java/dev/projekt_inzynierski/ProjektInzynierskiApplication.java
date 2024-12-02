@@ -50,6 +50,8 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 
 	@Autowired
 	private PozycjaRepository pozycjaRepository;
+	@Autowired
+	private ZawodnikRepository zawodnikRepository;
 
 
 	public static void main(String[] args) {
@@ -104,12 +106,70 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.nazwa_pozycji("Prawy obrońca")
 				.obszar_pozycji("Obrona")
 				.build();
-
+		Pozycja pomocnik= Pozycja.builder()
+				.nazwa_pozycji("Pomocnik")
+				.obszar_pozycji("Pomocnik")
+				.build();
+		pozycjaRepository.save(pomocnik);
 		pozycjaRepository.save(napastnikSN);
 		pozycjaRepository.save(bramkarzBR);
 		pozycjaRepository.save(obroncaLO);
 		pozycjaRepository.save(obroncaSO);
 		pozycjaRepository.save(obroncaPO);
+		Kraj_pochodzenia ES = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Hiszpania")
+				.build();
+
+		Kraj_pochodzenia CZ = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Czechy")
+				.build();
+
+		Kraj_pochodzenia CM = Kraj_pochodzenia.builder()
+				.region("Afryka")
+				.nazwa("Kamerun")
+				.build();
+
+		Kraj_pochodzenia JP = Kraj_pochodzenia.builder()
+				.region("Azja")
+				.nazwa("Japonia")
+				.build();
+
+		Kraj_pochodzenia AL = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Albania")
+				.build();
+
+		Kraj_pochodzenia PT = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Portugalia")
+				.build();
+
+		Kraj_pochodzenia CH = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Szwajcaria")
+				.build();
+
+		Kraj_pochodzenia AR = Kraj_pochodzenia.builder()
+				.region("Ameryka Południowa")
+				.nazwa("Argentyna")
+				.build();
+
+		Kraj_pochodzenia FR = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Francja")
+				.build();
+
+		Kraj_pochodzenia CO = Kraj_pochodzenia.builder()
+				.region("Ameryka Południowa")
+				.nazwa("Kolumbia")
+				.build();
+
+
+		kraj_pochodzeniaRepository.saveAll(List.of(
+				ES, CZ, CM, JP, AL, PT, CH, AR, FR, CO
+		));
 
 
 		Kraj_pochodzenia PL = Kraj_pochodzenia.builder()
@@ -750,6 +810,206 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		trofeumRepository.save(wicemistrzPolski2011);
 		trofeumRepository.save(wicemistrzPolski1982);
 
+		Zawodnik kacperTobiasz = Zawodnik.builder()
+				.login("k.tobiasz")
+				.email("k.tobiasz@legia.pl")
+				.imie("Kacper")
+				.nazwisko("Tobiasz")
+				.waga(78)
+				.wzrost(191)
+				.pozycja(bramkarzBR)
+				.data_Urodzenia(LocalDate.of(2002, 11, 4))
+				.pesel(100200300)
+				.haslo(passwordEncoder.encode("haslo123"))
+				.role(Role.ZAWODNIK)
+				.kraj_pochodzenia(Set.of(PL))
+				.build();
+
+		Zawodnik arturJedrzejczyk = Zawodnik.builder()
+				.login("a.jedrzejczyk")
+				.email("a.jedrzejczyk@legia.pl")
+				.imie("Artur")
+				.nazwisko("Jędrzejczyk")
+				.waga(78)
+				.wzrost(189)
+				.pozycja(obroncaSO)
+				.data_Urodzenia(LocalDate.of(1987, 11, 4))
+				.pesel(100200301)
+				.haslo(passwordEncoder.encode("haslo123"))
+				.role(Role.ZAWODNIK)
+				.kraj_pochodzenia(Set.of(PL))
+				.build();
+
+		Zawodnik bartoszKapustka = Zawodnik.builder()
+				.login("b.kapustka")
+				.email("b.kapustka@legia.pl")
+				.imie("Bartosz")
+				.nazwisko("Kapustka")
+				.waga(67)
+				.wzrost(179)
+				.pozycja(pomocnik)
+				.data_Urodzenia(LocalDate.of(1996, 12, 23))
+				.pesel(100200302)
+				.haslo(passwordEncoder.encode("haslo123"))
+				.role(Role.ZAWODNIK)
+				.kraj_pochodzenia(Set.of(PL))
+				.build();
+
+		Zawodnik tomasPekhart = Zawodnik.builder()
+				.login("t.pekhart")
+				.email("t.pekhart@legia.pl")
+				.imie("Tomas")
+				.nazwisko("Pekhart")
+				.waga(82)
+				.wzrost(194)
+				.pozycja(napastnikSN)
+				.data_Urodzenia(LocalDate.of(1989, 5, 26))
+				.pesel(100200303)
+				.haslo(passwordEncoder.encode("haslo123"))
+				.role(Role.ZAWODNIK)
+				.kraj_pochodzenia(Set.of(CZ))
+				.build();
+
+		Zawodnik marcGual = Zawodnik.builder()
+				.login("m.gual")
+				.email("m.gual@legia.pl")
+				.imie("Marc")
+				.nazwisko("Gual")
+				.waga(73)
+				.wzrost(184)
+				.pozycja(napastnikSN)
+				.data_Urodzenia(LocalDate.of(1996, 3, 13))
+				.pesel(100200304)
+				.haslo(passwordEncoder.encode("haslo123"))
+				.role(Role.ZAWODNIK)
+				.kraj_pochodzenia(Set.of(ES))
+				.build();
+		zawodnikRepository.saveAll(List.of(
+				kacperTobiasz,
+				arturJedrzejczyk,
+				bartoszKapustka,
+				tomasPekhart,
+				marcGual
+		));
+		Zawodnik GabrielKobylak = Zawodnik.builder()
+				.login("g.kobylak")
+				.haslo(passwordEncoder.encode("password"))
+				.email("gabriel.kobylak@legia.pl")
+				.imie("Gabriel")
+				.nazwisko("Kobylak")
+				.pesel(20020220)
+				.role(Role.ZAWODNIK)
+				.data_Urodzenia(LocalDate.of(2002, 2, 20))
+				.kraj_pochodzenia(Set.of(PL))
+				.waga(79)
+				.wzrost(184)
+				.pozycja(bramkarzBR)
+				.build();
+
+		Zawodnik MarcelMendesDudzinski = Zawodnik.builder()
+				.login("m.mendes")
+				.haslo(passwordEncoder.encode("password"))
+				.email("marcel.mendes@legia.pl")
+				.imie("Marcel")
+				.nazwisko("Mendes-Dudziński")
+				.pesel(20050514)
+				.role(Role.ZAWODNIK)
+				.data_Urodzenia(LocalDate.of(2005, 5, 14))
+				.kraj_pochodzenia(Set.of(PL))
+				.waga(85)
+				.wzrost(197)
+				.pozycja(bramkarzBR)
+
+				.build();
+
+		Zawodnik RubenVinagre = Zawodnik.builder()
+				.login("r.vinagre")
+				.haslo(passwordEncoder.encode("password"))
+				.email("ruben.vinagre@legia.pl")
+				.imie("Ruben")
+				.nazwisko("Vinagre")
+				.pesel(19990409)
+				.role(Role.ZAWODNIK)
+				.data_Urodzenia(LocalDate.of(1999, 4, 9))
+				.kraj_pochodzenia(Set.of(PT))
+				.waga(71)
+				.wzrost(174)
+				.pozycja(obroncaLO)
+
+				.build();
+
+		Zawodnik JurgenCelhaka = Zawodnik.builder()
+				.login("j.celhaka")
+				.haslo(passwordEncoder.encode("password"))
+				.email("jurgen.celhaka@legia.pl")
+				.imie("Jurgen")
+				.nazwisko("Celhaka")
+				.pesel(20001206)
+				.role(Role.ZAWODNIK)
+				.data_Urodzenia(LocalDate.of(2000, 12, 6))
+				.kraj_pochodzenia(Set.of(AL))
+				.waga(75)
+				.wzrost(182)
+				.pozycja(pomocnik)
+
+				.build();
+
+		Zawodnik JuergenElitim = Zawodnik.builder()
+				.login("j.elitim")
+				.haslo(passwordEncoder.encode("password"))
+				.email("juergen.elitim@legia.pl")
+				.imie("Juergen")
+				.nazwisko("Elitim")
+				.pesel(19990713)
+				.role(Role.ZAWODNIK)
+				.data_Urodzenia(LocalDate.of(1999, 7, 13))
+				.kraj_pochodzenia(Set.of(CO))
+				.waga(72)
+				.wzrost(173)
+				.pozycja(pomocnik)
+
+				.build();
+
+		Zawodnik JeanPierreNsame = Zawodnik.builder()
+				.login("j.nsame")
+				.haslo(passwordEncoder.encode("password"))
+				.email("jeanpierre.nsame@legia.pl")
+				.imie("Jean-Pierre")
+				.nazwisko("Nsame")
+				.pesel(19930501)
+				.role(Role.ZAWODNIK)
+				.data_Urodzenia(LocalDate.of(1993, 5, 1))
+				.kraj_pochodzenia(Set.of(CM))
+				.waga(88)
+				.wzrost(188)
+				.pozycja(napastnikSN)
+				.build();
+
+		Zawodnik TomasPekhart = Zawodnik.builder()
+				.login("t.pekhart")
+				.haslo(passwordEncoder.encode("password"))
+				.email("tomas.pekhart@legia.pl")
+				.imie("Tomas")
+				.nazwisko("Pekhart")
+				.pesel(19890526)
+				.role(Role.ZAWODNIK)
+				.data_Urodzenia(LocalDate.of(1989, 5, 26))
+				.kraj_pochodzenia(Set.of(CZ))
+				.waga(82)
+				.wzrost(194)
+				.pozycja(napastnikSN)
+				.build();
+
+
+		uzytkownikRepository.saveAll(List.of(
+				GabrielKobylak,
+				MarcelMendesDudzinski,
+				RubenVinagre,
+				JurgenCelhaka,
+				JuergenElitim,
+				JeanPierreNsame,
+				TomasPekhart
+		));
 
 		System.out.println("\n");
 		List<Trofeum> trofea = LegiaWarszawa.getTrofea();
@@ -799,5 +1059,6 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		for (Klub klub : kluby) {
 			System.out.println("Klub: " + klub.getNazwa_klubu() + ", Rok zalozenia: " + klub.getRok_zalozenia() + ", Liga: " + klub.getLiga().getNazwa_Ligi());
 		}
+
 	}
 }
