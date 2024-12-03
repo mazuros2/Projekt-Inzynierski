@@ -17,5 +17,5 @@ public interface ObserwowaniZawodnicyMenadzeraRepository extends JpaRepository<O
     boolean existsById(ObserwowaniZawodnicyMenadzeraId id);
     void deleteById(ObserwowaniZawodnicyMenadzeraId id);
 
-    List<Zawodnik> findZawodnicy_Menadzera(long id_Menadzer);
+    /*List<Zawodnik> findZawodnicy_Menadzera(long id_Menadzer);*/
 }

@@ -12,13 +12,6 @@ import java.util.Optional;
 
 @Repository
 public interface ZawodnikRepository extends JpaRepository<Zawodnik,Long> {
-    @Query("SELECT new dev.projekt_inzynierski.DTO.ZawodnikByIdDTO(" +
-            "z.id_Uzytkownik,z.imie, z.nazwisko, z.waga, " +
-            "z.wzrost,z.pozycja.id_Pozycja, z.pozycja.nazwa_pozycji) " +
-            "FROM Zawodnik z WHERE z.id_Uzytkownik = :id")
-    ZawodnikByIdDTO findZawodnikById(@Param("id") long id);
-
-//    Zawodnik addZawodnik();
 
     Optional<Zawodnik> findById(long id);
 

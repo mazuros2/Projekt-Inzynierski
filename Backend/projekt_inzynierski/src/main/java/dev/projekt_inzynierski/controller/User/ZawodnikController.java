@@ -17,18 +17,6 @@ public class ZawodnikController {
         this.zawodnikService = zawodnikService;
     }
 
-    @GetMapping("/getZawodnik/{id_Uzytkownik}")
-    public ResponseEntity<ZawodnikByIdDTO> getZawodnikById(@PathVariable Long id_Uzytkownik) {
-        ZawodnikByIdDTO zawodnikById = zawodnikService.getZawodnikById(id_Uzytkownik);
-        return ResponseEntity.ok(zawodnikById);
-    }
-
-//    @PostMapping("/dodajZawodnik")
-//    public ResponseEntity<Zawodnik> addZawodnik(@RequestBody Zawodnik zawodnik) {
-//        zawodnikService.addZawodnik(zawodnik);
-//        return ResponseEntity.ok(zawodnik);
-//    }
-
     @GetMapping("/zawodnicy/profil/{id}")
     public ResponseEntity<ZawodnikByIdDTO> getZawodnikDetails(@PathVariable Long id) {
         ZawodnikByIdDTO zawodnikDetails = zawodnikService.getZawodnikInfoById(id);

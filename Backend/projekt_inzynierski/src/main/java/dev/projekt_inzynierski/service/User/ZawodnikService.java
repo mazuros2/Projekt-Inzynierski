@@ -21,13 +21,6 @@ public class ZawodnikService {
     public ZawodnikService(ZawodnikRepository zawodnikRepository) {
         this.zawodnikRepository = zawodnikRepository;
     }
-    public ZawodnikByIdDTO getZawodnikById(long id) {
-        return zawodnikRepository.findZawodnikById(id);
-    }
-
-//    public Zawodnik addZawodnik(Zawodnik zawodnik){
-//        return zawodnikRepository.addZawodnik(zawodnik);
-//    }
 
     public ZawodnikByIdDTO getZawodnikInfoById(Long id){
 

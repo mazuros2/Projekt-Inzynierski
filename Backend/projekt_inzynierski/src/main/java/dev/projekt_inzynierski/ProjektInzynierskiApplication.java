@@ -10,6 +10,7 @@ import dev.projekt_inzynierski.repository.Klub.KlubRepository;
 import dev.projekt_inzynierski.repository.Klub.LigaRepository;
 import dev.projekt_inzynierski.repository.Klub.TrofeumRepository;
 import dev.projekt_inzynierski.repository.Kraj_pochodzeniaRepository;
+import dev.projekt_inzynierski.repository.Obecny_klubRepository;
 import dev.projekt_inzynierski.repository.PozycjaRepository;
 import dev.projekt_inzynierski.repository.User.SkautRepository;
 import dev.projekt_inzynierski.repository.User.TrenerRepository;
@@ -52,6 +53,9 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 	private PozycjaRepository pozycjaRepository;
 	@Autowired
 	private ZawodnikRepository zawodnikRepository;
+
+	@Autowired
+	private Obecny_klubRepository obecny_klubRepository;
 
 
 	public static void main(String[] args) {
@@ -553,7 +557,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.imie("Paweł")
 				.nazwisko("Wszołek")
 				.data_Urodzenia(LocalDate.of(1992, 5, 30))
-				.pesel(123456789)
+				.pesel(123456)
 				.haslo(passwordEncoder.encode("prawy1"))
 				.role(Role.ZAWODNIK)
 				.waga(78)
@@ -568,7 +572,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.imie("Radovan")
 				.nazwisko("Pankov")
 				.data_Urodzenia(LocalDate.of(1995, 8, 5))
-				.pesel(123456789)
+				.pesel(1234567)
 				.haslo(passwordEncoder.encode("obronca1"))
 				.role(Role.ZAWODNIK)
 				.waga(80)
@@ -577,19 +581,27 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaPO)
 				.build();
 
+		uzytkownikRepository.save(KT);
+		uzytkownikRepository.save(PW);
+		uzytkownikRepository.save(RP);
 		Obecny_klub KlubKT = Obecny_klub.builder()
+				.id(new Obecny_klubId(KT.getId_Uzytkownik(), LegiaWarszawa.getId()))
 				.zawodnik(KT)
 				.klub(LegiaWarszawa)
 				.data_Od(LocalDate.now())
 				.build();
 
 		Obecny_klub KlubPW = Obecny_klub.builder()
+				.id(new Obecny_klubId(PW.getId_Uzytkownik(), LegiaWarszawa.getId()))
 				.zawodnik(PW)
 				.klub(LegiaWarszawa)
 				.data_Od(LocalDate.now())
 				.build();
 
+
+
 		Obecny_klub KlubRP = Obecny_klub.builder()
+				.id(new Obecny_klubId(RP.getId_Uzytkownik(), LegiaWarszawa.getId()))
 				.zawodnik(RP)
 				.klub(LegiaWarszawa)
 				.data_Od(LocalDate.now())
@@ -598,6 +610,10 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		KT.setObecny_klub(List.of(KlubKT));
 		PW.setObecny_klub(List.of(KlubPW));
 		RP.setObecny_klub(List.of(KlubRP));
+
+		obecny_klubRepository.save(KlubKT);
+		obecny_klubRepository.save(KlubPW);
+		obecny_klubRepository.save(KlubRP);
 
 
 		//Sztab klubu
@@ -628,11 +644,12 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.skautKlubu(LegiaWarszawa)
 				.build();
 
-		uzytkownikRepository.save(KT);
-		uzytkownikRepository.save(PW);
-		uzytkownikRepository.save(RP);
+
 		uzytkownikRepository.save(GF);
 		uzytkownikRepository.save(skaut);
+		LegiaWarszawa.setTrener(GF);
+		LegiaWarszawa.setSkaut(skaut);
+		klubRepository.save(LegiaWarszawa);
 
 
 		//Legia
@@ -810,20 +827,6 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		trofeumRepository.save(wicemistrzPolski2011);
 		trofeumRepository.save(wicemistrzPolski1982);
 
-		Zawodnik kacperTobiasz = Zawodnik.builder()
-				.login("k.tobiasz")
-				.email("k.tobiasz@legia.pl")
-				.imie("Kacper")
-				.nazwisko("Tobiasz")
-				.waga(78)
-				.wzrost(191)
-				.pozycja(bramkarzBR)
-				.data_Urodzenia(LocalDate.of(2002, 11, 4))
-				.pesel(100200300)
-				.haslo(passwordEncoder.encode("haslo123"))
-				.role(Role.ZAWODNIK)
-				.kraj_pochodzenia(Set.of(PL))
-				.build();
 
 		Zawodnik arturJedrzejczyk = Zawodnik.builder()
 				.login("a.jedrzejczyk")
@@ -885,7 +888,6 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(ES))
 				.build();
 		zawodnikRepository.saveAll(List.of(
-				kacperTobiasz,
 				arturJedrzejczyk,
 				bartoszKapustka,
 				tomasPekhart,

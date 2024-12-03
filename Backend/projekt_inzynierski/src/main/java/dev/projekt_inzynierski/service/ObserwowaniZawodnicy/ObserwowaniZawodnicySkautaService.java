@@ -31,7 +31,7 @@ public class ObserwowaniZawodnicySkautaService {
     }
 
     public void dodanieZawodnikaDoListyObs(int id_Skaut, int id_Zawodnika){
-        Skaut skaut = skautRepository.findbyId(id_Skaut)
+        Skaut skaut = skautRepository.findById(id_Skaut)
                 .orElseThrow( () -> new EntityNotFoundException("Nie można znaleźć skauta o takim id!"));
 
         Zawodnik zawodnik = zawodnikRepository.findById(id_Zawodnika)
@@ -61,7 +61,7 @@ public class ObserwowaniZawodnicySkautaService {
         obserwowaniZawodnicySkautaRepository.deleteById(id);
     }
 
-    public List<ZawodnikByIdDTO> listaObsZawodnikowSkauta(long id_skaut){
+/*    public List<ZawodnikByIdDTO> listaObsZawodnikowSkauta(long id_skaut){
         List<Zawodnik> listaZawodnikow = obserwowaniZawodnicySkautaRepository.findZawodnicy_Skauta(id_skaut);
 
         return listaZawodnikow.stream()
@@ -88,5 +88,5 @@ public class ObserwowaniZawodnicySkautaService {
                     );
                 }).collect(Collectors.toList());
 
-    }
+    }*/
 }

@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface SkautRepository extends JpaRepository<Skaut,Long> {
 
-    Optional<Skaut> findbyId(long id);
+    Optional<Skaut> findById(long id);
 }

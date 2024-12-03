@@ -15,6 +15,6 @@ public interface ObserwowaniZawodnicySkautaRepository extends JpaRepository<Obse
     boolean existsById(ObserwowaniZawodnicySkautaId id);
     void deleteById(ObserwowaniZawodnicySkautaId id);
 
-    List<Zawodnik> findZawodnicy_Skauta(long idSkaut);
+   /* List<Zawodnik> findZawodnicy_Skauta(long idSkaut);*/
 
 }

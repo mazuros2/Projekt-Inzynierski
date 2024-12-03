@@ -26,6 +26,9 @@ public class Obecny_klub implements java.io.Serializable{
     @JoinColumn(name = "zawodnik_id", nullable = false, insertable = false, updatable = false)
     private Zawodnik zawodnik;
 
+    @ManyToOne
+    @JoinColumn(name="klub_id",nullable = false, insertable = false, updatable = false)
+    private Klub klub;
 
     @NotNull
     private LocalDate data_Od;
@@ -45,8 +48,6 @@ public class Obecny_klub implements java.io.Serializable{
         }
         this.data_Do = data_Do;
     }
-    @ManyToOne
-    @JoinColumn(name="klub_id",nullable = false, insertable = false, updatable = false)
-    private Klub klub;
+
 
 }

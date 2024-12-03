@@ -29,9 +29,9 @@ public class ObserwowaniZawodnicy_Menadzera_Controller {
         return ResponseEntity.ok("Zawodnik zostal usunięty z listy obserwowanych!");
     }
 
-    @GetMapping("/{id_Menadzer}/listaZawodnikow")
+/*    @GetMapping("/{id_Menadzer}/listaZawodnikow")
     public ResponseEntity<List<ZawodnikByIdDTO>> getListaObserwowanych(@PathVariable long id_Menadzer){
         List<ZawodnikByIdDTO> listaZawodnikow = obserwowaniZawodnicyMenadzeraService.listaObsZawodnikowMenadzera(id_Menadzer);
         return ResponseEntity.ok(listaZawodnikow);
-    }
+    }*/
 }

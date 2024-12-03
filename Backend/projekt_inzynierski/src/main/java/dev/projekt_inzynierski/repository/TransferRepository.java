@@ -14,7 +14,13 @@ import java.util.List;
 @Repository
 public interface TransferRepository extends JpaRepository<Transfer,Long> {
 
-    @Query(("SELECT new dev.projekt_inzynierski.DTO.TransferDTO(t.id, t.data_transferu, t.status, t.kwota) " +
+/*    @Query(("SELECT new dev.projekt_inzynierski.DTO.TransferDTO(t.id, t.data_transferu, t.status, t.kwota) " +
             "FROM Transfer t WHERE t.Zawodnik.id = :zawodnikId"))
+    List<TransferDTO> findByZawodnikId(@Param("zawodnikId") long zawodnikId);*/
+
+    @Query("SELECT new dev.projekt_inzynierski.DTO.TransferDTO(" +
+            "t.id, t.data_transferu, t.status, t.kwota) " +
+            "FROM Transfer t WHERE t.zawodnik.id = :zawodnikId")
     List<TransferDTO> findByZawodnikId(@Param("zawodnikId") long zawodnikId);
+
 }

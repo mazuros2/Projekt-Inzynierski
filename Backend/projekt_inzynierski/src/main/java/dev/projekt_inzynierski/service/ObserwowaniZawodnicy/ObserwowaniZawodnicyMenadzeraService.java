@@ -64,6 +64,7 @@ public class ObserwowaniZawodnicyMenadzeraService {
         obserwowaniZawodnicyMenadzeraRepository.deleteById(id);
     }
 
+/*
     public List<ZawodnikByIdDTO> listaObsZawodnikowMenadzera(long id_Menadzer){
         List<Zawodnik> listaZawodnikow = obserwowaniZawodnicyMenadzeraRepository.findZawodnicy_Menadzera(id_Menadzer);
 
@@ -91,6 +92,7 @@ public class ObserwowaniZawodnicyMenadzeraService {
                     );
                 }).collect(Collectors.toList());
     }
+*/
 
 }
 

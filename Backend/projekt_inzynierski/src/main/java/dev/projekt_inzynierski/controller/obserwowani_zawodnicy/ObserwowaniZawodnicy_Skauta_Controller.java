@@ -28,10 +28,10 @@ public class ObserwowaniZawodnicy_Skauta_Controller {
         obserwowaniZawodnicySkautaService.usunZawodnikaZListyObs(idSkaut, idZawodnik);
         return ResponseEntity.ok("Zawodnik został usunięty z listy obserwowanych!");
     }
-
+/*
     @GetMapping("/{id_Skaut}/listaZawodnikow")
     public ResponseEntity<List<ZawodnikByIdDTO>> getListaObserwowanych(@PathVariable long id_Skaut) {
         List<ZawodnikByIdDTO> listaZawodnikow = obserwowaniZawodnicySkautaService.listaObsZawodnikowSkauta(id_Skaut);
         return ResponseEntity.ok(listaZawodnikow);
-    }
+    }*/
 }
