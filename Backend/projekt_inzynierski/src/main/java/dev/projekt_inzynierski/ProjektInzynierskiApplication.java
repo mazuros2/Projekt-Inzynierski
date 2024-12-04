@@ -82,15 +82,9 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.poziom_Ligi(3)
 				.build();
 
-
-		ligaRepository.save(Ekstraklasa);
-		ligaRepository.save(ILiga);
-		ligaRepository.save(IILiga);
-
-		Pozycja napastnikSN = Pozycja.builder()
-				.nazwa_pozycji("Środkowy napastnik")
-				.obszar_pozycji("Napastnik")
-				.build();
+		ligaRepository.saveAll(List.of(
+				Ekstraklasa,ILiga,IILiga
+		));
 
 		Pozycja bramkarzBR = Pozycja.builder()
 				.nazwa_pozycji("Bramkarz")
@@ -111,16 +105,55 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.nazwa_pozycji("Prawy obrońca")
 				.obszar_pozycji("Obrona")
 				.build();
+
+		Pozycja pomocnikSPD= Pozycja.builder()
+				.nazwa_pozycji("Defensywny pomocnik")
+				.obszar_pozycji("Pomocnik")
+				.build();
+
+		Pozycja pomocnikLP= Pozycja.builder()
+				.nazwa_pozycji("Lewy pomocnik")
+				.obszar_pozycji("Pomocnik")
+				.build();
+
 		Pozycja pomocnik= Pozycja.builder()
 				.nazwa_pozycji("Pomocnik")
 				.obszar_pozycji("Pomocnik")
 				.build();
-		pozycjaRepository.save(pomocnik);
-		pozycjaRepository.save(napastnikSN);
-		pozycjaRepository.save(bramkarzBR);
-		pozycjaRepository.save(obroncaLO);
-		pozycjaRepository.save(obroncaSO);
-		pozycjaRepository.save(obroncaPO);
+
+		Pozycja pomocnikPP= Pozycja.builder()
+				.nazwa_pozycji("Prawy pomocnik")
+				.obszar_pozycji("Pomocnik")
+				.build();
+
+		Pozycja pomocnikSPO= Pozycja.builder()
+				.nazwa_pozycji("Ofensywny pomocnik")
+				.obszar_pozycji("Pomocnik")
+				.build();
+
+		Pozycja napastnikLN= Pozycja.builder()
+				.nazwa_pozycji("Lewy napastnik")
+				.obszar_pozycji("Napastnik")
+				.build();
+
+		Pozycja napastnikSN = Pozycja.builder()
+				.nazwa_pozycji("Środkowy napastnik")
+				.obszar_pozycji("Napastnik")
+				.build();
+
+		Pozycja napastnikPN= Pozycja.builder()
+				.nazwa_pozycji("Prawy napastnik")
+				.obszar_pozycji("Napastnik")
+				.build();
+
+		pozycjaRepository.saveAll(List.of(
+				bramkarzBR,
+				obroncaLO, obroncaSO, obroncaPO,
+				pomocnikSPD,pomocnikLP,pomocnik,pomocnikPP,pomocnikSPO,
+				napastnikLN,napastnikSN,napastnikPN
+		));
+
+
 		Kraj_pochodzenia ES = Kraj_pochodzenia.builder()
 				.region("Europa")
 				.nazwa("Hiszpania")
@@ -171,15 +204,14 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.nazwa("Kolumbia")
 				.build();
 
-
-		kraj_pochodzeniaRepository.saveAll(List.of(
-				ES, CZ, CM, JP, AL, PT, CH, AR, FR, CO
-		));
-
-
 		Kraj_pochodzenia PL = Kraj_pochodzenia.builder()
 				.region("Europa")
 				.nazwa("Polska")
+				.build();
+
+		Kraj_pochodzenia CHR = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Chorwacja")
 				.build();
 
 		Kraj_pochodzenia SR = Kraj_pochodzenia.builder()
@@ -192,10 +224,9 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.nazwa("Brazylia")
 				.build();
 
-		kraj_pochodzeniaRepository.save(PL);
-		kraj_pochodzeniaRepository.save(SR);
-		kraj_pochodzeniaRepository.save(BR);
-
+		kraj_pochodzeniaRepository.saveAll(List.of(
+				ES, CZ, CM, JP, AL, PT, CH, AR, FR, CO, PL, SR,BR, CHR
+		));
 
 		Uzytkownik adminTest = Uzytkownik.builder()
 				.login("admin")
@@ -205,7 +236,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.nazwisko("Adminowski")
 				.data_Urodzenia(LocalDate.now())
 				.pesel(12)
-				.haslo("admin")
+				.haslo(passwordEncoder.encode("admin"))
 				.role(Role.ADMIN)
 				.build();
 
@@ -218,7 +249,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL,BR))
 				.data_Urodzenia(LocalDate.now())
 				.pesel(123)
-				.haslo("skaut")
+				.haslo(passwordEncoder.encode("skaut"))
 				.role(Role.SKAUT)
 				.build();
 
@@ -242,6 +273,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1922, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://toppng.com/uploads/preview/kks-lech-poznan-sa-vector-logo-11574309108cx5yp3ke7h.png")
 				.build();
 
@@ -250,15 +282,16 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1964, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/commons/d/dc/GKS_KATOWICE_LOGO.png")
 				.build();
-
 
 		Klub GornikZabrze = Klub.builder()
 				.nazwa_klubu("Gornik Zabrze")
 				.rok_zalozenia(LocalDate.of(1948, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://toppng.com/uploads/preview/ssa-gornik-shirt-badge-vector-logo-11574309412s1qabidadm.png")
 				.build();
 
@@ -267,6 +300,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1921, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkolGfLUeNumFwx_mPaq7KONaaRhtLTiv6ow&s")
 				.build();
 
@@ -275,6 +309,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1946, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/en/thumb/2/20/Zag%C5%82%C4%99bie_Lubin_crest.svg/1200px-Zag%C5%82%C4%99bie_Lubin_crest.svg.png")
 				.build();
 
@@ -283,6 +318,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1947, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Herb_%C5%9Al%C4%85ska_Wroc%C5%82aw.svg/1200px-Herb_%C5%9Al%C4%85ska_Wroc%C5%82aw.svg.png")
 				.build();
 
@@ -291,6 +327,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1910, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/commons/2/2b/Herb_radomiaka_300dpi.png")
 				.build();
 
@@ -299,6 +336,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1920, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/commons/f/f9/Logo_Jagielloni_Bia%C5%82ystok.png")
 				.build();
 
@@ -307,6 +345,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1945, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://iconape.com/wp-content/png_logo_vector/gks-gliwice-logo.png")
 				.build();
 
@@ -315,22 +354,14 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1910, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://seeklogo.com/images/W/Widzew_Lodz-logo-70992DF075-seeklogo.com.png")
 				.build();
 
-
-		klubRepository.save(LegiaWarszawa);
-		klubRepository.save(LechPoznan);
-		klubRepository.save(GKSKatowice);
-		klubRepository.save(GornikZabrze);
-		klubRepository.save(RakowCzestochowa);
-		klubRepository.save(ZaglebieLubin);
-		klubRepository.save(SlaskWroclaw);
-		klubRepository.save(RadomiakRadom);
-		klubRepository.save(WidzewLodz);
-		klubRepository.save(JagielloniaBialystok);
-		klubRepository.save(PiastGliwice);
-
+		klubRepository.saveAll(List.of(
+				LegiaWarszawa, LechPoznan, GKSKatowice, GornikZabrze, RakowCzestochowa, ZaglebieLubin,
+				SlaskWroclaw, RadomiakRadom, WidzewLodz, JagielloniaBialystok, PiastGliwice
+		));
 
 		//Kluby I Ligii
 		Klub RuchChorzow = Klub.builder()
@@ -338,6 +369,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1920, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Ruch_Chorz%C3%B3w_-_Herb_%282021%29.svg/1200px-Ruch_Chorz%C3%B3w_-_Herb_%282021%29.svg.png")
 				.build();
 
@@ -346,6 +378,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1922, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/en/8/84/Znicz_Pruszkow.png")
 				.build();
 
@@ -354,6 +387,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1944, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/Herb_Pogo%C5%84.cdr.svg/1200px-Herb_Pogo%C5%84.cdr.svg.png")
 				.build();
 
@@ -363,6 +397,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1971, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gkstychy.png/1200px-Gkstychy.png")
 				.build();
 
@@ -371,6 +406,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1922, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://termalica.brukbet.com/wp-content/uploads/2021/11/BBTN-Herb-slider.png")
 				.build();
 
@@ -379,6 +415,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1929, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://arka.gdynia.pl/files/herb/arka_gdynia_mzks_kolor.png")
 				.build();
 
@@ -387,6 +424,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1971, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/commons/9/9a/Miedzherb.png")
 				.build();
 
@@ -395,6 +433,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1979, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/en/thumb/8/82/Herb_gornik_leczna.svg/1200px-Herb_gornik_leczna.svg.png")
 				.build();
 
@@ -403,6 +442,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1906, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://www.wikipasy.pl/images/f/f9/Wis%C5%82a_Krak%C3%B3w_stary_herb_7.png")
 				.build();
 
@@ -411,6 +451,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1973, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://www.wikipasy.pl/images/f/f2/Korona_Kielce_herb.png")
 				.build();
 
@@ -419,21 +460,14 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1945, 1, 1))
 				.liga(ILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://www.wikipasy.pl/images/2/20/Odra_Opole_herb.png")
 				.build();
 
-		klubRepository.save(RuchChorzow);
-		klubRepository.save(ZniczPruszkow);
-		klubRepository.save(PogonSiedlce);
-		klubRepository.save(GKSTychy);
-		klubRepository.save(BrukBetTermalica);
-		klubRepository.save(ArkaGdynia);
-		klubRepository.save(MiedzLegnica);
-		klubRepository.save(GornikLeczna);
-		klubRepository.save(WislaKrakow);
-		klubRepository.save(KoronaKielce);
-		klubRepository.save(OdraOpole);
-
+		klubRepository.saveAll(List.of(
+				RuchChorzow, ZniczPruszkow, PogonSiedlce, GKSTychy, BrukBetTermalica,
+				ArkaGdynia, MiedzLegnica, GornikLeczna, WislaKrakow, KoronaKielce, OdraOpole
+		));
 
 		//Kluby z II Ligii
 		Klub RekordBB = Klub.builder()
@@ -441,6 +475,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1994, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://bts.rekord.com.pl/static/images/logo.png")
 				.build();
 
@@ -449,6 +484,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1995, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://tspodbeskidzie.pl/static/upload/store/klub/herb/TSP_Herb.png")
 				.build();
 
@@ -457,6 +493,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1925, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/commons/6/6a/KKS_herb.png")
 				.build();
 
@@ -465,6 +502,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1918, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://www.wikipasy.pl/images/5/54/Zag%C5%82%C4%99bie_Sosnowiec_herb.png")
 				.build();
 
@@ -473,6 +511,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1942, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://bazaherbow.pl/wp-content/uploads/2022/05/WieczystaKrakow.png")
 				.build();
 
@@ -481,6 +520,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1910, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://www.wikipasy.pl/images/4/42/Resovia_Rzesz%C3%B3w_herb.png")
 				.build();
 
@@ -489,6 +529,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1945, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://upload.wikimedia.org/wikipedia/commons/6/69/Polonia-Bytom01.png")
 				.build();
 
@@ -497,6 +538,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1923, 6, 30))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://seeklogo.com/images/G/GKS_Olimpia_Grudziadz-logo-00C3DCF6AB-seeklogo.com.png")
 				.build();
 
@@ -505,6 +547,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1950, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://motorlublin.com/wp-content/uploads/2016/03/herb.png")
 				.build();
 
@@ -513,6 +556,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1921, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://bazaherbow.pl/wp-content/uploads/2021/10/GarbarniaKrakow.png")
 				.build();
 
@@ -521,20 +565,14 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1944, 1, 1))
 				.liga(IILiga)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://stalrzeszow.pl/wp-content/uploads/2019/07/STAL-RZESZOW.png")
 				.build();
 
-		klubRepository.save(RekordBB);
-		klubRepository.save(PodbeskidzieBB);
-		klubRepository.save(KKSKalisz);
-		klubRepository.save(ZaglebieSosnowiec);
-		klubRepository.save(KSWieczystaKrakow);
-		klubRepository.save(ResoviaRzeszow);
-		klubRepository.save(PoloniaBytom);
-		klubRepository.save(OlimpiaGrudziac);
-		klubRepository.save(MotorLublin);
-		klubRepository.save(GarbarniaKrakow);
-		klubRepository.save(StalRzeszow);
+		klubRepository.saveAll(List.of(
+				RekordBB, PodbeskidzieBB, KKSKalisz, ZaglebieSosnowiec, KSWieczystaKrakow, ResoviaRzeszow,
+				PoloniaBytom, OlimpiaGrudziac, MotorLublin, GarbarniaKrakow, StalRzeszow
+		));
 
 
 		//Zawodnicy
@@ -551,6 +589,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.wzrost(191)
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(bramkarzBR)
+				.obecny_klub(new HashSet<>())
 				.build();
 
 		Zawodnik PW = Zawodnik.builder()
@@ -566,6 +605,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.wzrost(186)
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(obroncaPO)
+				.obecny_klub(new HashSet<>())
 				.build();
 
 		Zawodnik RP = Zawodnik.builder()
@@ -581,44 +621,8 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.wzrost(185)
 				.kraj_pochodzenia(Set.of(SR))
 				.pozycja(obroncaPO)
+				.obecny_klub(new HashSet<>())
 				.build();
-
-		uzytkownikRepository.save(KT);
-		uzytkownikRepository.save(PW);
-		uzytkownikRepository.save(RP);
-
-
-//		Obecny_klub KlubKT = Obecny_klub.builder()
-//				//.id(new Obecny_klubId(KT.getId_Uzytkownik(), LegiaWarszawa.getId()))
-//				.zawodnik(KT)
-//				.klub(LegiaWarszawa)
-//				.data_Od(LocalDate.now())
-//				.build();
-//
-//		Obecny_klub KlubPW = Obecny_klub.builder()
-//				//.id(new Obecny_klubId(PW.getId_Uzytkownik(), LegiaWarszawa.getId()))
-//				.zawodnik(PW)
-//				.klub(LegiaWarszawa)
-//				.data_Od(LocalDate.now())
-//				.build();
-//
-//
-//
-//		Obecny_klub KlubRP = Obecny_klub.builder()
-//				//.id(new Obecny_klubId(RP.getId_Uzytkownik(), LegiaWarszawa.getId()))
-//				.zawodnik(RP)
-//				.klub(LegiaWarszawa)
-//				.data_Od(LocalDate.now())
-//				.build();
-//
-//		KT.setObecny_klub(List.of(KlubKT));
-//		PW.setObecny_klub(List.of(KlubPW));
-//		RP.setObecny_klub(List.of(KlubRP));
-//
-//		obecny_klubRepository.save(KlubKT);
-//		obecny_klubRepository.save(KlubPW);
-//		obecny_klubRepository.save(KlubRP);
-
 
 		//Sztab klubu
 		Trener GF = Trener.builder()
@@ -845,6 +849,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.haslo(passwordEncoder.encode("haslo123"))
 				.role(Role.ZAWODNIK)
 				.kraj_pochodzenia(Set.of(PL))
+				.obecny_klub(new HashSet<>())
 				.build();
 
 		Zawodnik bartoszKapustka = Zawodnik.builder()
@@ -860,21 +865,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.haslo(passwordEncoder.encode("haslo123"))
 				.role(Role.ZAWODNIK)
 				.kraj_pochodzenia(Set.of(PL))
-				.build();
-
-		Zawodnik tomasPekhart = Zawodnik.builder()
-				.login("t.pekhart")
-				.email("t.pekhart@legia.pl")
-				.imie("Tomas")
-				.nazwisko("Pekhart")
-				.waga(82)
-				.wzrost(194)
-				.pozycja(napastnikSN)
-				.data_Urodzenia(LocalDate.of(1989, 5, 26))
-				.pesel(100200303)
-				.haslo(passwordEncoder.encode("haslo123"))
-				.role(Role.ZAWODNIK)
-				.kraj_pochodzenia(Set.of(CZ))
+				.obecny_klub(new HashSet<>())
 				.build();
 
 		Zawodnik marcGual = Zawodnik.builder()
@@ -890,13 +881,9 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.haslo(passwordEncoder.encode("haslo123"))
 				.role(Role.ZAWODNIK)
 				.kraj_pochodzenia(Set.of(ES))
+				.obecny_klub(new HashSet<>())
 				.build();
-		zawodnikRepository.saveAll(List.of(
-				arturJedrzejczyk,
-				bartoszKapustka,
-				tomasPekhart,
-				marcGual
-		));
+
 		Zawodnik GabrielKobylak = Zawodnik.builder()
 				.login("g.kobylak")
 				.haslo(passwordEncoder.encode("password"))
@@ -910,6 +897,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.waga(79)
 				.wzrost(184)
 				.pozycja(bramkarzBR)
+				.obecny_klub(new HashSet<>())
 				.build();
 
 		Zawodnik MarcelMendesDudzinski = Zawodnik.builder()
@@ -925,7 +913,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.waga(85)
 				.wzrost(197)
 				.pozycja(bramkarzBR)
-
+				.obecny_klub(new HashSet<>())
 				.build();
 
 		Zawodnik RubenVinagre = Zawodnik.builder()
@@ -941,7 +929,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.waga(71)
 				.wzrost(174)
 				.pozycja(obroncaLO)
-
+				.obecny_klub(new HashSet<>())
 				.build();
 
 		Zawodnik JurgenCelhaka = Zawodnik.builder()
@@ -957,7 +945,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.waga(75)
 				.wzrost(182)
 				.pozycja(pomocnik)
-
+				.obecny_klub(new HashSet<>())
 				.build();
 
 		Zawodnik JuergenElitim = Zawodnik.builder()
@@ -973,7 +961,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.waga(72)
 				.wzrost(173)
 				.pozycja(pomocnik)
-
+				.obecny_klub(new HashSet<>())
 				.build();
 
 		Zawodnik JeanPierreNsame = Zawodnik.builder()
@@ -989,6 +977,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.waga(88)
 				.wzrost(188)
 				.pozycja(napastnikSN)
+				.obecny_klub(new HashSet<>())
 				.build();
 
 		Zawodnik TomasPekhart = Zawodnik.builder()
@@ -1008,21 +997,289 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.build();
 
 
-		uzytkownikRepository.saveAll(List.of(
-				GabrielKobylak,
-				MarcelMendesDudzinski,
-				RubenVinagre,
-				JurgenCelhaka,
-				JuergenElitim,
-				JeanPierreNsame,
-				TomasPekhart
+		zawodnikRepository.saveAll(List.of(
+				GabrielKobylak, MarcelMendesDudzinski, RubenVinagre, JurgenCelhaka, PW, KT, RP,
+				JuergenElitim, JeanPierreNsame, TomasPekhart, arturJedrzejczyk, bartoszKapustka, marcGual
 		));
 
-		zawodnikRepository.save(TomasPekhart);
 		LegiaWarszawa.dodajZawodnika(TomasPekhart,LocalDate.now());
+		LegiaWarszawa.dodajZawodnika(GabrielKobylak,LocalDate.now());
+		LegiaWarszawa.dodajZawodnika(MarcelMendesDudzinski,LocalDate.now());
+		LegiaWarszawa.dodajZawodnika(RubenVinagre,LocalDate.now());
+		LegiaWarszawa.dodajZawodnika(JurgenCelhaka,LocalDate.now());
+		LegiaWarszawa.dodajZawodnika(JuergenElitim,LocalDate.now());
+		LegiaWarszawa.dodajZawodnika(JeanPierreNsame,LocalDate.now());
+		LegiaWarszawa.dodajZawodnika(arturJedrzejczyk,LocalDate.now());
+		LegiaWarszawa.dodajZawodnika(bartoszKapustka,LocalDate.now());
+		LegiaWarszawa.dodajZawodnika(marcGual,LocalDate.now());
+		LegiaWarszawa.dodajZawodnika(PW,LocalDate.now());
+		LegiaWarszawa.dodajZawodnika(KT,LocalDate.now());
+		LegiaWarszawa.dodajZawodnika(RP,LocalDate.now());
+
 		klubRepository.save(LegiaWarszawa);
-		zawodnikRepository.save(TomasPekhart);
+
+		zawodnikRepository.saveAll(List.of(
+				GabrielKobylak, MarcelMendesDudzinski, RubenVinagre, JurgenCelhaka, JuergenElitim,
+				JeanPierreNsame, TomasPekhart, arturJedrzejczyk, bartoszKapustka, marcGual, PW, KT, RP
+		));
+
 		for (Obecny_klub ob : LegiaWarszawa.getSetObecnyKlub()) {
+			obecny_klubRepository.save(ob);
+		}
+
+
+		//Górnik Zabrze
+		Zawodnik MateuszJelen = Zawodnik.builder()
+				.login("MateuszJelen")
+				.email("MateuszJelen@gmail.com")
+				.imie("Mateusz")
+				.nazwisko("Jelen")
+				.data_Urodzenia(LocalDate.of(2007, 2, 2))
+				.pesel(9070973)
+				.haslo(passwordEncoder.encode("bramkarz1"))
+				.role(Role.ZAWODNIK)
+				.waga(81)
+				.wzrost(188)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(bramkarzBR)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik DominikSzala = Zawodnik.builder()
+				.login("DominikSzala")
+				.email("DominikSzala@gmail.com")
+				.imie("Dominik")
+				.nazwisko("Szala")
+				.data_Urodzenia(LocalDate.of(2006, 4, 24))
+				.pesel(5432879)
+				.haslo(passwordEncoder.encode("obronca1"))
+				.role(Role.ZAWODNIK)
+				.waga(80)
+				.wzrost(188)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik KryspinSzczesniak = Zawodnik.builder()
+				.login("KryspinSzczesniak")
+				.email("KryspinSzczesniak@gmail.com")
+				.imie("Kryspin")
+				.nazwisko("Szczesniak")
+				.data_Urodzenia(LocalDate.of(2001, 1, 8))
+				.pesel(4132165)
+				.haslo(passwordEncoder.encode("obronca2"))
+				.role(Role.ZAWODNIK)
+				.waga(80)
+				.wzrost(186)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik Josema = Zawodnik.builder()
+				.login("Josema")
+				.email("Josema@gmail.com")
+				.imie("Jose")
+				.nazwisko("Manuel Sanchez")
+				.data_Urodzenia(LocalDate.of(1996, 6, 6))
+				.pesel(5423631)
+				.haslo(passwordEncoder.encode("obronca3"))
+				.role(Role.ZAWODNIK)
+				.waga(76)
+				.wzrost(182)
+				.kraj_pochodzenia(Set.of(ES))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik NikodemZielonka = Zawodnik.builder()
+				.login("NikodemZielonka")
+				.email("NikodemZielonka@gmail.com")
+				.imie("Nikodem")
+				.nazwisko("Zielonka")
+				.data_Urodzenia(LocalDate.of(2004, 8, 17))
+				.pesel(904817123)
+				.haslo(passwordEncoder.encode("pomocnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(78)
+				.wzrost(184)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(pomocnikSPO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik KamilLukoszek = Zawodnik.builder()
+				.login("KamilLukoszek")
+				.email("KamilLukoszek@gmail.com")
+				.imie("Kamil")
+				.nazwisko("Lukoszek")
+				.data_Urodzenia(LocalDate.of(2002, 4, 4))
+				.pesel(802404567)
+				.haslo(passwordEncoder.encode("napastnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(70)
+				.wzrost(175)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(napastnikLN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik YosukeFurukawa = Zawodnik.builder()
+				.login("YosukeFurukawa")
+				.email("YosukeFurukawa@gmail.com")
+				.imie("Yosuke")
+				.nazwisko("Furukawa")
+				.data_Urodzenia(LocalDate.of(2003, 7, 16))
+				.pesel(903716678)
+				.haslo(passwordEncoder.encode("napastnik2"))
+				.role(Role.ZAWODNIK)
+				.waga(66)
+				.wzrost(174)
+				.kraj_pochodzenia(Set.of(JP))
+				.pozycja(napastnikLN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		zawodnikRepository.saveAll(List.of(
+				MateuszJelen,DominikSzala,KryspinSzczesniak,Josema,
+				NikodemZielonka,KamilLukoszek,YosukeFurukawa
+		));
+
+		GornikZabrze.dodajZawodnika(MateuszJelen,LocalDate.now());
+		GornikZabrze.dodajZawodnika(DominikSzala,LocalDate.now());
+		GornikZabrze.dodajZawodnika(KryspinSzczesniak,LocalDate.now());
+		GornikZabrze.dodajZawodnika(Josema,LocalDate.now());
+		GornikZabrze.dodajZawodnika(NikodemZielonka,LocalDate.now());
+		GornikZabrze.dodajZawodnika(KamilLukoszek,LocalDate.now());
+		GornikZabrze.dodajZawodnika(YosukeFurukawa,LocalDate.now());
+		klubRepository.save(GornikZabrze);
+
+		zawodnikRepository.saveAll(List.of(
+				MateuszJelen,DominikSzala,KryspinSzczesniak,Josema,
+				NikodemZielonka,KamilLukoszek,YosukeFurukawa
+		));
+
+		for (Obecny_klub ob : GornikZabrze.getSetObecnyKlub()) {
+			obecny_klubRepository.save(ob);
+		}
+
+		Zawodnik ArielMosor = Zawodnik.builder()
+				.login("ArielMosor")
+				.email("ArielMosor@gmail.com")
+				.imie("Ariel")
+				.nazwisko("Mosor")
+				.data_Urodzenia(LocalDate.of(2003, 2, 19))
+				.pesel(903219123)
+				.haslo(passwordEncoder.encode("obronca1"))
+				.role(Role.ZAWODNIK)
+				.waga(75)
+				.wzrost(184)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik KacperTrelowski = Zawodnik.builder()
+				.login("KacperTrelowski")
+				.email("KacperTrelowski@gmail.com")
+				.imie("Kacper")
+				.nazwisko("Trelowski")
+				.data_Urodzenia(LocalDate.of(2003, 8, 19))
+				.pesel(903819456)
+				.haslo(passwordEncoder.encode("bramkarz1"))
+				.role(Role.ZAWODNIK)
+				.waga(85)
+				.wzrost(193)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(bramkarzBR)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik AntoniBurkiewicz = Zawodnik.builder()
+				.login("AntoniBurkiewicz")
+				.email("AntoniBurkiewicz@gmail.com")
+				.imie("Antoni")
+				.nazwisko("Burkiewicz")
+				.data_Urodzenia(LocalDate.of(2008, 4, 21))
+				.pesel(908421789)
+				.haslo(passwordEncoder.encode("pomocnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(63)
+				.wzrost(177)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(pomocnikSPD)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik FranTudor = Zawodnik.builder()
+				.login("FranTudor")
+				.email("FranTudor@gmail.com")
+				.imie("Fran")
+				.nazwisko("Tudor")
+				.data_Urodzenia(LocalDate.of(1995, 9, 27))
+				.pesel(995927234)
+				.haslo(passwordEncoder.encode("pomocnik2"))
+				.role(Role.ZAWODNIK)
+				.waga(72)
+				.wzrost(173)
+				.kraj_pochodzenia(Set.of(CHR))
+				.pozycja(pomocnikPP)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik PatrykMakuch = Zawodnik.builder()
+				.login("PatrykMakuch")
+				.email("PatrykMakuch@gmail.com")
+				.imie("Patryk")
+				.nazwisko("Makuch")
+				.data_Urodzenia(LocalDate.of(1999, 4, 11))
+				.pesel(999411678)
+				.haslo(passwordEncoder.encode("napastnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(80)
+				.wzrost(187)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(napastnikSN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik TomaszWalczak = Zawodnik.builder()
+				.login("TomaszWalczak")
+				.email("TomaszWalczak@gmail.com")
+				.imie("Tomasz")
+				.nazwisko("Walczak")
+				.data_Urodzenia(LocalDate.of(2005, 8, 17))
+				.pesel(905817345)
+				.haslo(passwordEncoder.encode("napastnik2"))
+				.role(Role.ZAWODNIK)
+				.waga(83)
+				.wzrost(192)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(napastnikSN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		zawodnikRepository.saveAll(List.of(
+				ArielMosor,TomaszWalczak,PatrykMakuch,FranTudor,
+				AntoniBurkiewicz,KacperTrelowski
+		));
+
+		RakowCzestochowa.dodajZawodnika(ArielMosor,LocalDate.now());
+		RakowCzestochowa.dodajZawodnika(TomaszWalczak,LocalDate.now());
+		RakowCzestochowa.dodajZawodnika(PatrykMakuch,LocalDate.now());
+		RakowCzestochowa.dodajZawodnika(FranTudor,LocalDate.now());
+		RakowCzestochowa.dodajZawodnika(AntoniBurkiewicz,LocalDate.now());
+		RakowCzestochowa.dodajZawodnika(KacperTrelowski,LocalDate.now());
+
+		klubRepository.save(RakowCzestochowa);
+
+		zawodnikRepository.saveAll(List.of(
+				ArielMosor,TomaszWalczak,PatrykMakuch,FranTudor,
+				AntoniBurkiewicz,KacperTrelowski
+		));
+
+		for (Obecny_klub ob : RakowCzestochowa.getSetObecnyKlub()) {
 			obecny_klubRepository.save(ob);
 		}
 

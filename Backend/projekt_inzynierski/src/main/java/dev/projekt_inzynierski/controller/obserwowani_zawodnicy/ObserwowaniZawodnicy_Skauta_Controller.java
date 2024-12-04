@@ -1,7 +1,9 @@
 package dev.projekt_inzynierski.controller.obserwowani_zawodnicy;
 
 import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
+import dev.projekt_inzynierski.models.users.Zawodnik;
 import dev.projekt_inzynierski.service.ObserwowaniZawodnicy.ObserwowaniZawodnicySkautaService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +30,10 @@ public class ObserwowaniZawodnicy_Skauta_Controller {
         obserwowaniZawodnicySkautaService.usunZawodnikaZListyObs(idSkaut, idZawodnik);
         return ResponseEntity.ok("Zawodnik został usunięty z listy obserwowanych!");
     }
-/*
-    @GetMapping("/{id_Skaut}/listaZawodnikow")
-    public ResponseEntity<List<ZawodnikByIdDTO>> getListaObserwowanych(@PathVariable long id_Skaut) {
-        List<ZawodnikByIdDTO> listaZawodnikow = obserwowaniZawodnicySkautaService.listaObsZawodnikowSkauta(id_Skaut);
-        return ResponseEntity.ok(listaZawodnikow);
+
+/*    @GetMapping("/{idSkaut}/listaZawodnikow")
+    public ResponseEntity<List<ZawodnikByIdDTO>> getListaObserwowanych(@PathVariable long idSkaut) {
+        List<ZawodnikByIdDTO> zawodnicy = obserwowaniZawodnicySkautaService.findZawodnicySkauta(idSkaut);
+        return ResponseEntity.ok(zawodnicy);
     }*/
 }

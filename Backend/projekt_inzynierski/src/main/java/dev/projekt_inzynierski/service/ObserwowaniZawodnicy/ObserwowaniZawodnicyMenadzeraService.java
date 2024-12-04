@@ -94,5 +94,9 @@ public class ObserwowaniZawodnicyMenadzeraService {
     }
 */
 
+/*    public List<ZawodnikByIdDTO> findZawodnicyMenadzera(long idMenadzer) {
+        return obserwowaniZawodnicyMenadzeraRepository.findZawodnicyDTOByMenadzerId(idMenadzer);
+    }*/
+
 }
 

@@ -34,4 +34,12 @@ public class ObserwowaniZawodnicy_Menadzera_Controller {
         List<ZawodnikByIdDTO> listaZawodnikow = obserwowaniZawodnicyMenadzeraService.listaObsZawodnikowMenadzera(id_Menadzer);
         return ResponseEntity.ok(listaZawodnikow);
     }*/
+/*
+    @GetMapping("/{idMenadzer}/listaZawodnikow")
+    public ResponseEntity<List<ZawodnikByIdDTO>> getListaObserwowanych(@PathVariable long idMenadzer) {
+        List<ZawodnikByIdDTO> zawodnicy = obserwowaniZawodnicyMenadzeraService.findZawodnicyMenadzera(idMenadzer);
+        return ResponseEntity.ok(zawodnicy);
+    }
+*/
+
 }

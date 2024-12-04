@@ -89,4 +89,9 @@ public class ObserwowaniZawodnicySkautaService {
                 }).collect(Collectors.toList());
 
     }*/
+/*
+    public List<ZawodnikByIdDTO> findZawodnicySkauta(long idSkaut) {
+        return obserwowaniZawodnicySkautaRepository.findZawodnicyDTOBySkautId(idSkaut);
+    }*/
+
 }
