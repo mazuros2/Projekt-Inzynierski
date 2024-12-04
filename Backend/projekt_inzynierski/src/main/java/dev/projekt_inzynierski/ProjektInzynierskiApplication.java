@@ -584,36 +584,38 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		uzytkownikRepository.save(KT);
 		uzytkownikRepository.save(PW);
 		uzytkownikRepository.save(RP);
-		Obecny_klub KlubKT = Obecny_klub.builder()
-				.id(new Obecny_klubId(KT.getId_Uzytkownik(), LegiaWarszawa.getId()))
-				.zawodnik(KT)
-				.klub(LegiaWarszawa)
-				.data_Od(LocalDate.now())
-				.build();
-
-		Obecny_klub KlubPW = Obecny_klub.builder()
-				.id(new Obecny_klubId(PW.getId_Uzytkownik(), LegiaWarszawa.getId()))
-				.zawodnik(PW)
-				.klub(LegiaWarszawa)
-				.data_Od(LocalDate.now())
-				.build();
 
 
-
-		Obecny_klub KlubRP = Obecny_klub.builder()
-				.id(new Obecny_klubId(RP.getId_Uzytkownik(), LegiaWarszawa.getId()))
-				.zawodnik(RP)
-				.klub(LegiaWarszawa)
-				.data_Od(LocalDate.now())
-				.build();
-
-		KT.setObecny_klub(List.of(KlubKT));
-		PW.setObecny_klub(List.of(KlubPW));
-		RP.setObecny_klub(List.of(KlubRP));
-
-		obecny_klubRepository.save(KlubKT);
-		obecny_klubRepository.save(KlubPW);
-		obecny_klubRepository.save(KlubRP);
+//		Obecny_klub KlubKT = Obecny_klub.builder()
+//				//.id(new Obecny_klubId(KT.getId_Uzytkownik(), LegiaWarszawa.getId()))
+//				.zawodnik(KT)
+//				.klub(LegiaWarszawa)
+//				.data_Od(LocalDate.now())
+//				.build();
+//
+//		Obecny_klub KlubPW = Obecny_klub.builder()
+//				//.id(new Obecny_klubId(PW.getId_Uzytkownik(), LegiaWarszawa.getId()))
+//				.zawodnik(PW)
+//				.klub(LegiaWarszawa)
+//				.data_Od(LocalDate.now())
+//				.build();
+//
+//
+//
+//		Obecny_klub KlubRP = Obecny_klub.builder()
+//				//.id(new Obecny_klubId(RP.getId_Uzytkownik(), LegiaWarszawa.getId()))
+//				.zawodnik(RP)
+//				.klub(LegiaWarszawa)
+//				.data_Od(LocalDate.now())
+//				.build();
+//
+//		KT.setObecny_klub(List.of(KlubKT));
+//		PW.setObecny_klub(List.of(KlubPW));
+//		RP.setObecny_klub(List.of(KlubRP));
+//
+//		obecny_klubRepository.save(KlubKT);
+//		obecny_klubRepository.save(KlubPW);
+//		obecny_klubRepository.save(KlubRP);
 
 
 		//Sztab klubu
@@ -1012,6 +1014,15 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				JeanPierreNsame,
 				TomasPekhart
 		));
+
+		zawodnikRepository.save(TomasPekhart);
+		LegiaWarszawa.dodajZawodnika(TomasPekhart,LocalDate.now());
+		klubRepository.save(LegiaWarszawa);
+		zawodnikRepository.save(TomasPekhart);
+		for (Obecny_klub ob : LegiaWarszawa.getSetObecnyKlub()) {
+			obecny_klubRepository.save(ob);
+		}
+
 
 		System.out.println("\n");
 		List<Trofeum> trofea = LegiaWarszawa.getTrofea();

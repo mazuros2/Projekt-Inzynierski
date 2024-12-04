@@ -95,7 +95,7 @@ public class AdminService {
                 .data_Od(LocalDate.now())
                 .build();
 
-        zawodnik.setObecny_klub(List.of(obecny_klub));
+        zawodnik.setObecny_klub(Set.of(obecny_klub));
 
         uzytkownikRepository.save(zawodnik);
     }
