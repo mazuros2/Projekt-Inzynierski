@@ -24,6 +24,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -230,6 +231,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.rok_zalozenia(LocalDate.of(1916, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
+				.setObecnyKlub(new HashSet<>())
 				.logo_url("https://w7.pngwing.com/pngs/496/212/png-transparent-legia-warsaw-2018-19-uefa-champions-league-cork-city-f-c-ekstraklasa-football-logo-sports-football-team-thumbnail.png")
 				.build();
 
@@ -1002,6 +1004,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.waga(82)
 				.wzrost(194)
 				.pozycja(napastnikSN)
+				.obecny_klub(new HashSet<>())
 				.build();
 
 

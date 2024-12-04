@@ -91,7 +91,7 @@ public class Klub {
         System.out.println(ob.getKlub());
         zawodnik.dodajObecnyKlub(ob);
         this.dodajObecnyKlub(ob);
-        zawodnicy.add(zawodnik);
+        //zawodnicy.add(zawodnik);
     }
     public void usunZawodnika(Zawodnik zawodnik, LocalDate data_do) {
         if (zawodnik == null) {

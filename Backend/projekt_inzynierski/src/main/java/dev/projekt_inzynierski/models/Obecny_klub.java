@@ -27,14 +27,14 @@ public class Obecny_klub implements java.io.Serializable{
     //embededidjakby nie dzialalo
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_uczestnictwo_klubowe;
+    private Long id_obecny_klub;
 
     @ManyToOne
-    @JoinColumn(name = "zawodnik_id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "zawodnik_id", nullable = false)
     private Zawodnik zawodnik;
 
     @ManyToOne
-    @JoinColumn(name="klub_id",nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name="klub_id",nullable = false)
     private Klub klub;
 
     @NotNull
