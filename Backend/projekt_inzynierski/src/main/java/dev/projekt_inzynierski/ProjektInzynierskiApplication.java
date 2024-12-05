@@ -2,20 +2,14 @@ package dev.projekt_inzynierski;
 
 import dev.projekt_inzynierski.configurationJWT.Role;
 import dev.projekt_inzynierski.models.*;
-import dev.projekt_inzynierski.models.users.Skaut;
-import dev.projekt_inzynierski.models.users.Trener;
-import dev.projekt_inzynierski.models.users.Uzytkownik;
-import dev.projekt_inzynierski.models.users.Zawodnik;
+import dev.projekt_inzynierski.models.users.*;
 import dev.projekt_inzynierski.repository.Klub.KlubRepository;
 import dev.projekt_inzynierski.repository.Klub.LigaRepository;
 import dev.projekt_inzynierski.repository.Klub.TrofeumRepository;
 import dev.projekt_inzynierski.repository.Kraj_pochodzeniaRepository;
 import dev.projekt_inzynierski.repository.Obecny_klubRepository;
 import dev.projekt_inzynierski.repository.PozycjaRepository;
-import dev.projekt_inzynierski.repository.User.SkautRepository;
-import dev.projekt_inzynierski.repository.User.TrenerRepository;
-import dev.projekt_inzynierski.repository.User.UzytkownikRepository;
-import dev.projekt_inzynierski.repository.User.ZawodnikRepository;
+import dev.projekt_inzynierski.repository.User.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -42,18 +36,26 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 
 	@Autowired
 	private UzytkownikRepository uzytkownikRepository;
+	@Autowired
+	private SkautRepository skautRepository;
+	@Autowired
+	private ZawodnikRepository zawodnikRepository;
+
+	@Autowired
+	private TrenerRepository trenerRepository;
+
+	@Autowired
+	private Menadzer_klubuRepository menadzer_klubuRepository;
 
 	@Autowired
 	private Kraj_pochodzeniaRepository kraj_pochodzeniaRepository;
-
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private PozycjaRepository pozycjaRepository;
-	@Autowired
-	private ZawodnikRepository zawodnikRepository;
+
 
 	@Autowired
 	private Obecny_klubRepository obecny_klubRepository;
@@ -169,6 +171,11 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.nazwa("Czechy")
 				.build();
 
+		Kraj_pochodzenia DK = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Dania")
+				.build();
+
 		Kraj_pochodzenia CM = Kraj_pochodzenia.builder()
 				.region("Afryka")
 				.nazwa("Kamerun")
@@ -219,9 +226,20 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.nazwa("Kolumbia")
 				.build();
 
+		Kraj_pochodzenia DE = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Niemcy")
+				.build();
+
+
 		Kraj_pochodzenia PL = Kraj_pochodzenia.builder()
 				.region("Europa")
 				.nazwa("Polska")
+				.build();
+
+		Kraj_pochodzenia UA = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Ukraina")
 				.build();
 
 		Kraj_pochodzenia CHR = Kraj_pochodzenia.builder()
@@ -255,7 +273,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.build();
 
 		kraj_pochodzeniaRepository.saveAll(List.of(
-				ES, CZ, CM, JP, AL, PT, CH, AR, FR, CO, PL, SR,BR, CHR, SY, SE, SK,IT, GN, ANG
+				ES, CZ, CM, JP, AL, PT, CH, AR, FR, CO, PL, SR,BR, CHR, SY, SE, SK,IT, GN, ANG, UA, DE, DK
 		));
 
 		Uzytkownik adminTest = Uzytkownik.builder()
@@ -2173,6 +2191,481 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		for (Obecny_klub ob : WidzewLodz.getSetObecnyKlub()) {
 			obecny_klubRepository.save(ob);
 		}
+
+		//Skauci klubów
+		Skaut skaut2 = Skaut.builder()
+				.login("skaut2")
+				.email("skaut2@gmail.com")
+				.imie("Juan")
+				.nazwisko("Garcia")
+				.data_Urodzenia(LocalDate.of(1988, 3, 15))
+				.pesel(567891235)
+				.haslo(passwordEncoder.encode("skaut456"))
+				.role(Role.SKAUT)
+				.kraj_pochodzenia(Set.of(ES))
+				.skautKlubu(PiastGliwice)
+				.build();
+
+		Skaut skaut3 = Skaut.builder()
+				.login("skaut3")
+				.email("skaut3@gmail.com")
+				.imie("Carlos")
+				.nazwisko("Silva")
+				.data_Urodzenia(LocalDate.of(1992, 10, 10))
+				.pesel(567891236)
+				.haslo(passwordEncoder.encode("skaut789"))
+				.role(Role.SKAUT)
+				.kraj_pochodzenia(Set.of(PT, BR))
+				.skautKlubu(JagielloniaBialystok)
+				.build();
+
+		Skaut skaut4 = Skaut.builder()
+				.login("skaut4")
+				.email("skaut4@gmail.com")
+				.imie("David")
+				.nazwisko("Smith")
+				.data_Urodzenia(LocalDate.of(1995, 12, 5))
+				.pesel(567891237)
+				.haslo(passwordEncoder.encode("skaut101"))
+				.role(Role.SKAUT)
+				.kraj_pochodzenia(Set.of(ANG))
+				.skautKlubu(WidzewLodz)
+				.build();
+
+		Skaut skaut5 = Skaut.builder()
+				.login("skaut5")
+				.email("skaut5@gmail.com")
+				.imie("Luca")
+				.nazwisko("Rossi")
+				.data_Urodzenia(LocalDate.of(1990, 4, 18))
+				.pesel(567891238)
+				.haslo(passwordEncoder.encode("skaut102"))
+				.role(Role.SKAUT)
+				.kraj_pochodzenia(Set.of(IT))
+				.skautKlubu(RadomiakRadom)
+				.build();
+
+		Skaut skaut6 = Skaut.builder()
+				.login("skaut6")
+				.email("skaut6@gmail.com")
+				.imie("Yuki")
+				.nazwisko("Tanaka")
+				.data_Urodzenia(LocalDate.of(1994, 7, 21))
+				.pesel(567891239)
+				.haslo(passwordEncoder.encode("skaut103"))
+				.role(Role.SKAUT)
+				.kraj_pochodzenia(Set.of(JP))
+				.skautKlubu(SlaskWroclaw)
+				.build();
+
+		Skaut skaut7 = Skaut.builder()
+				.login("skaut7")
+				.email("skaut7@gmail.com")
+				.imie("Samuel")
+				.nazwisko("Johnson")
+				.data_Urodzenia(LocalDate.of(1989, 8, 30))
+				.pesel(567891240)
+				.haslo(passwordEncoder.encode("skaut104"))
+				.role(Role.SKAUT)
+				.kraj_pochodzenia(Set.of(ANG))
+				.skautKlubu(ZaglebieLubin)
+				.build();
+
+		Skaut skaut8 = Skaut.builder()
+				.login("skaut8")
+				.email("skaut8@gmail.com")
+				.imie("Thiago")
+				.nazwisko("Costa")
+				.data_Urodzenia(LocalDate.of(1993, 11, 3))
+				.pesel(567891241)
+				.haslo(passwordEncoder.encode("skaut105"))
+				.role(Role.SKAUT)
+				.kraj_pochodzenia(Set.of(BR))
+				.skautKlubu(RakowCzestochowa)
+				.build();
+
+		Skaut skaut9 = Skaut.builder()
+				.login("skaut9")
+				.email("skaut9@gmail.com")
+				.imie("Artem")
+				.nazwisko("Ivanov")
+				.data_Urodzenia(LocalDate.of(1996, 1, 19))
+				.pesel(567891242)
+				.haslo(passwordEncoder.encode("skaut106"))
+				.role(Role.SKAUT)
+				.kraj_pochodzenia(Set.of(UA, PL))
+				.skautKlubu(GornikZabrze)
+				.build();
+
+		Skaut skaut10 = Skaut.builder()
+				.login("skaut10")
+				.email("skaut10@gmail.com")
+				.imie("Jean")
+				.nazwisko("Dupont")
+				.data_Urodzenia(LocalDate.of(1991, 5, 27))
+				.pesel(567891243)
+				.haslo(passwordEncoder.encode("skaut107"))
+				.role(Role.SKAUT)
+				.kraj_pochodzenia(Set.of(FR))
+				.skautKlubu(LechPoznan)
+				.build();
+
+		Skaut skaut11 = Skaut.builder()
+				.login("skaut11")
+				.email("skaut11@gmail.com")
+				.imie("Andreas")
+				.nazwisko("Müller")
+				.data_Urodzenia(LocalDate.of(1997, 6, 14))
+				.pesel(567891244)
+				.haslo(passwordEncoder.encode("skaut108"))
+				.role(Role.SKAUT)
+				.kraj_pochodzenia(Set.of(DE,PL))
+				.skautKlubu(GKSKatowice)
+				.build();
+
+		skautRepository.saveAll(List.of(
+				skaut2,skaut3,skaut4,skaut5,skaut6,skaut7,skaut8,skaut9,skaut10,skaut11
+		));
+
+		LechPoznan.setSkaut(skaut10);
+		GKSKatowice.setSkaut(skaut11);
+		GornikZabrze.setSkaut(skaut9);
+		RakowCzestochowa.setSkaut(skaut8);
+		ZaglebieLubin.setSkaut(skaut7);
+		SlaskWroclaw.setSkaut(skaut6);
+		RadomiakRadom.setSkaut(skaut5);
+		WidzewLodz.setSkaut(skaut4);
+		JagielloniaBialystok.setSkaut(skaut3);
+		PiastGliwice.setSkaut(skaut2);
+
+		//Trenerzy
+
+		// Sztab klubu
+		Trener NF = Trener.builder()
+				.login("NF1")
+				.email("NF1@gmail.com")
+				.imie("Niels")
+				.nazwisko("Frederiksen")
+				.data_Urodzenia(LocalDate.of(1969, 11, 5))
+				.pesel(123456789)
+				.haslo(passwordEncoder.encode("trener123"))
+				.role(Role.TRENER)
+				.kraj_pochodzenia(Set.of(DK))
+				.licencja_trenera("UEFA PRO")
+				.trenerKlub(LechPoznan)
+				.build();
+
+		Trener MP = Trener.builder()
+				.login("MP1")
+				.email("MP1@gmail.com")
+				.imie("Marek")
+				.nazwisko("Papszun")
+				.data_Urodzenia(LocalDate.of(1973, 8, 8))
+				.pesel(123456788)
+				.haslo(passwordEncoder.encode("trener123"))
+				.role(Role.TRENER)
+				.kraj_pochodzenia(Set.of(PL))
+				.licencja_trenera("UEFA PRO")
+				.trenerKlub(RakowCzestochowa)
+				.build();
+
+		Trener AS = Trener.builder()
+				.login("AS1")
+				.email("AS1@gmail.com")
+				.imie("Adrian")
+				.nazwisko("Siemieniec")
+				.data_Urodzenia(LocalDate.of(1991, 1, 13))
+				.pesel(123456787)
+				.haslo(passwordEncoder.encode("trener123"))
+				.role(Role.TRENER)
+				.kraj_pochodzenia(Set.of(PL))
+				.licencja_trenera("UEFA PRO")
+				.trenerKlub(JagielloniaBialystok)
+				.build();
+
+		Trener JU = Trener.builder()
+				.login("JU1")
+				.email("JU1@gmail.com")
+				.imie("Jan")
+				.nazwisko("Urban")
+				.data_Urodzenia(LocalDate.of(1961, 5, 14))
+				.pesel(123456786)
+				.haslo(passwordEncoder.encode("trener123"))
+				.role(Role.TRENER)
+				.kraj_pochodzenia(Set.of(PL))
+				.licencja_trenera("UEFA PRO")
+				.trenerKlub(GornikZabrze)
+				.build();
+
+		Trener MW = Trener.builder()
+				.login("MW1")
+				.email("MW1@gmail.com")
+				.imie("Marcin")
+				.nazwisko("Wlodarski")
+				.data_Urodzenia(LocalDate.of(1982, 9, 6))
+				.pesel(123456785)
+				.haslo(passwordEncoder.encode("trener123"))
+				.role(Role.TRENER)
+				.kraj_pochodzenia(Set.of(PL))
+				.licencja_trenera("UEFA PRO")
+				.trenerKlub(ZaglebieLubin)
+				.build();
+
+		Trener DM = Trener.builder()
+				.login("DM1")
+				.email("DM1@gmail.com")
+				.imie("Daniel")
+				.nazwisko("Mysliwiec")
+				.data_Urodzenia(LocalDate.of(1984, 11, 19))
+				.pesel(123456784)
+				.haslo(passwordEncoder.encode("trener123"))
+				.role(Role.TRENER)
+				.kraj_pochodzenia(Set.of(PL))
+				.licencja_trenera("UEFA PRO")
+				.trenerKlub(WidzewLodz)
+				.build();
+
+		Trener RG = Trener.builder()
+				.login("RG1")
+				.email("RG1@gmail.com")
+				.imie("Rafal")
+				.nazwisko("Gorak")
+				.data_Urodzenia(LocalDate.of(1972, 3, 30))
+				.pesel(123456783)
+				.haslo(passwordEncoder.encode("trener123"))
+				.role(Role.TRENER)
+				.kraj_pochodzenia(Set.of(PL))
+				.licencja_trenera("UEFA PRO")
+				.trenerKlub(GKSKatowice)
+				.build();
+
+		Trener AV = Trener.builder()
+				.login("AV1")
+				.email("AV1@gmail.com")
+				.imie("Aleksandar")
+				.nazwisko("Vukovic")
+				.data_Urodzenia(LocalDate.of(1978, 8, 25))
+				.pesel(123456782)
+				.haslo(passwordEncoder.encode("trener123"))
+				.role(Role.TRENER)
+				.kraj_pochodzenia(Set.of(SR, PL))
+				.licencja_trenera("UEFA PRO")
+				.trenerKlub(PiastGliwice)
+				.build();
+
+		Trener BB = Trener.builder()
+				.login("BB1")
+				.email("BB1@gmail.com")
+				.imie("Bruno")
+				.nazwisko("Baltazar")
+				.data_Urodzenia(LocalDate.of(1976, 7, 6))
+				.pesel(123456781)
+				.haslo(passwordEncoder.encode("trener123"))
+				.role(Role.TRENER)
+				.kraj_pochodzenia(Set.of(PT))
+				.licencja_trenera("UEFA PRO")
+				.trenerKlub(RadomiakRadom)
+				.build();
+
+		Trener MH = Trener.builder()
+				.login("MH1")
+				.email("MH1@gmail.com")
+				.imie("Michal")
+				.nazwisko("Hetel")
+				.data_Urodzenia(LocalDate.of(1993, 8, 24))
+				.pesel(123456780)
+				.haslo(passwordEncoder.encode("trener123"))
+				.role(Role.TRENER)
+				.kraj_pochodzenia(Set.of(PL))
+				.licencja_trenera("UEFA PRO")
+				.trenerKlub(SlaskWroclaw)
+				.build();
+
+		trenerRepository.saveAll(List.of(
+				MH,AV,AS,DM,BB,MW,MP,JU,RG,NF
+		));
+
+		LechPoznan.setTrener(NF);
+		GKSKatowice.setTrener(RG);
+		GornikZabrze.setTrener(JU);
+		RakowCzestochowa.setTrener(MP);
+		ZaglebieLubin.setTrener(MW);
+		SlaskWroclaw.setTrener(MH);
+		RadomiakRadom.setTrener(BB);
+		WidzewLodz.setTrener(DM);
+		JagielloniaBialystok.setTrener(AS);
+		PiastGliwice.setTrener(AV);
+
+		//Menadzerowie
+
+		Menadzer_klubu DariuszMioduski = Menadzer_klubu.builder()
+				.login("DariuszMioduski")
+				.email("DariuszMioduski@gmail.com")
+				.imie("Dariusz")
+				.nazwisko("Mioduski")
+				.data_Urodzenia(LocalDate.of(1993, 8, 24))
+				.pesel(3215436)
+				.haslo(passwordEncoder.encode("Menadzer"))
+				.role(Role.MENADZER_KLUBU)
+				.kraj_pochodzenia(Set.of(PL))
+				.menadzerKlubu(LegiaWarszawa)
+				.build();
+
+		Menadzer_klubu KarolKlimczak = Menadzer_klubu.builder()
+				.login("KarolKlimczak")
+				.email("KarolKlimczak@gmail.com")
+				.imie("Karol")
+				.nazwisko("Klimczak")
+				.data_Urodzenia(LocalDate.of(1973, 3, 12))
+				.pesel(56865234)
+				.haslo(passwordEncoder.encode("Menadzer"))
+				.role(Role.MENADZER_KLUBU)
+				.kraj_pochodzenia(Set.of(PL))
+				.menadzerKlubu(LechPoznan)
+				.build();
+
+		Menadzer_klubu KrzysztofNowak = Menadzer_klubu.builder()
+				.login("KrzysztofNowak")
+				.email("KrzysztofNowak@gmail.com")
+				.imie("Krzysztof")
+				.nazwisko("Nowak")
+				.data_Urodzenia(LocalDate.of(1978, 5, 24))
+				.pesel(987654321)
+				.haslo(passwordEncoder.encode("Menadzer"))
+				.role(Role.MENADZER_KLUBU)
+				.kraj_pochodzenia(Set.of(PL))
+				.menadzerKlubu(GKSKatowice)
+				.build();
+
+		Menadzer_klubu ArkadiuszSzymanka = Menadzer_klubu.builder()
+				.login("ArkadiuszSzymanka")
+				.email("ArkadiuszSzymanka@gmail.com")
+				.imie("Arkadiusz")
+				.nazwisko("Szymanka")
+				.data_Urodzenia(LocalDate.of(1985, 2, 14))
+				.pesel(345678901)
+				.haslo(passwordEncoder.encode("Menadzer"))
+				.role(Role.MENADZER_KLUBU)
+				.kraj_pochodzenia(Set.of(PL))
+				.menadzerKlubu(GornikZabrze)
+				.build();
+
+		Menadzer_klubu PiotrObidzinski = Menadzer_klubu.builder()
+				.login("PiotrObidzinski")
+				.email("PiotrObidzinski@gmail.com")
+				.imie("Piotr")
+				.nazwisko("Obidziński")
+				.data_Urodzenia(LocalDate.of(1981, 6, 20))
+				.pesel(456789012)
+				.haslo(passwordEncoder.encode("Menadzer"))
+				.role(Role.MENADZER_KLUBU)
+				.kraj_pochodzenia(Set.of(PL))
+				.menadzerKlubu(RakowCzestochowa)
+				.build();
+
+		Menadzer_klubu PawelJez = Menadzer_klubu.builder()
+				.login("PawelJez")
+				.email("PawelJez@gmail.com")
+				.imie("Paweł")
+				.nazwisko("Jeż")
+				.data_Urodzenia(LocalDate.of(1990, 11, 30))
+				.pesel(567890123)
+				.haslo(passwordEncoder.encode("Menadzer"))
+				.role(Role.MENADZER_KLUBU)
+				.kraj_pochodzenia(Set.of(PL))
+				.menadzerKlubu(ZaglebieLubin)
+				.build();
+
+		Menadzer_klubu PatrykZaleczny = Menadzer_klubu.builder()
+				.login("PatrykZaleczny")
+				.email("PatrykZaleczny@gmail.com")
+				.imie("Patryk")
+				.nazwisko("Załęczny")
+				.data_Urodzenia(LocalDate.of(1989, 8, 19))
+				.pesel(678901234)
+				.haslo(passwordEncoder.encode("Menadzer"))
+				.role(Role.MENADZER_KLUBU)
+				.kraj_pochodzenia(Set.of(PL))
+				.menadzerKlubu(SlaskWroclaw)
+				.build();
+
+		Menadzer_klubu SlawomirStempniewski = Menadzer_klubu.builder()
+				.login("SlawomirStempniewski")
+				.email("SlawomirStempniewski@gmail.com")
+				.imie("Sławomir")
+				.nazwisko("Stempniewski")
+				.data_Urodzenia(LocalDate.of(1982, 1, 28))
+				.pesel(789012345)
+				.haslo(passwordEncoder.encode("Menadzer"))
+				.role(Role.MENADZER_KLUBU)
+				.kraj_pochodzenia(Set.of(PL))
+				.menadzerKlubu(RadomiakRadom)
+				.build();
+
+		Menadzer_klubu TomaszStamirowski = Menadzer_klubu.builder()
+				.login("TomaszStamirowski")
+				.email("TomaszStamirowski@gmail.com")
+				.imie("Tomasz")
+				.nazwisko("Stamirowski")
+				.data_Urodzenia(LocalDate.of(1983, 3, 15))
+				.pesel(890123456)
+				.haslo(passwordEncoder.encode("Menadzer"))
+				.role(Role.MENADZER_KLUBU)
+				.kraj_pochodzenia(Set.of(PL))
+				.menadzerKlubu(WidzewLodz)
+				.build();
+
+		Menadzer_klubu WojciechPertkiewicz = Menadzer_klubu.builder()
+				.login("WojciechPertkiewicz")
+				.email("WojciechPertkiewicz@gmail.com")
+				.imie("Wojciech")
+				.nazwisko("Pertkiewicz")
+				.data_Urodzenia(LocalDate.of(1988, 7, 4))
+				.pesel(901234567)
+				.haslo(passwordEncoder.encode("Menadzer"))
+				.role(Role.MENADZER_KLUBU)
+				.kraj_pochodzenia(Set.of(PL))
+				.menadzerKlubu(JagielloniaBialystok)
+				.build();
+
+		Menadzer_klubu LukaszLewinski = Menadzer_klubu.builder()
+				.login("LukaszLewinski")
+				.email("LukaszLewinski@gmail.com")
+				.imie("Łukasz")
+				.nazwisko("Lewiński")
+				.data_Urodzenia(LocalDate.of(1987, 9, 22))
+				.pesel(77643188)
+				.haslo(passwordEncoder.encode("Menadzer"))
+				.role(Role.MENADZER_KLUBU)
+				.kraj_pochodzenia(Set.of(PL))
+				.menadzerKlubu(PiastGliwice)
+				.build();
+
+		menadzer_klubuRepository.saveAll(List.of(
+				DariuszMioduski,KarolKlimczak,KrzysztofNowak,ArkadiuszSzymanka,PiotrObidzinski,
+				PawelJez,PatrykZaleczny,SlawomirStempniewski,TomaszStamirowski,WojciechPertkiewicz,
+				LukaszLewinski
+		));
+
+		LegiaWarszawa.setMenadzer_klubu(DariuszMioduski);
+		LechPoznan.setMenadzer_klubu(KarolKlimczak);
+		GKSKatowice.setMenadzer_klubu(KrzysztofNowak);
+		GornikZabrze.setMenadzer_klubu(ArkadiuszSzymanka);
+		RakowCzestochowa.setMenadzer_klubu(PiotrObidzinski);
+		ZaglebieLubin.setMenadzer_klubu(PawelJez);
+		SlaskWroclaw.setMenadzer_klubu(PatrykZaleczny);
+		RadomiakRadom.setMenadzer_klubu(SlawomirStempniewski);
+		WidzewLodz.setMenadzer_klubu(TomaszStamirowski);
+		JagielloniaBialystok.setMenadzer_klubu(WojciechPertkiewicz);
+		PiastGliwice.setMenadzer_klubu(LukaszLewinski);
+
+
+		klubRepository.saveAll(List.of(
+				 LegiaWarszawa,LechPoznan, GKSKatowice, GornikZabrze, RakowCzestochowa, ZaglebieLubin,
+				SlaskWroclaw, RadomiakRadom, WidzewLodz, JagielloniaBialystok, PiastGliwice
+		));
+
+
 
 		System.out.println("\n");
 		List<Trofeum> trofea = LegiaWarszawa.getTrofea();
