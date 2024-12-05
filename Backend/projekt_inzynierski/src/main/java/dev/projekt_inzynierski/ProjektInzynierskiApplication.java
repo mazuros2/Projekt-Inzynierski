@@ -159,6 +159,11 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.nazwa("Hiszpania")
 				.build();
 
+		Kraj_pochodzenia ANG = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Anglia")
+				.build();
+
 		Kraj_pochodzenia CZ = Kraj_pochodzenia.builder()
 				.region("Europa")
 				.nazwa("Czechy")
@@ -239,13 +244,18 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.nazwa("Syria")
 				.build();
 
+		Kraj_pochodzenia GN = Kraj_pochodzenia.builder()
+				.region("Afryka")
+				.nazwa("Gwinea")
+				.build();
+
 		Kraj_pochodzenia BR = Kraj_pochodzenia.builder()
 				.region("Ameryka Południowa")
 				.nazwa("Brazylia")
 				.build();
 
 		kraj_pochodzeniaRepository.saveAll(List.of(
-				ES, CZ, CM, JP, AL, PT, CH, AR, FR, CO, PL, SR,BR, CHR, SY, SE, SK,IT
+				ES, CZ, CM, JP, AL, PT, CH, AR, FR, CO, PL, SR,BR, CHR, SY, SE, SK,IT, GN, ANG
 		));
 
 		Uzytkownik adminTest = Uzytkownik.builder()
@@ -1909,7 +1919,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.imie("Guilherme")
 				.nazwisko("Zimovski")
 				.data_Urodzenia(LocalDate.of(2004, 12, 3))
-				.pesel(041203321)
+				.pesel(2041203321)
 				.haslo(passwordEncoder.encode("napastnik1"))
 				.role(Role.ZAWODNIK)
 				.waga(71)
@@ -1942,29 +1952,124 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 
 		//jagiellonia
 
+		Zawodnik MaksymilianStryjek = Zawodnik.builder()
+				.login("MaksymilianStryjek")
+				.email("MaksymilianStryjek@gmail.com")
+				.imie("Maksymilian")
+				.nazwisko("Stryjek")
+				.data_Urodzenia(LocalDate.of(1996, 7, 18))
+				.pesel(960718123)
+				.haslo(passwordEncoder.encode("bramkarz1"))
+				.role(Role.ZAWODNIK)
+				.waga(83)
+				.wzrost(188)
+				.kraj_pochodzenia(Set.of(PL, ANG))
+				.pozycja(bramkarzBR)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik MateuszSkrzypczak = Zawodnik.builder()
+				.login("MateuszSkrzypczak")
+				.email("MateuszSkrzypczak@gmail.com")
+				.imie("Mateusz")
+				.nazwisko("Skrzypczak")
+				.data_Urodzenia(LocalDate.of(2000, 8, 22))
+				.pesel(20822456)
+				.haslo(passwordEncoder.encode("obronca1"))
+				.role(Role.ZAWODNIK)
+				.waga(82)
+				.wzrost(189)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik AdrianDieguez = Zawodnik.builder()
+				.login("AdrianDieguez")
+				.email("AdrianDieguez@gmail.com")
+				.imie("Adrián")
+				.nazwisko("Diéguez")
+				.data_Urodzenia(LocalDate.of(1996, 2, 4))
+				.pesel(960204789)
+				.haslo(passwordEncoder.encode("obronca2"))
+				.role(Role.ZAWODNIK)
+				.waga(84)
+				.wzrost(188)
+				.kraj_pochodzenia(Set.of(ES))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik AurelienNguiamba = Zawodnik.builder()
+				.login("AurelienNguiamba")
+				.email("AurelienNguiamba@gmail.com")
+				.imie("Aurélien")
+				.nazwisko("Nguiamba")
+				.data_Urodzenia(LocalDate.of(1999, 1, 18))
+				.pesel(990118654)
+				.haslo(passwordEncoder.encode("pomocnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(76)
+				.wzrost(179)
+				.kraj_pochodzenia(Set.of(FR, CM))
+				.pozycja(pomocnikSPD)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik LamineDiabyFadiga = Zawodnik.builder()
+				.login("LamineDiabyFadiga")
+				.email("LamineDiabyFadiga@gmail.com")
+				.imie("Lamine")
+				.nazwisko("Diaby-Fadiga")
+				.data_Urodzenia(LocalDate.of(2001, 1, 19))
+				.pesel(910119321)
+				.haslo(passwordEncoder.encode("napastnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(82)
+				.wzrost(188)
+				.kraj_pochodzenia(Set.of(FR, GN))
+				.pozycja(napastnikSN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik JesusImaz = Zawodnik.builder()
+				.login("JesusImaz")
+				.email("JesusImaz@gmail.com")
+				.imie("Jesús")
+				.nazwisko("Imaz")
+				.data_Urodzenia(LocalDate.of(1990, 9, 26))
+				.pesel(900926987)
+				.haslo(passwordEncoder.encode("napastnik2"))
+				.role(Role.ZAWODNIK)
+				.waga(72)
+				.wzrost(174)
+				.kraj_pochodzenia(Set.of(ES))
+				.pozycja(napastnikSN)
+				.obecny_klub(new HashSet<>())
+				.build();
 
 
-		/*zawodnikRepository.saveAll(List.of(
-				LuisMata,DawidKurminowski,VaclavSejk,
-				PatrykKusztal,DominikHladun
+		zawodnikRepository.saveAll(List.of(
+				JesusImaz,LamineDiabyFadiga,AurelienNguiamba,
+				AdrianDieguez,MaksymilianStryjek
 		));
 
-		JagielloniaBialystok.dodajZawodnika(LuisMata,LocalDate.now());
-		JagielloniaBialystok.dodajZawodnika(DawidKurminowski,LocalDate.now());
-		JagielloniaBialystok.dodajZawodnika(VaclavSejk,LocalDate.now());
-		JagielloniaBialystok.dodajZawodnika(DominikHladun,LocalDate.now());
-		JagielloniaBialystok.dodajZawodnika(PatrykKusztal,LocalDate.now());
+		JagielloniaBialystok.dodajZawodnika(JesusImaz,LocalDate.now());
+		JagielloniaBialystok.dodajZawodnika(LamineDiabyFadiga,LocalDate.now());
+		JagielloniaBialystok.dodajZawodnika(AurelienNguiamba,LocalDate.now());
+		JagielloniaBialystok.dodajZawodnika(AdrianDieguez,LocalDate.now());
+		JagielloniaBialystok.dodajZawodnika(MaksymilianStryjek,LocalDate.now());
 		klubRepository.save(JagielloniaBialystok);
 
 		zawodnikRepository.saveAll(List.of(
-				LuisMata,DawidKurminowski,VaclavSejk,
-				PatrykKusztal,DominikHladun
+				JesusImaz,LamineDiabyFadiga,AurelienNguiamba,
+				AdrianDieguez,MaksymilianStryjek
 		));
 
 		for (Obecny_klub ob : JagielloniaBialystok.getSetObecnyKlub()) {
 			obecny_klubRepository.save(ob);
 		}
-*/
+
 		//Widzew Łódź
 
 		Zawodnik RafalGikiewicz = Zawodnik.builder()
