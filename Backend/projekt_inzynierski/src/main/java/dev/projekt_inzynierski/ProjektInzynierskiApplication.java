@@ -184,6 +184,16 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.nazwa("Portugalia")
 				.build();
 
+		Kraj_pochodzenia SK = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Słowacja")
+				.build();
+
+		Kraj_pochodzenia IT = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Włochy")
+				.build();
+
 		Kraj_pochodzenia CH = Kraj_pochodzenia.builder()
 				.region("Europa")
 				.nazwa("Szwajcaria")
@@ -219,13 +229,23 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.nazwa("Serbia")
 				.build();
 
+		Kraj_pochodzenia SE = Kraj_pochodzenia.builder()
+				.region("Europa")
+				.nazwa("Szwecja")
+				.build();
+
+		Kraj_pochodzenia SY = Kraj_pochodzenia.builder()
+				.region("Azja")
+				.nazwa("Syria")
+				.build();
+
 		Kraj_pochodzenia BR = Kraj_pochodzenia.builder()
 				.region("Ameryka Południowa")
 				.nazwa("Brazylia")
 				.build();
 
 		kraj_pochodzeniaRepository.saveAll(List.of(
-				ES, CZ, CM, JP, AL, PT, CH, AR, FR, CO, PL, SR,BR, CHR
+				ES, CZ, CM, JP, AL, PT, CH, AR, FR, CO, PL, SR,BR, CHR, SY, SE, SK,IT
 		));
 
 		Uzytkownik adminTest = Uzytkownik.builder()
@@ -1164,6 +1184,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 			obecny_klubRepository.save(ob);
 		}
 
+		//Raków
 		Zawodnik ArielMosor = Zawodnik.builder()
 				.login("ArielMosor")
 				.email("ArielMosor@gmail.com")
@@ -1283,6 +1304,770 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 			obecny_klubRepository.save(ob);
 		}
 
+
+		//GKS Katowice
+		Zawodnik DawidKudla = Zawodnik.builder()
+				.login("DawidKudla")
+				.email("DawidKudla@gmail.com")
+				.imie("Dawid")
+				.nazwisko("Kudla")
+				.data_Urodzenia(LocalDate.of(1992, 3, 21))
+				.pesel(992321456)
+				.haslo(passwordEncoder.encode("bramkarz1"))
+				.role(Role.ZAWODNIK)
+				.waga(83)
+				.wzrost(190)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(bramkarzBR)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik AleksanderKomor = Zawodnik.builder()
+				.login("AleksanderKomor")
+				.email("AleksanderKomor@gmail.com")
+				.imie("Aleksander")
+				.nazwisko("Komor")
+				.data_Urodzenia(LocalDate.of(1994, 6, 24))
+				.pesel(994624789)
+				.haslo(passwordEncoder.encode("obronca1"))
+				.role(Role.ZAWODNIK)
+				.waga(83)
+				.wzrost(190)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik OskarRepka = Zawodnik.builder()
+				.login("OskarRepka")
+				.email("OskarRepka@gmail.com")
+				.imie("Oskar")
+				.nazwisko("Repka")
+				.data_Urodzenia(LocalDate.of(1999, 1, 3))
+				.pesel(999103345)
+				.haslo(passwordEncoder.encode("pomocnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(83)
+				.wzrost(190)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(pomocnikSPD)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik AdrianDanek = Zawodnik.builder()
+				.login("AdrianDanek")
+				.email("AdrianDanek@gmail.com")
+				.imie("Adrian")
+				.nazwisko("Danek")
+				.data_Urodzenia(LocalDate.of(1994, 8, 1))
+				.pesel(994801567)
+				.haslo(passwordEncoder.encode("pomocnik2"))
+				.role(Role.ZAWODNIK)
+				.waga(75)
+				.wzrost(180)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(pomocnikPP)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik SebastianBergier = Zawodnik.builder()
+				.login("SebastianBergier")
+				.email("SebastianBergier@gmail.com")
+				.imie("Sebastian")
+				.nazwisko("Bergier")
+				.data_Urodzenia(LocalDate.of(1999, 12, 20))
+				.pesel(999122045)
+				.haslo(passwordEncoder.encode("napastnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(80)
+				.wzrost(185)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(napastnikSN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		zawodnikRepository.saveAll(List.of(
+				SebastianBergier,AdrianDanek,OskarRepka,
+				AleksanderKomor,DawidKudla
+		));
+
+		GKSKatowice.dodajZawodnika(SebastianBergier,LocalDate.now());
+		GKSKatowice.dodajZawodnika(AdrianDanek,LocalDate.now());
+		GKSKatowice.dodajZawodnika(OskarRepka,LocalDate.now());
+		GKSKatowice.dodajZawodnika(DawidKudla,LocalDate.now());
+		GKSKatowice.dodajZawodnika(AleksanderKomor,LocalDate.now());
+
+		klubRepository.save(GKSKatowice);
+
+		zawodnikRepository.saveAll(List.of(
+				SebastianBergier,AdrianDanek,OskarRepka,
+				AleksanderKomor,DawidKudla
+		));
+
+		for (Obecny_klub ob : GKSKatowice.getSetObecnyKlub()) {
+			obecny_klubRepository.save(ob);
+		}
+
+		//Lech Poznań
+		Zawodnik BartoszSalamon = Zawodnik.builder()
+				.login("BartoszSalamon")
+				.email("BartoszSalamon@gmail.com")
+				.imie("Bartosz")
+				.nazwisko("Salamon")
+				.data_Urodzenia(LocalDate.of(1991, 5, 1))
+				.pesel(991501234)
+				.haslo(passwordEncoder.encode("obronca1"))
+				.role(Role.ZAWODNIK)
+				.waga(89)
+				.wzrost(194)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik BartoszMrozek = Zawodnik.builder()
+				.login("BartoszMrozek")
+				.email("BartoszMrozek@gmail.com")
+				.imie("Bartosz")
+				.nazwisko("Mrozek")
+				.data_Urodzenia(LocalDate.of(2000, 2, 23))
+				.pesel(200223567)
+				.haslo(passwordEncoder.encode("bramkarz1"))
+				.role(Role.ZAWODNIK)
+				.waga(84)
+				.wzrost(191)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(bramkarzBR)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik JoelPereira = Zawodnik.builder()
+				.login("JoelPereira")
+				.email("JoelPereira@gmail.com")
+				.imie("Joel")
+				.nazwisko("Pereira")
+				.data_Urodzenia(LocalDate.of(1996, 9, 28))
+				.pesel(996928345)
+				.haslo(passwordEncoder.encode("obronca2"))
+				.role(Role.ZAWODNIK)
+				.waga(74)
+				.wzrost(178)
+				.kraj_pochodzenia(Set.of(PT))
+				.pozycja(obroncaPO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik RadoslawMurawski = Zawodnik.builder()
+				.login("RadoslawMurawski")
+				.email("RadoslawMurawski@gmail.com")
+				.imie("Radosław")
+				.nazwisko("Murawski")
+				.data_Urodzenia(LocalDate.of(1994, 4, 22))
+				.pesel(994422567)
+				.haslo(passwordEncoder.encode("pomocnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(70)
+				.wzrost(173)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(pomocnikSPD)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik FilipSzymczak = Zawodnik.builder()
+				.login("FilipSzymczak")
+				.email("FilipSzymczak@gmail.com")
+				.imie("Filip")
+				.nazwisko("Szymczak")
+				.data_Urodzenia(LocalDate.of(2002, 5, 6))
+				.pesel(200205607) // Losowy PESEL
+				.haslo(passwordEncoder.encode("napastnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(82) // Oszacowano
+				.wzrost(187)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(napastnikSN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik MikaelIshak = Zawodnik.builder()
+				.login("MikaelIshak")
+				.email("MikaelIshak@gmail.com")
+				.imie("Mikael")
+				.nazwisko("Ishak")
+				.data_Urodzenia(LocalDate.of(1993, 3, 31))
+				.pesel(993331789)
+				.haslo(passwordEncoder.encode("napastnik2"))
+				.role(Role.ZAWODNIK)
+				.waga(80)
+				.wzrost(185)
+				.kraj_pochodzenia(Set.of(SE, SY))
+				.pozycja(napastnikSN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		zawodnikRepository.saveAll(List.of(
+				MikaelIshak,FilipSzymczak,RadoslawMurawski,
+				JoelPereira,BartoszMrozek,BartoszSalamon
+		));
+
+		LechPoznan.dodajZawodnika(MikaelIshak,LocalDate.now());
+		LechPoznan.dodajZawodnika(FilipSzymczak,LocalDate.now());
+		LechPoznan.dodajZawodnika(RadoslawMurawski,LocalDate.now());
+		LechPoznan.dodajZawodnika(BartoszSalamon,LocalDate.now());
+		LechPoznan.dodajZawodnika(BartoszMrozek,LocalDate.now());
+		LechPoznan.dodajZawodnika(JoelPereira,LocalDate.now());
+
+		klubRepository.save(LechPoznan);
+		zawodnikRepository.saveAll(List.of(
+				MikaelIshak,FilipSzymczak,RadoslawMurawski,
+				JoelPereira,BartoszMrozek,BartoszSalamon
+		));
+
+		for (Obecny_klub ob : LechPoznan.getSetObecnyKlub()) {
+			obecny_klubRepository.save(ob);
+		}
+
+
+		//piast gliwice
+		Zawodnik FrantisekPlach = Zawodnik.builder()
+				.login("FrantisekPlach")
+				.email("FrantisekPlach@gmail.com")
+				.imie("Frantisek")
+				.nazwisko("Plach")
+				.data_Urodzenia(LocalDate.of(1992, 3, 8))
+				.pesel(920308345)
+				.haslo(passwordEncoder.encode("bramkarz1"))
+				.role(Role.ZAWODNIK)
+				.waga(85)
+				.wzrost(192)
+				.kraj_pochodzenia(Set.of(SK))
+				.pozycja(bramkarzBR)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik TomasHuk = Zawodnik.builder()
+				.login("TomasHuk")
+				.email("TomasHuk@gmail.com")
+				.imie("Tomas")
+				.nazwisko("Huk")
+				.data_Urodzenia(LocalDate.of(1994, 12, 22))
+				.pesel(941222567)
+				.haslo(passwordEncoder.encode("obronca1"))
+				.role(Role.ZAWODNIK)
+				.waga(82)
+				.wzrost(184)
+				.kraj_pochodzenia(Set.of(SK))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik FilipKarbowy = Zawodnik.builder()
+				.login("FilipKarbowy")
+				.email("FilipKarbowy@gmail.com")
+				.imie("Filip")
+				.nazwisko("Karbowy")
+				.data_Urodzenia(LocalDate.of(1997, 9, 3))
+				.pesel(970903123)
+				.haslo(passwordEncoder.encode("pomocnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(75)
+				.wzrost(182)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(pomocnikSPO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik JorgeFelix = Zawodnik.builder()
+				.login("JorgeFelix")
+				.email("JorgeFelix@gmail.com")
+				.imie("Jorge")
+				.nazwisko("Félix")
+				.data_Urodzenia(LocalDate.of(1991, 8, 22))
+				.pesel(910822567)
+				.haslo(passwordEncoder.encode("napastnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(72)
+				.wzrost(175)
+				.kraj_pochodzenia(Set.of(ES))
+				.pozycja(napastnikLN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik DamianKadzior = Zawodnik.builder()
+				.login("DamianKadzior")
+				.email("DamianKadzior@gmail.com")
+				.imie("Damian")
+				.nazwisko("Kądzior")
+				.data_Urodzenia(LocalDate.of(1992, 6, 16))
+				.pesel(920616456)
+				.haslo(passwordEncoder.encode("napastnik2"))
+				.role(Role.ZAWODNIK)
+				.waga(78)
+				.wzrost(174)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(napastnikPN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		zawodnikRepository.saveAll(List.of(
+				FrantisekPlach,DamianKadzior,JorgeFelix,
+				FilipKarbowy,TomasHuk
+		));
+
+		PiastGliwice.dodajZawodnika(FrantisekPlach,LocalDate.now());
+		PiastGliwice.dodajZawodnika(DamianKadzior,LocalDate.now());
+		PiastGliwice.dodajZawodnika(JorgeFelix,LocalDate.now());
+		PiastGliwice.dodajZawodnika(FilipKarbowy,LocalDate.now());
+		PiastGliwice.dodajZawodnika(TomasHuk,LocalDate.now());
+		klubRepository.save(PiastGliwice);
+
+		zawodnikRepository.saveAll(List.of(
+				FrantisekPlach,DamianKadzior,JorgeFelix,
+				FilipKarbowy,TomasHuk
+		));
+
+		for (Obecny_klub ob : PiastGliwice.getSetObecnyKlub()) {
+			obecny_klubRepository.save(ob);
+		}
+
+		//śląsk wrocław
+
+		Zawodnik RafalLeszczynski = Zawodnik.builder()
+				.login("RafalLeszczynski")
+				.email("RafalLeszczynski@gmail.com")
+				.imie("Rafał")
+				.nazwisko("Leszczyński")
+				.data_Urodzenia(LocalDate.of(1992, 4, 26))
+				.pesel(920426789)
+				.haslo(passwordEncoder.encode("bramkarz1"))
+				.role(Role.ZAWODNIK)
+				.waga(80)
+				.wzrost(187)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(bramkarzBR)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik AleksanderPaluszek = Zawodnik.builder()
+				.login("AleksanderPaluszek")
+				.email("AleksanderPaluszek@gmail.com")
+				.imie("Aleksander")
+				.nazwisko("Paluszek")
+				.data_Urodzenia(LocalDate.of(2001, 4, 9))
+				.pesel(910409456)
+				.haslo(passwordEncoder.encode("obronca1"))
+				.role(Role.ZAWODNIK)
+				.waga(85)
+				.wzrost(194)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik TommasoGuercio = Zawodnik.builder()
+				.login("TommasoGuercio")
+				.email("TommasoGuercio@gmail.com")
+				.imie("Tommaso")
+				.nazwisko("Guercio")
+				.data_Urodzenia(LocalDate.of(2005, 6, 1))
+				.pesel(250601345)
+				.haslo(passwordEncoder.encode("pomocnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(78)
+				.wzrost(186)
+				.kraj_pochodzenia(Set.of(PL, IT))
+				.pozycja(pomocnikLP)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik ArnauOrtiz = Zawodnik.builder()
+				.login("ArnauOrtiz")
+				.email("ArnauOrtiz@gmail.com")
+				.imie("Arnau")
+				.nazwisko("Ortiz")
+				.data_Urodzenia(LocalDate.of(2001, 10, 29))
+				.pesel(111029123)
+				.haslo(passwordEncoder.encode("pomocnik2"))
+				.role(Role.ZAWODNIK)
+				.waga(72)
+				.wzrost(175)
+				.kraj_pochodzenia(Set.of(ES))
+				.pozycja(pomocnikLP)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik JakubSwierczok = Zawodnik.builder()
+				.login("JakubSwierczok")
+				.email("JakubSwierczok@gmail.com")
+				.imie("Jakub")
+				.nazwisko("Świerczok")
+				.data_Urodzenia(LocalDate.of(1992, 12, 28))
+				.pesel(921228678)
+				.haslo(passwordEncoder.encode("napastnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(82)
+				.wzrost(184)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(napastnikSN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		zawodnikRepository.saveAll(List.of(
+				JakubSwierczok,ArnauOrtiz,TommasoGuercio,
+				AleksanderPaluszek,RafalLeszczynski
+		));
+
+		SlaskWroclaw.dodajZawodnika(JakubSwierczok,LocalDate.now());
+		SlaskWroclaw.dodajZawodnika(ArnauOrtiz,LocalDate.now());
+		SlaskWroclaw.dodajZawodnika(TommasoGuercio,LocalDate.now());
+		SlaskWroclaw.dodajZawodnika(RafalLeszczynski,LocalDate.now());
+		SlaskWroclaw.dodajZawodnika(AleksanderPaluszek,LocalDate.now());
+
+		klubRepository.save(SlaskWroclaw);
+		zawodnikRepository.saveAll(List.of(
+				JakubSwierczok,ArnauOrtiz,TommasoGuercio,
+				AleksanderPaluszek,RafalLeszczynski
+		));
+
+		for (Obecny_klub ob : SlaskWroclaw.getSetObecnyKlub()) {
+			obecny_klubRepository.save(ob);
+		}
+
+		// KGHM zagłebie Lubin
+
+		Zawodnik DominikHladun = Zawodnik.builder()
+				.login("DominikHladun")
+				.email("DominikHladun@gmail.com")
+				.imie("Dominik")
+				.nazwisko("Hładun")
+				.data_Urodzenia(LocalDate.of(1995, 9, 17))
+				.pesel(950917123)
+				.haslo(passwordEncoder.encode("bramkarz1"))
+				.role(Role.ZAWODNIK)
+				.waga(82)
+				.wzrost(190)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(bramkarzBR)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik PatrykKusztal = Zawodnik.builder()
+				.login("PatrykKusztal")
+				.email("PatrykKusztal@gmail.com")
+				.imie("Patryk")
+				.nazwisko("Kusztal")
+				.data_Urodzenia(LocalDate.of(2003, 3, 28))
+				.pesel(1030328789)
+				.haslo(passwordEncoder.encode("pomocnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(73)
+				.wzrost(176)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(pomocnikSPO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik VaclavSejk = Zawodnik.builder()
+				.login("VaclavSejk")
+				.email("VaclavSejk@gmail.com")
+				.imie("Vaclav")
+				.nazwisko("Sejk")
+				.data_Urodzenia(LocalDate.of(2002, 5, 18))
+				.pesel(720518456)
+				.haslo(passwordEncoder.encode("napastnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(75)
+				.wzrost(180)
+				.kraj_pochodzenia(Set.of(CZ))
+				.pozycja(napastnikSN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik DawidKurminowski = Zawodnik.builder()
+				.login("DawidKurminowski")
+				.email("DawidKurminowski@gmail.com")
+				.imie("Dawid")
+				.nazwisko("Kurminowski")
+				.data_Urodzenia(LocalDate.of(1999, 2, 24))
+				.pesel(990224789)
+				.haslo(passwordEncoder.encode("napastnik2"))
+				.role(Role.ZAWODNIK)
+				.waga(77)
+				.wzrost(182)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(napastnikSN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik LuisMata = Zawodnik.builder()
+				.login("LuisMata")
+				.email("LuisMata@gmail.com")
+				.imie("Luís")
+				.nazwisko("Mata")
+				.data_Urodzenia(LocalDate.of(1997, 7, 6))
+				.pesel(970706345)
+				.haslo(passwordEncoder.encode("pomocnik2"))
+				.role(Role.ZAWODNIK)
+				.waga(74)
+				.wzrost(181)
+				.kraj_pochodzenia(Set.of(PT))
+				.pozycja(pomocnikLP)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		zawodnikRepository.saveAll(List.of(
+				LuisMata,DawidKurminowski,VaclavSejk,
+				PatrykKusztal,DominikHladun
+		));
+
+		ZaglebieLubin.dodajZawodnika(LuisMata,LocalDate.now());
+		ZaglebieLubin.dodajZawodnika(DawidKurminowski,LocalDate.now());
+		ZaglebieLubin.dodajZawodnika(VaclavSejk,LocalDate.now());
+		ZaglebieLubin.dodajZawodnika(DominikHladun,LocalDate.now());
+		ZaglebieLubin.dodajZawodnika(PatrykKusztal,LocalDate.now());
+		klubRepository.save(ZaglebieLubin);
+
+		zawodnikRepository.saveAll(List.of(
+				LuisMata,DawidKurminowski,VaclavSejk,
+				PatrykKusztal,DominikHladun
+		));
+
+		for (Obecny_klub ob : ZaglebieLubin.getSetObecnyKlub()) {
+			obecny_klubRepository.save(ob);
+		}
+
+
+		//radomiak
+
+		Zawodnik MaciejKikolski = Zawodnik.builder()
+				.login("MaciejKikolski")
+				.email("MaciejKikolski@gmail.com")
+				.imie("Maciej")
+				.nazwisko("Kikolski")
+				.data_Urodzenia(LocalDate.of(2004, 2, 23))
+				.pesel(70402789)
+				.haslo(passwordEncoder.encode("bramkarz1"))
+				.role(Role.ZAWODNIK)
+				.waga(81)
+				.wzrost(192)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(bramkarzBR)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik DariuszPawlowski = Zawodnik.builder()
+				.login("DariuszPawlowski")
+				.email("DariuszPawlowski@gmail.com")
+				.imie("Dariusz")
+				.nazwisko("Pawłowski")
+				.data_Urodzenia(LocalDate.of(1999, 2, 25))
+				.pesel(990225123)
+				.haslo(passwordEncoder.encode("obronca1"))
+				.role(Role.ZAWODNIK)
+				.waga(78)
+				.wzrost(184)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(obroncaPO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik BrunoJordao = Zawodnik.builder()
+				.login("BrunoJordao")
+				.email("BrunoJordao@gmail.com")
+				.imie("Bruno")
+				.nazwisko("Jordão")
+				.data_Urodzenia(LocalDate.of(1998, 10, 12))
+				.pesel(981012456)
+				.haslo(passwordEncoder.encode("pomocnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(75)
+				.wzrost(180)
+				.kraj_pochodzenia(Set.of(PT))
+				.pozycja(pomocnikSPD)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik Luizao = Zawodnik.builder()
+				.login("Luizao")
+				.email("Luizao@gmail.com")
+				.imie("Luizão")
+				.nazwisko("Luizão")
+				.data_Urodzenia(LocalDate.of(1998, 2, 20))
+				.pesel(980220987)
+				.haslo(passwordEncoder.encode("pomocnik2"))
+				.role(Role.ZAWODNIK)
+				.waga(77)
+				.wzrost(184)
+				.kraj_pochodzenia(Set.of(BR))
+				.pozycja(pomocnikSPD)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik GuilhermeZimovski = Zawodnik.builder()
+				.login("GuilhermeZimovski")
+				.email("GuilhermeZimovski@gmail.com")
+				.imie("Guilherme")
+				.nazwisko("Zimovski")
+				.data_Urodzenia(LocalDate.of(2004, 12, 3))
+				.pesel(041203321)
+				.haslo(passwordEncoder.encode("napastnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(71)
+				.wzrost(177)
+				.kraj_pochodzenia(Set.of(BR, PL))
+				.pozycja(napastnikPN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		zawodnikRepository.saveAll(List.of(
+				GuilhermeZimovski,Luizao,BrunoJordao,
+				DariuszPawlowski,MaciejKikolski
+		));
+
+		RadomiakRadom.dodajZawodnika(GuilhermeZimovski,LocalDate.now());
+		RadomiakRadom.dodajZawodnika(Luizao,LocalDate.now());
+		RadomiakRadom.dodajZawodnika(BrunoJordao,LocalDate.now());
+		RadomiakRadom.dodajZawodnika(DariuszPawlowski,LocalDate.now());
+		RadomiakRadom.dodajZawodnika(MaciejKikolski,LocalDate.now());
+		klubRepository.save(RadomiakRadom);
+
+		zawodnikRepository.saveAll(List.of(
+				GuilhermeZimovski,Luizao,BrunoJordao,
+				DariuszPawlowski,MaciejKikolski
+		));
+
+		for (Obecny_klub ob : RadomiakRadom.getSetObecnyKlub()) {
+			obecny_klubRepository.save(ob);
+		}
+
+		//jagiellonia
+
+
+
+		/*zawodnikRepository.saveAll(List.of(
+				LuisMata,DawidKurminowski,VaclavSejk,
+				PatrykKusztal,DominikHladun
+		));
+
+		JagielloniaBialystok.dodajZawodnika(LuisMata,LocalDate.now());
+		JagielloniaBialystok.dodajZawodnika(DawidKurminowski,LocalDate.now());
+		JagielloniaBialystok.dodajZawodnika(VaclavSejk,LocalDate.now());
+		JagielloniaBialystok.dodajZawodnika(DominikHladun,LocalDate.now());
+		JagielloniaBialystok.dodajZawodnika(PatrykKusztal,LocalDate.now());
+		klubRepository.save(JagielloniaBialystok);
+
+		zawodnikRepository.saveAll(List.of(
+				LuisMata,DawidKurminowski,VaclavSejk,
+				PatrykKusztal,DominikHladun
+		));
+
+		for (Obecny_klub ob : JagielloniaBialystok.getSetObecnyKlub()) {
+			obecny_klubRepository.save(ob);
+		}
+*/
+		//Widzew Łódź
+
+		Zawodnik RafalGikiewicz = Zawodnik.builder()
+				.login("RafalGikiewicz")
+				.email("RafalGikiewicz@gmail.com")
+				.imie("Rafał")
+				.nazwisko("Gikiewicz")
+				.data_Urodzenia(LocalDate.of(1987, 10, 26))
+				.pesel(871026123)
+				.haslo(passwordEncoder.encode("bramkarz1"))
+				.role(Role.ZAWODNIK)
+				.waga(84)
+				.wzrost(190)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(bramkarzBR)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik MateuszZyro = Zawodnik.builder()
+				.login("MateuszZyro")
+				.email("MateuszZyro@gmail.com")
+				.imie("Mateusz")
+				.nazwisko("Żyro")
+				.data_Urodzenia(LocalDate.of(1998, 10, 28))
+				.pesel(981028456)
+				.haslo(passwordEncoder.encode("obronca1"))
+				.role(Role.ZAWODNIK)
+				.waga(82)
+				.wzrost(190)
+				.kraj_pochodzenia(Set.of(PL))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik JuanIbiza = Zawodnik.builder()
+				.login("JuanIbiza")
+				.email("JuanIbiza@gmail.com")
+				.imie("Juan")
+				.nazwisko("Ibiza")
+				.data_Urodzenia(LocalDate.of(1995, 8, 17))
+				.pesel(950817789)
+				.haslo(passwordEncoder.encode("obronca2"))
+				.role(Role.ZAWODNIK)
+				.waga(81)
+				.wzrost(187)
+				.kraj_pochodzenia(Set.of(ES))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik LuisSilva = Zawodnik.builder()
+				.login("LuisSilva")
+				.email("LuisSilva@gmail.com")
+				.imie("Luís")
+				.nazwisko("Silva")
+				.data_Urodzenia(LocalDate.of(1999, 2, 18))
+				.pesel(990218654)
+				.haslo(passwordEncoder.encode("obronca3"))
+				.role(Role.ZAWODNIK)
+				.waga(79)
+				.wzrost(186)
+				.kraj_pochodzenia(Set.of(PT))
+				.pozycja(obroncaSO)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+		Zawodnik FabioNunes = Zawodnik.builder()
+				.login("FabioNunes")
+				.email("FabioNunes@gmail.com")
+				.imie("Fábio")
+				.nazwisko("Nunes")
+				.data_Urodzenia(LocalDate.of(1992, 7, 24))
+				.pesel(920724321)
+				.haslo(passwordEncoder.encode("napastnik1"))
+				.role(Role.ZAWODNIK)
+				.waga(76)
+				.wzrost(180)
+				.kraj_pochodzenia(Set.of(PT))
+				.pozycja(napastnikLN)
+				.obecny_klub(new HashSet<>())
+				.build();
+
+
+		zawodnikRepository.saveAll(List.of(
+				RafalGikiewicz,FabioNunes,LuisSilva,
+				JuanIbiza,MateuszZyro
+		));
+
+		WidzewLodz.dodajZawodnika(RafalGikiewicz,LocalDate.now());
+		WidzewLodz.dodajZawodnika(FabioNunes,LocalDate.now());
+		WidzewLodz.dodajZawodnika(LuisSilva,LocalDate.now());
+		WidzewLodz.dodajZawodnika(MateuszZyro,LocalDate.now());
+		WidzewLodz.dodajZawodnika(JuanIbiza,LocalDate.now());
+		klubRepository.save(WidzewLodz);
+
+		zawodnikRepository.saveAll(List.of(
+				RafalGikiewicz,FabioNunes,LuisSilva,
+				JuanIbiza,MateuszZyro
+		));
+
+		for (Obecny_klub ob : WidzewLodz.getSetObecnyKlub()) {
+			obecny_klubRepository.save(ob);
+		}
 
 		System.out.println("\n");
 		List<Trofeum> trofea = LegiaWarszawa.getTrofea();
