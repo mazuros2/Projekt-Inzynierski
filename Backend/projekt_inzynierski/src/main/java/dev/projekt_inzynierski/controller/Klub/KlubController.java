@@ -2,6 +2,7 @@ package dev.projekt_inzynierski.controller.Klub;
 
 import dev.projekt_inzynierski.DTO.KlubByIdDTO;
 import dev.projekt_inzynierski.DTO.KlubFromLigaDTO;
+import dev.projekt_inzynierski.DTO.ZawodnikDTO;
 import dev.projekt_inzynierski.models.Klub;
 import dev.projekt_inzynierski.service.Klub.KlubService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,10 @@ public class KlubController {
     public ResponseEntity<KlubByIdDTO> getKlubById(@PathVariable long id) {
         KlubByIdDTO klubByIdDTO = klubService.getKlubById(id);
         return ResponseEntity.ok(klubByIdDTO);
+    }
+    @GetMapping("klub/{id_klub}/zawodnicy")
+    public ResponseEntity<List<ZawodnikDTO>> findZawodnicyByIdKlub(@PathVariable long id_klub){
+        List<ZawodnikDTO> zawodnikDTO = klubService.findZawodnicyByIdKlub(id_klub);
+        return ResponseEntity.ok(zawodnikDTO);
     }
 }

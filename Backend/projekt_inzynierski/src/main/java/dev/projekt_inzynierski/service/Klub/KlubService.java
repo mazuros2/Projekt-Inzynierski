@@ -31,4 +31,6 @@ public class KlubService {
         return klubRepository.findKlubById(id);
     }
 
+    public List<ZawodnikDTO> findZawodnicyByIdKlub(long id_klub) {return klubRepository.findZawodnicyByIdKlub(id_klub);}
+
 }
