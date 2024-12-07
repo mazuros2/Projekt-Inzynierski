@@ -30,4 +30,7 @@ public interface KlubRepository extends JpaRepository<Klub,Long> {
 
     @Query("SELECT z.id_Uzytkownik as id, o.imie as imie, o.nazwisko as nazwisko, z.pozycja.nazwa_pozycji as pozycja FROM Uzytkownik o JOIN Zawodnik z ON o.id_Uzytkownik = z.id_Uzytkownik JOIN Obecny_klub uk ON z.id_Uzytkownik = uk.zawodnik.id_Uzytkownik JOIN Klub k ON k.id = uk.klub.id WHERE uk.data_Do is null AND k.id = :id_klub")
     List<ZawodnikDTO> findZawodnicyByIdKlub(Long id_klub);
+
+    @Query("SELECT k FROM Klub k WHERE LOWER(k.nazwa_klubu) LIKE LOWER(:nazwaKlubu)")
+    List<KlubByIdDTO> findKlubByNazwa(@Param("nazwaKlubu") String nazwaKlubu);
 }

@@ -7,10 +7,7 @@ import dev.projekt_inzynierski.models.Klub;
 import dev.projekt_inzynierski.service.Klub.KlubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -45,4 +42,11 @@ public class KlubController {
         List<ZawodnikDTO> zawodnikDTO = klubService.findZawodnicyByIdKlub(id_klub);
         return ResponseEntity.ok(zawodnikDTO);
     }
+
+    @GetMapping("klub/wyszukaj")
+    public ResponseEntity<List<KlubByIdDTO>> findKlubByNazwa(@RequestParam("nazwa") String nazwa){
+        List<KlubByIdDTO> listaKlubow =  klubService.findKlubByNazwa(nazwa);
+        return ResponseEntity.ok(listaKlubow);
+    }
+
 }
