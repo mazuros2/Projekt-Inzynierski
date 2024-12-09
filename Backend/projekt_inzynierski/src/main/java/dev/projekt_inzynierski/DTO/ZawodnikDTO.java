@@ -14,4 +14,5 @@ public class ZawodnikDTO {
     private String imie;
     private String nazwisko;
     private String pozycja;
+    //xd
 }
