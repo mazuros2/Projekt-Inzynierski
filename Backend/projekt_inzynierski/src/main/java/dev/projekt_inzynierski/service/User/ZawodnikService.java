@@ -2,6 +2,7 @@ package dev.projekt_inzynierski.service.User;
 
 import dev.projekt_inzynierski.DTO.KlubByIdDTO;
 import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
+import dev.projekt_inzynierski.DTO.ZawodnikDTO;
 import dev.projekt_inzynierski.models.Kraj_pochodzenia;
 import dev.projekt_inzynierski.models.Obecny_klub;
 import dev.projekt_inzynierski.models.users.Zawodnik;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import dev.projekt_inzynierski.repository.User.ZawodnikRepository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -48,4 +50,9 @@ public class ZawodnikService {
                 zawodnikInfo.getWaga()
         );
     }
+
+    public List<ZawodnikDTO> findZawodnikByText(String text){
+        return  zawodnikRepository.findZawodnikByText("%" + text + "%");
+    }
+
 }
