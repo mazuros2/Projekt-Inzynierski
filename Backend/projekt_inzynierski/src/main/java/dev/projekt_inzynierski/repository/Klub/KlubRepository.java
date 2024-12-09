@@ -1,6 +1,7 @@
 package dev.projekt_inzynierski.repository.Klub;
 
 import dev.projekt_inzynierski.DTO.KlubByIdDTO;
+import dev.projekt_inzynierski.DTO.KlubDTO;
 import dev.projekt_inzynierski.DTO.KlubFromLigaDTO;
 import dev.projekt_inzynierski.DTO.ZawodnikDTO;
 import dev.projekt_inzynierski.models.Klub;
@@ -43,4 +44,10 @@ public interface KlubRepository extends JpaRepository<Klub,Long> {
     AND k.id = :id_klub
 """)
     List<ZawodnikDTO> findZawodnicyByIdKlub(@Param("id_klub") Long idKlub);
+
+
+    @Query("SELECT new dev.projekt_inzynierski.DTO.KlubDTO(k.id, k.nazwa_klubu) " +
+            "FROM Klub k " +
+            "WHERE LOWER(k.nazwa_klubu) LIKE LOWER(:nazwaKlubu)")
+    List<KlubDTO> findKlubByNazwa(@Param("nazwaKlubu") String nazwaKlubu);
 }

@@ -1,6 +1,7 @@
 package dev.projekt_inzynierski.controller.Klub;
 
 import dev.projekt_inzynierski.DTO.KlubByIdDTO;
+import dev.projekt_inzynierski.DTO.KlubDTO;
 import dev.projekt_inzynierski.DTO.KlubFromLigaDTO;
 import dev.projekt_inzynierski.DTO.ZawodnikDTO;
 import dev.projekt_inzynierski.models.Klub;
@@ -44,8 +45,8 @@ public class KlubController {
     }
 
     @GetMapping("klub/wyszukaj")
-    public ResponseEntity<List<KlubByIdDTO>> findKlubByNazwa(@RequestParam("nazwa") String nazwa){
-        List<KlubByIdDTO> listaKlubow =  klubService.findKlubByNazwa(nazwa);
+    public ResponseEntity<List<KlubDTO>> findKlubByNazwa(@RequestParam("nazwa") String nazwa){
+        List<KlubDTO> listaKlubow =  klubService.findKlubByNazwa(nazwa);
         return ResponseEntity.ok(listaKlubow);
     }
 

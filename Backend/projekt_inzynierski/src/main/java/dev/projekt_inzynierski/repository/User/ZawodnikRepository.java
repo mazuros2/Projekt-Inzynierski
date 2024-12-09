@@ -15,7 +15,7 @@ public interface ZawodnikRepository extends JpaRepository<Zawodnik,Long> {
 
     Optional<Zawodnik> findById(long id);
 
-    @Query("SELECT z.id_Uzytkownik, z.imie, z.nazwisko " +
+    @Query("SELECT new dev.projekt_inzynierski.DTO.ZawodnikDTO(z.id_Uzytkownik, z.imie, z.nazwisko, z.pozycja.nazwa_pozycji) " +
             "FROM Zawodnik z " +
             "WHERE LOWER(z.imie) LIKE LOWER(:text) " +
             "   OR LOWER(z.nazwisko) LIKE LOWER(:text)")

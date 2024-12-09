@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ZawodnikDTO {
+public class KlubDTO {
     private Long id;
-    private String imie;
-    private String nazwisko;
-    private String pozycja;
+    private String nazwaKlubu;
 }
