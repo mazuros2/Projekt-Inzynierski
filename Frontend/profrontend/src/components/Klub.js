@@ -7,6 +7,7 @@ import '../cssFolder/Navbar.css'; // Współdzielony plik CSS dla paska nawigacy
 const Klub = () => {
   const { id } = useParams();
   const [klub, setKlub] = useState(null);
+  const [zawodnicy, setZawodnicy] = useState([]); 
   const [error, setError] = useState("");
   const [showSettings, setShowSettings] = useState(false);
   const navigate = useNavigate(); // Hook do przekierowania
@@ -44,7 +45,20 @@ const Klub = () => {
         console.error("Error fetching data:", error);
         setError("Błąd podczas pobierania danych klubu. Sprawdź uprawnienia.");
       });
-  }, [id]);
+  
+
+      axios
+      .get(`http://localhost:8080/klub/${id}/zawodnicy`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        setZawodnicy(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching zawodnicy:", error);
+        setError("Błąd podczas pobierania zawodników. Sprawdź uprawnienia.");
+      });
+      }, [id]);
 
   if (error) {
     return <p className="error-message">{error}</p>; // Wyświetlenie błędu, jeśli wystąpi
@@ -106,6 +120,20 @@ const Klub = () => {
         <li><strong>Rok założenia:</strong> {klub.rokZalozenia || "Brak"}</li>
         <li><strong>Obecna liga klubu:</strong> {klub.ligaNazwaLigi || "Brak"}</li>
       </ul>
+        <div className='zawodnicy'>
+        <h2>Zawodnicy</h2>
+        {zawodnicy.length > 0 ? (
+          <ul className="zawodnicy-list">
+            {zawodnicy.map((zawodnik) => (
+              <li key={zawodnik.id}>
+                <strong>{zawodnik.imie} {zawodnik.nazwisko}</strong> - {zawodnik.pozycja} 
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Brak zawodników w tym klubie</p>
+        )}
+        </div>
 
       {/* Przycisk powrotu */}
       <div className="back-button-container">

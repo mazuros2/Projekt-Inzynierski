@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ZawodnikDTO {
-    private int id;
+    private Long id;
     private String imie;
     private String nazwisko;
     private String pozycja;
