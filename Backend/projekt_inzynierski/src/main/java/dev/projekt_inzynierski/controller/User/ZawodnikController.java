@@ -3,7 +3,6 @@ package dev.projekt_inzynierski.controller.User;
 import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
 import dev.projekt_inzynierski.DTO.ZawodnikDTO;
 import dev.projekt_inzynierski.models.users.Zawodnik;
-import dev.projekt_inzynierski.repository.User.ZawodnikRepository;
 import dev.projekt_inzynierski.service.User.ZawodnikService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

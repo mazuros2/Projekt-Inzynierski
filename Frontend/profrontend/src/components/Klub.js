@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../cssFolder/Klub.css'; // Zaktualizuj ścieżkę do pliku CSS, jeśli potrzeba
 import '../cssFolder/Navbar.css'; // Współdzielony plik CSS dla paska nawigacyjnego
+import { Link } from 'react-router-dom';
+
 
 const Klub = () => {
   const { id } = useParams();
@@ -49,7 +51,8 @@ const Klub = () => {
 
       axios
       .get(`http://localhost:8080/klub/${id}/zawodnicy`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { 
+          Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         setZawodnicy(response.data);
@@ -120,20 +123,23 @@ const Klub = () => {
         <li><strong>Rok założenia:</strong> {klub.rokZalozenia || "Brak"}</li>
         <li><strong>Obecna liga klubu:</strong> {klub.ligaNazwaLigi || "Brak"}</li>
       </ul>
-        <div className='zawodnicy'>
-        <h2>Zawodnicy</h2>
-        {zawodnicy.length > 0 ? (
-          <ul className="zawodnicy-list">
-            {zawodnicy.map((zawodnik) => (
-              <li key={zawodnik.id}>
-                <strong>{zawodnik.imie} {zawodnik.nazwisko}</strong> - {zawodnik.pozycja} 
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Brak zawodników w tym klubie</p>
-        )}
-        </div>
+      <div className='zawodnicy'>
+  <h2>Zawodnicy</h2>
+  {zawodnicy.length > 0 ? (
+    <ul className="zawodnicy-list">
+      {zawodnicy.map((zawodnik) => (
+        <li key={zawodnik.id}>
+          <Link to={`/zawodnicy/profil/${zawodnik.id}`}>
+            <strong>{zawodnik.imie} {zawodnik.nazwisko}</strong>
+          </Link> - {zawodnik.pozycja}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>Brak zawodników w tym klubie</p>
+  )}
+</div>
+
 
       {/* Przycisk powrotu */}
       <div className="back-button-container">

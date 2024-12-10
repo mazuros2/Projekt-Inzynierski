@@ -1,6 +1,5 @@
 package dev.projekt_inzynierski.service.User;
 
-import dev.projekt_inzynierski.DTO.KlubByIdDTO;
 import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
 import dev.projekt_inzynierski.DTO.ZawodnikDTO;
 import dev.projekt_inzynierski.models.Kraj_pochodzenia;
@@ -27,8 +26,8 @@ public class ZawodnikService {
     public ZawodnikByIdDTO getZawodnikInfoById(Long id){
 
         Zawodnik zawodnikInfo = zawodnikRepository.findById(id)
-                                .orElseThrow( () ->
-                                        new EntityNotFoundException("Nie można znaleźć zawodnika o podanym id!"));
+                .orElseThrow( () ->
+                        new EntityNotFoundException("Nie można znaleźć zawodnika o podanym id!"));
 
         Obecny_klub obecny_klub = zawodnikInfo.getObecny_klub().stream()
                 .filter(klub -> klub.getData_Do() == null || klub.getData_Do().isAfter(LocalDate.now()))

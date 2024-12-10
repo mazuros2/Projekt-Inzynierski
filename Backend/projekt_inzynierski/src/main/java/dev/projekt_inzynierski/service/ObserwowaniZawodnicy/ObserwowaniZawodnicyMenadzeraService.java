@@ -37,8 +37,8 @@ public class ObserwowaniZawodnicyMenadzeraService {
         Menadzer_klubu menadzer_klubu = menadzer_klubuRepository.findById(id_Menadzer)
                 .orElseThrow( () -> new EntityNotFoundException("Nie można znaleźć menadzera klubu o takim id!"));
 
-        Zawodnik zawodnik = zawodnikRepository.findById(id_Zawodnik)
-                .orElseThrow( () -> new EntityNotFoundException("Nie można znaleźć zawodnika o takim id!"));
+//        Zawodnik zawodnik = zawodnikRepository.findById(id_Zawodnik);
+//                .orElseThrow( () -> new EntityNotFoundException("Nie można znaleźć zawodnika o takim id!"));
 
         ObserwowaniZawodnicyMenadzeraId id = new ObserwowaniZawodnicyMenadzeraId();
         id.setId_Menadzer(id_Menadzer);
@@ -47,7 +47,7 @@ public class ObserwowaniZawodnicyMenadzeraService {
         Obserwowani_Zawodnicy_Menadzera listaObserwowanychZawodnikow = new Obserwowani_Zawodnicy_Menadzera();
         listaObserwowanychZawodnikow.setId(id);
         listaObserwowanychZawodnikow.setMenadzer_klubu(menadzer_klubu);
-        listaObserwowanychZawodnikow.setZawodnik(zawodnik);
+//        listaObserwowanychZawodnikow.setZawodnik(zawodnik);
 
         obserwowaniZawodnicyMenadzeraRepository.save(listaObserwowanychZawodnikow);
     }

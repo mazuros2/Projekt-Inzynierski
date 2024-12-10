@@ -34,8 +34,8 @@ public class ObserwowaniZawodnicySkautaService {
         Skaut skaut = skautRepository.findById(id_Skaut)
                 .orElseThrow( () -> new EntityNotFoundException("Nie można znaleźć skauta o takim id!"));
 
-        Zawodnik zawodnik = zawodnikRepository.findById(id_Zawodnika)
-                .orElseThrow( () -> new EntityNotFoundException("Nie można znaleźć zawodnika o takim id!"));
+//        Zawodnik zawodnik = zawodnikRepository.findById(id_Zawodnika);
+//                .orElseThrow( () -> new EntityNotFoundException("Nie można znaleźć zawodnika o takim id!"));
 
         ObserwowaniZawodnicySkautaId id = new ObserwowaniZawodnicySkautaId();
         id.setId_Skaut(id_Skaut);
@@ -44,7 +44,7 @@ public class ObserwowaniZawodnicySkautaService {
         Obserwowani_Zawodnicy_Skauta listaObserwowanychZawodnikow = new Obserwowani_Zawodnicy_Skauta();
         listaObserwowanychZawodnikow.setId(id);
         listaObserwowanychZawodnikow.setSkaut(skaut);
-        listaObserwowanychZawodnikow.setZawodnik(zawodnik);
+//        listaObserwowanychZawodnikow.setZawodnik(zawodnik);
 
         obserwowaniZawodnicySkautaRepository.save(listaObserwowanychZawodnikow);
     }

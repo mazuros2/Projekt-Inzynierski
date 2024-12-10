@@ -10,11 +10,13 @@ import LigaKluby from './components/LigaKluby';
 import UserProfile from './components/UserProfile';
 import AddLiga from './components/AddLiga';
 import StronaLogowania from './components/LoginForm'
+import ZawodnikDetails from './components/ZawodnikDetails.js'; 
 
 function App() {
   return (
 <Router>
       <Routes>
+        <Route path="/zawodnicy/profil/:id" element={<ZawodnikDetails />} />
         <Route path="/" element={<WszystkieKluby />} /> 
         <Route path="/user-profile" component={UserProfile} />
         <Route path="/klub/:id" element={<Klub />} />
