@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import '../cssFolder/Klub.css'; // Zaktualizuj ścieżkę do pliku CSS, jeśli potrzeba
-import '../cssFolder/Navbar.css'; // Współdzielony plik CSS dla paska nawigacyjnego
+import '../cssFolder/Klub.css'; 
+import '../cssFolder/Navbar.css'; 
 import { Link } from 'react-router-dom';
 
 
@@ -75,16 +75,18 @@ const Klub = () => {
     <div className="klub-container">
       {/* Pasek nawigacyjny */}
       <div className="navbar">
-        <img 
-          src="https://lh3.googleusercontent.com/proxy/4C4zlh5y6xvZC7MWNsG_99nE1x8yqQnSczaCD2cUy4xlvPOQFcm5vLMoEhrcczwjBcfADm4La8Li__oU9Gzy1Whmwpj1U0BvwG6FlMpj6y7cQuI4IfftojBNTeKQocivQu7lbKfiKvXW30jdeizyGN6AHdIUSpc7mWw1" 
-          alt="Logo" 
-          className="navbar-logo" 
+      <Link to="/">
+        <img
+          src="https://lh3.googleusercontent.com/proxy/4C4zlh5y6xvZC7MWNsG_99nE1x8yqQnSczaCD2cUy4xlvPOQFcm5vLMoEhrcczwjBcfADm4La8Li__oU9Gzy1Whmwpj1U0BvwG6FlMpj6y7cQuI4IfftojBNTeKQocivQu7lbKfiKvXW30jdeizyGN6AHdIUSpc7mWw1"
+          alt="Logo"
+          className="navbar-logo"
         />
+      </Link>
         <h1 className="navbar-title"></h1>
         
         <div className="icons-container">
           <img
-            src="https://www.pikpng.com/pngl/b/112-1121340_settings-logo-png-white-png-download-setting-icon.png"
+            src="https://icons.veryicon.com/png/o/miscellaneous/iview30-ios-style/ios-menu-4.png"
             alt="Ustawienia"
             className="settings-icon"
             onClick={toggleSettings}
@@ -98,9 +100,12 @@ const Klub = () => {
           {showSettings && (
             <div className="settings-menu">
               <ul>
-                <li>Opcja 1</li>
-                <li>Opcja 2</li>
-                <li>Opcja 3</li>
+                <li onClick={() => navigate("/ligii")}>Ligii</li>
+                <li>Kluby</li>
+                <li>Zawodnicy</li>
+                <li>Trenerzy</li>
+                <li>Lista obserwowanych</li>
+                
               </ul>
             </div>
           )}
