@@ -11,6 +11,9 @@ import UserProfile from './components/UserProfile';
 import AddLiga from './components/AddLiga';
 import StronaLogowania from './components/LoginForm'
 import ZawodnikDetails from './components/ZawodnikDetails.js'; 
+import RegisterTrener from './components/RegisterTrener.js';
+import RegisterSkaut from './components/RegisterSkaut.js';
+import RegisterMenadzer from './components/RegisterMenadzer.js';
 
 function App() {
   return (
@@ -26,6 +29,9 @@ function App() {
         <Route path="/trofeum/mistrzpolski" element={<MistrzowiePolski />} /> 
         <Route path="/trofeum/pucharpolski" element={<PucharPolski />} /> 
         <Route path="/logowanie" element={<StronaLogowania />} /> 
+        <Route path="/createTrener" element={<RegisterTrener />} />
+        <Route path="/createSkaut" element={<RegisterSkaut />} />
+        <Route path="/createMenadzer" element={<RegisterMenadzer />} />
       </Routes>
     </Router>
   );
