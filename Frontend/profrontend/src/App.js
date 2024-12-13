@@ -23,7 +23,7 @@ function App() {
         <Route path="/" element={<WszystkieKluby />} /> 
         <Route path="/user-profile" component={UserProfile} />
         <Route path="/klub/:id" element={<Klub />} />
-        <Route path=":ligaId/kluby" element={<LigaKluby />} />
+        <Route path="/ligii/:ligaId/kluby" element={<LigaKluby />} />
         <Route path="/ligii" element={<Liga />} /> 
         <Route path="/addliga" element={<AddLiga />} /> 
         <Route path="/trofeum/mistrzpolski" element={<MistrzowiePolski />} /> 

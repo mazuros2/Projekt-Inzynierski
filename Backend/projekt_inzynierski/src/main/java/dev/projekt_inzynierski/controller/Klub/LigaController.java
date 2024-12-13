@@ -27,4 +27,10 @@ public class LigaController {
         return ligaService.addLiga(liga);
     }
 
+    @GetMapping("/ligii/{idLiga}")
+    public ResponseEntity<LigaDTO> getLigaById(@PathVariable Long idLiga) {
+        LigaDTO liga = ligaService.getLigaById(idLiga);
+        return ResponseEntity.ok(liga);
+    }
+
 }

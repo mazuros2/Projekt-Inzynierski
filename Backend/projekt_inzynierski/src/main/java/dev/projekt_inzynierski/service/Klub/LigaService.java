@@ -23,4 +23,10 @@ public class LigaService {
     public Liga addLiga(Liga liga){
         return ligaRepository.save(liga);
     };
+
+    public LigaDTO getLigaById(Long idLiga) {
+        return ligaRepository.findById(idLiga)
+                .map(liga -> new LigaDTO(liga.getId(), liga.getNazwa_Ligi(), liga.getPoziom_Ligi()))
+                .orElse(null);
+    }
 }
