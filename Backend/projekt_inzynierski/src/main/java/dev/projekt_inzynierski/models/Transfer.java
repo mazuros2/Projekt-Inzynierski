@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.models;
 import dev.projekt_inzynierski.models.users.Zawodnik;
+import dev.projekt_inzynierski.models.Klub;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -33,8 +34,15 @@ public class Transfer {
     private float kwota;
 
     @OneToOne
-    @JoinColumn(name = "zawodnik_id", nullable = false)
+    @JoinColumn(name = "id_zawodnik", nullable = false)
     private Zawodnik zawodnik;
 
+    @ManyToOne
+    @JoinColumn(name = "klubOd",nullable = true)
+    private Klub klubOd;
+
+    @OneToOne
+    @JoinColumn(name = "klubDo",nullable = false)
+    private Klub klubDo;
 
 }
