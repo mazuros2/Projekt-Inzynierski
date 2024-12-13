@@ -87,7 +87,7 @@ const ZawodnikDetails = () => {
                 <li>Kluby</li>
                 <li>Zawodnicy</li>
                 <li>Trenerzy</li>
-                <li>Lista obserwowanych</li>
+                <li onClick={() => navigate('/trenerzy')}>Trenerzy</li>
               </ul>
             </div>
           )}

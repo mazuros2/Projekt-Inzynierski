@@ -81,7 +81,7 @@ const WszystkieKluby = () => {
                 <li onClick={() => navigate("/ligii")}>Ligii</li>
                 <li>Kluby</li>
                 <li>Zawodnicy</li>
-                <li>Trenerzy</li>
+                <li onClick={() => navigate("/trenerzy")}>Trenerzy</li>
                 <li>Lista obserwowanych</li>
               </ul>
             </div>

@@ -1,12 +1,14 @@
 package dev.projekt_inzynierski.service.User;
 
 import dev.projekt_inzynierski.DTO.TrenerDTO;
+import dev.projekt_inzynierski.DTO.TrenerDTO2;
 import dev.projekt_inzynierski.models.Kraj_pochodzenia;
 import dev.projekt_inzynierski.models.users.Trener;
 import dev.projekt_inzynierski.repository.User.TrenerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,6 +39,17 @@ public class TrenerService {
             trenerinfo.getLicencja_trenera(),
             klubTrenera
         );
+    }
+
+    public List<TrenerDTO2> getAllTrenerzy() {
+        return trenerRepository.findAll().stream()
+                .map(trener -> new TrenerDTO2(
+                        trener.getId_Uzytkownik(),
+                        trener.getImie(),
+                        trener.getNazwisko(),
+                        trener.getLicencja_trenera(),
+                        trener.getTrenerKlub().getNazwa_klubu()
+                )).collect(Collectors.toList());
     }
 
 }

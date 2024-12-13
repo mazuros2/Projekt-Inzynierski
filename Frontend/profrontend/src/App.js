@@ -14,6 +14,9 @@ import ZawodnikDetails from './components/ZawodnikDetails.js';
 import RegisterTrener from './components/RegisterTrener.js';
 import RegisterSkaut from './components/RegisterSkaut.js';
 import RegisterMenadzer from './components/RegisterMenadzer.js';
+import Trenerzy from './components/Trenerzy.js';
+import TrenerDetails from './components/TrenerDetails.js';
+
 
 function App() {
   return (
@@ -32,6 +35,8 @@ function App() {
         <Route path="/createTrener" element={<RegisterTrener />} />
         <Route path="/createSkaut" element={<RegisterSkaut />} />
         <Route path="/createMenadzer" element={<RegisterMenadzer />} />
+        <Route path="/trenerzy" element={<Trenerzy />} />
+        <Route path="/trener/profil/:id" element={<TrenerDetails />} />
       </Routes>
     </Router>
   );
