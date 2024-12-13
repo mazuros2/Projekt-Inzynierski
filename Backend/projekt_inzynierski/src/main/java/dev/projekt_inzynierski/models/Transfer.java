@@ -38,11 +38,11 @@ public class Transfer {
     private Zawodnik zawodnik;
 
     @ManyToOne
-    @JoinColumn(name = "klubOd",nullable = true)
+    @JoinColumn(name = "id_klubOd",nullable = true)
     private Klub klubOd;
 
     @OneToOne
-    @JoinColumn(name = "klubDo",nullable = false)
+    @JoinColumn(name = "id_klubDo",nullable = false)
     private Klub klubDo;
 
 }
