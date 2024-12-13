@@ -58,7 +58,7 @@ public class TransferController {
             @RequestParam("id_klubOd") long idKlubOd,
             @RequestParam("id_klubDo") long idKlubDo) {
         try {
-            LocalDate dataDo = LocalDate.now(); // Zamiana String na LocalDate
+            LocalDate dataDo = LocalDate.now();
             transferService.zaakceptujTransfer(idTransfer, dataDo, idUzytkownik, idKlubOd, idKlubDo);
             return ResponseEntity.ok("Transfer zostal zaakceptowany");
         } catch (Exception e) {
