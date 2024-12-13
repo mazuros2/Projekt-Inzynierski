@@ -31,4 +31,7 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
     void sendTransfer(@Param("dataTransferu") LocalDate dataTransferu,
                       @Param("kwota") int kwota,
                       @Param("id_zawodnik") long id_zawodnik);
+    @Modifying
+    @Query("UPDATE Transfer t SET t.status = 'odrzucony' WHERE t.id=:id")
+    void odrzucTransfer(@Param("id") long id);
 }
