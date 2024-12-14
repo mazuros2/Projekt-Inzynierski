@@ -14,5 +14,5 @@ public class TransferDTO {
     private long id;
     private LocalDate data_transferu;
     private String status;
-    private float kwota;
+    private int kwota;
 }

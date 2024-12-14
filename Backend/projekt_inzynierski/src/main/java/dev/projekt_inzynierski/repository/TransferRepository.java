@@ -26,7 +26,7 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
             "FROM Transfer t WHERE t.zawodnik.id_Uzytkownik = :zawodnikId")
     List<TransferDTO> findByZawodnikId(@Param("zawodnikId") long zawodnikId);
     @Modifying
-    @Query(value = "INSERT INTO Transfer (data_transferu, status, kwota, id_zawodnik,id_klubOd,id_klubDo) " +
+    @Query(value = "INSERT INTO Transfer (data_transferu, status, kwota, id_zawodnik,id_klub_Od,id_klub_Do) " +
             "VALUES (:dataTransferu, 'oczekujacy', :kwota, :id_zawodnik, :id_klubOd,:id_klubDo)",
             nativeQuery = true)
     void sendTransfer(@Param("dataTransferu") LocalDate dataTransferu,

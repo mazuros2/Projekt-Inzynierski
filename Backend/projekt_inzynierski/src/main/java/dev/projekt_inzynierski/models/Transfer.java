@@ -31,7 +31,7 @@ public class Transfer {
     private String status;
 
     @NotNull
-    private long kwota;
+    private int kwota;
 
     @OneToOne
     @JoinColumn(name = "id_zawodnik", nullable = false)
