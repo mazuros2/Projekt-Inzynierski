@@ -12,6 +12,7 @@ import AddLiga from './components/AddLiga';
 import StronaLogowania from './components/LoginForm'
 import ZawodnikDetails from './components/ZawodnikDetails.js'; 
 import RegisterTrener from './components/RegisterTrener.js';
+import RegisterZawodnik from './components/RegisterZawodnik.js';
 import RegisterSkaut from './components/RegisterSkaut.js';
 import RegisterMenadzer from './components/RegisterMenadzer.js';
 import Trenerzy from './components/Trenerzy.js';
@@ -31,7 +32,8 @@ function App() {
         <Route path="/addliga" element={<AddLiga />} /> 
         <Route path="/trofeum/mistrzpolski" element={<MistrzowiePolski />} /> 
         <Route path="/trofeum/pucharpolski" element={<PucharPolski />} /> 
-        <Route path="/logowanie" element={<StronaLogowania />} /> 
+        <Route path="/logowanie" element={<StronaLogowania />} />
+        <Route path="/createZawodnik" element={<RegisterZawodnik />} />
         <Route path="/createTrener" element={<RegisterTrener />} />
         <Route path="/createSkaut" element={<RegisterSkaut />} />
         <Route path="/createMenadzer" element={<RegisterMenadzer />} />

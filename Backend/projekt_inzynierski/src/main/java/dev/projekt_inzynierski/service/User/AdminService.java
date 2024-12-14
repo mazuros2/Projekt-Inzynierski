@@ -5,16 +5,14 @@ import dev.projekt_inzynierski.DTO.Register.RegisterSkautDTO;
 import dev.projekt_inzynierski.DTO.Register.RegisterTrenerDTO;
 import dev.projekt_inzynierski.DTO.Register.RegisterZawodnikDTO;
 import dev.projekt_inzynierski.configurationJWT.Role;
-import dev.projekt_inzynierski.models.Klub;
-import dev.projekt_inzynierski.models.Kraj_pochodzenia;
-import dev.projekt_inzynierski.models.Obecny_klub;
-import dev.projekt_inzynierski.models.Pozycja;
+import dev.projekt_inzynierski.models.*;
 import dev.projekt_inzynierski.models.users.Menadzer_klubu;
 import dev.projekt_inzynierski.models.users.Skaut;
 import dev.projekt_inzynierski.models.users.Trener;
 import dev.projekt_inzynierski.models.users.Zawodnik;
 import dev.projekt_inzynierski.repository.Klub.KlubRepository;
 import dev.projekt_inzynierski.repository.Kraj_pochodzeniaRepository;
+import dev.projekt_inzynierski.repository.Obecny_klubRepository;
 import dev.projekt_inzynierski.repository.PozycjaRepository;
 import dev.projekt_inzynierski.repository.User.UzytkownikRepository;
 import org.springframework.cglib.core.Local;
@@ -23,7 +21,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -31,14 +28,16 @@ public class AdminService {
 
     private final UzytkownikRepository uzytkownikRepository;
     private final KlubRepository klubRepository;
+    private final Obecny_klubRepository obecny_klubRepository;
     private final Kraj_pochodzeniaRepository kraj_pochodzeniaRepository;
     private final PasswordEncoder passwordEncoder;
 
     private final PozycjaRepository pozycjaRepository;
 
-    public AdminService(UzytkownikRepository uzytkownikRepository, KlubRepository klubRepository, Kraj_pochodzeniaRepository kraj_pochodzeniaRepository, PasswordEncoder passwordEncoder, PozycjaRepository pozycjaRepository) {
+    public AdminService(UzytkownikRepository uzytkownikRepository, KlubRepository klubRepository, Obecny_klubRepository obecny_klubRepository, Kraj_pochodzeniaRepository kraj_pochodzeniaRepository, PasswordEncoder passwordEncoder, PozycjaRepository pozycjaRepository) {
         this.uzytkownikRepository = uzytkownikRepository;
         this.klubRepository = klubRepository;
+        this.obecny_klubRepository = obecny_klubRepository;
         this.kraj_pochodzeniaRepository = kraj_pochodzeniaRepository;
         this.passwordEncoder = passwordEncoder;
         this.pozycjaRepository = pozycjaRepository;
@@ -67,7 +66,7 @@ public class AdminService {
         uzytkownikRepository.save(trener);
     }
 
-    public void createZawodnik(RegisterZawodnikDTO request){
+    public void createZawodnik(RegisterZawodnikDTO request) {
         Klub klub = klubRepository.findById(request.getKlubId())
                 .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
 
@@ -85,19 +84,26 @@ public class AdminService {
                 .pesel(request.getPesel())
                 .data_Urodzenia(request.getDataUrodzenia())
                 .role(Role.ZAWODNIK)
+                .waga(request.getWaga())
+                .wzrost(request.getWzrost())
                 .pozycja(pozycja)
                 .kraj_pochodzenia(krajePochodzenia)
+                .obecny_klub(new HashSet<>())
                 .build();
 
-        Obecny_klub obecny_klub = Obecny_klub.builder()
+        uzytkownikRepository.save(zawodnik);
+        klub.dodajZawodnika(zawodnik, LocalDate.now());
+        klubRepository.save(klub);
+        uzytkownikRepository.save(zawodnik);
+
+        Obecny_klub ob = Obecny_klub.builder()
                 .zawodnik(zawodnik)
                 .klub(klub)
                 .data_Od(LocalDate.now())
+                .data_Do(null)
                 .build();
 
-        zawodnik.setObecny_klub(Set.of(obecny_klub));
-
-        uzytkownikRepository.save(zawodnik);
+        obecny_klubRepository.save(ob);
     }
 
     public void createSkaut(RegisterSkautDTO request){
