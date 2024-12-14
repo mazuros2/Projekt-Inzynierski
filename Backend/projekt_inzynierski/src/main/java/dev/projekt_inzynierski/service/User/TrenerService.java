@@ -2,6 +2,7 @@ package dev.projekt_inzynierski.service.User;
 
 import dev.projekt_inzynierski.DTO.TrenerDTO;
 import dev.projekt_inzynierski.DTO.TrenerDTO2;
+import dev.projekt_inzynierski.DTO.TrenerDTO3;
 import dev.projekt_inzynierski.models.Kraj_pochodzenia;
 import dev.projekt_inzynierski.models.users.Trener;
 import dev.projekt_inzynierski.repository.User.TrenerRepository;
@@ -51,5 +52,10 @@ public class TrenerService {
                         trener.getTrenerKlub().getNazwa_klubu()
                 )).collect(Collectors.toList());
     }
+
+    public TrenerDTO3 findByKlubId(long id_klub) {
+        return trenerRepository.findById_Klub(id_klub);
+    }
+
 
 }
