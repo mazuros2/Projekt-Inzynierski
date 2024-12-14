@@ -1,6 +1,7 @@
 package dev.projekt_inzynierski.controller;
 
 import dev.projekt_inzynierski.DTO.TransferDTO;
+import dev.projekt_inzynierski.DTO.TransferRequest;
 import dev.projekt_inzynierski.DTO.TrofeumDTO;
 import dev.projekt_inzynierski.service.TransferService;
 import org.springframework.http.ResponseEntity;
@@ -23,21 +24,24 @@ public class TransferController {
         return ResponseEntity.ok(transfery);
     }
     @PostMapping("/sendTransfer")
-    public ResponseEntity<String> sendTransfer(
-            @RequestParam("kwota") int kwota,
-            @RequestParam("id_zawodnik") long idZawodnik,
-            @RequestParam("id_klubOd") long idKlubOd,
-            @RequestParam("id_klubDo") long idKlubDo) {
+    public ResponseEntity<String> sendTransfer(@RequestBody TransferRequest transferRequest) {
         try {
             LocalDate dataTransferu = LocalDate.now();
-            transferService.sendTransfer(dataTransferu, kwota, idZawodnik, idKlubOd, idKlubDo);
-            return ResponseEntity.ok("Transfer zostal wyslany z powodzeniem");
+            transferService.sendTransfer(
+                    dataTransferu,
+                    transferRequest.getKwota(),
+                    transferRequest.getIdZawodnik(),
+                    transferRequest.getIdKlubOd(),
+                    transferRequest.getIdKlubDo()
+            );
+            return ResponseEntity.ok("Transfer został wysłany z powodzeniem");
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(500)
-                    .body("wystapil blad przy transferze " + e.getMessage());
+                    .body("Wystąpił błąd przy transferze " + e.getMessage());
         }
     }
+
 
     @PostMapping("/odrzuc/{id}")
     public ResponseEntity<String> odrzucTransfer(@PathVariable long id) {
