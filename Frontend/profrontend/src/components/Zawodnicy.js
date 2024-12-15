@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 const WyswietlanieZawodnikow = () => {
   const navigate = useNavigate();
-  const [zawodnicy, setZawodnicy] = useState([]); // 🛠️ domyślnie pusty array
-  const [pozycje, setPozycje] = useState([]); // 🛠️ domyślnie pusty array
-  const [kraje, setKraje] = useState([]); // 🛠️ domyślnie pusty array
+  const [zawodnicy, setZawodnicy] = useState([]); 
+  const [pozycje, setPozycje] = useState([]); 
+  const [kraje, setKraje] = useState([]); 
   const [filterOptions, setFilterOptions] = useState({
     pozycja: "",
     obszar: "",

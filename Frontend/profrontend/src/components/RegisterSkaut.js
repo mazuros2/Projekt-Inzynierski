@@ -146,7 +146,7 @@ const RejestracjaSkauta = () => {
                 <ul>
                   <li onClick={() => navigate("/ligii")}>Ligii</li>
                   <li>Kluby</li>
-                  <li>Zawodnicy</li>
+                  <li onClick={() => navigate('/zawodnicy')}>Zawodnicy</li>
                   <li onClick={() => navigate('/trenerzy')}>Trenerzy</li>
                   <li>Lista obserwowanych</li>
                 </ul>
