@@ -22,11 +22,4 @@ public class UzytkownikController {
     }
 
     //metoda do wyświetlenia szczegółów swojego profilu
-
-
-    //metoda do stworzenia profilu zawodnika
-    //metoda do stworzenia profilu skauta
-    //metoda do stworzenia profilu trenera
-    //metoda do stworzenia profilu menadzera
-
 }

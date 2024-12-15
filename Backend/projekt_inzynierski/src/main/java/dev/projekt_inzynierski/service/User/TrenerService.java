@@ -1,8 +1,6 @@
 package dev.projekt_inzynierski.service.User;
 
-import dev.projekt_inzynierski.DTO.TrenerDTO;
-import dev.projekt_inzynierski.DTO.TrenerDTO2;
-import dev.projekt_inzynierski.DTO.TrenerDTO3;
+import dev.projekt_inzynierski.DTO.*;
 import dev.projekt_inzynierski.models.Kraj_pochodzenia;
 import dev.projekt_inzynierski.models.users.Trener;
 import dev.projekt_inzynierski.repository.User.TrenerRepository;
@@ -43,19 +41,29 @@ public class TrenerService {
     }
 
     public List<TrenerDTO2> getAllTrenerzy() {
-        return trenerRepository.findAll().stream()
-                .map(trener -> new TrenerDTO2(
-                        trener.getId_Uzytkownik(),
-                        trener.getImie(),
-                        trener.getNazwisko(),
-                        trener.getLicencja_trenera(),
-                        trener.getTrenerKlub().getNazwa_klubu()
-                )).collect(Collectors.toList());
+        List<Trener> trenerzy = trenerRepository.findAll();
+        return trenerzy.stream().map( trener -> {
+            Set<KrajPochodzeniaDTO> krajePochodzeniaDTO = trener.getKraj_pochodzenia().stream()
+                    .map(kraj -> new KrajPochodzeniaDTO(
+                            kraj.getId_Kraj(),
+                            kraj.getNazwa(),
+                            kraj.getRegion()
+                    )).collect(Collectors.toSet());
+
+            return new TrenerDTO2(
+                    trener.getId_Uzytkownik(),
+                    trener.getImie(),
+                    trener.getNazwisko(),
+                    krajePochodzeniaDTO,
+                    trener.getLicencja_trenera(),
+                    trener.getTrenerKlub().getNazwa_klubu()
+            );
+
+        }).collect(Collectors.toList());
     }
 
     public TrenerDTO3 findByKlubId(long id_klub) {
         return trenerRepository.findById_Klub(id_klub);
     }
-
 
 }

@@ -25,11 +25,12 @@ public class ZawodnikController {
         return ResponseEntity.ok(zawodnikDetails);
     }
 
-    @GetMapping("/zawodnicy/wyszukaj")
+/*    @GetMapping("/zawodnicy/wyszukaj")
     public ResponseEntity<List<ZawodnikDTO>> getZawodnikByText(@RequestParam("text") String text){
         List<ZawodnikDTO> zawodnicy = zawodnikService.findZawodnikByText(text);
         return ResponseEntity.ok(zawodnicy);
     }
+*/
 
     @GetMapping("/zawodnicy")
     public ResponseEntity<List<ZawodnikDTO2>> getAllZawodnicy(){

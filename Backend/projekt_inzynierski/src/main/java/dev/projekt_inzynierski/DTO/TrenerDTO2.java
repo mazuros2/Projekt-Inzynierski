@@ -15,6 +15,7 @@ public class TrenerDTO2 {
     private long id;
     private String imie;
     private String nazwisko;
+    private Set<KrajPochodzeniaDTO> krajPochodzenia;
     private String licencjaTrenera;
     private String klub;
 }
