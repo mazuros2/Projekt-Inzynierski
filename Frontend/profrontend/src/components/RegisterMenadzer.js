@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
-
 const RejestracjaMenadzera = () => {
   const navigate = useNavigate();
   const [showSettings, setShowSettings] = useState(false);
@@ -22,6 +21,12 @@ const RejestracjaMenadzera = () => {
   });
   const [showCountryList, setShowCountryList] = useState(false);
   const [showClubList, setShowClubList] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); 
+    sessionStorage.removeItem('token'); 
+    navigate('/logowanie'); 
+  };
 
   const toggleSettings = () => {
     setShowSettings(!showSettings);
@@ -148,6 +153,7 @@ const RejestracjaMenadzera = () => {
                     <li onClick={() => navigate('/zawodnicy')}>Zawodnicy</li>
                     <li onClick={() => navigate('/trenerzy')}>Trenerzy</li>
                     <li>Lista obserwowanych</li>
+                    <li onClick={handleLogout}>Wyloguj</li>
                   </ul>
                 </div>
                 )}

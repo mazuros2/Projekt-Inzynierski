@@ -30,6 +30,12 @@ const RejestracjaTrenera = () => {
     navigate('/user-profile');
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('token'); 
+    sessionStorage.removeItem('token'); 
+    navigate('/logowanie'); 
+  };
+
   // Pobranie danych (kluby i kraje)
   useEffect(() => {
     const token = sessionStorage.getItem("token");
@@ -148,6 +154,7 @@ const RejestracjaTrenera = () => {
                   <li onClick={() => navigate('/zawodnicy')}>Zawodnicy</li>
                   <li onClick={() => navigate('/trenerzy')}>Trenerzy</li>
                   <li>Lista obserwowanych</li>
+                  <li onClick={handleLogout}>Wyloguj</li>
                 </ul>
               </div>
               )}

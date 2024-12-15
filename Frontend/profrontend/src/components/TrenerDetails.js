@@ -16,6 +16,12 @@ const TrenerDetails = () => {
   const goToUserProfile = () => {
     navigate('/user-profile');
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); 
+    sessionStorage.removeItem('token'); 
+    navigate('/logowanie'); 
+  };
   
   useEffect(() => {
     const token = sessionStorage.getItem('token');
@@ -75,6 +81,7 @@ const TrenerDetails = () => {
                 <li onClick={() => navigate('/zawodnicy')}>Zawodnicy</li>
                 <li onClick={() => navigate('/trenerzy')}>Trenerzy</li>
                 <li>Lista obserwowanych</li>
+                <li onClick={handleLogout}>Wyloguj</li>
               </ul>
             </div>
           )}
