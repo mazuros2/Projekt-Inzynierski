@@ -2,6 +2,7 @@ package dev.projekt_inzynierski.service.User;
 
 import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
 import dev.projekt_inzynierski.DTO.ZawodnikDTO;
+import dev.projekt_inzynierski.DTO.ZawodnikDTO2;
 import dev.projekt_inzynierski.models.Kraj_pochodzenia;
 import dev.projekt_inzynierski.models.Obecny_klub;
 import dev.projekt_inzynierski.models.users.Zawodnik;
@@ -52,6 +53,29 @@ public class ZawodnikService {
 
     public List<ZawodnikDTO> findZawodnikByText(String text){
         return  zawodnikRepository.findZawodnikByText("%" + text + "%");
+    }
+
+    public List<ZawodnikDTO2> getAllZawodnicy() {
+        List<Zawodnik> zawodnicy = zawodnikRepository.findAll();
+        return zawodnicy.stream().map(zawodnik -> {
+            Obecny_klub obecnyKlub = zawodnik.getObecny_klub().stream()
+                    .filter(klub -> klub.getData_Do() == null || klub.getData_Do().isAfter(LocalDate.now()))
+                    .findFirst()
+                    .orElse(null);
+
+            Set<String> krajePochodzenia = zawodnik.getKraj_pochodzenia().stream()
+                    .map(Kraj_pochodzenia::getNazwa)
+                    .collect(Collectors.toSet());
+
+            return new ZawodnikDTO2(
+                    zawodnik.getId_Uzytkownik(),
+                    zawodnik.getImie(),
+                    zawodnik.getNazwisko(),
+                    krajePochodzenia,
+                    zawodnik.getPozycja().getNazwa_pozycji(),
+                    obecnyKlub.getKlub().getNazwa_klubu()
+            );
+        }).collect(Collectors.toList());
     }
 
 }

@@ -2,6 +2,7 @@ package dev.projekt_inzynierski.controller.User;
 
 import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
 import dev.projekt_inzynierski.DTO.ZawodnikDTO;
+import dev.projekt_inzynierski.DTO.ZawodnikDTO2;
 import dev.projekt_inzynierski.models.users.Zawodnik;
 import dev.projekt_inzynierski.service.User.ZawodnikService;
 import org.springframework.http.ResponseEntity;
@@ -30,4 +31,9 @@ public class ZawodnikController {
         return ResponseEntity.ok(zawodnicy);
     }
 
+    @GetMapping("/zawodnicy")
+    public ResponseEntity<List<ZawodnikDTO2>> getAllZawodnicy(){
+        List<ZawodnikDTO2> zawodnicy = zawodnikService.getAllZawodnicy();
+        return ResponseEntity.ok(zawodnicy);
+    }
 }

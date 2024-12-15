@@ -17,6 +17,7 @@ import RegisterSkaut from './components/RegisterSkaut.js';
 import RegisterMenadzer from './components/RegisterMenadzer.js';
 import Trenerzy from './components/Trenerzy.js';
 import TrenerDetails from './components/TrenerDetails.js';
+import Zawodnicy from './components/Zawodnicy.js';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path="/createMenadzer" element={<RegisterMenadzer />} />
         <Route path="/trenerzy" element={<Trenerzy />} />
         <Route path="/trener/profil/:id" element={<TrenerDetails />} />
+        <Route path="/zawodnicy" element={<Zawodnicy />} />
       </Routes>
     </Router>
   );
