@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 const WyswietlanieZawodnikow = () => {
   const navigate = useNavigate();
-  const [zawodnicy, setZawodnicy] = useState([]);
-  const [pozycje, setPozycje] = useState([]);
-  const [kraje, setKraje] = useState([]);
+  const [zawodnicy, setZawodnicy] = useState([]); // 🛠️ domyślnie pusty array
+  const [pozycje, setPozycje] = useState([]); // 🛠️ domyślnie pusty array
+  const [kraje, setKraje] = useState([]); // 🛠️ domyślnie pusty array
   const [filterOptions, setFilterOptions] = useState({
     pozycja: "",
     obszar: "",
@@ -66,10 +66,15 @@ const WyswietlanieZawodnikow = () => {
   const filterZawodnicy = () => {
     return zawodnicy.filter((zawodnik) => {
       const { pozycja, obszar, region, kraj, imie, nazwisko } = filterOptions;
-      const matchesPozycja = pozycja ? zawodnik.pozycja?.toLowerCase().includes(pozycja.toLowerCase()) : true;
-      const matchesObszar = obszar ? zawodnik.obszar?.toLowerCase().includes(obszar.toLowerCase()) : true;
-      const matchesRegion = region ? zawodnik.region?.toLowerCase().includes(region.toLowerCase()) : true;
-      const matchesKraj = kraj ? zawodnik.kraj?.toLowerCase().includes(kraj.toLowerCase()) : true;
+      const matchesPozycja = pozycja ? zawodnik.pozycja?.nazwa_pozycji?.toLowerCase().includes(pozycja.toLowerCase()) : true;
+      const matchesObszar = obszar ? zawodnik.pozycja?.obszar_pozycji?.toLowerCase().includes(obszar.toLowerCase()) : true;
+      
+      const matchesRegion = region ? zawodnik.krajPochodzenia.some((kraj) => 
+        kraj.region?.toLowerCase().includes(region.toLowerCase())) : true;
+
+      const matchesKraj = kraj ? zawodnik.krajPochodzenia.some((krajPochodzenia) => 
+        krajPochodzenia.nazwa?.toLowerCase().includes(kraj.toLowerCase())) : true;
+      
       const matchesImie = imie ? zawodnik.imie?.toLowerCase().includes(imie.toLowerCase()) : true;
       const matchesNazwisko = nazwisko ? zawodnik.nazwisko?.toLowerCase().includes(nazwisko.toLowerCase()) : true;
       return matchesPozycja && matchesObszar && matchesRegion && matchesKraj && matchesImie && matchesNazwisko;
@@ -86,25 +91,25 @@ const WyswietlanieZawodnikow = () => {
         <input type="text" name="nazwisko" placeholder="Nazwisko" onChange={handleInputChange} />
         <select name="pozycja" onChange={handleInputChange}>
           <option value="">Wybierz pozycję</option>
-          {pozycje.map((pozycja) => (
+          {pozycje?.map((pozycja) => (
             <option key={pozycja.id_Pozycja} value={pozycja.nazwa_pozycji}>{pozycja.nazwa_pozycji}</option>
           ))}
         </select>
         <select name="obszar" onChange={handleInputChange}>
           <option value="">Wybierz obszar</option>
-          {[...new Set(pozycje.map((pozycja) => pozycja.obszar_pozycji))].map((obszar, index) => (
+          {[...new Set(pozycje?.map((pozycja) => pozycja.obszar_pozycji))].map((obszar, index) => (
             <option key={index} value={obszar}>{obszar}</option>
           ))}
         </select>
         <select name="region" onChange={handleInputChange}>
           <option value="">Wybierz region</option>
-          {[...new Set(kraje.map((kraj) => kraj.region))].map((region, index) => (
+          {[...new Set(kraje?.map((kraj) => kraj.region))].map((region, index) => (
             <option key={index} value={region}>{region}</option>
           ))}
         </select>
         <select name="kraj" onChange={handleInputChange}>
           <option value="">Wybierz kraj</option>
-          {kraje.map((kraj) => (
+          {kraje?.map((kraj) => (
             <option key={kraj.id_Kraj} value={kraj.nazwa}>{kraj.nazwa}</option>
           ))}
         </select>
@@ -116,8 +121,10 @@ const WyswietlanieZawodnikow = () => {
           {filterZawodnicy().map((zawodnik) => (
             <li key={zawodnik.id}>
               <h3>{zawodnik.imie} {zawodnik.nazwisko}</h3>
-              <p>Pozycja: {zawodnik.pozycja}</p>
-              <p>Kraj: {zawodnik.krajePochodzenia}</p>
+              <p>Pozycja: {zawodnik.pozycja?.nazwa_pozycji}</p>
+              <p>Obszar: {zawodnik.pozycja?.obszar_pozycji}</p>
+              <p>Region: {zawodnik.krajPochodzenia.map((kraj) => kraj.region).join(', ')}</p>
+              <p>Kraj: {zawodnik.krajPochodzenia.map((kraj) => kraj.nazwa).join(', ')}</p>
               <button onClick={() => navigate(`/zawodnicy/profil/${zawodnik.id}`)}>Zobacz szczegóły</button>
             </li>
           ))}

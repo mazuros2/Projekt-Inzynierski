@@ -15,7 +15,7 @@ public class ZawodnikDTO2 {
     private Long id;
     private String imie;
     private String nazwisko;
-    private Set<String> krajePochodzenia;
-    private String pozycja;
+    private Set<KrajPochodzeniaDTO> krajPochodzenia;
+    private PozycjaDTO pozycja;
     private String obecnyKlub;
 }

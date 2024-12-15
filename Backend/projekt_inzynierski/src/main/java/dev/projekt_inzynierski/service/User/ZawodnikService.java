@@ -1,8 +1,6 @@
 package dev.projekt_inzynierski.service.User;
 
-import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
-import dev.projekt_inzynierski.DTO.ZawodnikDTO;
-import dev.projekt_inzynierski.DTO.ZawodnikDTO2;
+import dev.projekt_inzynierski.DTO.*;
 import dev.projekt_inzynierski.models.Kraj_pochodzenia;
 import dev.projekt_inzynierski.models.Obecny_klub;
 import dev.projekt_inzynierski.models.users.Zawodnik;
@@ -67,12 +65,26 @@ public class ZawodnikService {
                     .map(Kraj_pochodzenia::getNazwa)
                     .collect(Collectors.toSet());
 
+            PozycjaDTO pozycjaDTO = new PozycjaDTO(
+                    zawodnik.getPozycja().getId_Pozycja(),
+                    zawodnik.getPozycja().getNazwa_pozycji(),
+                    zawodnik.getPozycja().getObszar_pozycji()
+            );
+
+            Set<KrajPochodzeniaDTO> krajePochodzeniaDTO = zawodnik.getKraj_pochodzenia().stream()
+                    .map(kraj -> new KrajPochodzeniaDTO(
+                            kraj.getId_Kraj(),
+                            kraj.getNazwa(),
+                            kraj.getRegion()
+                    ))
+                    .collect(Collectors.toSet());
+
             return new ZawodnikDTO2(
                     zawodnik.getId_Uzytkownik(),
                     zawodnik.getImie(),
                     zawodnik.getNazwisko(),
-                    krajePochodzenia,
-                    zawodnik.getPozycja().getNazwa_pozycji(),
+                    krajePochodzeniaDTO,
+                    pozycjaDTO,
                     obecnyKlub.getKlub().getNazwa_klubu()
             );
         }).collect(Collectors.toList());
