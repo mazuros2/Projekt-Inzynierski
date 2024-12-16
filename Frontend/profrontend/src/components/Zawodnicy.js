@@ -143,16 +143,16 @@ const WyswietlanieZawodnikow = () => {
         <h3>Filtry</h3>
         <input type="text" name="imie" placeholder="Imię" onChange={handleInputChange} />
         <input type="text" name="nazwisko" placeholder="Nazwisko" onChange={handleInputChange} />
-        <select name="pozycja" onChange={handleInputChange}>
-          <option value="">Wybierz pozycję</option>
-          {pozycje?.map((pozycja) => (
-            <option key={pozycja.id_Pozycja} value={pozycja.nazwa_pozycji}>{pozycja.nazwa_pozycji}</option>
-          ))}
-        </select>
         <select name="obszar" onChange={handleInputChange}>
           <option value="">Wybierz obszar</option>
           {[...new Set(pozycje?.map((pozycja) => pozycja.obszar_pozycji))].map((obszar, index) => (
             <option key={index} value={obszar}>{obszar}</option>
+          ))}
+        </select>
+        <select name="pozycja" onChange={handleInputChange}>
+          <option value="">Wybierz pozycję</option>
+          {pozycje?.map((pozycja) => (
+            <option key={pozycja.id_Pozycja} value={pozycja.nazwa_pozycji}>{pozycja.nazwa_pozycji}</option>
           ))}
         </select>
         <select name="region" onChange={handleInputChange}>

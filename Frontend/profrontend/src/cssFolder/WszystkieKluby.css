@@ -1,6 +1,5 @@
 /* Rozciąganie kontenera na pełną szerokość */
 .kluby-container {
-  padding: 20px;
   background-color: #f7f7f7;
   width: 100%; /* Pełna szerokość ekranu */
   max-width: 100%; /* Usunięcie maksymalnej szerokości */
@@ -18,7 +17,7 @@ html, body {
 /* Stylizacja listy klubów */
 .kluby-list {
   list-style-type: none;
-  padding: 0;
+  padding: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Siatka, która automatycznie dostosowuje liczbę kolumn */
   gap: 20px; /* Odstępy między elementami */
@@ -76,4 +75,8 @@ h1 {
 .klub-details a:hover {
   color: #b00; /* kolor na hover */
   text-decoration: underline; /* podkreślenie na hover*/
+}
+
+.icons-container{
+  padding: 30px;
 }
