@@ -199,10 +199,13 @@ const Klub = () => {
         <h2>Trener</h2>
         {trener ? (
           <ul className="trener-details-list">
-            <li><strong>Imię:</strong> {trener.imie}</li>
-            <li><strong>Nazwisko:</strong> {trener.nazwisko}</li>
+            <li><strong>Imię i nazwisko: </strong> 
+              <Link to={`/trener/profil/${trener.id}`} className="trener-link">
+              {trener.imie} {trener.nazwisko}
+            </Link>
+            </li>
             <li><strong>Data urodzenia:</strong> {new Date(trener.dataUrodzenia).toLocaleDateString()}</li>
-            {/* <li><strong>Kraje pochodzenia:</strong> {Array.from(trener.krajePochodzenia).join(", ")}</li> */}
+            <li><strong>Licencja trenera:</strong> {trener.licencjaTrenera}</li>
           </ul>
         ) : (
           <p>Brak danych o trenerze</p>

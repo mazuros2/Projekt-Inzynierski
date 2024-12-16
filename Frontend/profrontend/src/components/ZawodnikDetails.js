@@ -12,11 +12,6 @@ const ZawodnikDetails = () => {
   const [showSettings, setShowSettings] = useState(false);
   const navigate = useNavigate(); // Hook do przekierowania
 
-
-  const goBackToKluby = () => {
-    navigate('/'); // Funkcja do powrotu na stronę z wszystkimi klubami
-  };
-
   const toggleSettings = () => {
     setShowSettings(!showSettings);
   };
@@ -115,7 +110,7 @@ const ZawodnikDetails = () => {
       </ul>
       {/* Przycisk powrotu */}
       <div className="back-button-container">
-        <button onClick={goBackToKluby} className="back-button">Powrót do wszystkich klubów</button>
+      <button onClick={() => navigate(-1)}>Wróć</button>
       </div>
     </div>
     </div>

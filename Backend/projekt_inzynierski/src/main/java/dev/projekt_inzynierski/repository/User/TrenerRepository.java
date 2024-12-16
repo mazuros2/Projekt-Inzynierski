@@ -20,7 +20,8 @@ public interface TrenerRepository extends JpaRepository<Trener,Long> {
         t.id_Uzytkownik,
         t.imie,
         t.nazwisko,
-        t.data_Urodzenia
+        t.data_Urodzenia,
+        t.licencja_trenera
     )
     FROM Trener t
     WHERE t.trenerKlub.id = :id_klub
