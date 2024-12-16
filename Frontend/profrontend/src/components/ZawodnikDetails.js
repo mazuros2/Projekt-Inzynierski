@@ -4,25 +4,29 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../cssFolder/ZawodnikDetails.css'; 
 import { Link } from 'react-router-dom';
 
-
 const ZawodnikDetails = () => {
   const { id } = useParams();
   const [zawodnik, setZawodnik] = useState(null);
   const [error, setError] = useState("");
   const [showSettings, setShowSettings] = useState(false);
-  const navigate = useNavigate(); // Hook do przekierowania
+  const navigate = useNavigate();
 
   const toggleSettings = () => {
     setShowSettings(!showSettings);
   };
+
   const goToUserProfile = () => {
     navigate('/user-profile');
   };
-  
+
   const handleLogout = () => {
     localStorage.removeItem('token'); 
     sessionStorage.removeItem('token'); 
     navigate('/logowanie'); 
+  };
+
+  const handleTransferClick = () => {
+    navigate(`/zawodnicy/${id}/transfer`);
   };
 
   useEffect(() => {
@@ -60,13 +64,13 @@ const ZawodnikDetails = () => {
     <div className="zawodnik-container">
       {/* Pasek nawigacyjny */}
       <div className="navbar">
-      <Link to="/">
-        <img
-          src="https://lh3.googleusercontent.com/proxy/4C4zlh5y6xvZC7MWNsG_99nE1x8yqQnSczaCD2cUy4xlvPOQFcm5vLMoEhrcczwjBcfADm4La8Li__oU9Gzy1Whmwpj1U0BvwG6FlMpj6y7cQuI4IfftojBNTeKQocivQu7lbKfiKvXW30jdeizyGN6AHdIUSpc7mWw1"
-          alt="Logo"
-          className="navbar-logo"
-        />
-      </Link>
+        <Link to="/">
+          <img
+            src="https://lh3.googleusercontent.com/proxy/4C4zlh5y6xvZC7MWNsG_99nE1x8yqQnSczaCD2cUy4xlvPOQFcm5vLMoEhrcczwjBcfADm4La8Li__oU9Gzy1Whmwpj1U0BvwG6FlMpj6y7cQuI4IfftojBNTeKQocivQu7lbKfiKvXW30jdeizyGN6AHdIUSpc7mWw1"
+            alt="Logo"
+            className="navbar-logo"
+          />
+        </Link>
         <h1 className="navbar-title"></h1>
         
         <div className="icons-container">
@@ -96,23 +100,26 @@ const ZawodnikDetails = () => {
           )}
         </div>
       </div>
-    <div className="zawodnik-details-container">
-      <h1>Szczegóły zawodnika</h1>
-      <ul>
-        <li><strong>Imię:</strong> {zawodnik.imie}</li>
-        <li><strong>Nazwisko:</strong> {zawodnik.nazwisko}</li>
-        <li><strong>Pozycja:</strong> {zawodnik.pozycja}</li>
-        <li><strong>Obecny klub:</strong> {zawodnik.obecnyKlub}</li>
-        <li><strong>Kraj:</strong> {zawodnik.krajePochodzenia}</li>
-        <li><strong>Data urodzenia:</strong> {zawodnik.dataUrodzenia}</li>
-        <li><strong>Wzrost:</strong> {zawodnik.wzrost}</li>
-        <li><strong>Waga:</strong> {zawodnik.waga}</li>
-      </ul>
-      {/* Przycisk powrotu */}
-      <div className="back-button-container">
-      <button onClick={() => navigate(-1)}>Wróć</button>
-      </div>
-    </div>
+      <div className="zawodnik-details-container">
+  <h1>Szczegóły zawodnika</h1>
+  <ul>
+    <li><strong>Imię:</strong> {zawodnik.imie}</li>
+    <li><strong>Nazwisko:</strong> {zawodnik.nazwisko}</li>
+    <li><strong>Pozycja:</strong> {zawodnik.pozycja}</li>
+    <li><strong>Obecny klub:</strong> {zawodnik.obecnyKlub}</li>
+    <li><strong>Kraj:</strong> {zawodnik.krajePochodzenia}</li>
+    <li><strong>Data urodzenia:</strong> {zawodnik.dataUrodzenia}</li>
+    <li><strong>Wzrost:</strong> {zawodnik.wzrost}</li>
+    <li><strong>Waga:</strong> {zawodnik.waga}</li>
+  </ul>
+  <div className="button-container">
+    <button onClick={() => navigate(-1)}>Wróć</button>
+  </div>
+  <div className="transfer-button-container">
+    <button onClick={handleTransferClick}>Wyślij transfer</button>
+  </div>
+</div>
+
     </div>
   );
 };
