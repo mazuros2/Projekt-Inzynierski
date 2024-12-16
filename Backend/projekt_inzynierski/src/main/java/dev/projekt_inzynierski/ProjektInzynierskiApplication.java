@@ -311,10 +311,8 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
 				.setObecnyKlub(new HashSet<>())
-				.logo_url("https://w7.pngwing.com/pngs/496/212/png-transparent-legia-warsaw-2018-19-uefa-champions-league-cork-city-f-c-ekstraklasa-football-logo-sports-football-team-thumbnail.png")
+				.logo_url("https://upload.wikimedia.org/wikipedia/commons/a/a4/Legia_Warsaw_logo.png")
 				.build();
-
-		//.logo_url("")
 
 		Klub LechPoznan = Klub.builder()
 				.nazwa_klubu("Lech Poznan")
@@ -322,7 +320,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
 				.setObecnyKlub(new HashSet<>())
-				.logo_url("https://toppng.com/uploads/preview/kks-lech-poznan-sa-vector-logo-11574309108cx5yp3ke7h.png")
+				.logo_url("https://www.wikipasy.pl/images/1/10/Lech_Pozna%C5%84_herb.png")
 				.build();
 
 		Klub GKSKatowice = Klub.builder()
@@ -335,12 +333,12 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.build();
 
 		Klub GornikZabrze = Klub.builder()
-				.nazwa_klubu("Gornik Zabrze")
+				.nazwa_klubu("Górnik Zabrze")
 				.rok_zalozenia(LocalDate.of(1948, 1, 1))
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
 				.setObecnyKlub(new HashSet<>())
-				.logo_url("https://toppng.com/uploads/preview/ssa-gornik-shirt-badge-vector-logo-11574309412s1qabidadm.png")
+				.logo_url("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Gornik_Zabrze.png/347px-Gornik_Zabrze.png")
 				.build();
 
 		Klub RakowCzestochowa = Klub.builder()
