@@ -143,9 +143,9 @@ const Klub = () => {
           )}
         </div>
       </div>
-
-      {/* Szczegóły klubu */}
       <h1>Szczegóły Klubu</h1>
+      <div className='calyklub'> 
+      {/* Szczegóły klubu */}
       <div className="klub-logo-container">
         {klub.logo_url ? (
           <img src={klub.logo_url} alt={klub.nazwaKlubu} className="klub-logo-central" />
@@ -213,6 +213,7 @@ const Klub = () => {
       <div className="back-button-container">
         <button onClick={goBackToKluby} className="back-button">Powrót do wszystkich klubów</button>
       </div>
+    </div>
     </div>
   );
 };
