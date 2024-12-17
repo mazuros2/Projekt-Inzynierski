@@ -5,6 +5,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import dev.projekt_inzynierski.repository.User.UzytkownikRepository;
 
+import java.util.Optional;
+
 @Service
 public class UzytkownikService {
     private final UzytkownikRepository uzytkownikRepository;
@@ -27,6 +29,8 @@ public class UzytkownikService {
         uzytkownikRepository.save(uzytkownik);
     }
 
-
+    public Optional<Uzytkownik> findUzytkownikById(Long id) {
+        return uzytkownikRepository.findById(id);
+    }
 
 }
