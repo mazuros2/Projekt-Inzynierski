@@ -35,14 +35,15 @@ public class JWTService {
 //    }
 public String tokenGenerator(
         Map<String, Object> extraClaims,
-        UserDetails detailsUser
+        UserDetails detailsUser,
+        Long userId
 ) {
     // Dodanie roli użytkownika jako dodatkowego claimu
     extraClaims.put("role", detailsUser.getAuthorities().stream()
             .map(GrantedAuthority::getAuthority) // Pobiera nazwę roli jako String
             .findFirst() // Zakładamy, że użytkownik ma jedną główną rolę
-            .orElse("ROLE_USER")); // Domyślna rola, jeśli nie znaleziono żadnej
-
+            .orElse("ROLE_USER"));// Domyślna rola, jeśli nie znaleziono żadnej
+    extraClaims.put("userId", userId);
     return Jwts.builder()
             .setClaims(extraClaims)
             .setSubject(detailsUser.getUsername()) // Login użytkownika

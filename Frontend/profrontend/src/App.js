@@ -26,7 +26,7 @@ function App() {
       <Routes>
         <Route path="/zawodnicy/profil/:id" element={<ZawodnikDetails />} />
         <Route path="/" element={<WszystkieKluby />} /> 
-        <Route path="/user-profile" component={UserProfile} />
+        <Route path="/user-profile/:id" element={<UserProfile />} />
         <Route path="/klub/:id" element={<Klub />} />
         <Route path="/ligii/:ligaId/kluby" element={<LigaKluby />} />
         <Route path="/ligii" element={<Liga />} /> 

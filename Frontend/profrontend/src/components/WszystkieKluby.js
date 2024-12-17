@@ -24,13 +24,30 @@ const WszystkieKluby = () => {
       return null;
     }
   };
+  const getUserIdFromToken = () => {
+    const token = sessionStorage.getItem("token");
+    if (!token) return null;
+  
+    try {
+      const decodedToken = jwtDecode(token);
+      return decodedToken.userId; // Odczytujemy userId z tokena
+    } catch (error) {
+      console.error("Błąd dekodowania tokena:", error);
+      return null;
+    }
+  };
 
   const toggleSettings = () => {
     setShowSettings(!showSettings);
   };
 
   const goToUserProfile = () => {
-    navigate('/user-profile');
+    const userId = getUserIdFromToken(); // Pobranie userId z tokena
+    if (userId) {
+      navigate(`/user-profile/${userId}`);
+    } else {
+      console.error("Nie udało się pobrać ID użytkownika z tokena.");
+    }
   };
 
   const handleLogout = () => {
