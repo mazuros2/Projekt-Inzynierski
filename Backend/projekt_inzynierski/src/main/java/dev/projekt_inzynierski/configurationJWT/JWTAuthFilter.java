@@ -8,11 +8,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.web.oauth2.client.OAuth2ClientSecurityMarker;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -35,27 +33,38 @@ public class JWTAuthFilter extends OncePerRequestFilter {
         final String jwtToken;
         final String userLogin;
 
-        if(authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")){
+        // Sprawdź, czy nagłówek Authorization istnieje i zaczyna się od "Bearer "
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        jwtToken = authorizationHeader.substring(7); // pozycja 7 ponieważ Bearer + spacja to 7 jak coś
+        // Wyodrębnij token JWT
+        jwtToken = authorizationHeader.substring(7);
         userLogin = jwtService.extractLogin(jwtToken);
-        if (userLogin !=null && SecurityContextHolder.getContext().getAuthentication() == null){
+
+        // Jeśli login jest dostępny i brak aktualnej autentykacji w SecurityContext
+        if (userLogin != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails detailsUser = this.usrDetailsService.loadUserByUsername(userLogin);
-            if(jwtService.tokenValidation(jwtToken,detailsUser)){
-                UsernamePasswordAuthenticationToken authToken= new UsernamePasswordAuthenticationToken(
+
+            // Walidacja tokena
+            if (jwtService.tokenValidation(jwtToken, detailsUser)) {
+                // Wyodrębnij rolę użytkownika z tokena
+                String userRole = jwtService.extractRole(jwtToken);
+                System.out.println("Rola użytkownika: " + userRole); // Logowanie roli dla debugowania
+
+                // Utwórz obiekt autoryzacji i ustaw w SecurityContext
+                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         detailsUser,
                         null,
-                        detailsUser.getAuthorities()
+                        detailsUser.getAuthorities() // Rola użytkownika będzie uwzględniona w Authorities
                 );
-                authToken.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(request)
-                );
+                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
-            filterChain.doFilter(request,response);
         }
+
+        // Kontynuuj przetwarzanie żądania
+        filterChain.doFilter(request, response);
     }
 }

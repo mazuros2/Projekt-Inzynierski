@@ -7,6 +7,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.security.Key;
 import java.util.Date;
@@ -29,17 +30,33 @@ public class JWTService {
         return claimsResolver.apply(claims);
     }
 
-    public String tokenGenerator(UserDetails userDetails){
-        return tokenGenerator(new HashMap<>(),userDetails);
+//    public String tokenGenerator(UserDetails userDetails){
+//        return tokenGenerator(new HashMap<>(),userDetails);
+//    }
+public String tokenGenerator(
+        Map<String, Object> extraClaims,
+        UserDetails detailsUser
+) {
+    // Dodanie roli użytkownika jako dodatkowego claimu
+    extraClaims.put("role", detailsUser.getAuthorities().stream()
+            .map(GrantedAuthority::getAuthority) // Pobiera nazwę roli jako String
+            .findFirst() // Zakładamy, że użytkownik ma jedną główną rolę
+            .orElse("ROLE_USER")); // Domyślna rola, jeśli nie znaleziono żadnej
+
+    return Jwts.builder()
+            .setClaims(extraClaims)
+            .setSubject(detailsUser.getUsername()) // Login użytkownika
+            .setIssuedAt(new Date(System.currentTimeMillis()))
+            .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)) // 24 godziny
+            .signWith(getKeyToSignIn(), SignatureAlgorithm.HS256)
+            .compact();
+}
+
+    public String extractRole(String jwtToken) {
+        return extractClaim(jwtToken, claims -> claims.get("role", String.class));
     }
 
-    public String tokenGenerator(
-            Map<String,Object> extraClaims,
-            UserDetails detailsUser
-    ){
-        return Jwts.builder().setClaims(extraClaims).setSubject(detailsUser.getUsername()).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+ 1000 *60 *24)).signWith(getKeyToSignIn(), SignatureAlgorithm.HS256).compact();
-    }
+
 
     public boolean tokenValidation(String jwtToken, UserDetails userDetails){
         final String login = extractLogin(jwtToken);

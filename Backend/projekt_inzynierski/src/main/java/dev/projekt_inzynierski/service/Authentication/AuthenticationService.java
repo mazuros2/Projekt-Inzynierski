@@ -14,6 +14,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -29,7 +31,7 @@ public class AuthenticationService {
                 )
         );
         var uzytkownik = uzytkownikRepository.findByLogin(authenticationRequest.getLogin()).orElseThrow();
-        var jwtToken = jwtService.tokenGenerator(uzytkownik);
+        var jwtToken = jwtService.tokenGenerator(new HashMap<>(), uzytkownik);
 
 
         return AuthenticationResponse.builder()
@@ -51,7 +53,7 @@ public class AuthenticationService {
 
         uzytkownikRepository.save(uzytkownik);
 
-        var jwtToken = jwtService.tokenGenerator(uzytkownik);
+        var jwtToken = jwtService.tokenGenerator(new HashMap<>(), uzytkownik);
 
 
         return AuthenticationResponse.builder()
