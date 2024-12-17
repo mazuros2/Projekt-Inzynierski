@@ -137,6 +137,7 @@ const UserProfile = () => {
         ) : (
           <div>Ładowanie danych...</div>
         )}
+        <button onClick={handleLogout}>Wyloguj</button>
       </div>
     </div>
   );
