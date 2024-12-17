@@ -89,6 +89,13 @@ const TrenerDetails = () => {
       </div>
       
       <h1>Profil Trenera</h1>
+      <div className="user-profilowe">
+        {trener.profiloweURL ? (
+          <img src={trener.profiloweURL} />
+        ) : (
+          <p>Brak profilowego </p>
+        )}
+      </div>
       <p><strong>Imię:</strong> {trener.imie}</p>
       <p><strong>Nazwisko:</strong> {trener.nazwisko}</p>
       <p><strong>Data urodzenia:</strong> {trener.dataUrodzenia}</p>

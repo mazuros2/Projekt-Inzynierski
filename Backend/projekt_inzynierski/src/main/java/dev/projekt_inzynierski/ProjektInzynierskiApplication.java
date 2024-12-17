@@ -682,6 +682,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.role(Role.TRENER)
 				.kraj_pochodzenia(Set.of(PL))
 				.licencja_trenera("UEFA PRO")
+				.profiloweURL("https://img.a.transfermarkt.technology/portrait/big/40996-1697407122.JPG?lm=1")
 				.trenerKlub(LegiaWarszawa)
 				.build();
 
@@ -944,6 +945,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.wzrost(184)
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.profiloweURL("https://legia.net/uploads/historia/gabriel-kobylak-historia-pilkarz01-18-08-661.jpg")
 				.build();
 
 		Zawodnik MarcelMendesDudzinski = Zawodnik.builder()

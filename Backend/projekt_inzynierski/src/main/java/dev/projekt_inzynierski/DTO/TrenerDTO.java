@@ -19,4 +19,5 @@ public class TrenerDTO {
     private Set<String> krajePochodzenia;
     private String licencjaTrenera;
     private String klub;
+    private String profiloweURL;
 }

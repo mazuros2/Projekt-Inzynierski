@@ -36,7 +36,9 @@ public class TrenerService {
             trenerinfo.getData_Urodzenia(),
             krajePochodzenia,
             trenerinfo.getLicencja_trenera(),
-            klubTrenera
+            klubTrenera,
+            trenerinfo.getProfiloweURL()
+
         );
     }
 

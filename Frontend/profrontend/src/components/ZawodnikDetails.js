@@ -102,7 +102,15 @@ const ZawodnikDetails = () => {
       </div>
       <div className="zawodnik-details-container">
   <h1>Szczegóły zawodnika</h1>
+  
   <ul>
+      <div className="user-profilowe">
+        {zawodnik.profiloweURL ? (
+          <img src={zawodnik.profiloweURL} />
+        ) : (
+          <p>Brak profilowego </p>
+        )}
+      </div>
     <li><strong>Imię:</strong> {zawodnik.imie}</li>
     <li><strong>Nazwisko:</strong> {zawodnik.nazwisko}</li>
     <li><strong>Pozycja:</strong> {zawodnik.pozycja}</li>

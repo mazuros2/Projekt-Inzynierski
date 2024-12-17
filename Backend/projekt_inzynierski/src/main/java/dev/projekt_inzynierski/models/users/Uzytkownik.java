@@ -1,6 +1,7 @@
 package dev.projekt_inzynierski.models.users;
 
 import dev.projekt_inzynierski.configurationJWT.Role;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -57,6 +58,9 @@ public class Uzytkownik implements UserDetails {
 
     @Column(unique=true)
     private int pesel;
+
+    @Nullable
+    private String profiloweURL;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

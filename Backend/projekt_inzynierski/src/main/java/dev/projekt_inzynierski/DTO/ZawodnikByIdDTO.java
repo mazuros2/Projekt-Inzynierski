@@ -28,5 +28,5 @@ public class ZawodnikByIdDTO {
     private String obecnyKlub;
     private int wzrost;
     private int waga;
-
+    private String profiloweURL;
 }

@@ -45,7 +45,8 @@ public class ZawodnikService {
                 zawodnikInfo.getPozycja().getNazwa_pozycji(),
                 obecny_klub.getKlub().getNazwa_klubu(), // tutaj coś będzie trzeba zrobić ewentualnie żeby wyświelić brak klubu
                 zawodnikInfo.getWzrost(),
-                zawodnikInfo.getWaga()
+                zawodnikInfo.getWaga(),
+                zawodnikInfo.getProfiloweURL()
         );
     }
 
