@@ -16,16 +16,10 @@ import dev.projekt_inzynierski.models.users.Zawodnik;
 @NoArgsConstructor
 @Table(name = "Obserwowani_Zawodnicy_Menadzera")
 public class Obserwowani_Zawodnicy_Menadzera {
-/*
-
-    @EmbeddedId
-    private ObserwowaniZawodnicyMenadzeraId id;
-*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
 
     @ManyToOne
     @JoinColumn(name = "id_Zawodnik")

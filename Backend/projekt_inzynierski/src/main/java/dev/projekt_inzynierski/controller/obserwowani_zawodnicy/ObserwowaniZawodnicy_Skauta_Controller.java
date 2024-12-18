@@ -1,34 +1,48 @@
 package dev.projekt_inzynierski.controller.obserwowani_zawodnicy;
 
+import dev.projekt_inzynierski.DTO.ZawodnikDTO2;
+import dev.projekt_inzynierski.configurationJWT.JWTService;
 import dev.projekt_inzynierski.service.Obserwowani_Zawodnicy.ObserwowaniZawodnicySkautaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/skautingZawodnika/skaut")
 public class ObserwowaniZawodnicy_Skauta_Controller {
 
     private final ObserwowaniZawodnicySkautaService obserwowaniZawodnicySkautaService;
+    private final JWTService jwtService;
 
-    public ObserwowaniZawodnicy_Skauta_Controller(ObserwowaniZawodnicySkautaService obserwowaniZawodnicySkautaService) {
+    public ObserwowaniZawodnicy_Skauta_Controller(ObserwowaniZawodnicySkautaService obserwowaniZawodnicySkautaService, JWTService jwtService) {
         this.obserwowaniZawodnicySkautaService = obserwowaniZawodnicySkautaService;
+        this.jwtService = jwtService;
     }
 
-    @RequestMapping("/dodajZawodnika")
-    public ResponseEntity<String> dodajDoListyObserwowanych(@RequestParam int id_Skaut, @RequestParam int id_Zawodnik){
-        obserwowaniZawodnicySkautaService.dodanieZawodnikaDoListyObs(id_Skaut,id_Zawodnik);
-        return ResponseEntity.ok("Zawodnik został dodany do listy obserwowanych!");
+    @PostMapping("/dodajZawodnika/{idZawodnika}")
+    public ResponseEntity<String> dodajZawodnikaDoObserwowanych(@PathVariable Long idZawodnika, @RequestHeader(name = "Authorization") String authHeader) {
+        String token = authHeader.replace("Bearer ", "");
+        Long userId = jwtService.extractUserId(token);
+        obserwowaniZawodnicySkautaService.dodanieZawodnikaDoListyObs(userId, idZawodnika);
+
+        return ResponseEntity.ok("Zawodnik został dodany do obserwowanych.");
     }
 
-    @DeleteMapping("/usunZawodnika")
+    @GetMapping("/listaZawodnikow")
+    public ResponseEntity<List<ZawodnikDTO2>> wyswietlObserwowanychZawodnikow(@RequestHeader(name = "Authorization") String authHeader) {
+        String token = authHeader.replace("Bearer ", "");
+        Long userId = jwtService.extractUserId(token);
+        List<ZawodnikDTO2> zawodnicy = obserwowaniZawodnicySkautaService.GetListaObserwowanychZawodnikow(userId);
+
+        return ResponseEntity.ok(zawodnicy);
+    }
+
+   /* @DeleteMapping("/usunZawodnika")
     public ResponseEntity<String> usunZListyObserwowanych(@RequestParam int idSkaut, @RequestParam int idZawodnik) {
         obserwowaniZawodnicySkautaService.usunZawodnikaZListyObs(idSkaut, idZawodnik);
         return ResponseEntity.ok("Zawodnik został usunięty z listy obserwowanych!");
     }
+*/
 
-/*    @GetMapping("/{idSkaut}/listaZawodnikow")
-    public ResponseEntity<List<ZawodnikByIdDTO>> getListaObserwowanych(@PathVariable long idSkaut) {
-        List<ZawodnikByIdDTO> zawodnicy = obserwowaniZawodnicySkautaService.findZawodnicySkauta(idSkaut);
-        return ResponseEntity.ok(zawodnicy);
-    }*/
 }

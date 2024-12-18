@@ -4,6 +4,8 @@ import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
 import dev.projekt_inzynierski.models.Klub;
 import dev.projekt_inzynierski.models.obserwowani_zawodnicy.ObserwowaniZawodnicySkautaId;
 import dev.projekt_inzynierski.models.obserwowani_zawodnicy.Obserwowani_Zawodnicy_Skauta;
+import dev.projekt_inzynierski.models.users.Menadzer_klubu;
+import dev.projekt_inzynierski.models.users.Skaut;
 import dev.projekt_inzynierski.models.users.Zawodnik;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,17 +17,10 @@ import java.util.Optional;
 
 @Repository
 public interface ObserwowaniZawodnicySkautaRepository extends JpaRepository<Obserwowani_Zawodnicy_Skauta,Long> {
-    boolean existsById(ObserwowaniZawodnicySkautaId id);
-    void deleteById(ObserwowaniZawodnicySkautaId id);
 
-/*   @Query("SELECT new dev.projekt_inzynierski.DTO.ZawodnikByIdDTO(" +
-           "z.imie, z.nazwisko, z.data_Urodzenia, " +
-           "z.kraj_pochodzenia, p.nazwa_pozycji, k.nazwa, " +
-           "z.wzrost, z.waga) " +
-           "FROM Obserwowani_Zawodnicy_Skauta o " +
-           "JOIN o.zawodnik z " +
-           "JOIN z.pozycja p " +
-           "LEFT JOIN z.obecny_klub k " +
-           "WHERE o.id.id_Skaut = :idSkaut")
-   List<ZawodnikByIdDTO> findZawodnicyDTOBySkautId(@Param("idSkaut") long idSkaut);*/
+    boolean existsByZawodnikAndSkaut(Zawodnik zawodnik, Skaut skaut);
+
+    @Query("SELECT o.zawodnik FROM Obserwowani_Zawodnicy_Skauta o WHERE o.skaut.id_Uzytkownik = :idSkaut")
+    List<Zawodnik> findAllZawodnicyBySkautId(@Param("idSkaut") Long idSkaut);
+
 }
