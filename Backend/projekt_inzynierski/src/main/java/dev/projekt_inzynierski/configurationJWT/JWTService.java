@@ -33,28 +33,33 @@ public class JWTService {
 //    public String tokenGenerator(UserDetails userDetails){
 //        return tokenGenerator(new HashMap<>(),userDetails);
 //    }
-public String tokenGenerator(
+    public String tokenGenerator(
         Map<String, Object> extraClaims,
         UserDetails detailsUser,
-        Long userId
-) {
+        Long userId)
+    {
     // Dodanie roli użytkownika jako dodatkowego claimu
     extraClaims.put("role", detailsUser.getAuthorities().stream()
             .map(GrantedAuthority::getAuthority) // Pobiera nazwę roli jako String
             .findFirst() // Zakładamy, że użytkownik ma jedną główną rolę
             .orElse("ROLE_USER"));// Domyślna rola, jeśli nie znaleziono żadnej
-    extraClaims.put("userId", userId);
-    return Jwts.builder()
+            extraClaims.put("userId", userId);
+
+            return Jwts.builder()
             .setClaims(extraClaims)
             .setSubject(detailsUser.getUsername()) // Login użytkownika
             .setIssuedAt(new Date(System.currentTimeMillis()))
             .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)) // 24 godziny
             .signWith(getKeyToSignIn(), SignatureAlgorithm.HS256)
             .compact();
-}
+    }
 
     public String extractRole(String jwtToken) {
         return extractClaim(jwtToken, claims -> claims.get("role", String.class));
+    }
+
+    public Long extractUserId(String jwtToken) {
+        return extractClaim(jwtToken, claims -> claims.get("userId", Long.class));
     }
 
 

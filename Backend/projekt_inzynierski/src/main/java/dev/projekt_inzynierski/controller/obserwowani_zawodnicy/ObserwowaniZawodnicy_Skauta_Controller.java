@@ -1,13 +1,8 @@
 package dev.projekt_inzynierski.controller.obserwowani_zawodnicy;
 
-import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
-import dev.projekt_inzynierski.models.users.Zawodnik;
-import dev.projekt_inzynierski.service.ObserwowaniZawodnicy.ObserwowaniZawodnicySkautaService;
-import lombok.RequiredArgsConstructor;
+import dev.projekt_inzynierski.service.Obserwowani_Zawodnicy.ObserwowaniZawodnicySkautaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/skautingZawodnika/skaut")

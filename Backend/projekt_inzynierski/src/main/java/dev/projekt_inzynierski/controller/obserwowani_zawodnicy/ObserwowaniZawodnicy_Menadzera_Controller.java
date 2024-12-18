@@ -1,7 +1,8 @@
 package dev.projekt_inzynierski.controller.obserwowani_zawodnicy;
-import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
-import dev.projekt_inzynierski.models.obserwowani_zawodnicy.Obserwowani_Zawodnicy_Menadzera;
-import dev.projekt_inzynierski.service.ObserwowaniZawodnicy.ObserwowaniZawodnicyMenadzeraService;
+import dev.projekt_inzynierski.DTO.ZawodnikDTO2;
+import dev.projekt_inzynierski.configurationJWT.JWTService;
+import dev.projekt_inzynierski.service.Obserwowani_Zawodnicy.ObserwowaniZawodnicyMenadzeraService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,34 +13,30 @@ import java.util.List;
 public class ObserwowaniZawodnicy_Menadzera_Controller {
 
     private final ObserwowaniZawodnicyMenadzeraService obserwowaniZawodnicyMenadzeraService;
+    private final JWTService jwtService;
 
-    public ObserwowaniZawodnicy_Menadzera_Controller(ObserwowaniZawodnicyMenadzeraService obserwowaniZawodnicyMenadzeraService) {
+    public ObserwowaniZawodnicy_Menadzera_Controller(ObserwowaniZawodnicyMenadzeraService obserwowaniZawodnicyMenadzeraService, JWTService jwtService) {
         this.obserwowaniZawodnicyMenadzeraService = obserwowaniZawodnicyMenadzeraService;
+        this.jwtService = jwtService;
     }
 
-    @RequestMapping("/dodajZawodnika")
-    public ResponseEntity<String> dodajDoListyObserwowanych(@RequestParam int id_Menadzer, @RequestParam int id_Zawodnik){
-        obserwowaniZawodnicyMenadzeraService.dodanieZawodnikaDoListyObs(id_Menadzer,id_Zawodnik);
-        return ResponseEntity.ok("Zawodnik zostal dodany do listy obserwowanych!");
+    @PostMapping("/dodajZawodnika/{idZawodnika}")
+    public ResponseEntity<String> dodajZawodnikaDoObserwowanych(@PathVariable Long idZawodnika, @RequestHeader(name = "Authorization") String authHeader) {
+        String token = authHeader.replace("Bearer ", "");
+        Long userId = jwtService.extractUserId(token);
+        obserwowaniZawodnicyMenadzeraService.dodanieZawodnikaDoListyObs(userId, idZawodnika);
+
+        return ResponseEntity.ok("Zawodnik został dodany do obserwowanych.");
     }
 
-    @DeleteMapping("/usunZawodnika")
-    public ResponseEntity<String> usunZListyObserwowanych(@RequestParam int id_Menadzer, @RequestParam int id_Zawodnik){
-        obserwowaniZawodnicyMenadzeraService.usunZawodnikaZListyObs(id_Menadzer,id_Zawodnik);
-        return ResponseEntity.ok("Zawodnik zostal usunięty z listy obserwowanych!");
-    }
+    @GetMapping("/listaZawodnikow")
+    public ResponseEntity<List<ZawodnikDTO2>> wyswietlObserwowanychZawodnikow(@RequestHeader(name = "Authorization") String authHeader) {
+        String token = authHeader.replace("Bearer ", "");
+        Long userId = jwtService.extractUserId(token);
+        List<ZawodnikDTO2> zawodnicy = obserwowaniZawodnicyMenadzeraService.GetListaObserwowanychZawodnikow(userId);
 
-/*    @GetMapping("/{id_Menadzer}/listaZawodnikow")
-    public ResponseEntity<List<ZawodnikByIdDTO>> getListaObserwowanych(@PathVariable long id_Menadzer){
-        List<ZawodnikByIdDTO> listaZawodnikow = obserwowaniZawodnicyMenadzeraService.listaObsZawodnikowMenadzera(id_Menadzer);
-        return ResponseEntity.ok(listaZawodnikow);
-    }*/
-/*
-    @GetMapping("/{idMenadzer}/listaZawodnikow")
-    public ResponseEntity<List<ZawodnikByIdDTO>> getListaObserwowanych(@PathVariable long idMenadzer) {
-        List<ZawodnikByIdDTO> zawodnicy = obserwowaniZawodnicyMenadzeraService.findZawodnicyMenadzera(idMenadzer);
         return ResponseEntity.ok(zawodnicy);
     }
-*/
+
 
 }

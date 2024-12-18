@@ -1,8 +1,5 @@
-package dev.projekt_inzynierski.service.ObserwowaniZawodnicy;
+package dev.projekt_inzynierski.service.Obserwowani_Zawodnicy;
 
-import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
-import dev.projekt_inzynierski.models.Kraj_pochodzenia;
-import dev.projekt_inzynierski.models.Obecny_klub;
 import dev.projekt_inzynierski.models.obserwowani_zawodnicy.ObserwowaniZawodnicySkautaId;
 import dev.projekt_inzynierski.models.obserwowani_zawodnicy.Obserwowani_Zawodnicy_Skauta;
 import dev.projekt_inzynierski.models.users.Skaut;
@@ -12,11 +9,6 @@ import dev.projekt_inzynierski.repository.User.SkautRepository;
 import dev.projekt_inzynierski.repository.User.ZawodnikRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class ObserwowaniZawodnicySkautaService {
