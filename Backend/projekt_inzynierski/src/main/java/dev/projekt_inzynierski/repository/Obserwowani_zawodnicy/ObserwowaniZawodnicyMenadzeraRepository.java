@@ -20,7 +20,7 @@ import java.util.Optional;
 public interface ObserwowaniZawodnicyMenadzeraRepository extends JpaRepository<Obserwowani_Zawodnicy_Menadzera,Long> {
     boolean existsByZawodnikAndMenadzerKlubu(Zawodnik zawodnik, Menadzer_klubu menadzerKlubu);
 
-    @Query("SELECT o.zawodnik FROM Obserwowani_Zawodnicy_Menadzera o WHERE o.menadzerKlubu.id_Uzytkownik = :idMenadzer")
+    @Query("SELECT o.zawodnik FROM Obserwowani_Zawodnicy_Menadzera o WHERE o.menadzerKlubu.id_Uzytkownik = :idMenadzer ORDER BY o.zawodnik.nazwisko")
     List<Zawodnik> findAllZawodnicyByMenadzerId(@Param("idMenadzer") Long idMenadzer);
 
     Optional<Obserwowani_Zawodnicy_Menadzera> findByZawodnikAndMenadzerKlubu(Zawodnik zawodnik, Menadzer_klubu menadzerKlubu);

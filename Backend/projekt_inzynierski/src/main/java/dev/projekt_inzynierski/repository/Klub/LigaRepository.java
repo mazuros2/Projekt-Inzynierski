@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface LigaRepository extends JpaRepository<Liga,Long> {
-    @Query("SELECT new dev.projekt_inzynierski.DTO.LigaDTO( l.id,l.nazwa_Ligi,l.poziom_Ligi)FROM Liga l")
+    @Query("SELECT new dev.projekt_inzynierski.DTO.LigaDTO( l.id,l.nazwa_Ligi,l.poziom_Ligi)FROM Liga l ORDER BY l.poziom_Ligi")
     List<LigaDTO> findAllLigaNames();
 }

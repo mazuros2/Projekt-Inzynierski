@@ -21,7 +21,7 @@ public interface ObserwowaniZawodnicySkautaRepository extends JpaRepository<Obse
 
     boolean existsByZawodnikAndSkaut(Zawodnik zawodnik, Skaut skaut);
 
-    @Query("SELECT o.zawodnik FROM Obserwowani_Zawodnicy_Skauta o WHERE o.skaut.id_Uzytkownik = :idSkaut")
+    @Query("SELECT o.zawodnik FROM Obserwowani_Zawodnicy_Skauta o WHERE o.skaut.id_Uzytkownik = :idSkaut ORDER BY o.zawodnik.nazwisko")
     List<Zawodnik> findAllZawodnicyBySkautId(@Param("idSkaut") Long idSkaut);
 
     Optional<Obserwowani_Zawodnicy_Skauta> findByZawodnikAndSkaut(Zawodnik zawodnik, Skaut skaut);
