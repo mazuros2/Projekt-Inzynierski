@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import dev.projekt_inzynierski.repository.User.ZawodnikRepository;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -84,7 +85,8 @@ public class ZawodnikService {
                     pozycjaDTO,
                     obecnyKlub.getKlub().getNazwa_klubu()
             );
-        }).collect(Collectors.toList());
+        }).sorted(Comparator.comparing(ZawodnikDTO2::getNazwisko))
+        .collect(Collectors.toList());
     }
 
 }

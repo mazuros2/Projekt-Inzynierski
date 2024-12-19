@@ -55,7 +55,7 @@ public class ObserwowaniZawodnicySkautaService {
         Zawodnik zawodnik = zawodnikRepository.findById(id_Zawodnik)
                 .orElseThrow(() -> new EntityNotFoundException("Nie można znaleźć zawodnika o takim id!"));
 
-        Obserwowani_Zawodnicy_Skauta obserwacja = obserwowaniZawodnicySkautaRepository.findByZawodnikAndSkautKlubu(zawodnik,skaut)
+        Obserwowani_Zawodnicy_Skauta obserwacja = obserwowaniZawodnicySkautaRepository.findByZawodnikAndSkaut(zawodnik,skaut)
                 .orElseThrow(() -> new EntityNotFoundException("Ten zawodnik nie jest na liście obserwowanych!"));
 
         obserwowaniZawodnicySkautaRepository.delete(obserwacja);

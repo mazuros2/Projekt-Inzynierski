@@ -17,10 +17,11 @@ public interface KlubRepository extends JpaRepository<Klub,Long> {
     @Query("SELECT new dev.projekt_inzynierski.DTO.KlubByIdDTO(" +
             "k.id, k.nazwa_klubu, k.rok_zalozenia, k.logo_url, " +
             "k.liga.id, k.liga.nazwa_Ligi) " +
-            "FROM Klub k")
+            "FROM Klub k " +
+            "ORDER BY k.nazwa_klubu ASC")
     List<KlubByIdDTO> getKluby();
 
-    @Query("SELECT new dev.projekt_inzynierski.DTO.KlubFromLigaDTO(k.id, k.nazwa_klubu,k.logo_url) FROM Klub k WHERE k.liga.id = :ligaId")
+    @Query("SELECT new dev.projekt_inzynierski.DTO.KlubFromLigaDTO(k.id, k.nazwa_klubu,k.logo_url) FROM Klub k WHERE k.liga.id = :ligaId ORDER BY k.nazwa_klubu")
     List<KlubFromLigaDTO> findAllByLigaId(@Param("ligaId") long ligaId);
 
     @Query("SELECT new dev.projekt_inzynierski.DTO.KlubByIdDTO(" +
@@ -42,6 +43,7 @@ public interface KlubRepository extends JpaRepository<Klub,Long> {
     JOIN Klub k ON k.id = uk.klub.id 
     WHERE uk.data_Do IS NULL 
     AND k.id = :id_klub
+    ORDER BY o.nazwisko
 """)
     List<ZawodnikDTO> findZawodnicyByIdKlub(@Param("id_klub") Long idKlub);
 

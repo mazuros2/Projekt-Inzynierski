@@ -4,6 +4,7 @@ import dev.projekt_inzynierski.DTO.KrajPochodzeniaDTO;
 import dev.projekt_inzynierski.repository.Kraj_pochodzeniaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,7 @@ public class Kraj_pochodzeniaService {
     public List<KrajPochodzeniaDTO> getAllKraje() {
         return kraj_pochodzeniaRepository.findAll().stream()
                 .map(kraj -> new KrajPochodzeniaDTO(kraj.getId_Kraj(), kraj.getNazwa(), kraj.getRegion()))
+                .sorted(Comparator.comparing(KrajPochodzeniaDTO::getNazwa))
                 .collect(Collectors.toList());
     }
 

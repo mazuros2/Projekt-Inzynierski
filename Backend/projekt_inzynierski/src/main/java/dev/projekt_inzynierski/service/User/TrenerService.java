@@ -7,6 +7,7 @@ import dev.projekt_inzynierski.repository.User.TrenerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -61,7 +62,8 @@ public class TrenerService {
                     trener.getTrenerKlub().getNazwa_klubu()
             );
 
-        }).collect(Collectors.toList());
+        }).sorted(Comparator.comparing(TrenerDTO2::getNazwisko))
+        .collect(Collectors.toList());
     }
 
     public TrenerDTO3 findByKlubId(long id_klub) {

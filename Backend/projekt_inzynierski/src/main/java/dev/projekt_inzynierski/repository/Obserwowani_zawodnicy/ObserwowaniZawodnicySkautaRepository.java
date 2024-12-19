@@ -24,6 +24,6 @@ public interface ObserwowaniZawodnicySkautaRepository extends JpaRepository<Obse
     @Query("SELECT o.zawodnik FROM Obserwowani_Zawodnicy_Skauta o WHERE o.skaut.id_Uzytkownik = :idSkaut")
     List<Zawodnik> findAllZawodnicyBySkautId(@Param("idSkaut") Long idSkaut);
 
-    Optional<Obserwowani_Zawodnicy_Skauta> findByZawodnikAndSkautKlubu(Zawodnik zawodnik, Skaut skaut);
+    Optional<Obserwowani_Zawodnicy_Skauta> findByZawodnikAndSkaut(Zawodnik zawodnik, Skaut skaut);
 
 }
