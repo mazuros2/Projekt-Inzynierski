@@ -14,6 +14,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ObserwowaniZawodnicyMenadzeraRepository extends JpaRepository<Obserwowani_Zawodnicy_Menadzera,Long> {
@@ -21,4 +22,6 @@ public interface ObserwowaniZawodnicyMenadzeraRepository extends JpaRepository<O
 
     @Query("SELECT o.zawodnik FROM Obserwowani_Zawodnicy_Menadzera o WHERE o.menadzerKlubu.id_Uzytkownik = :idMenadzer")
     List<Zawodnik> findAllZawodnicyByMenadzerId(@Param("idMenadzer") Long idMenadzer);
+
+    Optional<Obserwowani_Zawodnicy_Menadzera> findByZawodnikAndMenadzerKlubu(Zawodnik zawodnik, Menadzer_klubu menadzerKlubu);
 }

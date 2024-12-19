@@ -29,6 +29,15 @@ public class ObserwowaniZawodnicy_Menadzera_Controller {
         return ResponseEntity.ok("Zawodnik został dodany do obserwowanych.");
     }
 
+    @DeleteMapping("/usunZawodnika/{idZawodnika}")
+    public ResponseEntity<String> usunZawodnikazObserwowanych(@PathVariable long idZawodnika, @RequestHeader(name = "Authorization") String authHeader){
+        String token = authHeader.replace("Bearer ", "");
+        Long userId = jwtService.extractUserId(token);
+        obserwowaniZawodnicyMenadzeraService.usunZawodnikazListy(userId,idZawodnika);
+
+        return ResponseEntity.ok("Zawodnik został usunięty z obserwowanych.");
+    }
+
     @GetMapping("/listaZawodnikow")
     public ResponseEntity<List<ZawodnikDTO2>> wyswietlObserwowanychZawodnikow(@RequestHeader(name = "Authorization") String authHeader) {
         String token = authHeader.replace("Bearer ", "");

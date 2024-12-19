@@ -48,6 +48,20 @@ public class ObserwowaniZawodnicyMenadzeraService {
         obserwowaniZawodnicyMenadzeraRepository.save(obserwacja);
     }
 
+    public void usunZawodnikazListy(Long id_Menadzer, Long id_Zawodnik){
+        Menadzer_klubu menadzer_klubu = menadzer_klubuRepository.findById(id_Menadzer)
+                .orElseThrow(() -> new EntityNotFoundException("Nie można znaleźć menadżera klubu o takim id!"));
+
+        Zawodnik zawodnik = zawodnikRepository.findById(id_Zawodnik)
+                .orElseThrow(() -> new EntityNotFoundException("Nie można znaleźć zawodnika o takim id!"));
+
+        Obserwowani_Zawodnicy_Menadzera obserwacja = obserwowaniZawodnicyMenadzeraRepository
+                .findByZawodnikAndMenadzerKlubu(zawodnik, menadzer_klubu)
+                .orElseThrow(() -> new EntityNotFoundException("Ten zawodnik nie jest na liście obserwowanych!"));
+
+        obserwowaniZawodnicyMenadzeraRepository.delete(obserwacja);
+    }
+
     public List<ZawodnikDTO2> GetListaObserwowanychZawodnikow(Long idMenadzer) {
         List<Zawodnik> zawodnicy = obserwowaniZawodnicyMenadzeraRepository.findAllZawodnicyByMenadzerId(idMenadzer);
 
