@@ -3,6 +3,7 @@ package dev.projekt_inzynierski.repository.Obserwowani_zawodnicy;
 import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
 import dev.projekt_inzynierski.models.Klub;
 import dev.projekt_inzynierski.models.obserwowani_zawodnicy.ObserwowaniZawodnicySkautaId;
+import dev.projekt_inzynierski.models.obserwowani_zawodnicy.Obserwowani_Zawodnicy_Menadzera;
 import dev.projekt_inzynierski.models.obserwowani_zawodnicy.Obserwowani_Zawodnicy_Skauta;
 import dev.projekt_inzynierski.models.users.Menadzer_klubu;
 import dev.projekt_inzynierski.models.users.Skaut;
@@ -22,5 +23,7 @@ public interface ObserwowaniZawodnicySkautaRepository extends JpaRepository<Obse
 
     @Query("SELECT o.zawodnik FROM Obserwowani_Zawodnicy_Skauta o WHERE o.skaut.id_Uzytkownik = :idSkaut")
     List<Zawodnik> findAllZawodnicyBySkautId(@Param("idSkaut") Long idSkaut);
+
+    Optional<Obserwowani_Zawodnicy_Skauta> findByZawodnikAndSkautKlubu(Zawodnik zawodnik, Skaut skaut);
 
 }

@@ -4,10 +4,7 @@ import dev.projekt_inzynierski.DTO.KrajPochodzeniaDTO;
 import dev.projekt_inzynierski.DTO.PozycjaDTO;
 import dev.projekt_inzynierski.DTO.ZawodnikDTO2;
 import dev.projekt_inzynierski.models.Obecny_klub;
-import dev.projekt_inzynierski.models.obserwowani_zawodnicy.ObserwowaniZawodnicySkautaId;
-import dev.projekt_inzynierski.models.obserwowani_zawodnicy.Obserwowani_Zawodnicy_Menadzera;
 import dev.projekt_inzynierski.models.obserwowani_zawodnicy.Obserwowani_Zawodnicy_Skauta;
-import dev.projekt_inzynierski.models.users.Menadzer_klubu;
 import dev.projekt_inzynierski.models.users.Skaut;
 import dev.projekt_inzynierski.models.users.Zawodnik;
 import dev.projekt_inzynierski.repository.Obserwowani_zawodnicy.ObserwowaniZawodnicySkautaRepository;
@@ -33,37 +30,6 @@ public class ObserwowaniZawodnicySkautaService {
         this.skautRepository = skautRepository;
     }
 
-/*    public void dodanieZawodnikaDoListyObs(int id_Skaut, int id_Zawodnika){
-        Skaut skaut = skautRepository.findById(id_Skaut)
-                .orElseThrow( () -> new EntityNotFoundException("Nie można znaleźć skauta o takim id!"));
-
-        Zawodnik zawodnik = zawodnikRepository.findById(id_Zawodnika)
-                .orElseThrow( () -> new EntityNotFoundException("Nie można znaleźć zawodnika o takim id!"));
-
-        ObserwowaniZawodnicySkautaId id = new ObserwowaniZawodnicySkautaId();
-        id.setId_Skaut(id_Skaut);
-        id.setId_Zawodnik(id_Zawodnika);
-
-        Obserwowani_Zawodnicy_Skauta listaObserwowanychZawodnikow = new Obserwowani_Zawodnicy_Skauta();
-        listaObserwowanychZawodnikow.setId(id);
-        listaObserwowanychZawodnikow.setSkaut(skaut);
-        listaObserwowanychZawodnikow.setZawodnik(zawodnik);
-
-        obserwowaniZawodnicySkautaRepository.save(listaObserwowanychZawodnikow);
-    }*/
-
-/*    public void usunZawodnikaZListyObs(int id_Skaut, int id_Zawodnika){
-        ObserwowaniZawodnicySkautaId id = new ObserwowaniZawodnicySkautaId();
-        id.setId_Skaut(id_Skaut);
-        id.setId_Zawodnik(id_Zawodnika);
-
-        if(!obserwowaniZawodnicySkautaRepository.existsById(id)){
-            throw new EntityNotFoundException("Nie można znaleźć zawodnika o takim id na liście obserwowanych!");
-        }
-
-        obserwowaniZawodnicySkautaRepository.deleteById(id);
-    }*/
-
     public void dodanieZawodnikaDoListyObs(Long id_Skaut, Long id_Zawodnik) {
         Skaut skaut = skautRepository.findById(id_Skaut)
                 .orElseThrow(() -> new EntityNotFoundException("Nie można znaleźć skauta klubu o takim id!"));
@@ -80,6 +46,19 @@ public class ObserwowaniZawodnicySkautaService {
         obserwacja.setZawodnik(zawodnik);
         obserwacja.setSkaut(skaut);
         obserwowaniZawodnicySkautaRepository.save(obserwacja);
+    }
+
+    public void usunZawodnikazListy(Long id_Skaut, Long id_Zawodnik){
+        Skaut skaut = skautRepository.findById(id_Skaut)
+                .orElseThrow(() -> new EntityNotFoundException("Nie można znaleźć skauta klubu o takim id!"));
+
+        Zawodnik zawodnik = zawodnikRepository.findById(id_Zawodnik)
+                .orElseThrow(() -> new EntityNotFoundException("Nie można znaleźć zawodnika o takim id!"));
+
+        Obserwowani_Zawodnicy_Skauta obserwacja = obserwowaniZawodnicySkautaRepository.findByZawodnikAndSkautKlubu(zawodnik,skaut)
+                .orElseThrow(() -> new EntityNotFoundException("Ten zawodnik nie jest na liście obserwowanych!"));
+
+        obserwowaniZawodnicySkautaRepository.delete(obserwacja);
     }
 
     public List<ZawodnikDTO2> GetListaObserwowanychZawodnikow(Long id_Skaut) {
