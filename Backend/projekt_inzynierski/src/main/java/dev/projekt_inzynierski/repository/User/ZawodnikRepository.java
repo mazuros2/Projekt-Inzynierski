@@ -3,6 +3,7 @@ package dev.projekt_inzynierski.repository.User;
 import dev.projekt_inzynierski.DTO.KlubByIdDTO;
 import dev.projekt_inzynierski.DTO.ZawodnikByIdDTO;
 import dev.projekt_inzynierski.DTO.ZawodnikDTO;
+import dev.projekt_inzynierski.DTO.ZawodnikIdKlubDTO;
 import dev.projekt_inzynierski.models.users.Zawodnik;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,4 +25,6 @@ public interface ZawodnikRepository extends JpaRepository<Zawodnik,Long> {
             "   OR LOWER(z.nazwisko) LIKE LOWER(:text)")
     List<ZawodnikDTO> findZawodnikByText(@Param("text") String text);
 
+    @Query("SELECT new dev.projekt_inzynierski.DTO.ZawodnikIdKlubDTO(k.id) FROM Obecny_klub ob JOIN Klub k ON k.id=ob.klub.id WHERE ob.zawodnik=:id_zawodnik AND ob.data_Do=null ")
+    ZawodnikIdKlubDTO znajdzIdKlubuZawodnika(long id_zawodnik);
 }
