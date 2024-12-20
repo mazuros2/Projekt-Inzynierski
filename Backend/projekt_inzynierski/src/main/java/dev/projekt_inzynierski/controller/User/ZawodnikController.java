@@ -38,7 +38,7 @@ public class ZawodnikController {
         List<ZawodnikDTO2> zawodnicy = zawodnikService.getAllZawodnicy();
         return ResponseEntity.ok(zawodnicy);
     }
-    @GetMapping("/findKlubIdByZawodnik/{id}")
+    @GetMapping("/findKlubIdByZawodnik/{id_zawodnik}")
     public ResponseEntity<ZawodnikIdKlubDTO> getIdKlubByZawodnik(@PathVariable Long id_zawodnik){
         ZawodnikIdKlubDTO zklid = zawodnikService.znajdzIdKlubuZawodnika(id_zawodnik);
         return ResponseEntity.ok(zklid);

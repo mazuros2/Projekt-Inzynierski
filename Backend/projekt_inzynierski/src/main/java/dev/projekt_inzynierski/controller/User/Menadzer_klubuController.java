@@ -22,7 +22,11 @@ public class Menadzer_klubuController {
         MenadzerDTO menadzerDetails = menadzer_klubuService.getMenadzerInfoById(id);
         return ResponseEntity.ok(menadzerDetails);
     }
-
+    @GetMapping("/getIdKlubuMenadzera/{id_menadzera}")
+    public ResponseEntity<Long> getIdKlubuMenadzera(@PathVariable Long id_menadzera){
+        Long idKlubuMenadzera = menadzer_klubuService.getIdKlubuMenadzera(id_menadzera);
+        return ResponseEntity.ok(idKlubuMenadzera);
+    }
     //metoda do stworzenia profilu zawodnika
     //metoda do stworzenia profilu skauta
     //metoda do stworzenia profilu trenera
