@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-import '../cssFolder/ZawodnikDetails.css'; 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
-const ZawodnikDetails = () => {
-  const { id } = useParams();
-  const [zawodnik, setZawodnik] = useState(null);
+const ListaObserwowanych = () => {
+  const [zawodnicy, setZawodnicy] = useState([]);
   const [error, setError] = useState("");
-  const [showSettings, setShowSettings] = useState(false);
-  const [isObserved, setIsObserved] = useState(false);
   const [userRole, setUserRole] = useState(null);
+  const [showSettings, setShowSettings] = useState(false);
   const navigate = useNavigate();
 
   const toggleSettings = () => {
@@ -28,83 +24,81 @@ const ZawodnikDetails = () => {
     navigate('/logowanie'); 
   };
 
-  const handleTransferClick = () => {
-    navigate(`/zawodnicy/${id}/transfer`);
-  };
-
   const getUserRole = () => {
     const token = sessionStorage.getItem("token");
     if (!token) return null;
 
     const decoded = jwtDecode(token);
-    return decoded.role; 
+    return decoded.role;
   };
+
 
   useEffect(() => {
     const role = getUserRole();
     setUserRole(role);
 
     const token = sessionStorage.getItem("token");
-
     if (!token) {
       setError("Brak tokena. Zaloguj się ponownie.");
       return;
     }
 
+    const endpoint =
+      role === "ROLE_MENADZER_KLUBU"
+        ? "http://localhost:8080/api/skautingZawodnika/menadzer/listaZawodnikow"
+        : "http://localhost:8080/api/skautingZawodnika/skaut/listaZawodnikow";
+
     axios
-      .get(`http://localhost:8080/zawodnicy/profil/${id}`, {
+      .get(endpoint, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
-        setZawodnik(response.data);
+        setZawodnicy(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching zawodnik details:", error);
-        setError("Błąd podczas pobierania danych zawodnika.");
+        console.error("Błąd podczas pobierania listy zawodników:", error);
+        setError("Błąd podczas pobierania listy zawodników.");
       });
-  }, [id]);
+  }, []);
 
-  const handleObserwujClick = () => {
+  const handleUsunClick = (idZawodnika) => {
     const token = sessionStorage.getItem("token");
-  
     if (!token) {
       setError("Brak tokena. Zaloguj się ponownie.");
       return;
     }
   
-    const endpoint = 
+    const endpoint =
       userRole === "ROLE_MENADZER_KLUBU"
-        ? `http://localhost:8080/api/skautingZawodnika/menadzer/dodajZawodnika/${id}`
-        : `http://localhost:8080/api/skautingZawodnika/skaut/dodajZawodnika/${id}`;
-
+        ? `http://localhost:8080/api/skautingZawodnika/menadzer/usunZawodnika/${idZawodnika}`
+        : `http://localhost:8080/api/skautingZawodnika/skaut/usunZawodnika/${idZawodnika}`;
+  
     axios
-      .post(endpoint, null, {
+      .delete(endpoint, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then(() => {
-        setIsObserved(true);
-        alert(`Zawodnik został dodany do obserwowanych przez ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżera" : "skauta"}.`);
+        alert("Zawodnik został usunięty z obserwowanych.");
+        setZawodnicy(zawodnicy.filter((zawodnik) => zawodnik.id !== idZawodnika));
       })
       .catch((error) => {
-        console.error("Błąd podczas dodawania zawodnika do obserwowanych:", error);
-        alert(`Nie udało się dodać zawodnika do obserwowanych przez ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżera" : "skauta"}.`);
+        console.error("Błąd podczas usuwania zawodnika z obserwowanych:", error);
+        alert("Nie udało się usunąć zawodnika z obserwowanych.");
       });
   };
+  
+
 
   if (error) {
     return <p className="error-message">{error}</p>;
   }
 
-  if (!zawodnik) {
-    return <p>Ładowanie danych zawodnika...</p>;
-  }
-
   return (
-    <div className="zawodnik-container">
+    <div>
       {/* Pasek nawigacyjny */}
       <div className="navbar">
         <Link to="/">
@@ -133,9 +127,9 @@ const ZawodnikDetails = () => {
             <div className="settings-menu">
               <ul>
                 <li onClick={() => navigate("/ligii")}>Ligii</li>
-                <li>Kluby</li>
+                <li onClick={() => navigate("/kluby")}>Kluby</li>
                 <li onClick={() => navigate('/zawodnicy')}>Zawodnicy</li>
-                <li onClick={() => navigate('/trenerzy')}>Trenerzy</li>
+                <li onClick={() => navigate("/trenerzy")}>Trenerzy</li>
                 <li onClick={() => navigate("/listaObserwowanych")}>Lista obserwowanych</li>
                 <li onClick={handleLogout}>Wyloguj</li>
               </ul>
@@ -143,39 +137,32 @@ const ZawodnikDetails = () => {
           )}
         </div>
       </div>
-      <div className="zawodnik-details-container">
-  <h1>Szczegóły zawodnika</h1>
-  
-  <ul>
-      <div className="user-profilowe">
-        {zawodnik.profiloweURL ? (
-          <img src={zawodnik.profiloweURL} />
-        ) : (
-          <p>Brak profilowego </p>
-        )}
-      </div>
-    <li><strong>Imię:</strong> {zawodnik.imie}</li>
-    <li><strong>Nazwisko:</strong> {zawodnik.nazwisko}</li>
-    <li><strong>Pozycja:</strong> {zawodnik.pozycja}</li>
-    <li><strong>Obecny klub:</strong> {zawodnik.obecnyKlub}</li>
-    <li><strong>Kraj:</strong> {zawodnik.krajePochodzenia}</li>
-    <li><strong>Data urodzenia:</strong> {zawodnik.dataUrodzenia}</li>
-    <li><strong>Wzrost:</strong> {zawodnik.wzrost}</li>
-    <li><strong>Waga:</strong> {zawodnik.waga}</li>
-  </ul>
-  <div className="button-container">
-    <button onClick={() => navigate(-1)}>Wróć</button>
-  </div>
-  <div className="transfer-button-container">
-    <button onClick={handleTransferClick}>Wyślij transfer</button>
-    <button onClick={handleObserwujClick} disabled={isObserved}>
-      {isObserved ? "Obserwujesz" : `Obserwuj jako ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżer" : "skaut"}`}
-    </button>
-  </div>
-</div>
 
+
+    <div className="lista-obserwowanych-container">
+      <h1>Lista Obserwowanych Zawodników</h1>
+      {zawodnicy.length === 0 ? (
+        <p>Brak obserwowanych zawodników.</p>
+      ) : (
+        <ul>
+          {zawodnicy.map((zawodnik) => (
+            <li key={zawodnik.id}>
+              <p>
+                <strong>Imię:</strong> {zawodnik.imie} <br />
+                <strong>Nazwisko:</strong> {zawodnik.nazwisko} <br />
+                <strong>Pozycja:</strong> {zawodnik.pozycja.nazwa_pozycji} <br />
+                <strong>Obecny klub:</strong> {zawodnik.obecnyKlub} <br />
+                <strong>Kraj pochodzenia: </strong>{zawodnik.krajPochodzenia.map((kraj) => kraj.nazwa).join(', ')}
+              </p>
+              <button onClick={() => navigate(`/zawodnicy/profil/${zawodnik.id}`)}>Profil Zawodnika</button>
+              <button onClick={() => handleUsunClick(zawodnik.id)}>Usuń z obserwowanych</button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
     </div>
   );
 };
 
-export default ZawodnikDetails;
+export default ListaObserwowanych;

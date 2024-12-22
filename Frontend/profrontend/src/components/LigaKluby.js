@@ -86,7 +86,7 @@ const LigaKluby = () => {
                 <li>Kluby</li>
                 <li onClick={() => navigate('/zawodnicy')}>Zawodnicy</li>
                 <li onClick={() => navigate('/trenerzy')}>Trenerzy</li>
-                <li>Lista obserwowanych</li>
+                <li onClick={() => navigate("/listaObserwowanych")}>Lista obserwowanych</li>
                 <li onClick={handleLogout}>Wyloguj</li>
               </ul>
             </div>

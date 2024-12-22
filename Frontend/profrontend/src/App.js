@@ -18,7 +18,7 @@ import RegisterMenadzer from './components/RegisterMenadzer.js';
 import Trenerzy from './components/Trenerzy.js';
 import TrenerDetails from './components/TrenerDetails.js';
 import Zawodnicy from './components/Zawodnicy.js';
-
+import ObserwowaniZawodnicy from './components/ObserwowaniZawodnicy.js';
 
 function App() {
   return (
@@ -41,6 +41,7 @@ function App() {
         <Route path="/trenerzy" element={<Trenerzy />} />
         <Route path="/trener/profil/:id" element={<TrenerDetails />} />
         <Route path="/zawodnicy" element={<Zawodnicy />} />
+        <Route path="/listaObserwowanych" element={<ObserwowaniZawodnicy />} />
       </Routes>
     </Router>
   );

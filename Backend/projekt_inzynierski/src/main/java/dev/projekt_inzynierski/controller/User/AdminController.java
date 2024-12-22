@@ -6,6 +6,7 @@ import dev.projekt_inzynierski.DTO.Register.RegisterTrenerDTO;
 import dev.projekt_inzynierski.DTO.Register.RegisterZawodnikDTO;
 import dev.projekt_inzynierski.service.User.AdminService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,5 @@ public class AdminController {
         adminService.createMenadzer(request);
         return ResponseEntity.ok("Konto Zawodnika zostało stworzone!");
     }
-
 
 }
