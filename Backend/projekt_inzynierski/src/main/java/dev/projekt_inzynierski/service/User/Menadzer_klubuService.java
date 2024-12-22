@@ -39,5 +39,7 @@ public class Menadzer_klubuService {
                 klub
         );
     }
-
+    public Long getIdKlubuMenadzera(Long id_menadzera){
+        return menadzer_klubuRepository.getIdKlubuMenadzera(id_menadzera);
+    }
 }

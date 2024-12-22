@@ -88,5 +88,8 @@ public class ZawodnikService {
         }).sorted(Comparator.comparing(ZawodnikDTO2::getNazwisko))
         .collect(Collectors.toList());
     }
-
+    public ZawodnikIdKlubDTO znajdzIdKlubuZawodnika(long id_zawodnik){
+        ZawodnikIdKlubDTO zid = zawodnikRepository.znajdzIdKlubuZawodnika(id_zawodnik);
+        return zid;
+    }
 }
