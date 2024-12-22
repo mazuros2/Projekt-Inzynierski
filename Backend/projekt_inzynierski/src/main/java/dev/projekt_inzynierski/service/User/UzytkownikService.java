@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.service.User;
 
+import dev.projekt_inzynierski.DTO.UzytkownikDTO2;
 import dev.projekt_inzynierski.models.users.Uzytkownik;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,28 @@ public class UzytkownikService {
 
     public Optional<Uzytkownik> findUzytkownikById(Long id) {
         return uzytkownikRepository.findById(id);
+    }
+
+    public void zmienDaneUzytkownika(long id, UzytkownikDTO2 uzytkownikDTO2) {
+        Uzytkownik uzytkownik = uzytkownikRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Użytkownik o podanym ID nie istnieje!"));
+
+        if (uzytkownikDTO2.getLogin() != null) {
+            uzytkownik.setLogin(uzytkownikDTO2.getLogin());
+        }
+
+        if (uzytkownikDTO2.getHaslo() != null) {
+            uzytkownik.setHaslo(passwordEncoder.encode(uzytkownikDTO2.getHaslo()));
+        }
+
+        if (uzytkownikDTO2.getEmail() != null) {
+            uzytkownik.setEmail(uzytkownikDTO2.getEmail());
+        }
+
+        if (uzytkownikDTO2.getProfiloweURL() != null) {
+            uzytkownik.setProfiloweURL(uzytkownikDTO2.getProfiloweURL());
+        }
+        uzytkownikRepository.save(uzytkownik);
     }
 
 }
