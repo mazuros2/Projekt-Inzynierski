@@ -152,7 +152,6 @@ const WszystkieKluby = () => {
           ))}
         </ul>
       )}
-      <button onClick={handleLogout}>Wyloguj</button>
     </div>
   );
 };

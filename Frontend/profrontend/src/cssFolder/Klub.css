@@ -3,6 +3,102 @@
     max-height: 300px;
 }
 
-.calyklub{
-    padding: 30px;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.calyklub {
+    padding: 20px 30px 20px; 
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-sizing: border-box;
+}
+
+.logo-info {
+    display: flex;
+    flex-direction: row; 
+    gap: 20px; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.logo-info-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.klub-logo-container {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.klub-details-list {
+    flex: 2;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 24px;
+}
+
+.klub-details-list li {
+    margin: 10px 0;
+}
+
+.zawodnicy, .trofea, .trener {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.zawodnicy-list, .trofea-list, .trener-details-list {
+    list-style: none;
+    padding: 0;
+}
+
+.zawodnicy-list li, .trofea-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.zawodnicy-list li:last-child, .trofea-list li:last-child {
+    border-bottom: none;
+}
+
+.zawodnicy-list a, .trener-link {
+    text-decoration: none;
+    color: #b00;
+    font-weight: bold;
+}
+
+.zawodnicy-list a:hover, .trener-link:hover {
+    text-decoration: none;
+}
+
+.back-button-container {
+    text-align: center;
+}
+
+.back-button {
+    background-color: #b00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: rgb(145, 4, 16);
 }

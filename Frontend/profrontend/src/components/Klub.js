@@ -143,9 +143,12 @@ const Klub = () => {
           )}
         </div>
       </div>
-      <h1>Szczegóły Klubu</h1>
+      
+      {/*<h1>Szczegóły Klubu</h1>*/}
       <div className='calyklub'> 
       {/* Szczegóły klubu */}
+      <div className='logo-info-container'>
+      <div className='logo-info'>
       <div className="klub-logo-container">
         {klub.logo_url ? (
           <img src={klub.logo_url} alt={klub.nazwaKlubu} className="klub-logo-central" />
@@ -154,28 +157,12 @@ const Klub = () => {
         )}
       </div>
       <ul className="klub-details-list">
-        <li><strong>ID:</strong> {klub.id || "Brak"}</li>
+        {/*<li><strong>ID:</strong> {klub.id || "Brak"}</li> */}
         <li><strong>Nazwa klubu:</strong> {klub.nazwaKlubu || "Brak"}</li>
         <li><strong>Rok założenia:</strong> {klub.rokZalozenia || "Brak"}</li>
         <li><strong>Obecna liga klubu:</strong> {klub.ligaNazwaLigi || "Brak"}</li>
       </ul>
-
-      {/* Wyświetlanie zawodników */}
-      <div className="zawodnicy">
-        <h2>Zawodnicy</h2>
-        {zawodnicy.length > 0 ? (
-          <ul className="zawodnicy-list">
-            {zawodnicy.map((zawodnik) => (
-              <li key={zawodnik.id}>
-                <Link to={`/zawodnicy/profil/${zawodnik.id}`}>
-                  <strong>{zawodnik.imie} {zawodnik.nazwisko}</strong>
-                </Link> - {zawodnik.pozycja}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Brak zawodników w tym klubie</p>
-        )}
+      </div>
       </div>
 
       {/* Wyświetlanie trofeów */}
@@ -209,6 +196,24 @@ const Klub = () => {
           </ul>
         ) : (
           <p>Brak danych o trenerze</p>
+        )}
+      </div>
+
+      {/* Wyświetlanie zawodników */}
+      <div className="zawodnicy">
+        <h2>Zawodnicy</h2>
+        {zawodnicy.length > 0 ? (
+          <ul className="zawodnicy-list">
+            {zawodnicy.map((zawodnik) => (
+              <li key={zawodnik.id}>
+                <Link to={`/zawodnicy/profil/${zawodnik.id}`}>
+                  <strong>{zawodnik.imie} {zawodnik.nazwisko}</strong>
+                </Link> - {zawodnik.pozycja}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Brak zawodników w tym klubie</p>
         )}
       </div>
 
