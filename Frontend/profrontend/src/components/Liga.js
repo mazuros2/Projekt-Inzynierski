@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import '../cssFolder/Liga.css'
 
 const Liga = () => {
   const [liga, setLiga] = useState([]);
@@ -83,22 +84,22 @@ const Liga = () => {
             </div>
 
             <h1>Wszystkie ligii</h1>
-      {liga.length === 0 ? (
-        <p>Brak danych</p>
-      ) : (
-        <ul>
-          {liga.map((liga) => (
-            <li key={liga.id}>
-              <Link to={`${liga.id}/kluby`}>
-                <strong>Nazwa ligi:</strong> {liga.nazwaLigi || "Brak"}
-              </Link>
-              <br />
-              <strong>Poziom Ligi:</strong> {liga.poziomLigi || "Brak"}
-              <br />
-            </li>
-          ))}
-        </ul>
-      )}
+            {liga.length === 0 ? (
+            <p>Brak danych</p>
+            ) : (
+            <ul className="liga-list">
+              {liga.map((liga) => (
+                <li key={liga.id} className="liga-item">
+                  <Link to={`${liga.id}/kluby`} className="liga-link">
+                    <strong>Nazwa ligi:</strong> {liga.nazwaLigi || "Brak"}
+                  </Link>
+                <br />
+                <strong>Poziom Ligi:</strong> {liga.poziomLigi || "Brak"}
+                <br />
+              </li>
+            ))}
+          </ul>
+        )}
     </div>
 );
 }

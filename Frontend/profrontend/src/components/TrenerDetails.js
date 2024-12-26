@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-
+import '../cssFolder/TrenerDetails.css'
 
 const TrenerDetails = () => {
   const { id } = useParams();
@@ -89,20 +89,31 @@ const TrenerDetails = () => {
       </div>
       
       <h1>Profil Trenera</h1>
-      <div className="user-profilowe">
-        {trener.profiloweURL ? (
-          <img src={trener.profiloweURL} />
-        ) : (
-          <p>Brak profilowego </p>
-        )}
+      
+      <div className ="profilowe-info">
+        <div className="user-profilowe">
+          {trener.profiloweURL ? (
+            <img src={trener.profiloweURL} />
+          ) : (
+           <p>Brak profilowego </p>
+          )}
+        </div>
+      
+        <div className ="info">
+          <p><strong>Imię:</strong> {trener.imie}</p>
+          <p><strong>Nazwisko:</strong> {trener.nazwisko}</p>
+          <p><strong>Data urodzenia:</strong> {trener.dataUrodzenia}</p>
+          <p><strong>Kraje pochodzenia:</strong> {trener.krajePochodzenia.join(', ')}</p>
+          <p><strong>Licencja:</strong> {trener.licencjaTrenera}</p>
+          <p><strong>Klub:</strong> {trener.klub}</p>
+        </div>
       </div>
-      <p><strong>Imię:</strong> {trener.imie}</p>
-      <p><strong>Nazwisko:</strong> {trener.nazwisko}</p>
-      <p><strong>Data urodzenia:</strong> {trener.dataUrodzenia}</p>
-      <p><strong>Kraje pochodzenia:</strong> {trener.krajePochodzenia.join(', ')}</p>
-      <p><strong>Licencja:</strong> {trener.licencjaTrenera}</p>
-      <p><strong>Klub:</strong> {trener.klub}</p>
-      <button onClick={() => navigate(-1)}>Wróć</button>
+      
+
+      <div className='back-button-container'>
+        <button onClick={() => navigate(-1)} className="back-button">Wróć</button> 
+      </div>
+      
     </div>
   );
 };

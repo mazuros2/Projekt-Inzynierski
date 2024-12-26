@@ -347,7 +347,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.liga(Ekstraklasa)
 				.trofea(new ArrayList<>())
 				.setObecnyKlub(new HashSet<>())
-				.logo_url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkolGfLUeNumFwx_mPaq7KONaaRhtLTiv6ow&s")
+				.logo_url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/RKS_Rak%C3%B3w_Cz%C4%99stochowa.svg/1200px-RKS_Rak%C3%B3w_Cz%C4%99stochowa.svg.png")
 				.build();
 
 		Klub ZaglebieLubin = Klub.builder()
@@ -680,7 +680,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pesel(987654321)
 				.haslo(passwordEncoder.encode("trener123"))
 				.role(Role.TRENER)
-				.kraj_pochodzenia(Set.of(PL))
+				.kraj_pochodzenia(Set.of(PT))
 				.licencja_trenera("UEFA PRO")
 				.profiloweURL("https://img.a.transfermarkt.technology/portrait/big/40996-1697407122.JPG?lm=1")
 				.trenerKlub(LegiaWarszawa)

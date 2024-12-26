@@ -50,7 +50,6 @@ const LoginForm = () => {
           alt="Logo"
           className="navbar-logo"
         />
-        <h1 className="navbar-title">Logowanie</h1>
         <div className="navigation">
           <button className="nav-button">Strona główna</button>
           <button className="nav-button active">Logowanie</button>
