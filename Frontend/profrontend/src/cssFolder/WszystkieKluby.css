@@ -83,7 +83,7 @@ h1 {
 /* Opcjonalnie: stylizacja na hover */
 .klub-details a:hover {
   color: #b00; /* kolor na hover */
-  text-decoration: underline; /* podkreślenie na hover*/
+  text-decoration: none; /* podkreślenie na hover*/
 }
 
 .icons-container{

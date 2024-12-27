@@ -107,7 +107,7 @@ const LigaKluby = () => {
                 <span className="klub-logo">
                   <img src={klub.logo_url} alt={klub.nazwaKlubu} />
                 </span>
-                <Link to={`/klub/${klub.id}`}>
+                <Link to={`/klub/${klub.id}`} className="klub-link">
                   {klub.nazwaKlubu || "Brak"}
                 </Link>
               </div>
