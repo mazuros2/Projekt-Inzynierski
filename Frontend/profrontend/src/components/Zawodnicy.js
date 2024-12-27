@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-
+import '../cssFolder/Navbar.css'; 
+import '../cssFolder/ZawodnicyiTrenerzyFilter.css';
 
 const WyswietlanieZawodnikow = () => {
   const navigate = useNavigate();
@@ -98,7 +99,7 @@ const WyswietlanieZawodnikow = () => {
   };
 
   return (
-    <div>
+    <div className="allMain">
       
       {/* Pasek nawigacyjny */}
             <div className="navbar">
@@ -139,8 +140,7 @@ const WyswietlanieZawodnikow = () => {
       
       <h1>Lista Zawodników</h1>
       
-      <div>
-        <h3>Filtry</h3>
+      <div className="filters-container">
         <input type="text" name="imie" placeholder="Imię" onChange={handleInputChange} />
         <input type="text" name="nazwisko" placeholder="Nazwisko" onChange={handleInputChange} />
         <select name="obszar" onChange={handleInputChange}>
@@ -169,20 +169,22 @@ const WyswietlanieZawodnikow = () => {
         </select>
       </div>
 
-      <h2>Lista Zawodników</h2>
       {filterZawodnicy().length > 0 ? (
         <ul>
           {filterZawodnicy().map((zawodnik) => (
-            <li key={zawodnik.id}>
-              <h3>{zawodnik.imie} {zawodnik.nazwisko}</h3>
-              <p>Pozycja: {zawodnik.pozycja?.nazwa_pozycji}</p>
-              <p>Obszar: {zawodnik.pozycja?.obszar_pozycji}</p>
-              <p>Region: {zawodnik.krajPochodzenia.map((kraj) => kraj.region).join(', ')}</p>
-              <p>Kraj: {zawodnik.krajPochodzenia.map((kraj) => kraj.nazwa).join(', ')}</p>
-              <button onClick={() => navigate(`/zawodnicy/profil/${zawodnik.id}`)}>Zobacz szczegóły</button>
-            </li>
-          ))}
-        </ul>
+          <li key={zawodnik.id} className="user-filter-container">
+          <div className="user-filter-info">
+            <p><strong>Imię:</strong> {zawodnik.imie}</p>
+            <p><strong>Nazwisko:</strong> {zawodnik.nazwisko}</p>
+            <p><strong>Pozycja:</strong> {zawodnik.pozycja?.nazwa_pozycji}</p>
+            <p><strong>Obszar:</strong> {zawodnik.pozycja?.obszar_pozycji}</p>
+            <p><strong>Kraj:</strong> {zawodnik.krajPochodzenia.map((kraj) => kraj.nazwa).join(', ')}</p>
+          </div>
+          <button className="user-filter-button" onClick={() => navigate(`/zawodnicy/profil/${zawodnik.id}`)}>Zobacz szczegóły</button>
+        </li>
+      ))}
+    </ul>
+      
       ) : (
         <p>Brak zawodników spełniających kryteria wyszukiwania.</p>
       )}

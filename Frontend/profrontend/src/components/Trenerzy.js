@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-
+import '../cssFolder/Navbar.css'; 
+import '../cssFolder/ZawodnicyiTrenerzyFilter.css';
 
 const Trenerzy = () => {
   const [trenerzy, setTrenerzy] = useState([]);
@@ -121,8 +122,7 @@ const Trenerzy = () => {
         </div>
       </div>
       <h1>Lista Trenerów</h1>
-       <div>
-       <h3>Filtry</h3>
+      <div className="filters-container">
         <input type="text" name="imie" placeholder="Imię" onChange={handleInputChange} />
         <input type="text" name="nazwisko" placeholder="Nazwisko" onChange={handleInputChange} />
         <select name="region" onChange={handleInputChange}>
@@ -142,13 +142,16 @@ const Trenerzy = () => {
       {filterTrenerzy().length > 0 ? (
         <ul>
           {filterTrenerzy().map((trener) => (
-            <li key={trener.id}>
-              <h3>{trener.imie} {trener.nazwisko}</h3>
+            <li key={trener.id} className="user-filter-container">
+            <div className="user-filter-info">  
+              <p><strong>Imię:</strong> {trener.imie}</p>
+              <p><strong>Nazwisko:</strong> {trener.nazwisko}</p>
               <p><strong>Region:</strong> {trener.krajPochodzenia.map((kraj) => kraj.region).join(', ')}</p>
               <p><strong>Kraj:</strong> {trener.krajPochodzenia.map((kraj) => kraj.nazwa).join(', ')}</p>
               <p><strong>Licencja:</strong> {trener.licencjaTrenera || 'Brak danych'}</p>
               <p><strong>Klub:</strong> {trener.klub || 'Brak klubu'}</p>
-              <button onClick={() => navigate(`/trener/profil/${trener.id}`)}>Zobacz szczegóły</button>
+              <button className="user-filter-button" onClick ={() => navigate(`/trener/profil/${trener.id}`)}>Zobacz szczegóły</button>
+            </div>
             </li>
           ))}
         </ul>

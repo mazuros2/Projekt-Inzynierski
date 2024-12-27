@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../cssFolder/ZawodnikDetails.css'; 
 import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
+import '../cssFolder/Navbar.css'; 
 
 const ZawodnikDetails = () => {
   const { id } = useParams();
@@ -104,7 +105,7 @@ const ZawodnikDetails = () => {
   }
 
   return (
-    <div className="zawodnik-container">
+    <div>
       {/* Pasek nawigacyjny */}
       <div className="navbar">
         <Link to="/">
