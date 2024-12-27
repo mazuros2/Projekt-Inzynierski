@@ -136,8 +136,9 @@ const UserProfile = () => {
         )}
         
         <div className = "buttons">
-        <button onClick={handleLogout}>Wyloguj</button>
-        <button>Zmiana danych</button>
+        <button onClick={handleLogout} className="logout-button">Wyloguj</button>
+        <button className = "data-button">Zmiana danych</button>
+        <button className = "panel-button">Admin panel</button>
         </div>
       
       </div>

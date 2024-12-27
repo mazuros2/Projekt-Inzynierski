@@ -33,3 +33,19 @@
     justify-content: center;
     align-items: center;
 }
+
+.data-button, .logout-button, .panel-button{
+    background-color: #b00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+.data-button:hover, .logout-button:hover, .panel-button:hover {
+    background-color: rgb(145, 4, 16);
+}
