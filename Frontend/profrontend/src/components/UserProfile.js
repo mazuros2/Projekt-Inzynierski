@@ -3,6 +3,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { Link, useNavigate } from 'react-router-dom';
 import '../cssFolder/Navbar.css'; // Stylowanie paska nawigacyjnego
+import '../cssFolder/UserProfile.css';
 
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
@@ -108,11 +109,19 @@ const UserProfile = () => {
 
       {/* Dane profilu użytkownika */}
       <div style={{ padding: '20px' }}>
-        <h2>Profil Użytkownika</h2>
+        
         {error ? (
           <div>{error}</div>
-        ) : userData ? (
-          <div>
+            ) : userData ? (
+          <div className="user-profile">
+              <div className="user-profilowe">
+                {userData.profiloweURL ? (
+                  <img src={userData.profiloweURL} />
+                  ) : (
+                  <p>Brak profilowego </p>
+                  )}
+              </div>
+          <div className="user-info">       
             <p><strong>Imię:</strong> {userData.imie}</p>
             <p><strong>Nazwisko:</strong> {userData.nazwisko}</p>
             <p><strong>Email:</strong> {userData.email}</p>
@@ -120,24 +129,17 @@ const UserProfile = () => {
             <p><strong>PESEL:</strong> {userData.pesel}</p>
             <p><strong>Data Urodzenia:</strong> {userData.data_Urodzenia}</p>
             <p><strong>Rola:</strong> {userData.role}</p>
-            {userData.profiloweURL && (
-              <div>
-                <img
-                  src={userData.profiloweURL}
-                  alt="Profilowe"
-                  style={{
-                    width: '150px',
-                    height: '150px',
-                    borderRadius: '50%',
-                  }}
-                />
-              </div>
-            )}
+            </div>
           </div>
         ) : (
           <div>Ładowanie danych...</div>
         )}
+        
+        <div className = "buttons">
         <button onClick={handleLogout}>Wyloguj</button>
+        <button>Zmiana danych</button>
+        </div>
+      
       </div>
     </div>
   );

@@ -1,8 +1,5 @@
-.trener-profil{
-    max-width: 100%;
-}
-
-.profilowe-info {
+.user-profile {
+    margin-top: 2%;
     max-width: 100%;
     display: flex;
     flex-direction: row;
@@ -15,12 +12,12 @@
     border-radius: 20px;
     background-color: #f9f9f9;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 
-.info{
+.user-info{
     padding: 20px;
     font-size: 20px;
-
 }
 
 .user-profilowe img { 
@@ -29,19 +26,10 @@
     border: 2px solid #ddd; 
 }
 
-
-.back-button {
-    margin-top: 10px;
-    background-color: #b00;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.back-button:hover {
-    background-color: rgb(145, 4, 16);
+.buttons{
+    margin-top: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
