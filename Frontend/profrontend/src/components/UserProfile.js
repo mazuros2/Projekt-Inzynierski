@@ -38,6 +38,10 @@ const UserProfile = () => {
     navigate('/user-profile');
   };
 
+  const goToAdminPanel = () => {
+    navigate('/adminPanel');
+}; 
+
   useEffect(() => {
     const userId = getUserIdFromToken();
 
@@ -138,7 +142,7 @@ const UserProfile = () => {
         <div className = "buttons">
         <button onClick={handleLogout} className="logout-button">Wyloguj</button>
         <button className = "data-button">Zmiana danych</button>
-        <button className = "panel-button">Admin panel</button>
+        <button onClick={goToAdminPanel} className = "panel-button">Admin panel</button>
         </div>
       
       </div>
