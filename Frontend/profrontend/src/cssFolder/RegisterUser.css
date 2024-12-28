@@ -22,7 +22,7 @@ label {
     color: #333;
 }
   
-input {
+.input-register {
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
@@ -30,7 +30,7 @@ input {
     font-size: 14px;
 }
   
-input:focus {
+.input-register:focus {
     border-color: #b00;
     outline: none;
 }

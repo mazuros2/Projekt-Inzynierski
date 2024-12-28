@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import "../cssFolder/RegisterUser.css";
 
 const RejestracjaZawodnika = () => {
   const navigate = useNavigate();
@@ -175,32 +176,166 @@ const RejestracjaZawodnika = () => {
                  )}
              </div>
          </div> 
-   <div>
-      <h1>Rejestracja Zawodnika</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="imie" placeholder="Imię" onChange={handleInputChange} required />
-        <input type="text" name="nazwisko" placeholder="Nazwisko" onChange={handleInputChange} required />
-        <input type="email" name="email" placeholder="Email" onChange={handleInputChange} required />
-        <input type="text" name="login" placeholder="Login" onChange={handleInputChange} required />
-        <input type="password" name="haslo" placeholder="Hasło" onChange={handleInputChange} required />
-        <input type="text" name="pesel" placeholder="PESEL" onChange={handleInputChange} required />
-        <input type="date" name="dataUrodzenia" onChange={handleInputChange} required />
-        <input type="number" name="waga" placeholder="Waga" onChange={handleInputChange} required />
-        <input type="number" name="wzrost" placeholder="Wzrost" onChange={handleInputChange} required />
+   
+   <h1>Rejestracja Zawodnika</h1>
+<form onSubmit={handleSubmit} className="form-container">
+  <div className="form-group">
+    <label>Imię:</label>
+    <input className="input-register"
+      type="text"
+      name="imie"
+      placeholder="Imię"
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Nazwisko:</label>
+    <input className="input-register"
+      type="text"
+      name="nazwisko"
+      placeholder="Nazwisko"
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Email:</label>
+    <input className="input-register"
+      type="email"
+      name="email"
+      placeholder="Email"
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Login:</label>
+    <input className="input-register"
+      type="text"
+      name="login"
+      placeholder="Login"
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Hasło:</label>
+    <input className="input-register"
+      type="password"
+      name="haslo"
+      placeholder="Hasło"
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>PESEL:</label>
+    <input className="input-register"
+      type="text"
+      name="pesel"
+      placeholder="PESEL"
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Data Urodzenia:</label>
+    <input className="input-register"
+      type="date"
+      name="dataUrodzenia"
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Waga:</label>
+    <input className="input-register"
+      type="number"
+      name="waga"
+      placeholder="Waga (kg)"
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Wzrost:</label>
+    <input className="input-register"
+      type="number"
+      name="wzrost"
+      placeholder="Wzrost (cm)"
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <button
+      type="button"
+      className="toggle-button"
+      onClick={() => setShowClubList(!showClubList)}
+    >
+      {showClubList ? "Ukryj listę klubów" : "Wybierz Klub"}
+    </button>
+    {showClubList && (
+      <ul className="dropdown-list">
+        {kluby.map((klub) => (
+          <li
+            key={klub.id}
+            onClick={() => handleClubSelect(klub.id, klub.nazwaKlubu)}
+          >
+            {klub.nazwaKlubu}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+  <div className="form-group">
+    <button
+      type="button"
+      className="toggle-button"
+      onClick={() => setShowPositionList(!showPositionList)}
+    >
+      {showPositionList ? "Ukryj listę pozycji" : "Wybierz Pozycję"}
+    </button>
+    {showPositionList && (
+      <ul className="dropdown-list">
+        {pozycje.map((pozycja) => (
+          <li
+            key={pozycja.id}
+            onClick={() => handlePositionSelect(pozycja.id_Pozycja, pozycja.nazwa_pozycji)}
+          >
+            {pozycja.nazwa_pozycji}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+  <div className="form-group">
+    <button
+      type="button"
+      className="toggle-button"
+      onClick={() => setShowCountryList(!showCountryList)}
+    >
+      {showCountryList ? "Ukryj listę krajów" : "Dodaj Kraj Pochodzenia"}
+    </button>
+    {showCountryList && (
+      <ul className="dropdown-list">
+        {kraje.map((kraj) => (
+          <li
+            key={kraj.id_Kraj}
+            onClick={() => handleCountrySelect(kraj.id_Kraj, kraj.nazwa)}
+          >
+            {kraj.nazwa}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+  <button type="submit" className="submit-button">Zarejestruj Zawodnika</button>
+</form>
 
-        <button type="button" onClick={() => setShowClubList(!showClubList)}>Wybierz Klub</button>
-        {showClubList && kluby.map(klub => <div key={klub.id} onClick={() => handleClubSelect(klub.id, klub.nazwaKlubu)}>{klub.nazwaKlubu}</div>)}
-
-        <button type="button" onClick={() => setShowPositionList(!showPositionList)}>Wybierz Pozycję</button>
-        {showPositionList && pozycje.map(pozycja => <div key={pozycja.id} onClick={() => handlePositionSelect(pozycja.id_Pozycja, pozycja.nazwa_pozycji)}>{pozycja.nazwa_pozycji}</div>)}
-
-        <button type="button" onClick={() => setShowCountryList(!showCountryList)}>Dodaj Kraj Pochodzenia</button>
-        {showCountryList && kraje.map(kraj => <div key={kraj.id_Kraj} onClick={() => handleCountrySelect(kraj.id_Kraj, kraj.nazwa)}>{kraj.nazwa}</div>)}
-
-        <button type="submit">Zarejestruj Zawodnika</button>
-      </form>
     </div>
-    </div>
+    
   );
 };
 

@@ -150,8 +150,8 @@ const Trenerzy = () => {
               <p><strong>Kraj:</strong> {trener.krajPochodzenia.map((kraj) => kraj.nazwa).join(', ')}</p>
               <p><strong>Licencja:</strong> {trener.licencjaTrenera || 'Brak danych'}</p>
               <p><strong>Klub:</strong> {trener.klub || 'Brak klubu'}</p>
+              </div>
               <button className="user-filter-button" onClick ={() => navigate(`/trener/profil/${trener.id}`)}>Zobacz szczegóły</button>
-            </div>
             </li>
           ))}
         </ul>

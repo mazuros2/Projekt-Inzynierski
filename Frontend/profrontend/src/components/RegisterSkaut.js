@@ -165,7 +165,7 @@ const RejestracjaSkauta = () => {
       <form onSubmit={handleSubmit} className="form-container">
       <div className="form-group">
           <label>Imię:</label>
-          <input
+          <input className="input-register"
             type="text"
             name="imie"
             value={formData.imie}
@@ -175,7 +175,7 @@ const RejestracjaSkauta = () => {
         </div>
         <div className="form-group">
           <label>Nazwisko:</label>
-          <input
+          <input className="input-register" 
             type="text"
             name="nazwisko"
             value={formData.nazwisko}
@@ -185,7 +185,7 @@ const RejestracjaSkauta = () => {
         </div>
         <div className="form-group">
           <label>Email:</label>
-          <input
+          <input className="input-register"
             type="email"
             name="email"
             value={formData.email}
@@ -195,7 +195,7 @@ const RejestracjaSkauta = () => {
         </div>
         <div className="form-group">
           <label>Login:</label>
-          <input
+          <input className="input-register"
             type="text"
             name="login"
             value={formData.login}
@@ -205,7 +205,7 @@ const RejestracjaSkauta = () => {
         </div>
         <div className="form-group">
           <label>Hasło:</label>
-          <input
+          <input className="input-register"
             type="password"
             name="haslo"
             value={formData.haslo}
@@ -215,7 +215,7 @@ const RejestracjaSkauta = () => {
         </div>
         <div className="form-group">
           <label>PESEL:</label>
-          <input
+          <input className="input-register"
             type="text"
             name="pesel"
             value={formData.pesel}
@@ -225,7 +225,7 @@ const RejestracjaSkauta = () => {
         </div>
         <div className="form-group">
           <label>Data Urodzenia:</label>
-          <input
+          <input className="input-register"
             type="date"
             name="dataUrodzenia"
             value={formData.dataUrodzenia}
