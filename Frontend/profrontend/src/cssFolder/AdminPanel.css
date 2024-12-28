@@ -1,14 +1,25 @@
 .admin-buttons-container {
     display: flex;
-    
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
 }
   
 .admin-button {
+    margin-left: 2%;
+    background-color: #b00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     
 }
   
 .admin-button:hover {
     transform: translateY(-5px); 
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); 
-    background-color: #fff; 
+    background-color: rgb(145, 4, 16);
 } 

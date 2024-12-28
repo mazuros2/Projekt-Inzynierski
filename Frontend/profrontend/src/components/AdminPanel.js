@@ -110,7 +110,7 @@ const AdminPanel = () => {
               </div>
         </div>
 
-        <div className="Admin-buttons-container">
+        <div className="admin-buttons-container">
             <button onClick={createZawodnik} className="admin-button">Stwórz profil Zawodnika</button>
             <button onClick={createTrener} className = "admin-button">Stwórz profil Trenera</button>
             <button onClick={createSkaut} className = "admin-button">Stwórz profil Skauta</button>
