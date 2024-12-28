@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import "../cssFolder/RegisterUser.css";
+import "../cssFolder/Navbar.css";
 
 const RejestracjaMenadzera = () => {
   const navigate = useNavigate();
@@ -160,108 +162,123 @@ const RejestracjaMenadzera = () => {
             </div>
         </div>
 
-      <h1>Rejestracja Menadzera</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Imię:</label>
-          <input
-            type="text"
-            name="imie"
-            value={formData.imie}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Nazwisko:</label>
-          <input
-            type="text"
-            name="nazwisko"
-            value={formData.nazwisko}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Login:</label>
-          <input
-            type="text"
-            name="login"
-            value={formData.login}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Hasło:</label>
-          <input
-            type="password"
-            name="haslo"
-            value={formData.haslo}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>PESEL:</label>
-          <input
-            type="text"
-            name="pesel"
-            value={formData.pesel}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Data Urodzenia:</label>
-          <input
-            type="date"
-            name="dataUrodzenia"
-            value={formData.dataUrodzenia}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <button type="button" onClick={() => setShowClubList(!showClubList)}>
-            {showClubList ? "Ukryj listę klubów" : "Pokaż listę klubów"}
-          </button>
-          {showClubList && (
-            <ul>
-              {kluby.map((klub) => (
-                <li key={klub.id} onClick={() => handleClubSelect(klub.id, klub.nazwaKlubu)}>
-                  {klub.nazwaKlubu}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <div>
-          <button type="button" onClick={() => setShowCountryList(!showCountryList)}>
-            {showCountryList ? "Ukryj listę krajów" : "Pokaż listę krajów"}
-          </button>
-          {showCountryList && (
-            <ul>
-              {kraje.map((kraj) => (
-                <li key={kraj.id_Kraj} onClick={() => handleCountrySelect(kraj.id_Kraj, kraj.nazwa)}>
-                  {kraj.nazwa}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <button type="submit">Zarejestruj Menadzera</button>
-      </form>
+        <h1>Rejestracja Menadzera</h1>
+        <form onSubmit={handleSubmit} className="form-container">
+  <div className="form-group">
+    <label>Imię:</label>
+    <input
+      type="text"
+      name="imie"
+      value={formData.imie}
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Nazwisko:</label>
+    <input
+      type="text"
+      name="nazwisko"
+      value={formData.nazwisko}
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Email:</label>
+    <input
+      type="email"
+      name="email"
+      value={formData.email}
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Login:</label>
+    <input
+      type="text"
+      name="login"
+      value={formData.login}
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Hasło:</label>
+    <input
+      type="password"
+      name="haslo"
+      value={formData.haslo}
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>PESEL:</label>
+    <input
+      type="text"
+      name="pesel"
+      value={formData.pesel}
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>Data Urodzenia:</label>
+    <input
+      type="date"
+      name="dataUrodzenia"
+      value={formData.dataUrodzenia}
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <button
+      type="button"
+      className="toggle-button"
+      onClick={() => setShowClubList(!showClubList)}
+    >
+      {showClubList ? "Ukryj listę klubów" : "Pokaż listę klubów"}
+    </button>
+    {showClubList && (
+      <ul className="dropdown-list">
+        {kluby.map((klub) => (
+          <li
+            key={klub.id}
+            onClick={() => handleClubSelect(klub.id, klub.nazwaKlubu)}
+          >
+            {klub.nazwaKlubu}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+  <div className="form-group">
+    <button
+      type="button"
+      className="toggle-button"
+      onClick={() => setShowCountryList(!showCountryList)}
+    >
+      {showCountryList ? "Ukryj listę krajów" : "Pokaż listę krajów"}
+    </button>
+    {showCountryList && (
+      <ul className="dropdown-list">
+        {kraje.map((kraj) => (
+          <li
+            key={kraj.id_Kraj}
+            onClick={() => handleCountrySelect(kraj.id_Kraj, kraj.nazwa)}
+          >
+            {kraj.nazwa}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+  <button type="submit" className="submit-button">Zarejestruj Menadzera</button>
+</form>
+            
     </div>
   );
 };

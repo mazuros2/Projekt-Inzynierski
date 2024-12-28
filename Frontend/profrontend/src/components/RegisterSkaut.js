@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-
+import "../cssFolder/RegisterUser.css";
 
 const RejestracjaSkauta = () => {
   const navigate = useNavigate();
@@ -162,8 +162,8 @@ const RejestracjaSkauta = () => {
       </div>        
 
       <h1>Rejestracja Skauta</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form onSubmit={handleSubmit} className="form-container">
+      <div className="form-group">
           <label>Imię:</label>
           <input
             type="text"
@@ -173,7 +173,7 @@ const RejestracjaSkauta = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Nazwisko:</label>
           <input
             type="text"
@@ -183,7 +183,7 @@ const RejestracjaSkauta = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
@@ -193,7 +193,7 @@ const RejestracjaSkauta = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Login:</label>
           <input
             type="text"
@@ -203,7 +203,7 @@ const RejestracjaSkauta = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Hasło:</label>
           <input
             type="password"
@@ -213,7 +213,7 @@ const RejestracjaSkauta = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>PESEL:</label>
           <input
             type="text"
@@ -223,7 +223,7 @@ const RejestracjaSkauta = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Data Urodzenia:</label>
           <input
             type="date"
@@ -233,12 +233,12 @@ const RejestracjaSkauta = () => {
             required
           />
         </div>
-        <div>
-          <button type="button" onClick={() => setShowClubList(!showClubList)}>
+        <div className="form-group">
+          <button type="button" className="toggle-button" onClick={() => setShowClubList(!showClubList)}>
             {showClubList ? "Ukryj listę klubów" : "Pokaż listę klubów"}
           </button>
           {showClubList && (
-            <ul>
+            <ul className="dropdown-list">
               {kluby.map((klub) => (
                 <li key={klub.id} onClick={() => handleClubSelect(klub.id, klub.nazwaKlubu)}>
                   {klub.nazwaKlubu}
@@ -247,12 +247,12 @@ const RejestracjaSkauta = () => {
             </ul>
           )}
         </div>
-        <div>
-          <button type="button" onClick={() => setShowCountryList(!showCountryList)}>
+        <div className="form-group">
+          <button type="button" className="toggle-button" onClick={() => setShowCountryList(!showCountryList)}>
             {showCountryList ? "Ukryj listę krajów" : "Pokaż listę krajów"}
           </button>
           {showCountryList && (
-            <ul>
+            <ul className="dropdown-list">
               {kraje.map((kraj) => (
                 <li key={kraj.id_Kraj} onClick={() => handleCountrySelect(kraj.id_Kraj, kraj.nazwa)}>
                   {kraj.nazwa}
@@ -261,7 +261,7 @@ const RejestracjaSkauta = () => {
             </ul>
           )}
         </div>
-        <button type="submit">Zarejestruj Skauta</button>
+        <button type="submit" className="submit-button">Zarejestruj Skauta</button>
       </form>
     </div>
   );
