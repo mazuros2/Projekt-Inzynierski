@@ -1,0 +1,43 @@
+.zawodnicy-obs-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-left: 3%;
+    margin-right: 5%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.zawodnicy-obs-info{
+    display: flex;
+    gap: 15px; 
+    flex-direction: row;
+
+}
+
+.zawodnicy-obs-info p{
+    margin: 0;
+    min-width: 225px;
+
+}
+
+.zawodnicy-obs-buttons{
+    margin-left: auto;
+}
+
+.obs-button {
+    background-color: #b00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.obs-button:hover {
+    background-color: rgb(145, 4, 16);
+}

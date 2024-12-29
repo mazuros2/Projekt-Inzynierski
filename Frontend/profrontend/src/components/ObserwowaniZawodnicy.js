@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
+import '../cssFolder/ObserwowaniZawodnicy.css';
 
 const ListaObserwowanych = () => {
   const [zawodnicy, setZawodnicy] = useState([]);
@@ -139,14 +140,15 @@ const ListaObserwowanych = () => {
       </div>
 
 
-    <div className="lista-obserwowanych-container">
+    
       <h1>Lista Obserwowanych Zawodników</h1>
       {zawodnicy.length === 0 ? (
         <p>Brak obserwowanych zawodników.</p>
       ) : (
         <ul>
           {zawodnicy.map((zawodnik) => (
-            <li key={zawodnik.id}>
+            <li key={zawodnik.id} className="zawodnicy-obs-container">
+              <div className="zawodnicy-obs-info">
               <p>
                 <strong>Imię:</strong> {zawodnik.imie} <br />
                 <strong>Nazwisko:</strong> {zawodnik.nazwisko} <br />
@@ -154,14 +156,17 @@ const ListaObserwowanych = () => {
                 <strong>Obecny klub:</strong> {zawodnik.obecnyKlub} <br />
                 <strong>Kraj pochodzenia: </strong>{zawodnik.krajPochodzenia.map((kraj) => kraj.nazwa).join(', ')}
               </p>
-              <button onClick={() => navigate(`/zawodnicy/profil/${zawodnik.id}`)}>Profil Zawodnika</button>
-              <button onClick={() => handleUsunClick(zawodnik.id)}>Usuń z obserwowanych</button>
+              </div>
+              <div className="zawodnicy-obs-buttons">
+                <button className="obs-button" onClick={() => navigate(`/zawodnicy/profil/${zawodnik.id}`)}>Profil Zawodnika</button>
+                <button className="obs-button" onClick={() => handleUsunClick(zawodnik.id)}>Usuń z obserwowanych</button>
+              </div>
             </li>
           ))}
         </ul>
       )}
     </div>
-    </div>
+    
   );
 };
 
