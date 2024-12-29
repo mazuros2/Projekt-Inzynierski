@@ -14,7 +14,8 @@ const Trenerzy = () => {
   });
 
   const navigate = useNavigate();
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const trenerzyPerPage = 12;
 
   const toggleSettings = () => {
     setShowSettings(!showSettings);
@@ -84,6 +85,21 @@ const Trenerzy = () => {
     });
   };
 
+  const getCurrentPageTrenerzy = () => {
+    const filteredTrenerzy = filterTrenerzy();
+    const startIndex = (currentPage - 1) * trenerzyPerPage;
+    return filteredTrenerzy.slice(startIndex, startIndex + trenerzyPerPage);
+  };
+
+  const totalPages = Math.ceil(filterTrenerzy().length / trenerzyPerPage);
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
+
   return (
     <div className="trenerzy-container">
       <div className="navbar">
@@ -139,9 +155,9 @@ const Trenerzy = () => {
         </select>
       </div>   
 
-      {filterTrenerzy().length > 0 ? (
+      {getCurrentPageTrenerzy().length > 0 ? (
         <ul>
-          {filterTrenerzy().map((trener) => (
+          {getCurrentPageTrenerzy().map((trener) => (
             <li key={trener.id} className="user-filter-container">
             <div className="user-filter-info">  
               <p><strong>Imię:</strong> {trener.imie}</p>
@@ -158,6 +174,17 @@ const Trenerzy = () => {
       ) : (
         <p>Brak trenerów spełniających kryteria wyszukiwania.</p>
       )}
+
+      <div className="pagination">
+        <button className="pagination-button" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+          Poprzednia
+        </button>
+        <span className="pagination-info">Strona {currentPage} z {totalPages}</span>
+        <button className="pagination-button" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+          Następna
+        </button>
+      </div>
+
     </div>
   );
 };

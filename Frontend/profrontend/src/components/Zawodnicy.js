@@ -19,6 +19,9 @@ const WyswietlanieZawodnikow = () => {
     imie: "",
     nazwisko: ""
   });
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const zawodnicyPerPage = 12;
   
   const toggleSettings = () => {
     setShowSettings(!showSettings);
@@ -98,6 +101,20 @@ const WyswietlanieZawodnikow = () => {
     });
   };
 
+  const getCurrentPageZawodnicy = () => {
+    const filteredZawodnicy = filterZawodnicy();
+    const startIndex = (currentPage - 1) * zawodnicyPerPage;
+    return filteredZawodnicy.slice(startIndex, startIndex + zawodnicyPerPage);
+  };
+
+  const totalPages = Math.ceil(filterZawodnicy().length / zawodnicyPerPage);
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
   return (
     <div className="allMain">
       
@@ -169,25 +186,35 @@ const WyswietlanieZawodnikow = () => {
         </select>
       </div>
 
-      {filterZawodnicy().length > 0 ? (
+      {getCurrentPageZawodnicy().length > 0 ? (
         <ul>
-          {filterZawodnicy().map((zawodnik) => (
+          {getCurrentPageZawodnicy().map((zawodnik) => (
           <li key={zawodnik.id} className="user-filter-container">
           <div className="user-filter-info">
             <p><strong>Imię:</strong> {zawodnik.imie}</p>
             <p><strong>Nazwisko:</strong> {zawodnik.nazwisko}</p>
-            <p><strong>Pozycja:</strong> {zawodnik.pozycja?.nazwa_pozycji}</p>
             <p><strong>Obszar:</strong> {zawodnik.pozycja?.obszar_pozycji}</p>
+            <p><strong>Pozycja:</strong> {zawodnik.pozycja?.nazwa_pozycji}</p>
             <p><strong>Kraj:</strong> {zawodnik.krajPochodzenia.map((kraj) => kraj.nazwa).join(', ')}</p>
           </div>
           <button className="user-filter-button" onClick={() => navigate(`/zawodnicy/profil/${zawodnik.id}`)}>Zobacz szczegóły</button>
         </li>
       ))}
     </ul>
-      
       ) : (
         <p>Brak zawodników spełniających kryteria wyszukiwania.</p>
       )}
+
+      <div className="pagination">
+        <button className="pagination-button" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+          Poprzednia
+        </button>
+        <span className="pagination-info">Strona {currentPage} z {totalPages}</span>
+        <button className="pagination-button" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+          Następna
+        </button>
+      </div>
+
     </div>
   );
 };
