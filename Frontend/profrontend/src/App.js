@@ -20,6 +20,7 @@ import TrenerDetails from './components/TrenerDetails.js';
 import Zawodnicy from './components/Zawodnicy.js';
 import ObserwowaniZawodnicy from './components/ObserwowaniZawodnicy.js';
 import AdminPanel from './components/AdminPanel.js';
+import ZmianaDanych from './components/ZmianaDanych.js';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path="/zawodnicy" element={<Zawodnicy />} />
         <Route path="/listaObserwowanych" element={<ObserwowaniZawodnicy />} />
         <Route path="/adminPanel" element={<AdminPanel />} />
+        <Route path="/user-profile/zmianaDanych" element={<ZmianaDanych />} />
       </Routes>
     </Router>
   );
