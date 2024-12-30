@@ -18,7 +18,9 @@ public class TransferService {
     public List<TransferDTO> findByZawodnikId(long zawodnikId) {
         return transferRepository.findByZawodnikId(zawodnikId);
     }
+    @Transactional
     public void sendTransfer(LocalDate dataTransferu,int kwota,long id_zawodnik,long id_klubOd,long id_klubDo){
+        System.out.println("Dane do transferu: " + dataTransferu + ", " + kwota + ", " + id_zawodnik + ", " + id_klubOd + ", " + id_klubDo);
         transferRepository.sendTransfer(dataTransferu,kwota,id_zawodnik,id_klubOd,id_klubDo);
     }
     public void odrzucTransfer(long id){

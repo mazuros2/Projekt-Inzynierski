@@ -21,7 +21,7 @@ public class Transfer {
     //polaczenie transfer klub transfer zawodnik XX
     @NotNull
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotNull
@@ -38,11 +38,11 @@ public class Transfer {
     private Zawodnik zawodnik;
 
     @ManyToOne
-    @JoinColumn(name = "id_klubOd",nullable = true)
+    @JoinColumn(name = "id_klub_od",nullable = true)
     private Klub klubOd;
 
     @OneToOne
-    @JoinColumn(name = "id_klubDo",nullable = false)
+    @JoinColumn(name = "id_klub_do",nullable = false)
     private Klub klubDo;
 
 }
