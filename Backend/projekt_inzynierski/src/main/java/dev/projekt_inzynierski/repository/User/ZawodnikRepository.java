@@ -25,6 +25,10 @@ public interface ZawodnikRepository extends JpaRepository<Zawodnik,Long> {
             "   OR LOWER(z.nazwisko) LIKE LOWER(:text)")
     List<ZawodnikDTO> findZawodnikByText(@Param("text") String text);
 
-    @Query("SELECT new dev.projekt_inzynierski.DTO.ZawodnikIdKlubDTO(k.id) FROM Obecny_klub ob JOIN Klub k ON k.id=ob.klub.id WHERE ob.zawodnik=:id_zawodnik AND ob.data_Do=null ")
-    ZawodnikIdKlubDTO znajdzIdKlubuZawodnika(long id_zawodnik);
+    @Query("SELECT new dev.projekt_inzynierski.DTO.ZawodnikIdKlubDTO(k.id) " +
+            "FROM Obecny_klub ob " +
+            "JOIN Klub k ON k.id = ob.klub.id " +
+            "WHERE ob.zawodnik.id_Uzytkownik = :id_zawodnik AND ob.data_Do IS NULL")
+    Optional<ZawodnikIdKlubDTO> znajdzIdKlubuZawodnika(Long id_zawodnik);
+
 }

@@ -21,7 +21,7 @@ import Zawodnicy from './components/Zawodnicy.js';
 import ObserwowaniZawodnicy from './components/ObserwowaniZawodnicy.js';
 import AdminPanel from './components/AdminPanel.js';
 import ZmianaDanych from './components/ZmianaDanych.js';
-
+import Transfer from './components/Transfer';
 
 function App() {
   return (
@@ -47,6 +47,7 @@ function App() {
         <Route path="/listaObserwowanych" element={<ObserwowaniZawodnicy />} />
         <Route path="/adminPanel" element={<AdminPanel />} />
         <Route path="/user-profile/zmianaDanych" element={<ZmianaDanych />} />
+        <Route path="/zawodnicy/:id/transfer" element={<Transfer />} />
       </Routes>
     </Router>
   );

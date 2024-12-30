@@ -6,6 +6,8 @@ import dev.projekt_inzynierski.DTO.ZawodnikDTO2;
 import dev.projekt_inzynierski.DTO.ZawodnikIdKlubDTO;
 import dev.projekt_inzynierski.models.users.Zawodnik;
 import dev.projekt_inzynierski.service.User.ZawodnikService;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,8 +41,13 @@ public class ZawodnikController {
         return ResponseEntity.ok(zawodnicy);
     }
     @GetMapping("/findKlubIdByZawodnik/{id_zawodnik}")
-    public ResponseEntity<ZawodnikIdKlubDTO> getIdKlubByZawodnik(@PathVariable Long id_zawodnik){
-        ZawodnikIdKlubDTO zklid = zawodnikService.znajdzIdKlubuZawodnika(id_zawodnik);
-        return ResponseEntity.ok(zklid);
+    public ResponseEntity<?> getIdKlubByZawodnik(@PathVariable Long id_zawodnik) {
+        try {
+            ZawodnikIdKlubDTO zklid = zawodnikService.znajdzIdKlubuZawodnika(id_zawodnik);
+            return ResponseEntity.ok(zklid);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
+
 }
