@@ -29,7 +29,12 @@ const EdycjaDanychUzytkownika = () => {
   };
 
   const goToUserProfile = () => {
-    navigate('/user-profile');
+    const userId = getUserIdFromToken(); 
+    if (userId) {
+      navigate(`/user-profile/${userId}`);
+    } else {
+      console.error("Nie udało się pobrać ID użytkownika z tokena.");
+    }
   };
 
   const getUserIdFromToken = () => {

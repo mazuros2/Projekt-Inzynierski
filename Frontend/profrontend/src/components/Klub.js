@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams, Link } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import '../cssFolder/Klub.css'; 
 import '../cssFolder/Navbar.css'; 
 
@@ -9,7 +10,7 @@ const Klub = () => {
   const [klub, setKlub] = useState(null);
   const [zawodnicy, setZawodnicy] = useState([]);
   const [trofea, setTrofea] = useState([]);
-  const [trener, setTrener] = useState(null); // Stan dla trenera
+  const [trener, setTrener] = useState(null); 
   const [error, setError] = useState("");
   const [showSettings, setShowSettings] = useState(false);
   const navigate = useNavigate();
@@ -18,8 +19,26 @@ const Klub = () => {
     setShowSettings(!showSettings);
   };
 
+  const getUserIdFromToken = () => {
+    const token = sessionStorage.getItem("token");
+    if (!token) return null;
+  
+    try {
+      const decodedToken = jwtDecode(token);
+      return decodedToken.userId; 
+    } catch (error) {
+      console.error("Błąd dekodowania tokena:", error);
+      return null;
+    }
+  };
+
   const goToUserProfile = () => {
-    navigate('/user-profile');
+    const userId = getUserIdFromToken(); 
+    if (userId) {
+      navigate(`/user-profile/${userId}`);
+    } else {
+      console.error("Nie udało się pobrać ID użytkownika z tokena.");
+    }
   };
 
   const goBackToKluby = () => {

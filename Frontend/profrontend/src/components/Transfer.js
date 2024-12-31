@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import '../cssFolder/Navbar.css';
 
 const Transfer = () => {
   const { id } = useParams(); // Pobierz ID zawodnika z URL
@@ -9,6 +10,23 @@ const Transfer = () => {
   const [idKlubDo, setIdKlubDo] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [showSettings, setShowSettings] = useState(false);
+
+  const toggleSettings = () => {
+    setShowSettings(!showSettings);
+  };
+
+  const goToUserProfile = () => {
+    navigate('/user-profile');
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); 
+    sessionStorage.removeItem('token'); 
+    navigate('/logowanie'); 
+  };
+
+
 
   useEffect(() => {
     const fetchKlubId = async () => {
@@ -76,6 +94,47 @@ const Transfer = () => {
 
   return (
     <div>
+    
+    <div className="navbar">
+        <Link to="/">
+          <img
+            src="https://lh3.googleusercontent.com/proxy/4C4zlh5y6xvZC7MWNsG_99nE1x8yqQnSczaCD2cUy4xlvPOQFcm5vLMoEhrcczwjBcfADm4La8Li__oU9Gzy1Whmwpj1U0BvwG6FlMpj6y7cQuI4IfftojBNTeKQocivQu7lbKfiKvXW30jdeizyGN6AHdIUSpc7mWw1"
+            alt="Logo"
+            className="navbar-logo"
+          />
+        </Link>
+          <h1 className="navbar-title"></h1>
+          
+          <div className="icons-container">
+            <img
+              src="https://icons.veryicon.com/png/o/miscellaneous/iview30-ios-style/ios-menu-4.png"
+              alt="Ustawienia"
+              className="settings-icon"
+              onClick={toggleSettings}
+            />
+            <img
+              src="https://www.pikpng.com/pngl/b/259-2599075_gear-user-account-person-configure-control-comments-security.png"
+              alt="Użytkownik"
+              className="user-icon"
+              onClick={goToUserProfile}
+            />
+            {showSettings && (
+              <div className="settings-menu">
+                <ul>
+                  <li onClick={() => navigate("/ligii")}>Ligii</li>
+                  <li>Kluby</li>
+                  <li onClick={() => navigate('/zawodnicy')}>Zawodnicy</li>
+                  <li onClick={() => navigate('/trenerzy')}>Trenerzy</li>
+                  <li onClick={() => navigate("/listaObserwowanych")}>Lista obserwowanych</li>
+                  <li onClick={handleLogout}>Wyloguj</li>
+                </ul>
+              </div>
+              )}
+          </div>
+      </div>
+
+    
+    <div>
       <h1>Wysłanie transferu</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
@@ -106,6 +165,7 @@ const Transfer = () => {
         </button>
       </form>
       <button onClick={() => navigate(-1)}>Anuluj</button>
+    </div>
     </div>
   );
 };

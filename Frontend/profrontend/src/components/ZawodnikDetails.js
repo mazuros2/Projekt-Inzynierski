@@ -19,8 +19,26 @@ const ZawodnikDetails = () => {
     setShowSettings(!showSettings);
   };
 
+  const getUserIdFromToken = () => {
+    const token = sessionStorage.getItem("token");
+    if (!token) return null;
+  
+    try {
+      const decodedToken = jwtDecode(token);
+      return decodedToken.userId; 
+    } catch (error) {
+      console.error("Błąd dekodowania tokena:", error);
+      return null;
+    }
+  };
+  
   const goToUserProfile = () => {
-    navigate('/user-profile');
+    const userId = getUserIdFromToken(); 
+    if (userId) {
+      navigate(`/user-profile/${userId}`);
+    } else {
+      console.error("Nie udało się pobrać ID użytkownika z tokena.");
+    }
   };
 
   const handleLogout = () => {

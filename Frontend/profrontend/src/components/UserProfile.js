@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { Link, useNavigate } from 'react-router-dom';
-import '../cssFolder/Navbar.css'; // Stylowanie paska nawigacyjnego
+import '../cssFolder/Navbar.css'; 
 import '../cssFolder/UserProfile.css';
 
 const UserProfile = () => {
@@ -35,7 +35,12 @@ const UserProfile = () => {
   };
 
   const goToUserProfile = () => {
-    navigate('/user-profile');
+    const userId = getUserIdFromToken(); 
+    if (userId) {
+      navigate(`/user-profile/${userId}`);
+    } else {
+      console.error("Nie udało się pobrać ID użytkownika z tokena.");
+    }
   };
 
   const goToAdminPanel = () => {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import '../cssFolder/Liga.css'
 
 const Liga = () => {
@@ -40,8 +41,27 @@ const Liga = () => {
     const toggleSettings = () => {
       setShowSettings(!showSettings);
     };
-    const goToUserProfile = () => {
-      navigate('/user-profile');
+    
+    const getUserIdFromToken = () => {
+      const token = sessionStorage.getItem("token");
+      if (!token) return null;
+    
+      try {
+        const decodedToken = jwtDecode(token);
+        return decodedToken.userId; 
+      } catch (error) {
+        console.error("Błąd dekodowania tokena:", error);
+        return null;
+      }
+    };
+  
+  const goToUserProfile = () => {
+      const userId = getUserIdFromToken(); 
+      if (userId) {
+        navigate(`/user-profile/${userId}`);
+      } else {
+        console.error("Nie udało się pobrać ID użytkownika z tokena.");
+      }
     };
 
   return (
