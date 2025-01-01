@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { Link, useNavigate } from 'react-router-dom';
+import { getUserRole, isUserInRole } from "../service/authService.js";
 import '../cssFolder/Navbar.css'; 
 import '../cssFolder/UserProfile.css';
 
@@ -9,20 +10,8 @@ const UserProfile = () => {
   const [userData, setUserData] = useState(null);
   const [showSettings, setShowSettings] = useState(false);
   const [error, setError] = useState(null);
-  const [role, setRole] = useState(null);
   const navigate = useNavigate();
 
-  const getUserRole = () => {
-    const token = sessionStorage.getItem("token");
-    if (!token) return null;
-    try {
-      const decodedToken = jwtDecode(token);
-      return decodedToken.role; 
-    } catch (error) {
-      console.error("Błąd dekodowania tokena:", error);
-      return null;
-    }
-  };
 
   const getUserIdFromToken = () => {
     const token = sessionStorage.getItem('token');
@@ -56,7 +45,7 @@ const UserProfile = () => {
   };
 
   const goToAdminPanel = () => {
-    if (role === "ROLE_ADMIN" || role === "ROLE_MENADZER_KLUBU") {
+    if (isUserInRole(["ROLE_ADMIN", "ROLE_MENADZER_KLUBU"])) {
       navigate("/adminPanel");
     } else {
       alert("Nie masz uprawnień do tego panelu!");
@@ -71,8 +60,6 @@ const UserProfile = () => {
 
   useEffect(() => {
     const userId = getUserIdFromToken();
-    const userRole = getUserRole();
-    setRole(userRole);
 
     if (!userId) {
       console.error('Brak ID użytkownika w tokenie. Przekierowanie do logowania.');
