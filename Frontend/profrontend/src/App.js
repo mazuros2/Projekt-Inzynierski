@@ -23,6 +23,7 @@ import AdminPanel from './components/AdminPanel.js';
 import ZmianaDanych from './components/ZmianaDanych.js';
 import Transfer from './components/Transfer';
 import UserTransfers from './components/UserTransfers';
+import ProtectedRoute from './service/ProtectedRoute.js';
 
 function App() {
   return (
@@ -38,15 +39,41 @@ function App() {
         <Route path="/trofeum/mistrzpolski" element={<MistrzowiePolski />} /> 
         <Route path="/trofeum/pucharpolski" element={<PucharPolski />} /> 
         <Route path="/logowanie" element={<StronaLogowania />} />
-        <Route path="/createZawodnik" element={<RegisterZawodnik />} />
-        <Route path="/createTrener" element={<RegisterTrener />} />
-        <Route path="/createSkaut" element={<RegisterSkaut />} />
-        <Route path="/createMenadzer" element={<RegisterMenadzer />} />
+        
+        <Route path="/createZawodnik" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_MENADZER_KLUBU"]}>
+                  <RegisterZawodnik />
+                  </ProtectedRoute>} />
+        
+        <Route path="/createTrener" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_MENADZER_KLUBU"]}> 
+                  <RegisterTrener /> 
+                  </ProtectedRoute>} />
+        
+        <Route path="/createSkaut" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_MENADZER_KLUBU"]}> 
+                  <RegisterSkaut /> 
+                  </ProtectedRoute>} />
+        
+        <Route path="/createMenadzer" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_ADMIN"]}> 
+                  <RegisterMenadzer /> 
+                  </ProtectedRoute>} />
+        
         <Route path="/trenerzy" element={<Trenerzy />} />
         <Route path="/trener/profil/:id" element={<TrenerDetails />} />
         <Route path="/zawodnicy" element={<Zawodnicy />} />
-        <Route path="/listaObserwowanych" element={<ObserwowaniZawodnicy />} />
-        <Route path="/adminPanel" element={<AdminPanel />} />
+        
+        <Route path="/listaObserwowanych" 
+        element={<ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_MENADZER_KLUBU","ROLE_SKAUT"]}>
+          <ObserwowaniZawodnicy />
+          </ProtectedRoute>  } />
+        
+        <Route path="/adminPanel" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_MENADZER_KLUBU"]}>
+                  <AdminPanel /> 
+                  </ProtectedRoute>} />
+        
         <Route path="/user-profile/zmianaDanych" element={<ZmianaDanych />} />
         <Route path="/zawodnicy/:id/transfer" element={<Transfer />} />
         <Route path="/transfery" element={<UserTransfers />} />
