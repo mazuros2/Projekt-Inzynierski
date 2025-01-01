@@ -43,11 +43,11 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
     void zaakceptujTransfer(@Param("id_transfer") long id_transfer);
 
     @Modifying
-    @Query("UPDATE Obecny_klub ok SET ok.data_Do =:dataDo WHERE ok.zawodnik.id_Uzytkownik=:id_uzytkownik AND ok.klub.id=:id_klubOd")
-    void zakonczObecnoscWStarymKlubie(@Param("dataDo") LocalDate dataDo,@Param("id_uzytkownik") long id_uzytkownik, @Param("id_klubOd") long id_klubOd);
+    @Query("UPDATE Obecny_klub ok SET ok.data_Do = :dataDo WHERE ok.zawodnik.id_Uzytkownik = :id_uzytkownik AND ok.klub.id = :id_klubOd")
+    int zakonczObecnoscWStarymKlubie(@Param("dataDo") LocalDate dataDo, @Param("id_uzytkownik") long idUzytkownik, @Param("id_klubOd") long idKlubOd);
 
     @Modifying
-    @Query(value = "INSERT into Obecny_klub ok (zawodnik_id,klub_id,data_Od,data_Do) VALUES (:zawodnikId,:klubId,:dataOd,null)",
+    @Query(value = "INSERT into Obecny_klub (zawodnik_id,klub_id,data_Od,data_Do) VALUES (:zawodnikId,:klubId,:dataOd,null)",
             nativeQuery = true)
     void dodajNowyObecnyKlub(@Param("zawodnikId")long zawodnikId, @Param("klubId") Long klubId, @Param("dataOd") LocalDate dataOd);
 }

@@ -28,9 +28,17 @@ public class TransferService {
         transferRepository.odrzucTransfer(id);
     }
     @Transactional
-    public void zaakceptujTransfer(long id_transfer,LocalDate dataDo,long id_uzytkownik,long id_klubOd,long id_klubDo ){
-        transferRepository.zaakceptujTransfer(id_transfer);
-        transferRepository.zakonczObecnoscWStarymKlubie(dataDo,id_uzytkownik,id_klubOd);
-        transferRepository.dodajNowyObecnyKlub(id_uzytkownik,id_klubDo,dataDo);
+    public void zaakceptujTransfer(long idTransfer, LocalDate dataDo, long idUzytkownik, long idKlubOd, long idKlubDo) {
+        // 1. Aktualizacja statusu transferu
+        transferRepository.zaakceptujTransfer(idTransfer);
+
+        // 2. Sprawdzenie obecności w starym klubie i zakończenie relacji
+        int updatedRows = transferRepository.zakonczObecnoscWStarymKlubie(dataDo, idUzytkownik, idKlubOd);
+        if (updatedRows == 0) {
+            throw new IllegalArgumentException("Nie znaleziono obecności zawodnika w starym klubie");
+        }
+
+        // 3. Dodanie nowego rekordu obecności w nowym klubie
+        transferRepository.dodajNowyObecnyKlub(idUzytkownik, idKlubDo, dataDo);
     }
 }
