@@ -35,7 +35,6 @@ public class UzytkownikController {
             return ResponseEntity.notFound().build();
         }
     }
-    //metoda do wyświetlenia szczegółów swojego profilu
 
     @PutMapping("/api/uzytkownik/zmienDane")
     public ResponseEntity<String> zmienDaneUzytkownika(@RequestBody UzytkownikDTO2 uzytkownikDTO, @RequestHeader(name = "Authorization") String authHeader) {

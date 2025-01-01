@@ -4,9 +4,14 @@ import dev.projekt_inzynierski.DTO.TrofeumDTO;
 import dev.projekt_inzynierski.DTO.TrofeumNazwaKlubuDTO;
 import dev.projekt_inzynierski.models.Trofeum;
 import dev.projekt_inzynierski.repository.Klub.TrofeumRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TrofeumService {
@@ -26,4 +31,15 @@ public class TrofeumService {
     public List<TrofeumNazwaKlubuDTO> getPucharPolski() {
         return trofeumRepository.findPucharPolski();
     }
+
+    public List<TrofeumNazwaKlubuDTO> getLastFiveMistrzPolski() {
+        Pageable pageable = PageRequest.of(0, 5);
+        return trofeumRepository.getLastFiveMistrzPolski(pageable);
+    }
+
+    public List<TrofeumNazwaKlubuDTO> getLastFivePucharPolski() {
+        Pageable pageable = PageRequest.of(0, 5);
+        return trofeumRepository.getLastFivePucharPolski(pageable);
+    }
+
 }

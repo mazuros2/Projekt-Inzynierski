@@ -42,4 +42,16 @@ public class TrofeumController {
         return ResponseEntity.ok(pucharPolski);
     }
 
+    @GetMapping("/api/trofeum/mistrzpolski/ostatnizdobywcy")
+    public ResponseEntity<List<TrofeumNazwaKlubuDTO>> getLastFiveMistrzPolski() {
+        List<TrofeumNazwaKlubuDTO> mistrzowiePolski = trofeumService.getLastFiveMistrzPolski();
+        return ResponseEntity.ok(mistrzowiePolski);
+    }
+
+    @GetMapping("/api/trofeum/pucharpolski/ostatnizdobywcy")
+    public ResponseEntity<List<TrofeumNazwaKlubuDTO>> getLastFivePucharPolski() {
+        List<TrofeumNazwaKlubuDTO> zdobywcyPucharuPolski = trofeumService.getLastFivePucharPolski();
+        return ResponseEntity.ok(zdobywcyPucharuPolski);
+    }
+
 }
