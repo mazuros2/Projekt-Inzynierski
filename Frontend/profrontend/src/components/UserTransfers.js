@@ -132,6 +132,7 @@ const UserTransfers = () => {
               <p><strong>Data:</strong> {transfer.data_transferu}</p>
               <p><strong>Status:</strong> {transfer.status}</p>
               <p><strong>Kwota:</strong> {transfer.kwota} PLN</p>
+              <p><strong>Klub:</strong> {transfer.nazwa_klubu} </p>
             </li>
           ))}
         </ul>
