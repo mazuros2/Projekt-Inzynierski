@@ -23,6 +23,7 @@ public class TransferService {
         System.out.println("Dane do transferu: " + dataTransferu + ", " + kwota + ", " + id_zawodnik + ", " + id_klubOd + ", " + id_klubDo);
         transferRepository.sendTransfer(dataTransferu,kwota,id_zawodnik,id_klubOd,id_klubDo);
     }
+    @Transactional
     public void odrzucTransfer(long id){
         transferRepository.odrzucTransfer(id);
     }

@@ -12,8 +12,6 @@ const UserTransfers = () => {
   const [showSettings, setShowSettings] = useState(false);
   const navigate = useNavigate();
 
-
-
   // Funkcja do uzyskania ID użytkownika z tokena
   const getUserIdFromToken = () => {
     const token = sessionStorage.getItem('token');
@@ -46,8 +44,6 @@ const UserTransfers = () => {
     }
   };
 
-
-
   // Pobieranie transferów użytkownika
   const fetchUserTransfers = async (userId) => {
     try {
@@ -63,6 +59,34 @@ const UserTransfers = () => {
       setError('Nie udało się pobrać transferów użytkownika.');
     } finally {
       setLoading(false); // Wyłącz stan ładowania
+    }
+  };
+
+  // Funkcja obsługująca odrzucenie transferu
+  const handleRejectTransfer = async (transferId) => {
+    try {
+      const token = sessionStorage.getItem('token');
+      await axios.post(
+        `http://localhost:8080/odrzuc/${transferId}`,
+        {}, // Pusty obiekt dla POST
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      // Zaktualizuj listę transferów po odrzuceniu
+      setUserTransfers((prevTransfers) =>
+        prevTransfers.map((transfer) =>
+          transfer.id === transferId
+            ? { ...transfer, status: "odrzucony" }
+            : transfer
+        )
+      );
+      alert("Transfer został odrzucony.");
+    } catch (error) {
+      console.error("Błąd odrzucania transferu:", error);
+      alert("Nie udało się odrzucić transferu.");
     }
   };
 
@@ -118,28 +142,35 @@ const UserTransfers = () => {
         </div>
       </div>
     
-    
-    <div className="user-transfers">
-      <h1>Twoje transfery</h1>
-      {loading ? (
-        <p>Ładowanie transferów...</p>
-      ) : error ? (
-        <p className="error-message">{error}</p>
-      ) : userTransfers.length > 0 ? (
-        <ul className="transfer-list">
-          {userTransfers.map((transfer) => (
-            <li key={transfer.id} className="transfer-item">
-              <p><strong>Data:</strong> {transfer.data_transferu}</p>
-              <p><strong>Status:</strong> {transfer.status}</p>
-              <p><strong>Kwota:</strong> {transfer.kwota} PLN</p>
-              <p><strong>Klub:</strong> {transfer.nazwa_klubu} </p>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Brak transferów do wyświetlenia.</p>
-      )}
-    </div>
+      <div className="user-transfers">
+        <h1>Twoje transfery</h1>
+        {loading ? (
+          <p>Ładowanie transferów...</p>
+        ) : error ? (
+          <p className="error-message">{error}</p>
+        ) : userTransfers.length > 0 ? (
+          <ul className="transfer-list">
+            {userTransfers.map((transfer) => (
+              <li key={transfer.id} className="transfer-item">
+                <p><strong>Data:</strong> {transfer.data_transferu}</p>
+                <p><strong>Status:</strong> {transfer.status}</p>
+                <p><strong>Kwota:</strong> {transfer.kwota} PLN</p>
+                <p><strong>Klub:</strong> {transfer.nazwa_klubu}</p>
+                {transfer.status !== "odrzucony" && (
+                  <button
+                    className="reject-button"
+                    onClick={() => handleRejectTransfer(transfer.id)}
+                  >
+                    Odrzuć transfer
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>Brak transferów do wyświetlenia.</p>
+        )}
+      </div>
     </div>
   );
 };
