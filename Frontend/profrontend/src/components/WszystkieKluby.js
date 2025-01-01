@@ -24,6 +24,7 @@ const WszystkieKluby = () => {
       return null;
     }
   };
+  
   const getUserIdFromToken = () => {
     const token = sessionStorage.getItem("token");
     if (!token) return null;

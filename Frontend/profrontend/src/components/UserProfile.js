@@ -9,9 +9,21 @@ const UserProfile = () => {
   const [userData, setUserData] = useState(null);
   const [showSettings, setShowSettings] = useState(false);
   const [error, setError] = useState(null);
+  const [role, setRole] = useState(null);
   const navigate = useNavigate();
 
-  // Funkcja do uzyskania ID użytkownika z tokena
+  const getUserRole = () => {
+    const token = sessionStorage.getItem("token");
+    if (!token) return null;
+    try {
+      const decodedToken = jwtDecode(token);
+      return decodedToken.role; 
+    } catch (error) {
+      console.error("Błąd dekodowania tokena:", error);
+      return null;
+    }
+  };
+
   const getUserIdFromToken = () => {
     const token = sessionStorage.getItem('token');
     if (!token) return null;
@@ -44,8 +56,12 @@ const UserProfile = () => {
   };
 
   const goToAdminPanel = () => {
-    navigate('/adminPanel');
-  }; 
+    if (role === "ROLE_ADMIN" || role === "ROLE_MENADZER_KLUBU") {
+      navigate("/adminPanel");
+    } else {
+      alert("Nie masz uprawnień do tego panelu!");
+    }
+  };
 
   const goToZmianaDanych = () => {
     navigate('/user-profile/zmianaDanych');
@@ -55,6 +71,8 @@ const UserProfile = () => {
 
   useEffect(() => {
     const userId = getUserIdFromToken();
+    const userRole = getUserRole();
+    setRole(userRole);
 
     if (!userId) {
       console.error('Brak ID użytkownika w tokenie. Przekierowanie do logowania.');
