@@ -54,4 +54,6 @@ public class TrofeumController {
         return ResponseEntity.ok(zdobywcyPucharuPolski);
     }
 
+    //metoda na dodanie PP i MP
+
 }

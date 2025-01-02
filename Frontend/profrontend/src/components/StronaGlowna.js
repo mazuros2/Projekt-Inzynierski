@@ -45,6 +45,7 @@ const StronaGlowna = () => {
         navigate('/logowanie');
     };
 
+    
     useEffect(() => {
         const token = sessionStorage.getItem('token');
         if (!token) {
@@ -80,7 +81,7 @@ const StronaGlowna = () => {
         });
 
 
-    });
+    }, []);
 
 
 
@@ -129,7 +130,15 @@ const StronaGlowna = () => {
             
                 <div className='mp-zdobywcy'>
                     <h2>Ostatni zdobywcy Mistrzostwa Polski</h2>    
-                    
+                    <ul>
+                      {zdobywcyMP.map((mp, index) => (
+                        <li key={index}>
+                          <strong>Nazwa:</strong> {mp.nazwaTrofeum} <br />
+                          <strong>Klub:</strong> {mp.nazwaKlubu} <br />
+                          <strong>Data Zdobycia:</strong> {mp.dataZdobycia}
+                        </li>
+                      ))}
+                    </ul>
                 </div>
             
                 <div className='ostatnie-transfery'>
@@ -139,7 +148,15 @@ const StronaGlowna = () => {
             
                 <div className='pp-zdobywcy'>
                     <h2>Ostatni zdobywcy Pucharu Polski</h2>
-                
+                    <ul>
+                      {zdobywcyPP.map((pp, index) => (
+                        <li key={index}>
+                          <strong>Nazwa:</strong> {pp.nazwaTrofeum} <br />
+                          <strong>Klub:</strong> {pp.nazwaKlubu} <br />
+                          <strong>Data Zdobycia:</strong> {pp.dataZdobycia}
+                        </li>
+                      ))}
+                    </ul>
                 </div>
             
             </div>
