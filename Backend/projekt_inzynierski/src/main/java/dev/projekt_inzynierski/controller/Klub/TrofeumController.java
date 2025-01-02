@@ -1,14 +1,13 @@
 package dev.projekt_inzynierski.controller.Klub;
 
+import dev.projekt_inzynierski.DTO.Create.CreateTrofeumDTO;
 import dev.projekt_inzynierski.DTO.TrofeumDTO;
 import dev.projekt_inzynierski.DTO.TrofeumNazwaKlubuDTO;
+import dev.projekt_inzynierski.configurationJWT.Authentication.UserRoleValidator;
 import dev.projekt_inzynierski.models.Trofeum;
 import dev.projekt_inzynierski.service.Klub.TrofeumService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,9 +15,11 @@ import java.util.List;
 @CrossOrigin
 public class TrofeumController {
     private final TrofeumService trofeumService;
+    private UserRoleValidator userRoleValidator;
 
-    public TrofeumController(TrofeumService trofeumService) {
+    public TrofeumController(TrofeumService trofeumService, UserRoleValidator userRoleValidator) {
         this.trofeumService = trofeumService;
+        this.userRoleValidator = userRoleValidator;
     }
 
     @GetMapping("/klub/{klubId}/trofea")
@@ -54,6 +55,11 @@ public class TrofeumController {
         return ResponseEntity.ok(zdobywcyPucharuPolski);
     }
 
-    //metoda na dodanie PP i MP
+    @PostMapping("/api/trofeum/createTrofeum")
+    public ResponseEntity<String> createTrofeum(@RequestBody CreateTrofeumDTO request){
+        userRoleValidator.userRoleValidator("ROLE_ADMIN");
+        trofeumService.createTrofeum(request);
+        return ResponseEntity.ok("Trofeum zostało stworzone!");
+    }
 
 }

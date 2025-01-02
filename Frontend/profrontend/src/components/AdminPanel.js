@@ -88,17 +88,9 @@ const AdminPanel = () => {
       }  
     }; 
 
-    const createPP = () => {
+    const createTrofeum = () => {
       if (isUserInRole(["ROLE_ADMIN"])) {
-        navigate('/');
-      } else {
-        alert("Nie masz uprawnień do tego panelu!");
-      }  
-    }; 
-
-    const createMP = () => {
-      if (isUserInRole(["ROLE_ADMIN"])) {
-        navigate('/');
+        navigate('/createTrofeum');
       } else {
         alert("Nie masz uprawnień do tego panelu!");
       }  
@@ -148,8 +140,7 @@ const AdminPanel = () => {
             <button onClick={createTrener} className = "admin-button">Stwórz profil Trenera</button>
             <button onClick={createSkaut} className = "admin-button">Stwórz profil Skauta</button>
             <button onClick={createMenadzer} className = "admin-button">Stwórz profil Menadżera</button>   
-            <button onClick={createPP} className = "admin-button">Przydziel Mistrzostwo Polski</button> 
-            <button onClick={createMP} className = "admin-button">Przydziel Puchar Polski</button>     
+            <button onClick={createTrofeum} className = "admin-button">Przydziel trofeum dla klubu</button>     
         </div>
     
     

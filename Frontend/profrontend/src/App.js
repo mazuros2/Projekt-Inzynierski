@@ -25,7 +25,7 @@ import Transfer from './components/Transfer';
 import UserTransfers from './components/UserTransfers';
 import ProtectedRoute from './service/ProtectedRoute.js';
 import StronaGlowna from './components/StronaGlowna.js';
-
+import CreateTrofeum from './components/CreateTrofeum.js';
 
 function App() {
   return (
@@ -63,6 +63,11 @@ function App() {
         <Route path="/createMenadzer" 
         element={ <ProtectedRoute allowedRoles={["ROLE_ADMIN"]}> 
                   <RegisterMenadzer /> 
+                  </ProtectedRoute>} />
+
+        <Route path="/createTrofeum" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_ADMIN"]}> 
+                  <CreateTrofeum /> 
                   </ProtectedRoute>} />
         
         <Route path="/trenerzy" element={<Trenerzy />} />
