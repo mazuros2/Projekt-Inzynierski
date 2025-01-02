@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { Link, useNavigate } from 'react-router-dom';
+import { getUserRole, isUserInRole } from "../service/authService.js";
 import '../cssFolder/Navbar.css';
 import '../cssFolder/AdminPanel.css'
 
@@ -56,19 +57,51 @@ const AdminPanel = () => {
     };
 
     const createZawodnik = () => {
+      if (isUserInRole(["ROLE_ADMIN", "ROLE_MENADZER_KLUBU"])) {
         navigate('/createZawodnik');
+      } else {
+        alert("Nie masz uprawnień do tego panelu!");
+      }
     };  
 
     const createTrener = () => {
+      if (isUserInRole(["ROLE_ADMIN", "ROLE_MENADZER_KLUBU"])) {
         navigate('/createTrener');
+      } else {
+        alert("Nie masz uprawnień do tego panelu!");
+      }  
     }; 
 
     const createSkaut = () => {
+      if (isUserInRole(["ROLE_ADMIN", "ROLE_MENADZER_KLUBU"])) {
         navigate('/createSkaut');
+      } else {
+        alert("Nie masz uprawnień do tego panelu!");
+      }  
     }; 
 
     const createMenadzer = () => {
+      if (isUserInRole(["ROLE_ADMIN"])) {
         navigate('/createMenadzer');
+      } else {
+        alert("Nie masz uprawnień do tego panelu!");
+      }  
+    }; 
+
+    const createPP = () => {
+      if (isUserInRole(["ROLE_ADMIN"])) {
+        navigate('/');
+      } else {
+        alert("Nie masz uprawnień do tego panelu!");
+      }  
+    }; 
+
+    const createMP = () => {
+      if (isUserInRole(["ROLE_ADMIN"])) {
+        navigate('/');
+      } else {
+        alert("Nie masz uprawnień do tego panelu!");
+      }  
     }; 
 
     return (
@@ -114,7 +147,9 @@ const AdminPanel = () => {
             <button onClick={createZawodnik} className="admin-button">Stwórz profil Zawodnika</button>
             <button onClick={createTrener} className = "admin-button">Stwórz profil Trenera</button>
             <button onClick={createSkaut} className = "admin-button">Stwórz profil Skauta</button>
-            <button onClick={createMenadzer} className = "admin-button">Stwórz profil Menadżera</button>       
+            <button onClick={createMenadzer} className = "admin-button">Stwórz profil Menadżera</button>   
+            <button onClick={createPP} className = "admin-button">Przydziel Mistrzostwo Polski</button> 
+            <button onClick={createMP} className = "admin-button">Przydziel Puchar Polski</button>     
         </div>
     
     

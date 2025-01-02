@@ -11,6 +11,7 @@ const StronaGlowna = () => {
     const [showSettings, setShowSettings] = useState(false);
     const [zdobywcyPP, setPP] = useState([]);
     const [zdobywcyMP, setMP] = useState([]);
+    const [error, setError] = useState("");
 
     const getUserIdFromToken = () => {
         const token = sessionStorage.getItem("token");
@@ -51,6 +52,34 @@ const StronaGlowna = () => {
           navigate('/logowanie');
           return;
         }
+
+        axios.get(`http://localhost:8080/api/trofeum/pucharpolski/ostatnizdobywcy`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        })
+        .then((response) => {
+            setPP(response.data);
+        })
+        .catch((error) => {
+        console.error("Error fetching trofea:", error);
+            setError("Błąd podczas pobierania trofeów. Sprawdź uprawnienia.");
+        });
+
+        axios.get(`http://localhost:8080/api/trofeum/mistrzpolski/ostatnizdobywcy`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        })
+        .then((response) => {
+            setMP(response.data);
+        })
+        .catch((error) => {
+            console.error("Error fetching trofea:", error);
+                setError("Błąd podczas pobierania trofeów. Sprawdź uprawnienia.");
+        });
+
+
     });
 
 
@@ -95,8 +124,25 @@ const StronaGlowna = () => {
                       )}
                   </div>
               </div>
-
-
+            
+            <div className='mainpage-container'>
+            
+                <div className='mp-zdobywcy'>
+                    <h2>Ostatni zdobywcy Mistrzostwa Polski</h2>    
+                    
+                </div>
+            
+                <div className='ostatnie-transfery'>
+                    <h2>Ostatnie transfery</h2>
+                
+                </div>
+            
+                <div className='pp-zdobywcy'>
+                    <h2>Ostatni zdobywcy Pucharu Polski</h2>
+                
+                </div>
+            
+            </div>
 
 
         </div>
