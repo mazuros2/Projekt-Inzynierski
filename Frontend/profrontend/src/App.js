@@ -24,21 +24,26 @@ import ZmianaDanych from './components/ZmianaDanych.js';
 import Transfer from './components/Transfer';
 import UserTransfers from './components/UserTransfers';
 import ProtectedRoute from './service/ProtectedRoute.js';
+import StronaGlowna from './components/StronaGlowna.js';
+
 
 function App() {
   return (
 <Router>
       <Routes>
-        <Route path="/zawodnicy/profil/:id" element={<ZawodnikDetails />} />
-        <Route path="/" element={<WszystkieKluby />} /> 
-        <Route path="/user-profile/:id" element={<UserProfile />} />
+        <Route path="/" element={< StronaGlowna/>} />
+        <Route path="/logowanie" element={<StronaLogowania />} />
+
+        <Route path="/kluby" element={<WszystkieKluby />} /> 
         <Route path="/klub/:id" element={<Klub />} />
+
+        <Route path="/user-profile/:id" element={<UserProfile />} />
         <Route path="/ligii/:ligaId/kluby" element={<LigaKluby />} />
         <Route path="/ligii" element={<Liga />} /> 
         <Route path="/addliga" element={<AddLiga />} /> 
         <Route path="/trofeum/mistrzpolski" element={<MistrzowiePolski />} /> 
         <Route path="/trofeum/pucharpolski" element={<PucharPolski />} /> 
-        <Route path="/logowanie" element={<StronaLogowania />} />
+       
         
         <Route path="/createZawodnik" 
         element={ <ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_MENADZER_KLUBU"]}>
@@ -62,7 +67,9 @@ function App() {
         
         <Route path="/trenerzy" element={<Trenerzy />} />
         <Route path="/trener/profil/:id" element={<TrenerDetails />} />
+        
         <Route path="/zawodnicy" element={<Zawodnicy />} />
+        <Route path="/zawodnicy/profil/:id" element={<ZawodnikDetails />} />
         
         <Route path="/listaObserwowanych" 
         element={<ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_MENADZER_KLUBU","ROLE_SKAUT"]}>
