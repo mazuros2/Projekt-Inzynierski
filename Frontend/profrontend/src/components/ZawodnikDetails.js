@@ -152,7 +152,7 @@ const ZawodnikDetails = () => {
             <div className="settings-menu">
               <ul>
                 <li onClick={() => navigate("/ligii")}>Ligii</li>
-                <li>Kluby</li>
+                <li onClick={() => navigate('/kluby')}>Kluby</li>
                 <li onClick={() => navigate('/zawodnicy')}>Zawodnicy</li>
                 <li onClick={() => navigate('/trenerzy')}>Trenerzy</li>
                 <li onClick={() => navigate("/listaObserwowanych")}>Lista obserwowanych</li>

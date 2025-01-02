@@ -9,21 +9,6 @@ const WszystkieKluby = () => {
   const [kluby, setKluby] = useState([]);
   const [showSettings, setShowSettings] = useState(false);
   const navigate = useNavigate();
-  const [role, setRole] = useState(null);
-  
-
-  // Funkcja do pobierania roli użytkownika
-  const getUserRole = () => {
-    const token = sessionStorage.getItem("token");
-    if (!token) return null;
-    try {
-      const decodedToken = jwtDecode(token);
-      return decodedToken.role; // Zakładam, że rola jest w polu "role"
-    } catch (error) {
-      console.error("Błąd dekodowania tokena:", error);
-      return null;
-    }
-  };
   
   const getUserIdFromToken = () => {
     const token = sessionStorage.getItem("token");
@@ -64,10 +49,6 @@ const WszystkieKluby = () => {
       navigate('/logowanie');
       return;
     }
-
-    // Pobranie roli
-    const userRole = getUserRole();
-    setRole(userRole);
 
     // Pobieranie listy klubów
     axios.get('http://localhost:8080/kluby', {
@@ -113,7 +94,7 @@ const WszystkieKluby = () => {
           <div className="settings-menu">
             <ul>
               <li onClick={() => navigate("/ligii")}>Ligii</li>
-              <li>Kluby</li>
+              <li onClick={() => navigate('/kluby')}>Kluby</li>
               <li onClick={() => navigate('/zawodnicy')}>Zawodnicy</li>
               <li onClick={() => navigate("/trenerzy")}>Trenerzy</li>
               <li onClick={() => navigate("/listaObserwowanych")}>Lista obserwowanych</li>
@@ -136,14 +117,9 @@ const WszystkieKluby = () => {
                 </span>
                 <div className="klub-details">
                   <strong>
-                    {role === "ROLE_ADMIN" ? (
-                      // Tylko ADMIN może wejść w szczegóły klubu
                       <Link to={`/klub/${klub.id}`}>
                         {klub.nazwaKlubu || "Brak"}
                       </Link>
-                    ) : (
-                      <span>{klub.nazwaKlubu || "Brak"}</span>
-                    )}
                   </strong><br />
                   Rok założenia: {klub.rokZalozenia || "Brak"}<br />
                   Liga: {klub.ligaNazwaLigi || "Brak"}
