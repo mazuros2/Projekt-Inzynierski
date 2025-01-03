@@ -26,7 +26,7 @@ public class Obecny_klub implements java.io.Serializable{
 
     //embededidjakby nie dzialalo
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_obecny_klub;
 
     @ManyToOne

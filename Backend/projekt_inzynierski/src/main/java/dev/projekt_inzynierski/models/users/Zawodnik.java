@@ -53,8 +53,8 @@ public class Zawodnik extends Uzytkownik{
     @OneToOne(mappedBy = "zawodnik", cascade = CascadeType.ALL, optional = true)
     private Badania_lekarskie badania_lekarskie;
 
-    @OneToOne(mappedBy = "zawodnik", cascade = CascadeType.ALL, optional = true)
-    private Transfer transfer;
+    @OneToMany(mappedBy = "zawodnik", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transfer> transfery = new ArrayList<>();
 
     @OneToMany(mappedBy = "zawodnik", cascade = {CascadeType.REMOVE})
     @ToString.Exclude

@@ -33,7 +33,7 @@ public class Transfer {
     @NotNull
     private int kwota;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_zawodnik", nullable = false)
     private Zawodnik zawodnik;
 

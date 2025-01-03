@@ -636,6 +636,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik PW = Zawodnik.builder()
@@ -652,6 +653,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(obroncaPO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik RP = Zawodnik.builder()
@@ -668,6 +670,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(SR))
 				.pozycja(obroncaPO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		//Sztab klubu
@@ -897,6 +900,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.role(Role.ZAWODNIK)
 				.kraj_pochodzenia(Set.of(PL))
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik bartoszKapustka = Zawodnik.builder()
@@ -913,6 +917,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.role(Role.ZAWODNIK)
 				.kraj_pochodzenia(Set.of(PL))
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik marcGual = Zawodnik.builder()
@@ -929,6 +934,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.role(Role.ZAWODNIK)
 				.kraj_pochodzenia(Set.of(ES))
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik GabrielKobylak = Zawodnik.builder()
@@ -945,6 +951,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.wzrost(184)
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.profiloweURL("https://legia.net/uploads/historia/gabriel-kobylak-historia-pilkarz01-18-08-661.jpg")
 				.build();
 
@@ -962,6 +969,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.wzrost(197)
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik RubenVinagre = Zawodnik.builder()
@@ -978,6 +986,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.wzrost(174)
 				.pozycja(obroncaLO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik JurgenCelhaka = Zawodnik.builder()
@@ -994,6 +1003,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.wzrost(182)
 				.pozycja(pomocnik)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik JuergenElitim = Zawodnik.builder()
@@ -1010,6 +1020,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.wzrost(173)
 				.pozycja(pomocnik)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik JeanPierreNsame = Zawodnik.builder()
@@ -1026,6 +1037,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.wzrost(188)
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik TomasPekhart = Zawodnik.builder()
@@ -1042,6 +1054,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.wzrost(194)
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 
@@ -1091,6 +1104,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik DominikSzala = Zawodnik.builder()
@@ -1107,6 +1121,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik KryspinSzczesniak = Zawodnik.builder()
@@ -1123,6 +1138,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik Josema = Zawodnik.builder()
@@ -1139,6 +1155,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(ES))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik NikodemZielonka = Zawodnik.builder()
@@ -1155,6 +1172,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(pomocnikSPO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik KamilLukoszek = Zawodnik.builder()
@@ -1171,6 +1189,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(napastnikLN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik YosukeFurukawa = Zawodnik.builder()
@@ -1187,6 +1206,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(JP))
 				.pozycja(napastnikLN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1227,6 +1247,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik KacperTrelowski = Zawodnik.builder()
@@ -1243,6 +1264,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik AntoniBurkiewicz = Zawodnik.builder()
@@ -1259,6 +1281,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(pomocnikSPD)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik FranTudor = Zawodnik.builder()
@@ -1275,6 +1298,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(CHR))
 				.pozycja(pomocnikPP)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik PatrykMakuch = Zawodnik.builder()
@@ -1291,6 +1315,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik TomaszWalczak = Zawodnik.builder()
@@ -1307,6 +1332,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1348,6 +1374,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik AleksanderKomor = Zawodnik.builder()
@@ -1364,6 +1391,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik OskarRepka = Zawodnik.builder()
@@ -1380,6 +1408,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(pomocnikSPD)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik AdrianDanek = Zawodnik.builder()
@@ -1396,6 +1425,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(pomocnikPP)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik SebastianBergier = Zawodnik.builder()
@@ -1412,6 +1442,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1451,6 +1482,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik BartoszMrozek = Zawodnik.builder()
@@ -1467,6 +1499,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik JoelPereira = Zawodnik.builder()
@@ -1483,6 +1516,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PT))
 				.pozycja(obroncaPO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik RadoslawMurawski = Zawodnik.builder()
@@ -1499,6 +1533,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(pomocnikSPD)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik FilipSzymczak = Zawodnik.builder()
@@ -1515,6 +1550,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik MikaelIshak = Zawodnik.builder()
@@ -1531,6 +1567,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(SE, SY))
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1571,6 +1608,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(SK))
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik TomasHuk = Zawodnik.builder()
@@ -1587,6 +1625,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(SK))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik FilipKarbowy = Zawodnik.builder()
@@ -1603,6 +1642,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(pomocnikSPO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik JorgeFelix = Zawodnik.builder()
@@ -1619,6 +1659,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(ES))
 				.pozycja(napastnikLN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik DamianKadzior = Zawodnik.builder()
@@ -1635,6 +1676,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(napastnikPN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1674,6 +1716,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik AleksanderPaluszek = Zawodnik.builder()
@@ -1690,6 +1733,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik TommasoGuercio = Zawodnik.builder()
@@ -1706,6 +1750,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL, IT))
 				.pozycja(pomocnikLP)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik ArnauOrtiz = Zawodnik.builder()
@@ -1722,6 +1767,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(ES))
 				.pozycja(pomocnikLP)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik JakubSwierczok = Zawodnik.builder()
@@ -1738,6 +1784,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1777,6 +1824,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik PatrykKusztal = Zawodnik.builder()
@@ -1793,6 +1841,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(pomocnikSPO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik VaclavSejk = Zawodnik.builder()
@@ -1809,6 +1858,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(CZ))
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik DawidKurminowski = Zawodnik.builder()
@@ -1825,6 +1875,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik LuisMata = Zawodnik.builder()
@@ -1841,6 +1892,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PT))
 				.pozycja(pomocnikLP)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1881,6 +1933,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik DariuszPawlowski = Zawodnik.builder()
@@ -1897,6 +1950,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(obroncaPO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik BrunoJordao = Zawodnik.builder()
@@ -1913,6 +1967,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PT))
 				.pozycja(pomocnikSPD)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik Luizao = Zawodnik.builder()
@@ -1929,6 +1984,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(BR))
 				.pozycja(pomocnikSPD)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik GuilhermeZimovski = Zawodnik.builder()
@@ -1945,6 +2001,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(BR, PL))
 				.pozycja(napastnikPN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1984,6 +2041,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL, ANG))
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik MateuszSkrzypczak = Zawodnik.builder()
@@ -2000,6 +2058,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik AdrianDieguez = Zawodnik.builder()
@@ -2016,6 +2075,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(ES))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik AurelienNguiamba = Zawodnik.builder()
@@ -2032,6 +2092,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(FR, CM))
 				.pozycja(pomocnikSPD)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik LamineDiabyFadiga = Zawodnik.builder()
@@ -2048,6 +2109,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(FR, GN))
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik JesusImaz = Zawodnik.builder()
@@ -2064,6 +2126,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(ES))
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 
@@ -2104,6 +2167,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik MateuszZyro = Zawodnik.builder()
@@ -2120,6 +2184,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PL))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik JuanIbiza = Zawodnik.builder()
@@ -2136,6 +2201,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(ES))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik LuisSilva = Zawodnik.builder()
@@ -2152,6 +2218,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PT))
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 		Zawodnik FabioNunes = Zawodnik.builder()
@@ -2168,6 +2235,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.kraj_pochodzenia(Set.of(PT))
 				.pozycja(napastnikLN)
 				.obecny_klub(new HashSet<>())
+				.transfery(new ArrayList<>())
 				.build();
 
 

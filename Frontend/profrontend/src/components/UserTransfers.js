@@ -14,16 +14,21 @@ const UserTransfers = () => {
 
   const getUserIdFromToken = () => {
     const token = sessionStorage.getItem('token');
-    if (!token) return null;
-
+    if (!token) {
+      console.error('Brak tokena w sessionStorage.');
+      return null;
+    }
+  
     try {
       const decodedToken = jwtDecode(token);
-      return decodedToken.userId;
+      console.log('Token JWT:', decodedToken);  // Sprawdź, co zwraca jwtDecode
+      return decodedToken.userId;  // Upewnij się, że userId istnieje
     } catch (err) {
       console.error('Błąd dekodowania tokena:', err);
       return null;
     }
   };
+  
 
   const handleLogout = () => {
     sessionStorage.removeItem('token');
@@ -59,37 +64,44 @@ const UserTransfers = () => {
       setLoading(false);
     }
   };
-
+  const userId1 = getUserIdFromToken();
   const handleAcceptTransfer = async (transferId, clubFromId, clubToId) => {
     try {
       const userId = getUserIdFromToken();
-      const token = sessionStorage.getItem('token');
-      console.log('Bearer Token:', token);
+      if (!userId) {
+        console.error('Brak userId. Token może być nieprawidłowy lub wygasł.');
+        alert('Wystąpił błąd: Brak ID użytkownika.');
+        return;
+      }
   
-      const payload = {
-        id_transfer: transferId,
-        id_uzytkownik: userId,
-        id_klubOd: clubFromId,
-        id_klubDo: clubToId,
-      };
+      const token = sessionStorage.getItem('token');
+  
+      const params = new URLSearchParams();
+      params.append('id_transfer', transferId);
+      params.append('id_uzytkownik', userId1);
+      params.append('id_klubOd', clubFromId);
+      params.append('id_klubDo', clubToId);
+  
+      console.log('Wysyłane parametry:', params.toString());
   
       const response = await axios.post(
-        'http://localhost:8080/api/transfers/zaakceptuj',
-        payload,
+        'http://localhost:8080/zaakceptuj',
+        params,
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
           },
         }
       );
       alert(response.data);
-      fetchUserTransfers(userId);  // Odświeżenie listy transferów
+      fetchUserTransfers(userId);
     } catch (err) {
       console.error('Błąd akceptacji transferu:', err);
       alert('Nie udało się zaakceptować transferu.');
     }
   };
+  
   
   
 
@@ -191,8 +203,8 @@ const UserTransfers = () => {
                       onClick={() =>
                         handleAcceptTransfer(
                           transfer.id,
-                          transfer.id_klubOd,
-                          transfer.id_klubDo
+                          transfer.id_klub_od,
+                          transfer.id_klub_do
                         )
                       }
                     >

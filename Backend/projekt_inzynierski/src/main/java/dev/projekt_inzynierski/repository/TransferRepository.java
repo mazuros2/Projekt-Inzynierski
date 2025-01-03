@@ -22,7 +22,7 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
     List<TransferDTO> findByZawodnikId(@Param("zawodnikId") long zawodnikId);*/
 
     @Query("SELECT new dev.projekt_inzynierski.DTO.TransferDTO(" +
-            "t.id, t.data_transferu, t.status, t.kwota,t.klubDo.nazwa_klubu) " +
+            "t.id, t.data_transferu, t.status, t.kwota,t.klubDo.nazwa_klubu,t.klubOd.id,t.klubDo.id) " +
             "FROM Transfer t  WHERE t.zawodnik.id_Uzytkownik = :zawodnikId")
     List<TransferDTO> findByZawodnikId(@Param("zawodnikId") long zawodnikId);
     @Modifying

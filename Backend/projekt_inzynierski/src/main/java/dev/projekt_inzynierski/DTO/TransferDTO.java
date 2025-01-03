@@ -16,4 +16,6 @@ public class TransferDTO {
     private String status;
     private int kwota;
     private String nazwa_klubu;
+    private Long id_klub_od;
+    private Long id_klub_do;
 }
