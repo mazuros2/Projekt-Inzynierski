@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from '../components/Navbar';
 import '../cssFolder/CreateTrofeum.css'; 
-import '../cssFolder/Navbar.css'; 
 
 const CreateTrofeum = () => {
   const navigate = useNavigate();
@@ -75,13 +74,13 @@ const CreateTrofeum = () => {
     <div>
     <Navbar/>
             
-    <h2>Dodaj nowe trofeum</h2>
+    <h1 className="trofeum-h2">Dodaj nowe trofeum</h1>
     
     <div className="create-trofeum-container">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="nazwa">Nazwa trofeum:</label>
-          <input
+          <input className="input-register"
             type="text"
             id="nazwa"
             name="nazwa"
@@ -92,7 +91,7 @@ const CreateTrofeum = () => {
 
         <div className="form-group">
           <label htmlFor="dataZdobycia">Data zdobycia:</label>
-          <input
+          <input className="input-register"
             type="date"
             id="dataZdobycia"
             name="dataZdobycia"
@@ -103,7 +102,7 @@ const CreateTrofeum = () => {
 
         <div className="form-group">
           <label htmlFor="klubId">Wybierz klub:</label>
-          <button
+          <button 
             type="button"
             className="toggle-button"
             onClick={() => setShowClubList(!showClubList)}
