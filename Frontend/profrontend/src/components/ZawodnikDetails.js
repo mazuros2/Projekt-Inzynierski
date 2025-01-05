@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../cssFolder/ZawodnikDetails.css'; 
 import Navbar from '../components/Navbar';
 import jwtDecode from 'jwt-decode';
-import '../cssFolder/Navbar.css'; 
+import { isUserInRole } from "../service/authService.js";
 
 const ZawodnikDetails = () => {
   const { id } = useParams();
@@ -118,9 +118,13 @@ const ZawodnikDetails = () => {
   
       <div className='zawodnik-details-buttons'>
         <button onClick={() => navigate(-1)}> Wróć </button>
-        <button onClick={handleTransferClick}> Wyślij transfer </button>
+        {isUserInRole(['ROLE_ADMIN','ROLE_MENADZER_KLUBU']) && (
+        <button onClick={handleTransferClick}> Wyślij transfer </button>)}
+        
+        {isUserInRole(['ROLE_ADMIN','ROLE_MENADZER_KLUBU','ROLE_SKAUT']) && (
         <button onClick={handleObserwujClick} disabled={isObserved}>
-        {isObserved ? "Obserwujesz" : `Obserwuj jako ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżer" : "skaut"}`}</button>
+        {isObserved ? "Obserwujesz" : `Obserwuj jako ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżer" : "skaut"}`}</button>)}
+      
       </div>
 
   </div>
