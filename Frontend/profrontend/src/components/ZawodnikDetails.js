@@ -94,10 +94,9 @@ const ZawodnikDetails = () => {
 
       <Navbar/>
       
-      <div className="zawodnik-details-container">
-  <h1>Szczegóły zawodnika</h1>
-  
-  <ul>
+      <h1>Szczegóły zawodnika</h1>
+      
+      <div className ="profilowe-info">
       <div className="user-profilowe">
         {zawodnik.profiloweURL ? (
           <img src={zawodnik.profiloweURL} />
@@ -105,27 +104,27 @@ const ZawodnikDetails = () => {
           <p>Brak profilowego </p>
         )}
       </div>
-    <li><strong>Imię:</strong> {zawodnik.imie}</li>
-    <li><strong>Nazwisko:</strong> {zawodnik.nazwisko}</li>
-    <li><strong>Pozycja:</strong> {zawodnik.pozycja}</li>
-    <li><strong>Obecny klub:</strong> {zawodnik.obecnyKlub}</li>
-    <li><strong>Kraj:</strong> {zawodnik.krajePochodzenia}</li>
-    <li><strong>Data urodzenia:</strong> {zawodnik.dataUrodzenia}</li>
-    <li><strong>Wzrost:</strong> {zawodnik.wzrost}</li>
-    <li><strong>Waga:</strong> {zawodnik.waga}</li>
-  </ul>
-  <div className="button-container">
-    <button onClick={() => navigate(-1)}>Wróć</button>
-  </div>
-  <div className="transfer-button-container">
-    <button onClick={handleTransferClick}>Wyślij transfer</button>
-    <button onClick={handleObserwujClick} disabled={isObserved}>
-      {isObserved ? "Obserwujesz" : `Obserwuj jako ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżer" : "skaut"}`}
-    </button>
-  </div>
-</div>
+      <div className ="info">
+        <p><strong>Imię:</strong> {zawodnik.imie}</p>
+        <p><strong>Nazwisko:</strong> {zawodnik.nazwisko}</p>
+        <p><strong>Pozycja:</strong> {zawodnik.pozycja}</p>
+        <p><strong>Obecny klub:</strong> {zawodnik.obecnyKlub}</p>
+        <p><strong>Kraj:</strong> {zawodnik.krajePochodzenia}</p>
+        <p><strong>Data urodzenia:</strong> {zawodnik.dataUrodzenia}</p>
+        <p><strong>Wzrost:</strong> {zawodnik.wzrost}</p>
+        <p><strong>Waga:</strong> {zawodnik.waga}</p>
+      </div>
+      </div>
+  
+      <div className='zawodnik-details-buttons'>
+        <button onClick={() => navigate(-1)}> Wróć </button>
+        <button onClick={handleTransferClick}> Wyślij transfer </button>
+        <button onClick={handleObserwujClick} disabled={isObserved}>
+        {isObserved ? "Obserwujesz" : `Obserwuj jako ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżer" : "skaut"}`}</button>
+      </div>
 
-    </div>
+  </div>
+   
   );
 };
 
