@@ -88,7 +88,7 @@ const ListaObserwowanych = () => {
     <div>
       <Navbar/>
     
-      <h1>Lista Obserwowanych Zawodników</h1>
+      <h1>Lista obserwowanych Zawodników</h1>
       {zawodnicy.length === 0 ? (
         <p>Brak obserwowanych zawodników.</p>
       ) : (
@@ -96,13 +96,11 @@ const ListaObserwowanych = () => {
           {zawodnicy.map((zawodnik) => (
             <li key={zawodnik.id} className="zawodnicy-obs-container">
               <div className="zawodnicy-obs-info">
-              <p>
-                <strong>Imię:</strong> {zawodnik.imie} <br />
-                <strong>Nazwisko:</strong> {zawodnik.nazwisko} <br />
-                <strong>Pozycja:</strong> {zawodnik.pozycja.nazwa_pozycji} <br />
-                <strong>Obecny klub:</strong> {zawodnik.obecnyKlub} <br />
-                <strong>Kraj pochodzenia: </strong>{zawodnik.krajPochodzenia.map((kraj) => kraj.nazwa).join(', ')}
-              </p>
+                <p><strong>Imię:</strong> {zawodnik.imie} </p>
+                <p><strong>Nazwisko:</strong> {zawodnik.nazwisko} </p>
+                <p><strong>Pozycja:</strong> {zawodnik.pozycja.nazwa_pozycji} </p>
+                <p><strong>Obecny klub:</strong> {zawodnik.obecnyKlub} </p>
+                <p><strong>Kraj pochodzenia: </strong>{zawodnik.krajPochodzenia.map((kraj) => kraj.nazwa).join(', ')}</p>
               </div>
               <div className="zawodnicy-obs-buttons">
                 <button className="obs-button" onClick={() => navigate(`/zawodnicy/profil/${zawodnik.id}`)}>Profil Zawodnika</button>

@@ -11,17 +11,19 @@
     background-color: #f9f9f9;
 }
 
+.zawodnicy-obs-info strong{
+    margin-right: 5px;
+}
+
 .zawodnicy-obs-info{
     display: flex;
     gap: 15px; 
-    flex-direction: row;
 
 }
 
 .zawodnicy-obs-info p{
     margin: 0;
-    min-width: 225px;
-
+    margin-right: 20px;
 }
 
 .zawodnicy-obs-buttons{
