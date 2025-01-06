@@ -40,5 +40,7 @@ public class TransferService {
 
         // 3. Dodanie nowego rekordu obecności w nowym klubie
         transferRepository.dodajNowyObecnyKlub(idUzytkownik, idKlubDo, dataDo);
+        // 4. Odrzucenie starych transferow
+        transferRepository.ustawInneTransferyZawodnika(idUzytkownik);
     }
 }

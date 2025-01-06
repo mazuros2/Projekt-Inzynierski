@@ -50,4 +50,9 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
     @Query(value = "INSERT into Obecny_klub (zawodnik_id,klub_id,data_Od,data_Do) VALUES (:zawodnikId,:klubId,:dataOd,null)",
             nativeQuery = true)
     void dodajNowyObecnyKlub(@Param("zawodnikId")long zawodnikId, @Param("klubId") Long klubId, @Param("dataOd") LocalDate dataOd);
+
+    @Modifying
+    @Query(value = "UPDATE Transfer t SET t.status = 'odrzucony' WHERE t.zawodnik.id_Uzytkownik= :zawodnikId AND t.status = 'oczekujacy'" )
+    void ustawInneTransferyZawodnika(@Param("zawodnikId") long zawodnikId);
+
 }
