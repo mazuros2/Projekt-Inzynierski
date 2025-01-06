@@ -1,9 +1,12 @@
 package dev.projekt_inzynierski.service;
 
 import dev.projekt_inzynierski.DTO.TransferDTO;
+import dev.projekt_inzynierski.DTO.TransferDTO2;
 import dev.projekt_inzynierski.DTO.TrofeumDTO;
 import dev.projekt_inzynierski.repository.TransferRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -47,4 +50,10 @@ public class TransferService {
         // 4. Odrzucenie starych transferow
         transferRepository.ustawInneTransferyZawodnika(idUzytkownik);
     }
+
+    public List<TransferDTO2> getLastFiveAcceptedTransfers() {
+        Pageable pageable = PageRequest.of(0, 5);
+        return transferRepository.findTop5AcceptedTransfers(pageable);
+    }
+
 }

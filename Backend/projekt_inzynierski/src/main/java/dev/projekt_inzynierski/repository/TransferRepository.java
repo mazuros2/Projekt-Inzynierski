@@ -2,8 +2,10 @@ package dev.projekt_inzynierski.repository;
 
 import dev.projekt_inzynierski.DTO.KlubFromLigaDTO;
 import dev.projekt_inzynierski.DTO.TransferDTO;
+import dev.projekt_inzynierski.DTO.TransferDTO2;
 import dev.projekt_inzynierski.models.Klub;
 import dev.projekt_inzynierski.models.Transfer;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -62,4 +64,18 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
             "t.id, t.data_transferu, t.status, t.kwota,t.klubDo.nazwa_klubu,t.klubOd.id,t.klubDo.id) " +
             "FROM Transfer t  WHERE t.klubDo.menadzer_klubu.id_Uzytkownik = :menadzerId")
     List<TransferDTO> findByMenadzerId(@Param("menadzerId") long menadzerId);
+
+    @Query("""
+    SELECT new dev.projekt_inzynierski.DTO.TransferDTO2(
+        t.zawodnik.id_Uzytkownik, t.zawodnik.imie, t.zawodnik.nazwisko, 
+        t.klubOd.id, t.klubOd.nazwa_klubu, 
+        t.klubDo.id, t.klubDo.nazwa_klubu, 
+        t.kwota)
+    FROM Transfer t
+    WHERE t.status = 'zaakceptowany'
+    ORDER BY t.data_transferu DESC
+    """)
+    List<TransferDTO2> findTop5AcceptedTransfers(Pageable pageable);
+
+
 }

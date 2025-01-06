@@ -1,6 +1,7 @@
 package dev.projekt_inzynierski.controller;
 
 import dev.projekt_inzynierski.DTO.TransferDTO;
+import dev.projekt_inzynierski.DTO.TransferDTO2;
 import dev.projekt_inzynierski.DTO.TransferRequest;
 import dev.projekt_inzynierski.DTO.TrofeumDTO;
 import dev.projekt_inzynierski.service.TransferService;
@@ -111,6 +112,10 @@ public class TransferController {
 //    }
 //}
 
+    @GetMapping("/api/transfery/ostatnie")
+    public ResponseEntity<List<TransferDTO2>> getLastFiveTransfers() {
+        return ResponseEntity.ok(transferService.getLastFiveAcceptedTransfers());
+    }
 
 }
 

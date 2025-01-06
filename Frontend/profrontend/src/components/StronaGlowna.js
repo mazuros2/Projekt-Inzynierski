@@ -10,6 +10,7 @@ const StronaGlowna = () => {
     const navigate = useNavigate();
     const [zdobywcyPP, setPP] = useState([]);
     const [zdobywcyMP, setMP] = useState([]);
+    const [transfery, setTransfery] = useState([]);
     const [error, setError] = useState("");
 
     useEffect(() => {
@@ -45,10 +46,21 @@ const StronaGlowna = () => {
             console.error("Error fetching trofea:", error);
                 setError("Błąd podczas pobierania trofeów. Sprawdź uprawnienia.");
         });
-
+        
+        axios.get(`http://localhost:8080/api/transfery/ostatnie`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setTransfery(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching transfers:", error);
+          setError("Błąd podczas pobierania transferów.");
+        });
 
     }, []);
-
 
 
     return (
@@ -73,7 +85,26 @@ const StronaGlowna = () => {
             
                 <div className='ostatnie-transfery'>
                     <h2>Ostatnie transfery</h2>
+                    <ul>
+                      {transfery.map((transfer, index) => (
+                      <li key={index}>
                 
+                      <strong>Zawodnik: </strong>
+                      <a href={`/zawodnicy/profil/${transfer.zawodnikId}`}>{transfer.imieZawodnika} {transfer.nazwiskoZawodnika}</a>
+                      <br />
+                
+                      <strong>Od: </strong>
+                      <a href={`/klub/${transfer.klubOdId}`}>{transfer.nazwaKlubuOd}</a>
+                      <br />
+
+                      <strong>Do: </strong>
+                      <a href={`/klub/${transfer.klubDoId}`}>{transfer.nazwaKlubuDo}</a>
+                      <br />
+                
+                      <strong>Kwota: </strong> {transfer.kwota} zł
+                      </li>
+                      ))}
+                    </ul>
                 </div>
             
                 <div className='pp-zdobywcy'>
@@ -90,11 +121,7 @@ const StronaGlowna = () => {
                 </div>
             
             </div>
-
-
         </div>
-
-
     );
 };
 
