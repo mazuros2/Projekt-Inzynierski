@@ -25,6 +25,8 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
             "t.id, t.data_transferu, t.status, t.kwota,t.klubDo.nazwa_klubu,t.klubOd.id,t.klubDo.id) " +
             "FROM Transfer t  WHERE t.zawodnik.id_Uzytkownik = :zawodnikId")
     List<TransferDTO> findByZawodnikId(@Param("zawodnikId") long zawodnikId);
+
+
     @Modifying
     @Query(value = "INSERT INTO Transfer (data_transferu, status, kwota, id_zawodnik, id_klub_od, id_klub_do) " +
             "VALUES (:dataTransferu, 'oczekujacy', :kwota, :id_zawodnik, COALESCE(:id_klubOd, NULL), :id_klubDo)",
@@ -55,4 +57,9 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
     @Query(value = "UPDATE Transfer t SET t.status = 'odrzucony' WHERE t.zawodnik.id_Uzytkownik= :zawodnikId AND t.status = 'oczekujacy'" )
     void ustawInneTransferyZawodnika(@Param("zawodnikId") long zawodnikId);
 
+//metoda dla transferow od menadzera klubu
+    @Query("SELECT new dev.projekt_inzynierski.DTO.TransferDTO(" +
+            "t.id, t.data_transferu, t.status, t.kwota,t.klubDo.nazwa_klubu,t.klubOd.id,t.klubDo.id) " +
+            "FROM Transfer t  WHERE t.klubDo.menadzer_klubu.id_Uzytkownik = :menadzerId")
+    List<TransferDTO> findByMenadzerId(@Param("menadzerId") long menadzerId);
 }
