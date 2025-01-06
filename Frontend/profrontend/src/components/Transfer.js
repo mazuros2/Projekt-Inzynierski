@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import jwtDecode from "jwt-decode"; 
 import { useNavigate, useParams } from "react-router-dom";
-import '../cssFolder/Navbar.css';
+import '../cssFolder/Transfer.css';
 import Navbar from '../components/Navbar';
 
 const Transfer = () => {
@@ -125,13 +125,14 @@ const Transfer = () => {
 
   return (
     <div>
-     <Navbar/>
-     
-      <div>
-        <h1>Wysłanie transferu</h1>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <form onSubmit={handleSubmit}>
-          <div>
+      
+      <Navbar/>
+      
+      <h1>Wysłanie transferu</h1>
+
+      <div className="transfer-container">
+        <form onSubmit={handleSubmit} className="transfer-form">
+          <div className="form-row">
             <label>Kwota: </label>
             <input
               type="number"
@@ -140,26 +141,25 @@ const Transfer = () => {
               required
             />
           </div>
-          <div>
+          <div className="form-row">
             <label>Klub od (ID): </label>
             <span>{idKlubOd || "Ładowanie..."}</span>
           </div>
-          <div>
+          <div className="form-row">
             <label>Klub do (ID): </label>
-            <input
-              type="number"
-              value={idKlubDo}
-              onChange={(e) => setIdKlubDo(e.target.value)}
-              readOnly={role === "ROLE_MENADZER_KLUBU"} // Automatyczne ustawianie dla menedżera
-              required
-            />
+            <span>{idKlubDo || "Ładowanie..."}</span>
           </div>
-          <button type="submit" disabled={!idKlubOd}>
-            Wyślij transfer
-          </button>
+
+          <div className="form-buttons">
+            <button type="button" onClick={() => navigate(-1)} className="cancel-button"> Anuluj </button>
+            <button type="submit" disabled={!idKlubOd} className="transfer-button"> Wyślij transfer </button>
+          </div>
         </form>
-        <button onClick={() => navigate(-1)}>Anuluj</button>
+
       </div>
+
+      {error && <p className="error-message">{error}</p>}
+
     </div>
   );
 };
