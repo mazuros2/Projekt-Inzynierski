@@ -18,6 +18,10 @@ public class TransferService {
     public List<TransferDTO> findByZawodnikId(long zawodnikId) {
         return transferRepository.findByZawodnikId(zawodnikId);
     }
+
+    public List<TransferDTO> findByMenadzerId(long menadzerId) {
+        return transferRepository.findByMenadzerId(menadzerId);
+    }
     @Transactional
     public void sendTransfer(LocalDate dataTransferu,int kwota,long id_zawodnik,long id_klubOd,long id_klubDo){
         System.out.println("Dane do transferu: " + dataTransferu + ", " + kwota + ", " + id_zawodnik + ", " + id_klubOd + ", " + id_klubDo);
@@ -40,5 +44,7 @@ public class TransferService {
 
         // 3. Dodanie nowego rekordu obecności w nowym klubie
         transferRepository.dodajNowyObecnyKlub(idUzytkownik, idKlubDo, dataDo);
+        // 4. Odrzucenie starych transferow
+        transferRepository.ustawInneTransferyZawodnika(idUzytkownik);
     }
 }

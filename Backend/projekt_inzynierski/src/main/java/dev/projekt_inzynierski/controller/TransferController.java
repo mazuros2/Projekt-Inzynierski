@@ -25,6 +25,15 @@ public class TransferController {
         }
         return ResponseEntity.ok(transfery);
     }
+
+    @GetMapping("/{menadzerId}/transfery")
+    public ResponseEntity<List<TransferDTO>> getTransferyByMenadzerId(@PathVariable long menadzerId) {
+        List<TransferDTO> transfery = transferService.findByMenadzerId(menadzerId);
+        if (transfery.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(transfery);
+    }
     @PostMapping("/sendTransfer")
     public ResponseEntity<String> sendTransfer(@RequestBody TransferRequest transferRequest) {
         try {
