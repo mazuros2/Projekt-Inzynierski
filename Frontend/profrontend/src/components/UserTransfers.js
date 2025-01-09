@@ -10,34 +10,43 @@ const UserTransfers = () => {
   const [userTransfers, setUserTransfers] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [role, setRole] = useState(null);
   const navigate = useNavigate();
 
-  const getUserIdFromToken = () => {
+  const getUserInfoFromToken = () => {
     const token = sessionStorage.getItem('token');
     if (!token) {
       console.error('Brak tokena w sessionStorage.');
-      return null;
+      return {};
     }
-  
+
     try {
       const decodedToken = jwtDecode(token);
-      console.log('Token JWT:', decodedToken);  // Sprawdź, co zwraca jwtDecode
-      return decodedToken.userId;  // Upewnij się, że userId istnieje
+      console.log('Token JWT:', decodedToken); // Debugowanie tokena
+      return {
+        userId: decodedToken.userId || null,
+        role: decodedToken.role || null,
+      };
     } catch (err) {
       console.error('Błąd dekodowania tokena:', err);
-      return null;
+      return {};
     }
   };
-  
 
-  const fetchUserTransfers = async (userId) => {
+  const fetchUserTransfers = async (userId, role) => {
     try {
       const token = sessionStorage.getItem('token');
-      const response = await axios.get(`http://localhost:8080/zawodnik/${userId}/transfery`, {
+      const endpoint =
+        role === 'ROLE_MENADZER_KLUBU'
+          ? `http://localhost:8080/${userId}/transfery`
+          : `http://localhost:8080/zawodnik/${userId}/transfery`;
+
+      const response = await axios.get(endpoint, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
       setUserTransfers(response.data);
     } catch (err) {
       console.error('Błąd pobierania transferów:', err);
@@ -46,26 +55,26 @@ const UserTransfers = () => {
       setLoading(false);
     }
   };
-  const userId1 = getUserIdFromToken();
+
   const handleAcceptTransfer = async (transferId, clubFromId, clubToId) => {
     try {
-      const userId = getUserIdFromToken();
+      const { userId } = getUserInfoFromToken();
       if (!userId) {
         console.error('Brak userId. Token może być nieprawidłowy lub wygasł.');
         alert('Wystąpił błąd: Brak ID użytkownika.');
         return;
       }
-  
+
       const token = sessionStorage.getItem('token');
-  
+
       const params = new URLSearchParams();
       params.append('id_transfer', transferId);
-      params.append('id_uzytkownik', userId1);
+      params.append('id_uzytkownik', userId);
       params.append('id_klubOd', clubFromId);
       params.append('id_klubDo', clubToId);
-  
+
       console.log('Wysyłane parametry:', params.toString());
-  
+
       const response = await axios.post(
         'http://localhost:8080/zaakceptuj',
         params,
@@ -76,16 +85,14 @@ const UserTransfers = () => {
           },
         }
       );
+
       alert(response.data);
-      fetchUserTransfers(userId);
+      fetchUserTransfers(userId, role);
     } catch (err) {
       console.error('Błąd akceptacji transferu:', err);
       alert('Nie udało się zaakceptować transferu.');
     }
   };
-  
-  
-  
 
   const handleRejectTransfer = async (transferId) => {
     try {
@@ -102,20 +109,19 @@ const UserTransfers = () => {
       setUserTransfers((prevTransfers) =>
         prevTransfers.map((transfer) =>
           transfer.id === transferId
-            ? { ...transfer, status: "odrzucony" }
+            ? { ...transfer, status: 'odrzucony' }
             : transfer
         )
       );
-      alert("Transfer został odrzucony.");
+      alert('Transfer został odrzucony.');
     } catch (error) {
-      console.error("Błąd odrzucania transferu:", error.response || error.message);
+      console.error('Błąd odrzucania transferu:', error.response || error.message);
       alert(`Nie udało się odrzucić transferu: ${error.message}`);
     }
   };
-  
 
   useEffect(() => {
-    const userId = getUserIdFromToken();
+    const { userId, role } = getUserInfoFromToken();
 
     if (!userId) {
       console.error('Brak ID użytkownika w tokenie. Przekierowanie do logowania.');
@@ -123,12 +129,13 @@ const UserTransfers = () => {
       return;
     }
 
-    fetchUserTransfers(userId);
+    setRole(role); // Ustaw rolę użytkownika
+    fetchUserTransfers(userId, role);
   }, [navigate]);
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
 
       <div className="user-transfers">
         <h1>Twoje transfery</h1>
@@ -139,29 +146,42 @@ const UserTransfers = () => {
         ) : userTransfers.length > 0 ? (
           <ul className="transfer-list">
             {userTransfers.map((transfer) => (
-              <li key={transfer.id} className="transfer-item">
-                <p><strong>Data:</strong> {transfer.data_transferu}</p>
-                <p><strong>Status:</strong> {transfer.status}</p>
-                <p><strong>Kwota:</strong> {transfer.kwota} PLN</p>
-                <p><strong>Klub:</strong> {transfer.nazwa_klubu}</p>
-                {transfer.status === 'oczekujacy' && (
-                  <div className="transfer-actions">
-                    <button
-                      onClick={() =>
-                        handleAcceptTransfer(
-                          transfer.id,
-                          transfer.id_klub_od,
-                          transfer.id_klub_do
-                        )
-                      }
-                    >
-                      Zaakceptuj
-                    </button>
-                    <button onClick={() => handleRejectTransfer(transfer.id)}>Odrzuć</button>
-                  </div>
-                )}
-              </li>
-            ))}
+  <li key={transfer.id} className="transfer-item">
+    <p>
+      <strong>Data:</strong> {transfer.data_transferu}
+    </p>
+    <p>
+      <strong>Status:</strong>{" "}
+      {role === "ROLE_MENADZER_KLUBU" && transfer.status === "oczekujacy"
+        ? "Propozycja transferu została wysłana"
+        : transfer.status}
+    </p>
+    <p>
+      <strong>Kwota:</strong> {transfer.kwota} PLN
+    </p>
+    <p>
+      <strong>Klub:</strong> {transfer.nazwa_klubu}
+    </p>
+    {transfer.status === "oczekujacy" && role !== "ROLE_MENADZER_KLUBU" && (
+      <div className="transfer-actions">
+        <button
+          onClick={() =>
+            handleAcceptTransfer(
+              transfer.id,
+              transfer.id_klub_od,
+              transfer.id_klub_do
+            )
+          }
+        >
+          Zaakceptuj
+        </button>
+        <button onClick={() => handleRejectTransfer(transfer.id)}>
+          Odrzuć
+        </button>
+      </div>
+    )}
+  </li>
+))}
           </ul>
         ) : (
           <p>Brak transferów do wyświetlenia.</p>

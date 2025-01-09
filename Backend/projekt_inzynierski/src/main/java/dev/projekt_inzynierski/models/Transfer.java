@@ -41,7 +41,7 @@ public class Transfer {
     @JoinColumn(name = "id_klub_od",nullable = true)
     private Klub klubOd;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_klub_do",nullable = false)
     private Klub klubDo;
 
