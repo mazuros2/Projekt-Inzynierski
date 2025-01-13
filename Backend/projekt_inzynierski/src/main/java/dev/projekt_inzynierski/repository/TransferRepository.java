@@ -3,6 +3,7 @@ package dev.projekt_inzynierski.repository;
 import dev.projekt_inzynierski.DTO.KlubFromLigaDTO;
 import dev.projekt_inzynierski.DTO.TransferDTO;
 import dev.projekt_inzynierski.DTO.TransferDTO2;
+import dev.projekt_inzynierski.DTO.TransferDTOMen;
 import dev.projekt_inzynierski.models.Klub;
 import dev.projekt_inzynierski.models.Transfer;
 import org.springframework.data.domain.Pageable;
@@ -60,10 +61,10 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
     void ustawInneTransferyZawodnika(@Param("zawodnikId") long zawodnikId);
 
 //metoda dla transferow od menadzera klubu
-    @Query("SELECT new dev.projekt_inzynierski.DTO.TransferDTO(" +
-            "t.id, t.data_transferu, t.status, t.kwota,t.klubDo.nazwa_klubu,t.klubOd.id,t.klubDo.id) " +
+    @Query("SELECT new dev.projekt_inzynierski.DTO.TransferDTOMen(" +
+            "t.id, t.data_transferu, t.status, t.kwota,t.klubOd.id,t.klubDo.id,t.klubOd.nazwa_klubu,t.klubDo.nazwa_klubu) " +
             "FROM Transfer t  WHERE t.klubDo.menadzer_klubu.id_Uzytkownik = :menadzerId")
-    List<TransferDTO> findByMenadzerId(@Param("menadzerId") long menadzerId);
+    List<TransferDTOMen> findByMenadzerId(@Param("menadzerId") long menadzerId);
 
     @Query("""
     SELECT new dev.projekt_inzynierski.DTO.TransferDTO2(

@@ -1,9 +1,6 @@
 package dev.projekt_inzynierski.controller;
 
-import dev.projekt_inzynierski.DTO.TransferDTO;
-import dev.projekt_inzynierski.DTO.TransferDTO2;
-import dev.projekt_inzynierski.DTO.TransferRequest;
-import dev.projekt_inzynierski.DTO.TrofeumDTO;
+import dev.projekt_inzynierski.DTO.*;
 import dev.projekt_inzynierski.service.TransferService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,8 +25,8 @@ public class TransferController {
     }
 
     @GetMapping("/{menadzerId}/transfery")
-    public ResponseEntity<List<TransferDTO>> getTransferyByMenadzerId(@PathVariable long menadzerId) {
-        List<TransferDTO> transfery = transferService.findByMenadzerId(menadzerId);
+    public ResponseEntity<List<TransferDTOMen>> getTransferyByMenadzerId(@PathVariable long menadzerId) {
+        List<TransferDTOMen> transfery = transferService.findByMenadzerId(menadzerId);
         if (transfery.isEmpty()) {
             return ResponseEntity.noContent().build();
         }

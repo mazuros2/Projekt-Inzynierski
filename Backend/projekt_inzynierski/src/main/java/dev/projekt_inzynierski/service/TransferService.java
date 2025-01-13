@@ -2,6 +2,7 @@ package dev.projekt_inzynierski.service;
 
 import dev.projekt_inzynierski.DTO.TransferDTO;
 import dev.projekt_inzynierski.DTO.TransferDTO2;
+import dev.projekt_inzynierski.DTO.TransferDTOMen;
 import dev.projekt_inzynierski.DTO.TrofeumDTO;
 import dev.projekt_inzynierski.repository.TransferRepository;
 import jakarta.transaction.Transactional;
@@ -22,7 +23,7 @@ public class TransferService {
         return transferRepository.findByZawodnikId(zawodnikId);
     }
 
-    public List<TransferDTO> findByMenadzerId(long menadzerId) {
+    public List<TransferDTOMen> findByMenadzerId(long menadzerId) {
         return transferRepository.findByMenadzerId(menadzerId);
     }
     @Transactional
