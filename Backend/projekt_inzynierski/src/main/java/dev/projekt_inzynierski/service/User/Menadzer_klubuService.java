@@ -1,6 +1,7 @@
 package dev.projekt_inzynierski.service.User;
 
 import dev.projekt_inzynierski.DTO.MenadzerDTO;
+import dev.projekt_inzynierski.DTO.MenadzerIdKlubDTO;
 import dev.projekt_inzynierski.DTO.SkautDTO;
 import dev.projekt_inzynierski.models.Kraj_pochodzenia;
 import dev.projekt_inzynierski.models.users.Menadzer_klubu;
@@ -39,7 +40,8 @@ public class Menadzer_klubuService {
                 klub
         );
     }
-    public Long getIdKlubuMenadzera(Long id_menadzera){
-        return menadzer_klubuRepository.getIdKlubuMenadzera(id_menadzera);
+    public MenadzerIdKlubDTO getIdKlubuMenadzera(Long id_menadzera){
+        return menadzer_klubuRepository.getIdKlubuMenadzera(id_menadzera)
+                .orElseThrow(() -> new EntityNotFoundException("Nie znaleziono klubu dla zawodnika o ID: " + id_menadzera));
     }
 }

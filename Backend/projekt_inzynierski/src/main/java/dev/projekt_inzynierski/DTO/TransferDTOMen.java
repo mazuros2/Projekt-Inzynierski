@@ -19,4 +19,6 @@ public class TransferDTOMen {
     private Long id_klub_do;
     private String nazwa_klub_od;
     private String nazwa_klub_do;
+    private String imie;
+    private String nazwisko;
 }

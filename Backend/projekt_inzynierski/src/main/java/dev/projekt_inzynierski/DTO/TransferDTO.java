@@ -15,7 +15,10 @@ public class TransferDTO {
     private LocalDate data_transferu;
     private String status;
     private int kwota;
-    private String nazwa_klubu;
     private Long id_klub_od;
     private Long id_klub_do;
+    private String nazwa_klub_od;
+    private String nazwa_klub_do;
+    private String imieMen;
+    private String nazwiskoMen;
 }

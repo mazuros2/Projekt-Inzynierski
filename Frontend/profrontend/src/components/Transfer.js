@@ -9,6 +9,8 @@ const Transfer = () => {
   const { id } = useParams();
   const [kwota, setKwota] = useState("");
   const [idKlubOd, setIdKlubOd] = useState(null);
+  const [nazwaKlubOd, setNazwaKlubOd] = useState(null);
+  const [nazwaKlubDo, setNazwaKlubDo] = useState(null);
   const [idKlubDo, setIdKlubDo] = useState("");
   const [error, setError] = useState("");
   const [role, setRole] = useState(null); // Przechowywanie roli użytkownika
@@ -55,6 +57,12 @@ const Transfer = () => {
         } else {
           setError("Nie znaleziono klubu dla tego zawodnika.");
         }
+        if (response.data && response.data.nazwaOd) {
+          setNazwaKlubOd(response.data.nazwaOd);
+        } else {
+          setError("Nie znaleziono nazwy klubu od");
+        }
+        
       } catch (error) {
         console.error("Błąd przy pobieraniu danych:", error);
         setError("Wystąpił problem podczas pobierania danych.");
@@ -79,6 +87,11 @@ const Transfer = () => {
             setIdKlubDo(response.data);
           } else {
             setError("Nie znaleziono klubu dla menedżera.");
+          }
+          if (response.data && response.data.nazwaDo) {
+            setNazwaKlubDo(response.data.nazwaDo);
+          } else {
+            setError("Nie znaleziono nazwy klubu do");
           }
         } catch (error) {
           console.error("Błąd przy pobieraniu ID klubu menedżera:", error);
@@ -143,11 +156,11 @@ const Transfer = () => {
           </div>
           <div className="form-row">
             <label>Klub od (ID): </label>
-            <span>{idKlubOd || "Ładowanie..."}</span>
+            <span>{nazwaKlubOd  || "Ładowanie..."}</span>
           </div>
           <div className="form-row">
             <label>Klub do (ID): </label>
-            <span>{idKlubDo || "Ładowanie..."}</span>
+            <span>{nazwaKlubDo || "Ładowanie..."}</span>
           </div>
 
           <div className="form-buttons">

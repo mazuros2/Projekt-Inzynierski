@@ -25,7 +25,7 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
     List<TransferDTO> findByZawodnikId(@Param("zawodnikId") long zawodnikId);*/
 
     @Query("SELECT new dev.projekt_inzynierski.DTO.TransferDTO(" +
-            "t.id, t.data_transferu, t.status, t.kwota,t.klubDo.nazwa_klubu,t.klubOd.id,t.klubDo.id) " +
+            "t.id, t.data_transferu, t.status, t.kwota,t.klubOd.id,t.klubDo.id,t.klubOd.nazwa_klubu,t.klubDo.nazwa_klubu,t.klubDo.menadzer_klubu.imie,t.klubDo.menadzer_klubu.nazwisko) " +
             "FROM Transfer t  WHERE t.zawodnik.id_Uzytkownik = :zawodnikId")
     List<TransferDTO> findByZawodnikId(@Param("zawodnikId") long zawodnikId);
 
@@ -62,7 +62,7 @@ public interface TransferRepository extends JpaRepository<Transfer,Long> {
 
 //metoda dla transferow od menadzera klubu
     @Query("SELECT new dev.projekt_inzynierski.DTO.TransferDTOMen(" +
-            "t.id, t.data_transferu, t.status, t.kwota,t.klubOd.id,t.klubDo.id,t.klubOd.nazwa_klubu,t.klubDo.nazwa_klubu) " +
+            "t.id, t.data_transferu, t.status, t.kwota,t.klubOd.id,t.klubDo.id,t.klubOd.nazwa_klubu,t.klubDo.nazwa_klubu,t.zawodnik.imie,t.zawodnik.nazwisko) " +
             "FROM Transfer t  WHERE t.klubDo.menadzer_klubu.id_Uzytkownik = :menadzerId")
     List<TransferDTOMen> findByMenadzerId(@Param("menadzerId") long menadzerId);
 
