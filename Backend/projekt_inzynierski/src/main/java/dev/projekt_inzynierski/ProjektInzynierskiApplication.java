@@ -286,6 +286,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pesel(12)
 				.haslo(passwordEncoder.encode("admin"))
 				.role(Role.ADMIN)
+				.profiloweURL("https://cdn-icons-png.flaticon.com/512/149/149071.png")
 				.build();
 
 
@@ -1105,6 +1106,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://img.a.transfermarkt.technology/portrait/big/1073749-1725472890.png?lm=1")
 				.build();
 
 		Zawodnik DominikSzala = Zawodnik.builder()
@@ -1122,6 +1124,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQgqmZ86zhDTqnkIVy2Sn0_yoiGsXTnoji9EAt2nI1_MVfRpTC2NVnx37M8_-t17kC78hNwO3Hn2mQ2dJA")
 				.build();
 
 		Zawodnik KryspinSzczesniak = Zawodnik.builder()
@@ -1139,6 +1142,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://s7.tvp.pl/images2/7/1/9/uid_7198b4f42e6f449eac191fd50d972e04_width_200_play_0_pos_0_gs_0_height_240_kryspin-szczesniak-fot-gornik-leczna.jpg")
 				.build();
 
 		Zawodnik Josema = Zawodnik.builder()
@@ -1156,6 +1160,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://img.a.transfermarkt.technology/portrait/big/255892-1721899552.png?lm=1")
 				.build();
 
 		Zawodnik NikodemZielonka = Zawodnik.builder()
@@ -1173,6 +1178,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikSPO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://s6.tvp.pl/images2/f/3/2/uid_f3264e36275c830888da28739a68137a1644774665056_width_200_play_0_pos_0_gs_0_height_240_nikodem-zielonka-fot-400mm.jpg")
 				.build();
 
 		Zawodnik KamilLukoszek = Zawodnik.builder()
@@ -1190,6 +1196,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikLN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://gornikzabrzecdn.stellis.one/imgsize-m/documents/4541152/0a433aa7-8516-7d92-c170-d74ec760a3bb")
 				.build();
 
 		Zawodnik YosukeFurukawa = Zawodnik.builder()
@@ -1201,6 +1208,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pesel(903716678)
 				.haslo(passwordEncoder.encode("napastnik2"))
 				.role(Role.ZAWODNIK)
+				.profiloweURL("https://gornikzabrzecdn.stellis.one/imgsize-m/documents/4541152/c4368902-240c-2662-4535-930a96c3919a")
 				.waga(66)
 				.wzrost(174)
 				.kraj_pochodzenia(Set.of(JP))
@@ -1248,6 +1256,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://tmssl.akamaized.net/images/foto/galerie/ariel-mosor-piast-gliwice-1655217977-86835.jpg")
 				.build();
 
 		Zawodnik KacperTrelowski = Zawodnik.builder()
@@ -1265,6 +1274,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSQ46g6dqIzWBipZIKx-Q1RI0TghQFK0FHl-5Of5i_OaYgfvqvJPRPdG5VqlyiCrBgU6aMLAbwqhIHwgaDXAWFIuA")
 				.build();
 
 		Zawodnik AntoniBurkiewicz = Zawodnik.builder()
@@ -1282,6 +1292,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikSPD)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://img.a.transfermarkt.technology/portrait/big/1190453-1727729543.png?lm=1")
 				.build();
 
 		Zawodnik FranTudor = Zawodnik.builder()
@@ -1299,6 +1310,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikPP)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTi38VeHuRIH-4IhpTnuSyVB_Tuh-11q1a_50rM43-Qekq1xK6s8D1mdQqoU3XR0ko_Iswtu0200VDZPMc")
 				.build();
 
 		Zawodnik PatrykMakuch = Zawodnik.builder()
@@ -1316,6 +1328,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://pliki.rakow.com/articles/800x2000/20240711-j-z-9625-_1720708279626.jpg")
 				.build();
 
 		Zawodnik TomaszWalczak = Zawodnik.builder()
@@ -1333,6 +1346,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://s3.tvp.pl/images2/3/3/c/uid_33cf81fbf69b40dd94d0e8b77ecde4fd_width_200_play_0_pos_0_gs_0_height_240_tomasz-walczak-fot-rakow-czestochowa.jpg")
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1375,6 +1389,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR6pIQYx1OspSHC1fyUvwsVUaoCzP23Fm2CZT4rP0hvltHW-CKb4Fh2nzZaeoZUq0yH-zXkSGGjltzeR31S7nInJw")
 				.build();
 
 		Zawodnik AleksanderKomor = Zawodnik.builder()
@@ -1392,6 +1407,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://www.gkskatowice.eu/media/players/1170/524-66ad2543e8bd6.png")
 				.build();
 
 		Zawodnik OskarRepka = Zawodnik.builder()
@@ -1409,6 +1425,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikSPD)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://www.gkskatowice.eu/media/players/1124/524-66a1455d1acb4.png")
 				.build();
 
 		Zawodnik AdrianDanek = Zawodnik.builder()
@@ -1426,6 +1443,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikPP)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://www.gkskatowice.eu/media/players/1173/524-66a14fb883164.png")
 				.build();
 
 		Zawodnik SebastianBergier = Zawodnik.builder()
@@ -1443,6 +1461,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://www.gkskatowice.eu/media/news/17637/large_pic_63e75cf22e6b7-64ee540c6745d.png")
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1609,6 +1628,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://piast-gliwice.eu/static/thumbnail/news/med/88475.jpg")
 				.build();
 
 		Zawodnik TomasHuk = Zawodnik.builder()
@@ -1626,6 +1646,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://piast-gliwice.eu/static/thumbnail/news/med/97350.jpg")
 				.build();
 
 		Zawodnik FilipKarbowy = Zawodnik.builder()
@@ -1643,6 +1664,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikSPO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://piast-gliwice.eu/static/thumbnail/news/med/109445.jpg")
 				.build();
 
 		Zawodnik JorgeFelix = Zawodnik.builder()
@@ -1660,6 +1682,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikLN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://piast-gliwice.eu/static/thumbnail/news/med/2037.jpg")
 				.build();
 
 		Zawodnik DamianKadzior = Zawodnik.builder()
@@ -1677,6 +1700,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikPN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://ocdn.eu/sport-images-transforms/1/tMQk9lBaHR0cHM6Ly9vY2RuLmV1L3B1bHNjbXMvTURBXy85M2MxOTBmMjhkMmY0ZWIxNmEwMGJmYWY1OWI2MGVlMS5qcGeTlQPNAnrMvc0Ff80DGJUCzQSwAMLDkwmmYTY5MzgxBt4AAqEwAaExAQ/damian-kadzior.jpg")
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1717,6 +1741,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://daf17zziboaju.cloudfront.net/wp-content/uploads/2024/04/07002348/rafal.leszczynski.jpg")
 				.build();
 
 		Zawodnik AleksanderPaluszek = Zawodnik.builder()
@@ -1734,6 +1759,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://d-art.ppstatic.pl/kadry/k/r/1/46/73/64c8ea3155f20_o_medium.jpg")
 				.build();
 
 		Zawodnik TommasoGuercio = Zawodnik.builder()
@@ -1751,6 +1777,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikLP)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://cdn.galleries.smcloud.net/t/galleries/gf-J2aQ-qN9c-nbqS_tommaso-guercio-nowym-pilkarzem-slaska-wroclaw-czego-spodziewac-sie-zawodniku-z-akademii-interu-994x828.jpg")
 				.build();
 
 		Zawodnik ArnauOrtiz = Zawodnik.builder()
@@ -1768,6 +1795,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikLP)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://slask-www-cdn.stellis.one/imgsize-m/documents/7763504/412023eb-7c79-4d07-6fdb-21f99e18df83")
 				.build();
 
 		Zawodnik JakubSwierczok = Zawodnik.builder()
@@ -1785,6 +1813,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://www.zaglebie.com/aktualnosci/2024/11/image-thumb__125998__news-index-cover/Swierczok1~-~768w.jpeg")
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1825,6 +1854,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://www.zaglebie.com/zespol/pierwsza%20druzyna/2024-2025/Front/image-thumb__123899__team-index-cover/Dominik-Hladun--niebieskie-~-~768w.png")
 				.build();
 
 		Zawodnik PatrykKusztal = Zawodnik.builder()
@@ -1842,6 +1872,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikSPO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://www.zaglebie.com/zespol/pierwsza%20druzyna/2024-2025/Front/image-thumb__123860__team-index-cover/Patryk-Kusztal--1--pierwszy-komplet-~-~768w.png")
 				.build();
 
 		Zawodnik VaclavSejk = Zawodnik.builder()
@@ -1859,6 +1890,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://mkszaglebie.pl/uploads/gallery/026072024_MM_2.jpeg")
 				.build();
 
 		Zawodnik DawidKurminowski = Zawodnik.builder()
@@ -1876,6 +1908,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://www.zaglebie.com/zespol/pierwsza%20druzyna/2024-2025/Front/image-thumb__123843__team-index-cover/Dawid-Kurminowski--1--pierwszy-komplet-~-~768w.png")
 				.build();
 
 		Zawodnik LuisMata = Zawodnik.builder()
@@ -1893,6 +1926,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikLP)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://www.zaglebie.com/zespol/pierwsza%20druzyna/2024-2025/Front/image-thumb__123842__team-index-cover/Luis-Mata--1--pierwszy-komplet-~-~768w.png")
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -1934,6 +1968,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://twojradom.pl/wp-content/uploads/2024/06/phpThumb_generated_thumbnail-4.jpg")
 				.build();
 
 		Zawodnik DariuszPawlowski = Zawodnik.builder()
@@ -1951,6 +1986,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaPO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjbVN1yUV3M8YJVbFusYKdn0ndCwlXweIRzA&s")
 				.build();
 
 		Zawodnik BrunoJordao = Zawodnik.builder()
@@ -1968,6 +2004,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikSPD)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://livesport-ott-images.ssl.cdn.cra.cz/r900xfq60/7648c86e-55f4-4ae7-9838-f25d357c7dd8.jpeg")
 				.build();
 
 		Zawodnik Luizao = Zawodnik.builder()
@@ -1985,6 +2022,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikSPD)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://www.cozadzien.pl/img/2023/10/22/radomiak-radom-korona-kielce-zdjecia/_max/radomiak-korona-29.jpg")
 				.build();
 
 		Zawodnik GuilhermeZimovski = Zawodnik.builder()
@@ -2002,6 +2040,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikPN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://transfery.info/img/photos/95232/1500xauto/guilherme-zimovski.jpg")
 				.build();
 
 		zawodnikRepository.saveAll(List.of(
@@ -2042,6 +2081,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://www.radio.bialystok.pl/src/4/351b74fdeae8b0f3bcd273df9709ef6f")
 				.build();
 
 		Zawodnik MateuszSkrzypczak = Zawodnik.builder()
@@ -2059,6 +2099,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://s2.tvp.pl/images2/b/a/5/uid_ba514e61bb704ef687ca63db364466aa_width_1200_play_0_pos_0_gs_0_height_678_mateusz-skrzypczak-fot-getty-images.jpg")
 				.build();
 
 		Zawodnik AdrianDieguez = Zawodnik.builder()
@@ -2076,6 +2117,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://jagiellonia.net/gfx/upload/zawodnicy/2024-07-31_09-37-48_261185.png")
 				.build();
 
 		Zawodnik AurelienNguiamba = Zawodnik.builder()
@@ -2093,6 +2135,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(pomocnikSPD)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://akadera.bialystok.pl/app/uploads/2023/09/20230911_NGUIAMBA013.jpg")
 				.build();
 
 		Zawodnik LamineDiabyFadiga = Zawodnik.builder()
@@ -2110,6 +2153,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://tmssl.akamaized.net/images/foto/galerie/diaby-fadiga-lamine-2024-2025-jagiellonia-bialystok-1724099926-145623.jpg")
 				.build();
 
 		Zawodnik JesusImaz = Zawodnik.builder()
@@ -2127,12 +2171,13 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikSN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://transfery.info/img/photos/95918/1500xauto/jesus-imaz.jpg")
 				.build();
 
 
 		zawodnikRepository.saveAll(List.of(
 				JesusImaz,LamineDiabyFadiga,AurelienNguiamba,
-				AdrianDieguez,MaksymilianStryjek
+				AdrianDieguez,MaksymilianStryjek,MateuszSkrzypczak
 		));
 
 		JagielloniaBialystok.dodajZawodnika(JesusImaz,LocalDate.now());
@@ -2140,11 +2185,12 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 		JagielloniaBialystok.dodajZawodnika(AurelienNguiamba,LocalDate.now());
 		JagielloniaBialystok.dodajZawodnika(AdrianDieguez,LocalDate.now());
 		JagielloniaBialystok.dodajZawodnika(MaksymilianStryjek,LocalDate.now());
+		JagielloniaBialystok.dodajZawodnika(MateuszSkrzypczak,LocalDate.now());
 		klubRepository.save(JagielloniaBialystok);
 
 		zawodnikRepository.saveAll(List.of(
 				JesusImaz,LamineDiabyFadiga,AurelienNguiamba,
-				AdrianDieguez,MaksymilianStryjek
+				AdrianDieguez,MaksymilianStryjek,MateuszSkrzypczak
 		));
 
 		for (Obecny_klub ob : JagielloniaBialystok.getSetObecnyKlub()) {
@@ -2168,6 +2214,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(bramkarzBR)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://www.goal.pl/wp-content/uploads/2024/10/Rafal-Gikiewicz-1.jpg")
 				.build();
 
 		Zawodnik MateuszZyro = Zawodnik.builder()
@@ -2185,6 +2232,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://widzew.com/images/sezon24-25/Glowki-www_2024-25/4_Zyro.png")
 				.build();
 
 		Zawodnik JuanIbiza = Zawodnik.builder()
@@ -2202,6 +2250,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://widzew.com/images/sezon2023-24/Ludzie/Ibiza/IMG_3052.JPG")
 				.build();
 
 		Zawodnik LuisSilva = Zawodnik.builder()
@@ -2219,6 +2268,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(obroncaSO)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://widzew.com/images/sezon2023-24/Ludzie/Luis-Silva/IMG_8901-Enhanced-NR.JPG")
 				.build();
 
 		Zawodnik FabioNunes = Zawodnik.builder()
@@ -2236,6 +2286,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.pozycja(napastnikLN)
 				.obecny_klub(new HashSet<>())
 				.transfery(new ArrayList<>())
+				.profiloweURL("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRxCnihC3muxHbjrr45LaxOTjkp13wDNz9oQ&s")
 				.build();
 
 
@@ -2577,6 +2628,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 				.role(Role.MENADZER_KLUBU)
 				.kraj_pochodzenia(Set.of(PL))
 				.menadzerKlubu(LegiaWarszawa)
+				.profiloweURL("https://www.goal.pl/wp-content/uploads/2023/02/mioduski-dariusz-960x640.jpg")
 				.build();
 
 		Menadzer_klubu KarolKlimczak = Menadzer_klubu.builder()
