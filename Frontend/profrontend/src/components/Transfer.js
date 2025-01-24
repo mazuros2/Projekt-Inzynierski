@@ -84,7 +84,7 @@ const Transfer = () => {
           });
 
           if (response.data) {
-            setIdKlubDo(response.data);
+            setIdKlubDo(response.data.id);
           } else {
             setError("Nie znaleziono klubu dla menedżera.");
           }
