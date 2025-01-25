@@ -49,7 +49,7 @@ public class JWTService {
             .setClaims(extraClaims)
             .setSubject(detailsUser.getUsername()) // Login użytkownika
             .setIssuedAt(new Date(System.currentTimeMillis()))
-            .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)) // 24 godziny
+            .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 24 godziny
             .signWith(getKeyToSignIn(), SignatureAlgorithm.HS256)
             .compact();
     }
