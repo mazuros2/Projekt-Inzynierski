@@ -619,7 +619,7 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 
 			klubRepository.saveAll(List.of(
 					RekordBB, PodbeskidzieBB, KKSKalisz, ZaglebieSosnowiec, KSWieczystaKrakow, ResoviaRzeszow,
-					PoloniaBytom, OlimpiaGrudziac, MotorLublin, GarbarniaKrakow, StalRzeszow
+					PoloniaBytom, OlimpiaGrudziac
 			));
 
 
@@ -2329,6 +2329,594 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 			for (Obecny_klub ob : WidzewLodz.getSetObecnyKlub()) {
 				obecny_klubRepository.save(ob);
 			}
+
+			//II liga zawodnicy
+
+			//RekordBB
+			Zawodnik MateuszKlichowicz = Zawodnik.builder()
+					.login("MateuszKlichowicz")
+					.email("MateuszKlichowicz@gmail.com")
+					.imie("Mateusz")
+					.nazwisko("Klichowicz")
+					.data_Urodzenia(LocalDate.of(1991, 9, 28))
+					.pesel(59192834)
+					.haslo(passwordEncoder.encode("pomocnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(72)
+					.wzrost(177)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnikSPO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://bts.rekord.com.pl/static/thumbnail/news/big/31669.jpg")
+					.build();
+
+			Zawodnik MichalSliwka = Zawodnik.builder()
+					.login("MichalSliwka")
+					.email("MichalSliwka@gmail.com")
+					.imie("Michal")
+					.nazwisko("Sliwka")
+					.data_Urodzenia(LocalDate.of(2005, 9, 1))
+					.pesel(70509123)
+					.haslo(passwordEncoder.encode("pomocnik2"))
+					.role(Role.ZAWODNIK)
+					.waga(70)
+					.wzrost(175)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnikSPO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://bts.rekord.com.pl/static/thumbnail/gamesPlayer/min/31787.jpg")
+					.build();
+
+			Zawodnik DanielSwiderski = Zawodnik.builder()
+					.login("DanielSwiderski")
+					.email("DanielSwiderski@gmail.com")
+					.imie("Daniel")
+					.nazwisko("Swiderski")
+					.data_Urodzenia(LocalDate.of(1994, 12, 10))
+					.pesel(69412103)
+					.haslo(passwordEncoder.encode("napastnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(85)
+					.wzrost(187)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikSN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://s2.tvp.pl/images2/b/4/1/uid_b418ecc8daec41b387750c9a56c3e540_width_1200_play_0_pos_0_gs_0_height_678_daniel-swiderski-fot-400mmpl-.jpg")
+					.build();
+
+			zawodnikRepository.saveAll(List.of(
+					DanielSwiderski,MichalSliwka,MateuszKlichowicz
+			));
+
+			RekordBB.dodajZawodnika(DanielSwiderski, LocalDate.now());
+			RekordBB.dodajZawodnika(MichalSliwka, LocalDate.now());
+			RekordBB.dodajZawodnika(MateuszKlichowicz, LocalDate.now());
+
+			klubRepository.save(RekordBB);
+
+			zawodnikRepository.saveAll(List.of(
+					DanielSwiderski,MichalSliwka,MateuszKlichowicz
+			));
+
+			for (Obecny_klub ob : RekordBB.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+
+
+			//KKS Kalisz
+			Zawodnik NestorGordillo = Zawodnik.builder()
+					.login("NestorGordillo")
+					.email("NestorGordillo@gmail.com")
+					.imie("Néstor")
+					.nazwisko("Gordillo")
+					.data_Urodzenia(LocalDate.of(1989, 8, 28))
+					.pesel(58908283)
+					.haslo(passwordEncoder.encode("pomocnik3"))
+					.role(Role.ZAWODNIK)
+					.waga(68)
+					.wzrost(169)
+					.kraj_pochodzenia(Set.of(ES))
+					.pozycja(pomocnikSPO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://static2.faktykaliskie.info/data/articles/xga-4x3-powrot-hiszpana-nestor-gordillo-ponownie-w-kks-ie-1641067723.webp")
+					.build();
+
+			Zawodnik KacperSkibicki = Zawodnik.builder()
+					.login("KacperSkibicki")
+					.email("KacperSkibicki@gmail.com")
+					.imie("Kacper")
+					.nazwisko("Skibicki")
+					.data_Urodzenia(LocalDate.of(2001, 10, 11))
+					.pesel(80110192)
+					.haslo(passwordEncoder.encode("pomocnik4"))
+					.role(Role.ZAWODNIK)
+					.waga(70)
+					.wzrost(174)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnikPP)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://latarnikkaliski.pl/wp-content/uploads/2024/08/453502468_1056546566062529_4055395949407518333_n-1280x850.jpg")
+					.build();
+
+			Zawodnik MaciejKrakowiak = Zawodnik.builder()
+					.login("MaciejKrakowiak")
+					.email("MaciejKrakowiak@gmail.com")
+					.imie("Maciej")
+					.nazwisko("Krakowiak")
+					.data_Urodzenia(LocalDate.of(1992, 9, 7))
+					.pesel(59209073)
+					.haslo(passwordEncoder.encode("bramkarz1"))
+					.role(Role.ZAWODNIK)
+					.waga(84)
+					.wzrost(189)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(bramkarzBR)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://s1.tvp.pl/images2/a/e/5/uid_ae5c8f06aaa0ac5099387257bd956a7b1634910527309_width_1200_play_0_pos_0_gs_0_height_678_maciej-krakowiak-fot-400mmpl.jpg")
+					.build();
+
+			zawodnikRepository.saveAll(List.of(
+					MaciejKrakowiak,KacperSkibicki,NestorGordillo
+			));
+
+			KKSKalisz.dodajZawodnika(MaciejKrakowiak, LocalDate.now());
+			KKSKalisz.dodajZawodnika(KacperSkibicki, LocalDate.now());
+			KKSKalisz.dodajZawodnika(NestorGordillo, LocalDate.now());
+
+			klubRepository.save(KKSKalisz);
+
+			zawodnikRepository.saveAll(List.of(
+					MaciejKrakowiak,KacperSkibicki,NestorGordillo
+			));
+			for (Obecny_klub ob : KKSKalisz.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+
+			//Resovia
+			Zawodnik DawidBaldyga = Zawodnik.builder()
+					.login("DawidBaldyga")
+					.email("DawidBaldyga@gmail.com")
+					.imie("Dawid")
+					.nazwisko("Baldyga")
+					.data_Urodzenia(LocalDate.of(2003, 1, 8))
+					.pesel(70301085)
+					.haslo(passwordEncoder.encode("napastnik2"))
+					.role(Role.ZAWODNIK)
+					.waga(87)
+					.wzrost(194)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikSN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://wroclawskiefakty.pl/wp-content/uploads/2023/02/Dawid-Baldyga2-scaled.jpg")
+					.build();
+
+			Zawodnik FilipMikrut = Zawodnik.builder()
+					.login("FilipMikrut")
+					.email("FilipMikrut@gmail.com")
+					.imie("Filip")
+					.nazwisko("Mikrut")
+					.data_Urodzenia(LocalDate.of(2003, 10, 3))
+					.pesel(70310032)
+					.haslo(passwordEncoder.encode("napastnik3"))
+					.role(Role.ZAWODNIK)
+					.waga(70)
+					.wzrost(174)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikSN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://cwks-resovia.pl/wp-content/uploads/2019/03/filip-mikrut-napastnik.jpg")
+					.build();
+
+			Zawodnik JakubZybala = Zawodnik.builder()
+					.login("JakubZybala")
+					.email("JakubZybala@gmail.com")
+					.imie("Jakub")
+					.nazwisko("Zybala")
+					.data_Urodzenia(LocalDate.of(2006, 12, 28))
+					.pesel(80612285)
+					.haslo(passwordEncoder.encode("obronca2"))
+					.role(Role.ZAWODNIK)
+					.waga(75)
+					.wzrost(180)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://cwks-resovia.pl/wp-content/uploads/2019/03/jakub-zybala-obronca.jpg")
+					.build();
+
+			zawodnikRepository.saveAll(List.of(
+					JakubZybala,FilipMikrut,DawidBaldyga
+			));
+
+			ResoviaRzeszow.dodajZawodnika(FilipMikrut, LocalDate.now());
+			ResoviaRzeszow.dodajZawodnika(DawidBaldyga, LocalDate.now());
+			ResoviaRzeszow.dodajZawodnika(JakubZybala, LocalDate.now());
+
+			klubRepository.save(ResoviaRzeszow);
+
+			zawodnikRepository.saveAll(List.of(
+					JakubZybala,FilipMikrut,DawidBaldyga
+			));
+
+			for (Obecny_klub ob : ResoviaRzeszow.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+
+			//PodbeskidzieBB
+			Zawodnik SzymonGoluch = Zawodnik.builder()
+					.login("SzymonGoluch")
+					.email("SzymonGoluch@gmail.com")
+					.imie("Szymon")
+					.nazwisko("Goluch")
+					.data_Urodzenia(LocalDate.of(2002, 10, 5))
+					.pesel(70210055)
+					.haslo(passwordEncoder.encode("napastnik4"))
+					.role(Role.ZAWODNIK)
+					.waga(83)
+					.wzrost(189)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikPN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTacfMACYjYpx08fjlk-dlMOMmzHbH3nghy7g&s")
+					.build();
+
+			Zawodnik RadoslawZajac = Zawodnik.builder()
+					.login("RadoslawZajac")
+					.email("RadoslawZajac@gmail.com")
+					.imie("Radoslaw")
+					.nazwisko("Zajac")
+					.data_Urodzenia(LocalDate.of(2004, 7, 28))
+					.pesel(60407282)
+					.haslo(passwordEncoder.encode("pomocnik5"))
+					.role(Role.ZAWODNIK)
+					.waga(76)
+					.wzrost(181)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnikSPO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://img.fminside.net/facesfm23/2000037415.png")
+					.build();
+
+			Zawodnik KornelOsyra = Zawodnik.builder()
+					.login("KornelOsyra")
+					.email("KornelOsyra@gmail.com")
+					.imie("Kornel")
+					.nazwisko("Osyra")
+					.data_Urodzenia(LocalDate.of(1993, 2, 7))
+					.pesel(79302073)
+					.haslo(passwordEncoder.encode("obronca3"))
+					.role(Role.ZAWODNIK)
+					.waga(85)
+					.wzrost(190)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQzibclP9rj8ZIR9xp448GWHhOSrQMHuFsFw&s")
+					.build();
+
+			zawodnikRepository.saveAll(List.of(
+					KornelOsyra,RadoslawZajac,SzymonGoluch
+			));
+
+			PodbeskidzieBB.dodajZawodnika(KornelOsyra, LocalDate.now());
+			PodbeskidzieBB.dodajZawodnika(RadoslawZajac, LocalDate.now());
+			PodbeskidzieBB.dodajZawodnika(SzymonGoluch, LocalDate.now());
+
+			klubRepository.save(PodbeskidzieBB);
+
+			zawodnikRepository.saveAll(List.of(
+					KornelOsyra,RadoslawZajac,SzymonGoluch
+			));
+
+			for (Obecny_klub ob : PodbeskidzieBB.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+
+			//Sosnowiec
+			Zawodnik KamilBilinski = Zawodnik.builder()
+					.login("KamilBilinski")
+					.email("KamilBilinski@gmail.com")
+					.imie("Kamil")
+					.nazwisko("Bilinski")
+					.data_Urodzenia(LocalDate.of(1988, 1, 23))
+					.pesel(68801233)
+					.haslo(passwordEncoder.encode("napastnik5"))
+					.role(Role.ZAWODNIK)
+					.waga(78)
+					.wzrost(181)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikSN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://zaglebie.eu/wp-content/uploads/2023/07/Bilin%CC%81ski-2-1024x658.png")
+					.build();
+
+			Zawodnik PiotrMielczarek = Zawodnik.builder()
+					.login("PiotrMielczarek")
+					.email("PiotrMielczarek@gmail.com")
+					.imie("Piotr")
+					.nazwisko("Mielczarek")
+					.data_Urodzenia(LocalDate.of(2001, 6, 21))
+					.pesel(70106213)
+					.haslo(passwordEncoder.encode("pomocnik6"))
+					.role(Role.ZAWODNIK)
+					.waga(75)
+					.wzrost(180)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnikLP)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://zaglebie.eu/wp-content/uploads/2024/06/Mielczarek.jpeg")
+					.build();
+
+			Zawodnik MiloszPawlusinski = Zawodnik.builder()
+					.login("MiloszPawlusinski")
+					.email("MiloszPawlusinski@gmail.com")
+					.imie("Milosz")
+					.nazwisko("Pawlusinski")
+					.data_Urodzenia(LocalDate.of(2004, 1, 18))
+					.pesel(60401183)
+					.haslo(passwordEncoder.encode("pomocnik7"))
+					.role(Role.ZAWODNIK)
+					.waga(74)
+					.wzrost(176)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnikSPD)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/big/864029-1668799020.jpg?lm=1")
+					.build();
+
+			zawodnikRepository.saveAll(List.of(
+					MiloszPawlusinski,PiotrMielczarek,KamilBilinski
+			));
+
+			ZaglebieSosnowiec.dodajZawodnika(MiloszPawlusinski, LocalDate.now());
+			ZaglebieSosnowiec.dodajZawodnika(PiotrMielczarek, LocalDate.now());
+			ZaglebieSosnowiec.dodajZawodnika(KamilBilinski, LocalDate.now());
+
+			klubRepository.save(ZaglebieSosnowiec);
+
+			zawodnikRepository.saveAll(List.of(
+					MiloszPawlusinski,PiotrMielczarek,KamilBilinski
+			));
+
+			for (Obecny_klub ob : ZaglebieSosnowiec.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+
+
+			//Grudziac
+			Zawodnik FilipWojcik = Zawodnik.builder()
+					.login("FilipWojcik")
+					.email("FilipWojcik@gmail.com")
+					.imie("Filip")
+					.nazwisko("Wojcik")
+					.data_Urodzenia(LocalDate.of(2001, 5, 25))
+					.pesel(60105253)
+					.haslo(passwordEncoder.encode("napastnik10"))
+					.role(Role.ZAWODNIK)
+					.waga(73)
+					.wzrost(174)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikPN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://www.motorlublin.eu/img/content/iGLonBIP_d-s-c9263-j-p-g.JPG")
+					.build();
+
+			Zawodnik IgorMaruszak = Zawodnik.builder()
+					.login("IgorMaruszak")
+					.email("IgorMaruszak@gmail.com")
+					.imie("Igor")
+					.nazwisko("Maruszak")
+					.data_Urodzenia(LocalDate.of(2003, 5, 5))
+					.pesel(60305053)
+					.haslo(passwordEncoder.encode("obronca5"))
+					.role(Role.ZAWODNIK)
+					.waga(76)
+					.wzrost(181)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(obroncaPO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://www.olimpiagrudziadz.com/wp-content/uploads/2024/02/transfer-2024-www.png")
+					.build();
+
+			Zawodnik DamianKostkowski = Zawodnik.builder()
+					.login("DamianKostkowski")
+					.email("DamianKostkowski@gmail.com")
+					.imie("Damian")
+					.nazwisko("Kostkowski")
+					.data_Urodzenia(LocalDate.of(1993, 3, 14))
+					.pesel(79303143)
+					.haslo(passwordEncoder.encode("obronca6"))
+					.role(Role.ZAWODNIK)
+					.waga(85)
+					.wzrost(190)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://www.olimpiagrudziadz.com/wp-content/uploads/2024/03/Projekt-bez-nazwy-27.png")
+					.build();
+
+			zawodnikRepository.saveAll(List.of(
+					FilipWojcik,IgorMaruszak,DamianKostkowski
+			));
+
+			OlimpiaGrudziac.dodajZawodnika(FilipWojcik, LocalDate.now());
+			OlimpiaGrudziac.dodajZawodnika(IgorMaruszak, LocalDate.now());
+			OlimpiaGrudziac.dodajZawodnika(DamianKostkowski, LocalDate.now());
+
+			klubRepository.save(OlimpiaGrudziac);
+
+			zawodnikRepository.saveAll(List.of(
+					FilipWojcik,IgorMaruszak,DamianKostkowski
+			));
+
+			for (Obecny_klub ob : OlimpiaGrudziac.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+
+			//PoloniaBytom
+			Zawodnik JakubArak = Zawodnik.builder()
+					.login("JakubArak")
+					.email("JakubArak@gmail.com")
+					.imie("Jakub")
+					.nazwisko("Arak")
+					.data_Urodzenia(LocalDate.of(1995, 4, 2))
+					.pesel(59504023)
+					.haslo(passwordEncoder.encode("napastnik8"))
+					.role(Role.ZAWODNIK)
+					.waga(79)
+					.wzrost(183)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikSN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://s2.tvp.pl/images2/b/6/6/uid_b6675e05c15c85f104dbe3ce413affa31655885869769_width_200_play_0_pos_0_gs_0_height_240_jakub-arak-fot-gks-katowice.jpg")
+					.build();
+
+			Zawodnik DanielScislak = Zawodnik.builder()
+					.login("DanielScislak")
+					.email("DanielScislak@gmail.com")
+					.imie("Daniel")
+					.nazwisko("Scislak")
+					.data_Urodzenia(LocalDate.of(2000, 3, 13))
+					.pesel(60003133)
+					.haslo(passwordEncoder.encode("pomocnik9"))
+					.role(Role.ZAWODNIK)
+					.waga(74)
+					.wzrost(177)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnikSPD)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/big/479708-1698874329.jpg?lm=1")
+					.build();
+
+			Zawodnik OskarKrzyzak = Zawodnik.builder()
+					.login("OskarKrzyzak")
+					.email("OskarKrzyzak@gmail.com")
+					.imie("Oskar")
+					.nazwisko("Krzyzak")
+					.data_Urodzenia(LocalDate.of(2002, 1, 24))
+					.pesel(60201243)
+					.haslo(passwordEncoder.encode("obronca4"))
+					.role(Role.ZAWODNIK)
+					.waga(84)
+					.wzrost(190)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/big/554976-1729807195.jpg?lm=1")
+					.build();
+
+			zawodnikRepository.saveAll(List.of(
+					JakubArak,DanielScislak,OskarKrzyzak
+			));
+
+			PoloniaBytom.dodajZawodnika(JakubArak, LocalDate.now());
+			PoloniaBytom.dodajZawodnika(DanielScislak, LocalDate.now());
+			PoloniaBytom.dodajZawodnika(OskarKrzyzak, LocalDate.now());
+
+			klubRepository.save(PoloniaBytom);
+
+			zawodnikRepository.saveAll(List.of(
+					JakubArak,DanielScislak,OskarKrzyzak
+			));
+
+			for (Obecny_klub ob : PoloniaBytom.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+
+			//Wieczysta
+			Zawodnik DawidKiedrowicz = Zawodnik.builder()
+					.login("DawidKiedrowicz")
+					.email("DawidKiedrowicz@gmail.com")
+					.imie("Dawid")
+					.nazwisko("Kiedrowicz")
+					.data_Urodzenia(LocalDate.of(2004, 6, 8))
+					.pesel(60406083)
+					.haslo(passwordEncoder.encode("napastnik11"))
+					.role(Role.ZAWODNIK)
+					.waga(76)
+					.wzrost(180)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikLN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://www.kswieczysta.com/storage/photo/03da5981db.jpg")
+					.build();
+
+			Zawodnik MichalPazdan = Zawodnik.builder()
+					.login("MichalPazdan")
+					.email("MichalPazdan@gmail.com")
+					.imie("Michal")
+					.nazwisko("Pazdan")
+					.data_Urodzenia(LocalDate.of(1987, 9, 21))
+					.pesel(78709213)
+					.haslo(passwordEncoder.encode("obronca7"))
+					.role(Role.ZAWODNIK)
+					.waga(80)
+					.wzrost(181)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://ocdn.eu/images/pulscms/ZmQ7MDA_/34ae645a20570d9fff0f3e6d6f9145bb.jpg")
+					.build();
+
+			Zawodnik DanielMikolajewski = Zawodnik.builder()
+					.login("DanielMikolajewski")
+					.email("DanielMikolajewski@gmail.com")
+					.imie("Daniel")
+					.nazwisko("Mikolajewski")
+					.data_Urodzenia(LocalDate.of(1999, 8, 25))
+					.pesel(79908253)
+					.haslo(passwordEncoder.encode("obronca8"))
+					.role(Role.ZAWODNIK)
+					.waga(83)
+					.wzrost(188)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.profiloweURL("https://www.footballdatabase.eu/images/photos/players/a_299/299178.jpg")
+					.build();
+
+			zawodnikRepository.saveAll(List.of(
+					DawidKiedrowicz,MichalPazdan,DanielMikolajewski
+			));
+
+			KSWieczystaKrakow.dodajZawodnika(DawidKiedrowicz, LocalDate.now());
+			KSWieczystaKrakow.dodajZawodnika(MichalPazdan, LocalDate.now());
+			KSWieczystaKrakow.dodajZawodnika(DanielMikolajewski, LocalDate.now());
+
+			klubRepository.save(KSWieczystaKrakow);
+
+			zawodnikRepository.saveAll(List.of(
+					DawidKiedrowicz,MichalPazdan,DanielMikolajewski
+			));
+
+			for (Obecny_klub ob : KSWieczystaKrakow.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+
 
 			//Skauci klubów
 			Skaut skaut2 = Skaut.builder()
