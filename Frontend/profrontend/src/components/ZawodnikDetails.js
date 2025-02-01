@@ -12,26 +12,35 @@ const ZawodnikDetails = () => {
   const [error, setError] = useState("");
   const [isObserved, setIsObserved] = useState(false);
   const [userRole, setUserRole] = useState(null);
+  const [userId, setUserId] = useState(null);
+  const [transferExists, setTransferExists] = useState(false);
+  const [idKlubZawodnika, setIdKlubZawodnika] = useState(null);
+  const [idKlubMenadzera, setIdKlubMenadzera] = useState(null);
   const navigate = useNavigate();
 
   const handleTransferClick = () => {
     navigate(`/zawodnicy/${id}/transfer`);
   };
 
-  const getUserRole = () => {
+  const getUserInfo = () => {
     const token = sessionStorage.getItem("token");
-    if (!token) return null;
+    if (!token) return;
 
-    const decoded = jwtDecode(token);
-    return decoded.role; 
+    try {
+      const decoded = jwtDecode(token);
+      setUserRole(decoded.role);
+      setUserId(decoded.userId);
+    } catch (error) {
+      console.error("Błąd dekodowania tokena:", error);
+    }
   };
 
   useEffect(() => {
-    const role = getUserRole();
-    setUserRole(role);
+    getUserInfo();
+  }, []);
 
+  useEffect(() => {
     const token = sessionStorage.getItem("token");
-
     if (!token) {
       setError("Brak tokena. Zaloguj się ponownie.");
       return;
@@ -39,9 +48,7 @@ const ZawodnikDetails = () => {
 
     axios
       .get(`http://localhost:8080/zawodnicy/profil/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         setZawodnik(response.data);
@@ -50,36 +57,60 @@ const ZawodnikDetails = () => {
         console.error("Error fetching zawodnik details:", error);
         setError("Błąd podczas pobierania danych zawodnika.");
       });
-  }, [id]);
-
-  const handleObserwujClick = () => {
-    const token = sessionStorage.getItem("token");
-  
-    if (!token) {
-      setError("Brak tokena. Zaloguj się ponownie.");
-      return;
-    }
-  
-    const endpoint = 
-      userRole === "ROLE_MENADZER_KLUBU"
-        ? `http://localhost:8080/api/skautingZawodnika/menadzer/dodajZawodnika/${id}`
-        : `http://localhost:8080/api/skautingZawodnika/skaut/dodajZawodnika/${id}`;
 
     axios
-      .post(endpoint, null, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      .get(`http://localhost:8080/findKlubIdByZawodnik/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
       })
-      .then(() => {
-        setIsObserved(true);
-        alert(`Zawodnik został dodany do obserwowanych przez ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżera" : "skauta"}.`);
+      .then((response) => {
+        if (response.data && response.data.id) {
+          setIdKlubZawodnika(response.data.id);
+        }
       })
       .catch((error) => {
-        console.error("Błąd podczas dodawania zawodnika do obserwowanych:", error);
-        alert(`Nie udało się dodać zawodnika do obserwowanych przez ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżera" : "skauta"}.`);
+        console.error("Błąd przy pobieraniu klubu zawodnika:", error);
       });
-  };
+
+  }, [id]);
+
+  useEffect(() => {
+    if (userRole !== "ROLE_MENADZER_KLUBU" || !userId) return;
+
+    const token = sessionStorage.getItem("token");
+
+    axios
+      .get(`http://localhost:8080/getIdKlubuMenadzera/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        if (response.data && response.data.id) {
+          setIdKlubMenadzera(response.data.id);
+        }
+      })
+      .catch((error) => {
+        console.error("Błąd przy pobieraniu klubu menedżera:", error);
+      });
+
+  }, [userId, userRole]);
+
+  useEffect(() => {
+    if (!userId || !id || userRole === 'ROLE_ADMIN') return;
+
+    const token = sessionStorage.getItem("token");
+
+    axios
+      .get(`http://localhost:8080/walidacjaTransferu/${userId}/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        setTransferExists(!!response.data);
+      })
+      .catch((error) => {
+        console.error("Błąd podczas sprawdzania transferu:", error);
+        setTransferExists(false);
+      });
+
+  }, [userId, id, userRole]);
 
   if (error) {
     return <p className="error-message">{error}</p>;
@@ -89,46 +120,56 @@ const ZawodnikDetails = () => {
     return <p>Ładowanie danych zawodnika...</p>;
   }
 
+  const isSameClub = idKlubZawodnika && idKlubMenadzera && idKlubZawodnika === idKlubMenadzera;
+
   return (
     <div>
-
       <Navbar/>
       
       <h1>Szczegóły zawodnika</h1>
       
-      <div className ="profilowe-info">
-      <div className="user-profilowe">
-        {zawodnik.profiloweURL ? (
-          <img src={zawodnik.profiloweURL} />
-        ) : (
-          <p>Brak profilowego </p>
-        )}
-      </div>
-      <div className ="info">
-        <p><strong>Imię:</strong> {zawodnik.imie}</p>
-        <p><strong>Nazwisko:</strong> {zawodnik.nazwisko}</p>
-        <p><strong>Pozycja:</strong> {zawodnik.pozycja}</p>
-        <p><strong>Obecny klub:</strong> {zawodnik.obecnyKlub}</p>
-        <p><strong>Kraj:</strong> {zawodnik.krajePochodzenia}</p>
-        <p><strong>Data urodzenia:</strong> {zawodnik.dataUrodzenia}</p>
-        <p><strong>Wzrost:</strong> {zawodnik.wzrost}</p>
-        <p><strong>Waga:</strong> {zawodnik.waga}</p>
-      </div>
-      </div>
-  
-      <div className='zawodnik-details-buttons'>
-        <button onClick={() => navigate(-1)}> Wróć </button>
-        {isUserInRole(['ROLE_ADMIN','ROLE_MENADZER_KLUBU']) && (
-        <button onClick={handleTransferClick}> Wyślij transfer </button>)}
-        
-        {isUserInRole(['ROLE_ADMIN','ROLE_MENADZER_KLUBU','ROLE_SKAUT']) && (
-        <button onClick={handleObserwujClick} disabled={isObserved}>
-        {isObserved ? "Obserwujesz" : `Obserwuj jako ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżer" : "skaut"}`}</button>)}
-      
+      <div className="profilowe-info">
+        <div className="user-profilowe">
+          {zawodnik.profiloweURL ? (
+            <img src={zawodnik.profiloweURL} alt="Profilowe" />
+          ) : (
+            <p>Brak profilowego</p>
+          )}
+        </div>
+        <div className="info">
+          <p><strong>Imię:</strong> {zawodnik.imie}</p>
+          <p><strong>Nazwisko:</strong> {zawodnik.nazwisko}</p>
+          <p><strong>Pozycja:</strong> {zawodnik.pozycja}</p>
+          <p><strong>Obecny klub:</strong> {zawodnik.obecnyKlub}</p>
+          <p><strong>Kraj:</strong> {zawodnik.krajePochodzenia}</p>
+          <p><strong>Data urodzenia:</strong> {zawodnik.dataUrodzenia}</p>
+          <p><strong>Wzrost:</strong> {zawodnik.wzrost}</p>
+          <p><strong>Waga:</strong> {zawodnik.waga}</p>
+        </div>
       </div>
 
-  </div>
-   
+      {isSameClub && (
+        <p className="info-message">Ten zawodnik jest już w Twojej drużynie.</p>
+      )}
+
+      <div className='zawodnik-details-buttons'>
+        <button onClick={() => navigate(-1)}> Wróć </button>
+
+        {!isSameClub && isUserInRole(['ROLE_ADMIN']) && (
+          <button onClick={handleTransferClick}> Wyślij transfer </button>
+        )}
+
+        {!isSameClub && isUserInRole(['ROLE_MENADZER_KLUBU']) && !transferExists && (
+          <button onClick={handleTransferClick}> Wyślij transfer </button>
+        )}
+
+        {isUserInRole(['ROLE_ADMIN','ROLE_MENADZER_KLUBU','ROLE_SKAUT']) && (
+          <button onClick={() => {}} disabled={isObserved}>
+            {isObserved ? "Obserwujesz" : `Obserwuj jako ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżer" : "skaut"}`}
+          </button>
+        )}
+      </div>
+    </div>
   );
 };
 

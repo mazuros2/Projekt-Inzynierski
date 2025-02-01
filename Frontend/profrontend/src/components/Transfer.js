@@ -13,18 +13,15 @@ const Transfer = () => {
   const [nazwaKlubDo, setNazwaKlubDo] = useState(null);
   const [idKlubDo, setIdKlubDo] = useState("");
   const [error, setError] = useState("");
-  const [role, setRole] = useState(null); // Przechowywanie roli użytkownika
-  const [userId, setUserId] = useState(null); // Przechowywanie ID użytkownika z tokena
+  const [role, setRole] = useState(null);
+  const [userId, setUserId] = useState(null);
   const navigate = useNavigate();
-
-
 
   const getUserInfo = () => {
     const token = sessionStorage.getItem("token");
-    if (!token) return null;
+    if (!token) return;
     try {
       const decodedToken = jwtDecode(token);
-      console.log("Decoded token:", decodedToken); // Debugowanie tokena
       setRole(decodedToken.role || null);
       setUserId(decodedToken.userId || null);
     } catch (error) {
@@ -36,8 +33,7 @@ const Transfer = () => {
 
   useEffect(() => {
     const fetchRoleAndKlubData = async () => {
-      getUserInfo(); // Pobierz dane użytkownika z tokena
-
+      getUserInfo();
       const token = sessionStorage.getItem("token");
       if (!token) {
         setError("Brak tokena. Zaloguj się ponownie.");
@@ -45,23 +41,15 @@ const Transfer = () => {
       }
 
       try {
-        // Pobierz ID klubu "od"
         const response = await axios.get(`http://localhost:8080/findKlubIdByZawodnik/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
+          headers: { Authorization: `Bearer ${token}` }
         });
 
-        if (response.data && response.data.id) {
-          setIdKlubOd(response.data.id);
-        } else {
-          setError("Nie znaleziono klubu dla tego zawodnika.");
-        }
-        if (response.data && response.data.nazwaOd) {
-          setNazwaKlubOd(response.data.nazwaOd);
-        } else {
-          setError("Nie znaleziono nazwy klubu od");
-        }
+        if (response.data?.id) setIdKlubOd(response.data.id);
+        else setError("Nie znaleziono klubu dla zawodnika.");
+
+        if (response.data?.nazwaOd) setNazwaKlubOd(response.data.nazwaOd);
+        else setError("Nie znaleziono nazwy klubu od.");
         
       } catch (error) {
         console.error("Błąd przy pobieraniu danych:", error);
@@ -78,21 +66,15 @@ const Transfer = () => {
         try {
           const token = sessionStorage.getItem("token");
           const response = await axios.get(`http://localhost:8080/getIdKlubuMenadzera/${userId}`, {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
+            headers: { Authorization: `Bearer ${token}` }
           });
 
-          if (response.data) {
-            setIdKlubDo(response.data.id);
-          } else {
-            setError("Nie znaleziono klubu dla menedżera.");
-          }
-          if (response.data && response.data.nazwaDo) {
-            setNazwaKlubDo(response.data.nazwaDo);
-          } else {
-            setError("Nie znaleziono nazwy klubu do");
-          }
+          if (response.data?.id) setIdKlubDo(response.data.id);
+          else setError("Nie znaleziono klubu dla menedżera.");
+
+          if (response.data?.nazwaDo) setNazwaKlubDo(response.data.nazwaDo);
+          else setError("Nie znaleziono nazwy klubu do.");
+          
         } catch (error) {
           console.error("Błąd przy pobieraniu ID klubu menedżera:", error);
           setError("Wystąpił problem podczas pobierania danych klubu.");
@@ -100,7 +82,9 @@ const Transfer = () => {
       }
     };
 
-    fetchIdKlubuMenadzera();
+    if (role === "ROLE_MENADZER_KLUBU") {
+      fetchIdKlubuMenadzera();
+    }
   }, [role, userId]);
 
   const handleSubmit = (e) => {
@@ -138,9 +122,7 @@ const Transfer = () => {
 
   return (
     <div>
-      
       <Navbar/>
-      
       <h1>Wysłanie transferu</h1>
 
       <div className="transfer-container">
@@ -154,25 +136,41 @@ const Transfer = () => {
               required
             />
           </div>
+
           <div className="form-row">
             <label>Klub od: </label>
-            <span>{nazwaKlubOd  || "Ładowanie..."}</span>
+            <span>{nazwaKlubOd || "Ładowanie..."}</span>
           </div>
-          <div className="form-row">
-            <label>Klub do: </label>
-            <span>{nazwaKlubDo || "Ładowanie..."}</span>
-          </div>
+
+          {role === "ROLE_ADMIN" ? (
+            <div className="form-row">
+              <label>Klub do (wpisz ID): </label>
+              <input
+                type="number"
+                value={idKlubDo}
+                onChange={(e) => setIdKlubDo(e.target.value)}
+                required
+              />
+            </div>
+          ) : (
+            <div className="form-row">
+              <label>Klub do: </label>
+              <span>{nazwaKlubDo || "Ładowanie..."}</span>
+            </div>
+          )}
 
           <div className="form-buttons">
-            <button type="button" onClick={() => navigate(-1)} className="cancel-button"> Anuluj </button>
-            <button type="submit" disabled={!idKlubOd} className="transfer-button"> Wyślij transfer </button>
+            <button type="button" onClick={() => navigate(-1)} className="cancel-button">
+              Anuluj
+            </button>
+            <button type="submit" disabled={!idKlubOd} className="transfer-button">
+              Wyślij transfer
+            </button>
           </div>
         </form>
-
       </div>
 
       {error && <p className="error-message">{error}</p>}
-
     </div>
   );
 };

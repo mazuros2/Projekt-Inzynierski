@@ -122,10 +122,34 @@ const UserTransfers = () => {
             {filteredTransfers.slice((currentPage - 1) * transfersPerPage, currentPage * transfersPerPage).map(transfer => (
               <li key={transfer.id} className="transfer-item">
                 <p><strong>Data:</strong> {transfer.data_transferu}</p>
-                <p><strong>Status:</strong> {transfer.status}</p>
+                <p>
+                    <strong>Status:</strong>{' '}
+                    {role === 'ROLE_MENADZER_KLUBU' &&
+                    transfer.status === 'oczekujacy'
+                      ? 'Propozycja transferu została wysłana'
+                      : transfer.status}
+                  </p>
                 <p><strong>Kwota:</strong> {transfer.kwota} PLN</p>
                 <p><strong>Klub od:</strong> {transfer.nazwa_klub_od}</p>
                 <p><strong>Klub do:</strong> {transfer.nazwa_klub_do}</p>
+                {role === 'ROLE_MENADZER_KLUBU' ? (
+                    <>
+                      <p>
+                        <strong>Imie zawodnika:</strong> {transfer.imie}
+                      </p>
+                      <p>
+                        <strong>Nazwisko zawodnika:</strong> {transfer.nazwisko}
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        <strong>Imie menadzera klubu:</strong> {transfer.imieMen}
+                      </p>
+                      <p>
+                        <strong>Nazwisko menadzera klubu:</strong> {transfer.nazwiskoMen}
+                      </p>
+                    </>)}
                 {transfer.status === 'oczekujacy' && role !== 'ROLE_MENADZER_KLUBU' && (
                   <div className="transfer-actions">
                     <button onClick={() => handleAcceptTransfer(transfer.id, transfer.id_klub_od, transfer.id_klub_do)}>Zaakceptuj</button>

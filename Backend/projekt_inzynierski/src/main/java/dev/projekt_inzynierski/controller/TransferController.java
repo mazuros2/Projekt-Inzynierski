@@ -113,6 +113,11 @@ public class TransferController {
     public ResponseEntity<List<TransferDTO2>> getLastFiveTransfers() {
         return ResponseEntity.ok(transferService.getLastFiveAcceptedTransfers());
     }
+    @GetMapping("/walidacjaTransferu/{menadzerId}/{idUzytkownik}")
+    public ResponseEntity<TransferWalidacjaDTO> walidacjaTransferu(@PathVariable long menadzerId,@PathVariable long idUzytkownik) {
+        TransferWalidacjaDTO walidacja = transferService.walidacjaTransferu(menadzerId, idUzytkownik);
+        return ResponseEntity.ok(walidacja);
+    }
 
 }
 

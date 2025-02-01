@@ -1,9 +1,6 @@
 package dev.projekt_inzynierski.service;
 
-import dev.projekt_inzynierski.DTO.TransferDTO;
-import dev.projekt_inzynierski.DTO.TransferDTO2;
-import dev.projekt_inzynierski.DTO.TransferDTOMen;
-import dev.projekt_inzynierski.DTO.TrofeumDTO;
+import dev.projekt_inzynierski.DTO.*;
 import dev.projekt_inzynierski.repository.TransferRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.PageRequest;
@@ -55,6 +52,9 @@ public class TransferService {
     public List<TransferDTO2> getLastFiveAcceptedTransfers() {
         Pageable pageable = PageRequest.of(0, 5);
         return transferRepository.findTop5AcceptedTransfers(pageable);
+    }
+    public TransferWalidacjaDTO walidacjaTransferu(long menadzerId,long idUzytkownik){
+        return transferRepository.walidacjaTransferu(menadzerId,idUzytkownik);
     }
 
 }
