@@ -155,11 +155,11 @@ const Transfer = () => {
             />
           </div>
           <div className="form-row">
-            <label>Klub od (ID): </label>
+            <label>Klub od: </label>
             <span>{nazwaKlubOd  || "Ładowanie..."}</span>
           </div>
           <div className="form-row">
-            <label>Klub do (ID): </label>
+            <label>Klub do: </label>
             <span>{nazwaKlubDo || "Ładowanie..."}</span>
           </div>
 
