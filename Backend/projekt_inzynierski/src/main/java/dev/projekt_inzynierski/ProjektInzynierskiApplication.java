@@ -2329,6 +2329,705 @@ public class ProjektInzynierskiApplication implements CommandLineRunner {
 			for (Obecny_klub ob : WidzewLodz.getSetObecnyKlub()) {
 				obecny_klubRepository.save(ob);
 			}
+			//I Liga zawodnicy
+
+			//Ruch chorzow
+			Zawodnik MartinTurk = Zawodnik.builder()
+					.login("MartinTurk")
+					.email("MartinTurk@gmail.com")
+					.imie("Martin")
+					.nazwisko("Turk")
+					.data_Urodzenia(LocalDate.of(2003, 8, 21))
+					.pesel(192321453)
+					.haslo(passwordEncoder.encode("bramkarz1"))
+					.role(Role.ZAWODNIK)
+					.waga(87)
+					.wzrost(191)
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/700643-1729676593.jpg?lm=1")
+					.kraj_pochodzenia(Set.of(PL)) // Kod kraju dla Słowenii
+					.pozycja(bramkarzBR)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+			Zawodnik MaciejSadlok = Zawodnik.builder()
+					.login("MaciejSadlok")
+					.email("MaciejSadlok@gmail.com")
+					.imie("Maciej")
+					.nazwisko("Sadlok")
+					.data_Urodzenia(LocalDate.of(1989, 6, 29))
+					.pesel(292321456) // Brak dostępnego numeru PESEL
+					.haslo(passwordEncoder.encode("obronca1"))
+					.role(Role.ZAWODNIK)
+					.waga(80)
+					.wzrost(186)
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/50751-1729677038.jpg?lm=1")
+					.kraj_pochodzenia(Set.of(PL)) // Kod kraju dla Polski
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik AndrejLukic = Zawodnik.builder()
+					.login("AndrejLukic")
+					.email("AndrejLukic@gmail.com")
+					.imie("Andrej")
+					.nazwisko("Lukić")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/239951-1729676937.jpg?lm=1")
+					.data_Urodzenia(LocalDate.of(1994, 4, 2))
+					.pesel(392321456) // Brak dostępnego numeru PESEL
+					.haslo(passwordEncoder.encode("obronca2"))
+					.role(Role.ZAWODNIK)
+					.waga(85)
+					.wzrost(190)
+					.kraj_pochodzenia(Set.of(CHR)) // Kod kraju dla Chorwacji
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik LukaszGora = Zawodnik.builder()
+					.login("LukaszGora")
+					.email("LukaszGora@gmail.com")
+					.imie("Łukasz")
+					.nazwisko("Góra")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/266038-1729676972.jpg?lm=1")
+					.data_Urodzenia(LocalDate.of(1991, 4, 30))
+					.pesel(492321456) // Brak dostępnego numeru PESEL
+					.haslo(passwordEncoder.encode("obronca3"))
+					.role(Role.ZAWODNIK)
+					.waga(82)
+					.wzrost(188)
+					.kraj_pochodzenia(Set.of(PL)) // Kod kraju dla Polski
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+			zawodnikRepository.saveAll(List.of(
+					MartinTurk, MaciejSadlok, AndrejLukic, LukaszGora
+			));
+
+			RuchChorzow.dodajZawodnika(MartinTurk, LocalDate.now());
+			RuchChorzow.dodajZawodnika(MaciejSadlok, LocalDate.now());
+			RuchChorzow.dodajZawodnika(AndrejLukic, LocalDate.now());
+			RuchChorzow.dodajZawodnika(LukaszGora, LocalDate.now());
+
+			klubRepository.save(RuchChorzow);
+
+			zawodnikRepository.saveAll(List.of(
+					MartinTurk, MaciejSadlok, AndrejLukic, LukaszGora
+			));
+			for (Obecny_klub ob : RuchChorzow.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+			//Znicz Pruszków
+			Zawodnik KaitoImai = Zawodnik.builder()
+					.login("KaitoImai")
+					.email("KaitoImai@gmail.com")
+					.imie("Kaito")
+					.nazwisko("Imai")
+					.data_Urodzenia(LocalDate.of(2000, 1, 1)) // Brak dokładnej daty urodzenia
+					.pesel(2000011234) // Losowy numer PESEL
+					.haslo(passwordEncoder.encode("pomocnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(70) // Brak dokładnych danych
+					.wzrost(175) // Brak dokładnych danych
+					.kraj_pochodzenia(Set.of(JP)) // Kod kraju dla Japonii
+					.pozycja(pomocnikSPO)
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/266038-1729676972.jpg?lm=1")
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik KrystianTabara = Zawodnik.builder()
+					.login("KrystianTabara")
+					.email("KrystianTabara@gmail.com")
+					.imie("Krystian")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/687611-1729260500.png?lm=1")
+					.nazwisko("Tabara")
+					.data_Urodzenia(LocalDate.of(2002, 3, 15))
+					.pesel(250203153) // Losowy numer PESEL
+					.haslo(passwordEncoder.encode("pomocnik2"))
+					.role(Role.ZAWODNIK)
+					.waga(72) // Brak dokładnych danych
+					.wzrost(178) // Brak dokładnych danych
+					.kraj_pochodzenia(Set.of(PL)) // Kod kraju dla Polski
+					.pozycja(pomocnikSPD)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik AdrianPazio = Zawodnik.builder()
+					.login("AdrianPazio")
+					.email("AdrianPazio@gmail.com")
+					.imie("Adrian")
+					.nazwisko("Pazio")
+					.profiloweURL("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfWg4lgJCyq_IXlLzuv05pyap1stbTn2vlxw&s")
+					.data_Urodzenia(LocalDate.of(1992, 1, 26))
+					.pesel(1962012645) // Losowy numer PESEL
+					.haslo(passwordEncoder.encode("obronca1"))
+					.role(Role.ZAWODNIK)
+					.waga(76)
+					.wzrost(180)
+					.kraj_pochodzenia(Set.of(PL)) // Kod kraju dla Polski
+					.pozycja(obroncaLO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik LukaszGorski = Zawodnik.builder()
+					.login("LukaszGorski")
+					.email("LukaszGorski@gmail.com")
+					.imie("Łukasz")
+					.nazwisko("Górski")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/default.jpg?lm=1")
+					.data_Urodzenia(LocalDate.of(1998, 7, 8))
+					.pesel(1998770845) // Losowy numer PESEL
+					.haslo(passwordEncoder.encode("napastnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(79)
+					.wzrost(182)
+					.kraj_pochodzenia(Set.of(PL)) // Kod kraju dla Polski
+					.pozycja(napastnikSN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+			zawodnikRepository.saveAll(List.of(
+					KaitoImai, KrystianTabara, AdrianPazio, LukaszGorski
+			));
+
+			ZniczPruszkow.dodajZawodnika(KaitoImai, LocalDate.now());
+			ZniczPruszkow.dodajZawodnika(KrystianTabara, LocalDate.now());
+			ZniczPruszkow.dodajZawodnika(AdrianPazio, LocalDate.now());
+			ZniczPruszkow.dodajZawodnika(LukaszGorski, LocalDate.now());
+
+			klubRepository.save(ZniczPruszkow);
+
+			zawodnikRepository.saveAll(List.of(
+					KaitoImai, KrystianTabara, AdrianPazio, LukaszGorski
+			));
+
+			for (Obecny_klub ob : ZniczPruszkow.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+
+
+			//Pogoń Siedlce
+			Zawodnik PawelTomczyk = Zawodnik.builder()
+					.login("PawelTomczyk")
+					.email("PawelTomczyk@gmail.com")
+					.imie("Paweł")
+					.nazwisko("Tomczyk")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/big/388953-1697403537.png?lm=1")
+					.data_Urodzenia(LocalDate.of(1998, 5, 4))
+					.pesel(1998058454)
+					.haslo(passwordEncoder.encode("napastnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(78)
+					.wzrost(180)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikSN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik KamilWozniak = Zawodnik.builder()
+					.login("KamilWozniak")
+					.email("KamilWozniak@gmail.com")
+					.imie("Kamil")
+					.nazwisko("Woźniak")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/big/474181-1553782796.jpg?lm=1")
+					.data_Urodzenia(LocalDate.of(2001, 2, 18))
+					.pesel(2001921845)
+					.haslo(passwordEncoder.encode("pomocnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(75)
+					.wzrost(178)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnikSPD)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik DamianMosiejko = Zawodnik.builder()
+					.login("DamianMosiejko")
+					.email("DamianMosiejko@gmail.com")
+					.imie("Damian")
+					.nazwisko("Mosiejko")
+					.profiloweURL("https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQQjebbCIOqrqsvj0POb0Y0-aoFewuWObZxW68Jp89DNNDqDuJExntyE32YIWDNdYL9KgdgWEc_kP1gPIT1P_2qxA")
+					.data_Urodzenia(LocalDate.of(1994, 6, 23))
+					.pesel(1994062305)
+					.haslo(passwordEncoder.encode("pomocnik2"))
+					.role(Role.ZAWODNIK)
+					.waga(77)
+					.wzrost(181)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnik)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik HubertPrzybycien = Zawodnik.builder()
+					.login("HubertPrzybycien")
+					.email("HubertPrzybycien@gmail.com")
+					.imie("Hubert")
+					.nazwisko("Przybycień")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/default.jpg?lm=1")
+					.data_Urodzenia(LocalDate.of(2000, 7, 16))
+					.pesel(2000071614)
+					.haslo(passwordEncoder.encode("obronca1"))
+					.role(Role.ZAWODNIK)
+					.waga(79)
+					.wzrost(185)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			zawodnikRepository.saveAll(List.of(
+					PawelTomczyk, KamilWozniak, DamianMosiejko, HubertPrzybycien
+			));
+
+			PogonSiedlce.dodajZawodnika(PawelTomczyk, LocalDate.now());
+			PogonSiedlce.dodajZawodnika(KamilWozniak, LocalDate.now());
+			PogonSiedlce.dodajZawodnika(DamianMosiejko, LocalDate.now());
+			PogonSiedlce.dodajZawodnika(HubertPrzybycien, LocalDate.now());
+
+			klubRepository.save(PogonSiedlce);
+
+			zawodnikRepository.saveAll(List.of(
+					PawelTomczyk, KamilWozniak, DamianMosiejko, HubertPrzybycien
+			));
+			for (Obecny_klub ob : PogonSiedlce.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+			//GKS Tychy
+			Zawodnik MateuszGrzybek = Zawodnik.builder()
+					.login("MateuszGrzybek")
+					.email("MateuszGrzybek@gmail.com")
+					.imie("Mateusz")
+					.nazwisko("Grzybek")
+					.data_Urodzenia(LocalDate.of(1999, 9, 12))
+					.pesel(1999021252)
+					.haslo(passwordEncoder.encode("obronca1"))
+					.role(Role.ZAWODNIK)
+					.waga(78)
+					.wzrost(183)
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/244782-1668765093.png?lm=1")
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(obroncaLO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik TomaszPiątek = Zawodnik.builder()
+					.login("TomaszPiatek")
+					.email("TomaszPiatek@gmail.com")
+					.imie("Tomasz")
+					.nazwisko("Piątek")
+					.data_Urodzenia(LocalDate.of(1996, 8, 10))
+					.pesel(1936081045)
+					.haslo(passwordEncoder.encode("pomocnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(74)
+					.wzrost(176)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnikPP)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik MarcinKowalczyk = Zawodnik.builder()
+					.login("MarcinKowalczyk")
+					.email("MarcinKowalczyk@gmail.com")
+					.imie("Marcin")
+					.nazwisko("Kowalczyk")
+					.profiloweURL("http://img.90minut.pl/pix/players/kowalczyk_marcin.jpg?t=1738148091")
+					.data_Urodzenia(LocalDate.of(1995, 12, 6))
+					.pesel(1945140645)
+					.haslo(passwordEncoder.encode("pomocnik2"))
+					.role(Role.ZAWODNIK)
+					.waga(80)
+					.wzrost(184)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnikLP)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik BartlomiejNowak = Zawodnik.builder()
+					.login("BartlomiejNowak")
+					.email("BartlomiejNowak@gmail.com")
+					.imie("Bartłomiej")
+					.nazwisko("Nowak")
+					.data_Urodzenia(LocalDate.of(1997, 3, 24))
+					.pesel(1995532454)
+					.haslo(passwordEncoder.encode("napastnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(77)
+					.wzrost(181)
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/261085-1675785722.png?lm=1")
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikPN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+			zawodnikRepository.saveAll(List.of(
+					MateuszGrzybek, TomaszPiątek, MarcinKowalczyk, BartlomiejNowak
+			));
+
+			GKSTychy.dodajZawodnika(MateuszGrzybek, LocalDate.now());
+			GKSTychy.dodajZawodnika(TomaszPiątek, LocalDate.now());
+			GKSTychy.dodajZawodnika(MarcinKowalczyk, LocalDate.now());
+			GKSTychy.dodajZawodnika(BartlomiejNowak, LocalDate.now());
+
+			klubRepository.save(GKSTychy);
+
+			zawodnikRepository.saveAll(List.of(
+					MateuszGrzybek, TomaszPiątek, MarcinKowalczyk, BartlomiejNowak
+			));
+			for (Obecny_klub ob : GKSTychy.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+			//Bruk-Bet Termalica
+			Zawodnik MichalBanasik = Zawodnik.builder()
+					.login("MichalBanasik")
+					.email("MichalBanasik@gmail.com")
+					.imie("Michał")
+					.nazwisko("Banasik")
+					.data_Urodzenia(LocalDate.of(1999, 4, 15))
+					.pesel(1999571554)
+					.haslo(passwordEncoder.encode("bramkarz1"))
+					.role(Role.ZAWODNIK)
+					.waga(80)
+					.wzrost(190)
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/default.jpg?lm=1")
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(bramkarzBR)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik PiotrKowalski = Zawodnik.builder()
+					.login("PiotrKowalski")
+					.email("PiotrKowalski@gmail.com")
+					.imie("Piotr")
+					.nazwisko("Kowalski")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/default.jpg?lm=1")
+					.data_Urodzenia(LocalDate.of(1998, 11, 9))
+					.pesel(1998310954)
+					.haslo(passwordEncoder.encode("obronca1"))
+					.role(Role.ZAWODNIK)
+					.waga(79)
+					.wzrost(183)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik MateuszSzczepaniak = Zawodnik.builder()
+					.login("MateuszSzczepaniak")
+					.email("MateuszSzczepaniak@gmail.com")
+					.imie("Mateusz")
+					.nazwisko("Szczepaniak")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/1073744-1721812937.png?lm=1")
+					.data_Urodzenia(LocalDate.of(1991, 3, 23))
+					.pesel(1991442354)
+					.haslo(passwordEncoder.encode("napastnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(81)
+					.wzrost(185)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikSN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik TomaszFrelik = Zawodnik.builder()
+					.login("TomaszFrelik")
+					.email("TomaszFrelik@gmail.com")
+					.imie("Tomasz")
+					.nazwisko("Frelik")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/default.jpg?lm=1")
+					.data_Urodzenia(LocalDate.of(1997, 6, 18))
+					.pesel(1997061854)
+					.haslo(passwordEncoder.encode("pomocnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(76)
+					.wzrost(178)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnikSPD)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+			zawodnikRepository.saveAll(List.of(
+					MichalBanasik, PiotrKowalski, MateuszSzczepaniak, TomaszFrelik
+			));
+
+			BrukBetTermalica.dodajZawodnika(MichalBanasik, LocalDate.now());
+			BrukBetTermalica.dodajZawodnika(PiotrKowalski, LocalDate.now());
+			BrukBetTermalica.dodajZawodnika(MateuszSzczepaniak, LocalDate.now());
+			BrukBetTermalica.dodajZawodnika(TomaszFrelik, LocalDate.now());
+
+			klubRepository.save(BrukBetTermalica);
+
+			zawodnikRepository.saveAll(List.of(
+					MichalBanasik, PiotrKowalski, MateuszSzczepaniak, TomaszFrelik
+			));
+			for (Obecny_klub ob : BrukBetTermalica.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+			//Arka Gdynia
+			Zawodnik KarolCzubak = Zawodnik.builder()
+					.login("KarolCzubak")
+					.email("KarolCzubak@gmail.com")
+					.imie("Karol")
+					.nazwisko("Czubak")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/622871-1729351902.jpg?lm=1")
+					.data_Urodzenia(LocalDate.of(2000, 2, 3))
+					.pesel(2000020354)
+					.haslo(passwordEncoder.encode("napastnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(81)
+					.wzrost(190)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikSN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik AdamDeja = Zawodnik.builder()
+					.login("AdamDeja")
+					.email("AdamDeja@gmail.com")
+					.imie("Adam")
+					.nazwisko("Deja")
+					.data_Urodzenia(LocalDate.of(1993, 6, 24))
+					.pesel(1993062454)
+					.haslo(passwordEncoder.encode("pomocnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(76)
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/257244-1729186095.jpg?lm=1")
+					.wzrost(178)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnik)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik MartinDobrotka = Zawodnik.builder()
+					.login("MartinDobrotka")
+					.email("MartinDobrotka@gmail.com")
+					.imie("Martin")
+					.nazwisko("Dobrotka")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/74871-1729351501.jpg?lm=1")
+					.data_Urodzenia(LocalDate.of(1985, 1, 22))
+					.pesel(1985012254)
+					.haslo(passwordEncoder.encode("obronca1"))
+					.role(Role.ZAWODNIK)
+					.waga(84)
+					.wzrost(187)
+					.kraj_pochodzenia(Set.of(SK))
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik DanielKajzer = Zawodnik.builder()
+					.login("DanielKajzer")
+					.email("DanielKajzer@gmail.com")
+					.imie("Daniel")
+					.nazwisko("Kajzer")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/255385-1727614757.png?lm=1")
+					.data_Urodzenia(LocalDate.of(1992, 2, 23))
+					.pesel(1992022354)
+					.haslo(passwordEncoder.encode("bramkarz1"))
+					.role(Role.ZAWODNIK)
+					.waga(83)
+					.wzrost(186)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(bramkarzBR)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+			zawodnikRepository.saveAll(List.of(
+					KarolCzubak, AdamDeja, MartinDobrotka, DanielKajzer
+			));
+
+			ArkaGdynia.dodajZawodnika(KarolCzubak, LocalDate.now());
+			ArkaGdynia.dodajZawodnika(AdamDeja, LocalDate.now());
+			ArkaGdynia.dodajZawodnika(MartinDobrotka, LocalDate.now());
+			ArkaGdynia.dodajZawodnika(DanielKajzer, LocalDate.now());
+
+			klubRepository.save(ArkaGdynia);
+
+			zawodnikRepository.saveAll(List.of(
+					KarolCzubak, AdamDeja, MartinDobrotka, DanielKajzer
+			));
+			for (Obecny_klub ob : ArkaGdynia.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+			//Miedź Legnica
+			Zawodnik Chuca = Zawodnik.builder()
+					.login("Chuca")
+					.email("Chuca@gmail.com")
+					.imie("José")
+					.nazwisko("Angel Esmorís")
+					.profiloweURL("https://www.lapreferente.com/imagenes/jugadores/20152016/172647.png?f=20150923%2000:00:00")
+					.data_Urodzenia(LocalDate.of(1997, 3, 14))
+					.pesel(1997031454)
+					.haslo(passwordEncoder.encode("pomocnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(74)
+					.wzrost(175)
+					.kraj_pochodzenia(Set.of(ES))
+					.pozycja(pomocnikSPO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik AngeloHenriquez = Zawodnik.builder()
+					.login("AngeloHenriquez")
+					.email("AngeloHenriquez@gmail.com")
+					.imie("Ángelo")
+					.nazwisko("Henríquez")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/189740-1728394602.png?lm=1")
+					.data_Urodzenia(LocalDate.of(1994, 4, 13))
+					.pesel(1994041354)
+					.haslo(passwordEncoder.encode("napastnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(75)
+					.wzrost(180)
+					.kraj_pochodzenia(Set.of(CO))
+					.pozycja(napastnikSN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik AdrianPurzycki = Zawodnik.builder()
+					.login("AdrianPurzycki")
+					.email("AdrianPurzycki@gmail.com")
+					.imie("Adrian")
+					.nazwisko("Purzycki")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/345435-1671221305.jpg?lm=1")
+					.data_Urodzenia(LocalDate.of(1997, 8, 2))
+					.pesel(1997080254)
+					.haslo(passwordEncoder.encode("pomocnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(73)
+					.wzrost(179)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(pomocnikSPD)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik NemanjaMijuskovic = Zawodnik.builder()
+					.login("NemanjaMijuskovic")
+					.email("NemanjaMijuskovic@gmail.com")
+					.imie("Nemanja")
+					.nazwisko("Mijuskovic")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/144695-1729257892.JPG?lm=1")
+					.data_Urodzenia(LocalDate.of(1992, 7, 4))
+					.pesel(1992070454)
+					.haslo(passwordEncoder.encode("obronca1"))
+					.role(Role.ZAWODNIK)
+					.waga(85)
+					.wzrost(190)
+					.kraj_pochodzenia(Set.of(SE))
+					.pozycja(obroncaSO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+			zawodnikRepository.saveAll(List.of(
+					Chuca, AngeloHenriquez, AdrianPurzycki, NemanjaMijuskovic
+			));
+
+			MiedzLegnica.dodajZawodnika(Chuca, LocalDate.now());
+			MiedzLegnica.dodajZawodnika(AngeloHenriquez, LocalDate.now());
+			MiedzLegnica.dodajZawodnika(AdrianPurzycki, LocalDate.now());
+			MiedzLegnica.dodajZawodnika(NemanjaMijuskovic, LocalDate.now());
+
+			klubRepository.save(MiedzLegnica);
+
+			zawodnikRepository.saveAll(List.of(
+					Chuca, AngeloHenriquez, AdrianPurzycki, NemanjaMijuskovic
+			));
+			for (Obecny_klub ob : MiedzLegnica.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+			//Gornik leczna
+			Zawodnik BartoszSpiaczka = Zawodnik.builder()
+					.login("BartoszSpiaczka")
+					.email("BartoszSpiaczka@gmail.com")
+					.imie("Bartosz")
+					.nazwisko("Śpiączka")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/190413-1671290922.jpg?lm=1")
+					.data_Urodzenia(LocalDate.of(1991, 8, 19))
+					.pesel(1991081954)
+					.haslo(passwordEncoder.encode("napastnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(82)
+					.wzrost(185)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(napastnikSN)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik Leandro = Zawodnik.builder()
+					.login("Leandro")
+					.email("Leandro@gmail.com")
+					.imie("Leandro")
+					.nazwisko("Ribeiro")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/333117-1439481524.JPG?lm=1")
+					.data_Urodzenia(LocalDate.of(1989, 7, 4))
+					.pesel(1989070454)
+					.haslo(passwordEncoder.encode("obronca1"))
+					.role(Role.ZAWODNIK)
+					.waga(80)
+					.wzrost(182)
+					.kraj_pochodzenia(Set.of(BR))
+					.pozycja(obroncaLO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+
+			Zawodnik TomaszMakowski = Zawodnik.builder()
+					.login("TomaszMakowski")
+					.email("TomaszMakowski@gmail.com")
+					.imie("Tomasz")
+					.nazwisko("Makowski")
+					.profiloweURL("https://img.a.transfermarkt.technology/portrait/header/320961-1671117845.png?lm=1")
+					.data_Urodzenia(LocalDate.of(1999, 11, 1))
+					.pesel(1999110154)
+					.haslo(passwordEncoder.encode("pomocnik1"))
+					.role(Role.ZAWODNIK)
+					.waga(78)
+					.wzrost(183)
+					.kraj_pochodzenia(Set.of(PL))
+					.pozycja(obroncaLO)
+					.obecny_klub(new HashSet<>())
+					.transfery(new ArrayList<>())
+					.build();
+			zawodnikRepository.saveAll(List.of(
+					TomaszMakowski, Leandro, BartoszSpiaczka
+			));
+
+			GornikLeczna.dodajZawodnika(TomaszMakowski, LocalDate.now());
+			GornikLeczna.dodajZawodnika(Leandro, LocalDate.now());
+			GornikLeczna.dodajZawodnika(BartoszSpiaczka, LocalDate.now());
+
+
+			klubRepository.save(GornikLeczna);
+
+			zawodnikRepository.saveAll(List.of(
+					TomaszMakowski, Leandro, BartoszSpiaczka
+			));
+			for (Obecny_klub ob : GornikLeczna.getSetObecnyKlub()) {
+				obecny_klubRepository.save(ob);
+			}
+
 
 			//II liga zawodnicy
 
