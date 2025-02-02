@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>dev</groupId>
 	<artifactId>projekt_inzynierski</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>projekt_inzynierski</name>
 	<description>Project for university</description>
 	<url/>
