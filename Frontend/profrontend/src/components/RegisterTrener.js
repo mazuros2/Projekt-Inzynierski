@@ -33,7 +33,7 @@ const RejestracjaTrenera = () => {
 
     
     axios
-      .get("http://localhost:8080/kluby", {
+      .get("http://localhost:8080/api/kluby/getKlubyWithoutTrener", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -15,4 +15,8 @@ public interface Menadzer_klubuRepository extends JpaRepository<Menadzer_klubu,L
 
     @Query("SELECT new dev.projekt_inzynierski.DTO.MenadzerIdKlubDTO(k.id,k.nazwa_klubu) FROM Klub k WHERE  k.menadzer_klubu.id_Uzytkownik=:id_menadzera ")
     Optional <MenadzerIdKlubDTO>getIdKlubuMenadzera(Long id_menadzera);
+
+    @Query("SELECT k.id FROM Klub k WHERE k.menadzer_klubu.id_Uzytkownik = :id_menadzera")
+    Optional<Long> getLongIdKlubuMenadzera(Long id_menadzera);
+
 }

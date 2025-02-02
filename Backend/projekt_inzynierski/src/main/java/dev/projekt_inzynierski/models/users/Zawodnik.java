@@ -33,14 +33,11 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 public class Zawodnik extends Uzytkownik{
-    //trzeba ogarnac bo to ma byc dziedziczone
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_Uzytkownik;
 
-    //@Size(max = 50)
-   // @NotBlank
     @Min(20)
     private int waga;
     @Min(140)

@@ -35,7 +35,7 @@ const RejestracjaMenadzera = () => {
 
     // Pobranie listy klubów
     axios
-      .get("http://localhost:8080/kluby", {
+      .get("http://localhost:8080/api/kluby/getKlubyWithoutMenadzer", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

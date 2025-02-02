@@ -23,6 +23,30 @@ public class KlubService {
         return klubRepository.getKluby();
     }
 
+    public List<KlubByIdDTO> getKlubywithoutTrener(){
+        return klubRepository.getKlubywithoutTrener();
+    }
+
+    public List<KlubByIdDTO> getKlubywithoutSkaut(){
+        return klubRepository.getKlubywithoutSkaut();
+    }
+
+    public List<KlubByIdDTO> getKlubywithoutMenadzer(){
+        return klubRepository.getKlubywithoutMenadzer();
+    }
+
+    public List<KlubByIdDTO> getKlubyWithMenadzer(){
+        return klubRepository.getKlubywithMenadzer();
+    }
+
+    public List<KlubByIdDTO> getKlubyWithTrener(){
+        return klubRepository.getKlubywithTrener();
+    }
+
+    public List<KlubByIdDTO> getKlubyWithSkaut(){
+        return klubRepository.getKlubywithSkaut();
+    }
+
     public List<KlubFromLigaDTO> getAllKlubyByLigaId(long ligaId) {
         return klubRepository.findAllByLigaId(ligaId);
     }

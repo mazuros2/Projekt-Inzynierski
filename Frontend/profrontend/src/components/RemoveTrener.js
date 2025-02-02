@@ -1,0 +1,93 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Navbar from '../components/Navbar';
+import "../cssFolder/RegisterUser.css";
+import "../cssFolder/RegisterUser.css";
+
+
+const ZwolnijTreneraAdmin = () => {
+  const [kluby, setKluby] = useState([]);
+  const [selectedKlub, setSelectedKlub] = useState(null);
+  const [message, setMessage] = useState("");
+  const [showClubList, setShowClubList] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+
+    if (!token) {
+      console.error("Brak tokena. Przekierowanie do logowania.");
+      return;
+    }
+
+    axios
+      .get("http://localhost:8080/api/kluby/zwolnienieTrenera/getKlubyWithTrener", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => setKluby(response.data))
+      .catch((error) => console.error("Błąd pobierania klubów:", error));
+  }, []);
+
+  const handleClubSelect = (klub) => {
+    setSelectedKlub(klub);
+    setShowClubList(false);
+    alert(`Wybrano klub: ${klub.nazwaKlubu}`);
+  };
+
+  const handleZwolnijTrenera = () => {
+    if (!selectedKlub) {
+      alert("Wybierz klub!");
+      return;
+    }
+
+    const token = sessionStorage.getItem("token");
+
+    axios
+      .delete("http://localhost:8080/api/admin/zwolnijTrenera", {
+        headers: { Authorization: `Bearer ${token}` },
+        data: { id: selectedKlub.id, nazwaKlubu: selectedKlub.nazwaKlubu }, 
+      })
+      .then((response) => setMessage(response.data))
+      .catch((error) =>
+        setMessage(error.response?.data || "Błąd przy zwalnianiu trenera!")
+      );
+      navigate("/adminPanel");
+  };
+
+  return (
+    <div>
+        <Navbar/>
+
+        <h1>Zwolnij trenera z klubu</h1>
+        <div className = "form-container">
+        <div className="form-group">
+          <button type="button" className="toggle-button" onClick={() => setShowClubList(!showClubList)}>
+            {showClubList ? "Ukryj listę klubów" : "Pokaż listę klubów"}
+          </button>
+          {showClubList && (
+            <ul className="dropdown-list">
+              {kluby.map((klub) => (
+                <li key={klub.id} onClick={() => handleClubSelect(klub)}>
+                  {klub.nazwaKlubu}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <div className="form-group">
+        {selectedKlub && (
+        <div>
+          <p>Wybrany klub: {selectedKlub.nazwaKlubu}</p>
+          <button type="submit" className="submit-button" onClick={handleZwolnijTrenera}>Zwolnij trenera</button>
+        </div>
+        )}
+        </div>
+        {message && <p>{message}</p>}
+        </div>
+    </div>
+  );
+};
+
+export default ZwolnijTreneraAdmin;

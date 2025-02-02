@@ -35,6 +35,34 @@ const ZawodnikDetails = () => {
     }
   };
 
+  const handleObserwujClick = () => {
+    const token = sessionStorage.getItem("token");
+  
+    if (!token) {
+      setError("Brak tokena. Zaloguj się ponownie.");
+      return;
+    }
+  
+    const endpoint = 
+      userRole === "ROLE_MENADZER_KLUBU"
+        ? `http://localhost:8080/api/skautingZawodnika/menadzer/dodajZawodnika/${id}`
+        : `http://localhost:8080/api/skautingZawodnika/skaut/dodajZawodnika/${id}`;
+    axios
+      .post(endpoint, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(() => {
+        setIsObserved(true);
+        alert(`Zawodnik został dodany do obserwowanych przez ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżera" : "skauta"}.`);
+      })
+      .catch((error) => {
+        console.error("Błąd podczas dodawania zawodnika do obserwowanych:", error);
+        alert(`Już obserwujesz tego zawodnika!`);
+      });
+  };
+
   useEffect(() => {
     getUserInfo();
   }, []);
@@ -141,7 +169,7 @@ const ZawodnikDetails = () => {
           <p><strong>Nazwisko:</strong> {zawodnik.nazwisko}</p>
           <p><strong>Pozycja:</strong> {zawodnik.pozycja}</p>
           <p><strong>Obecny klub:</strong> {zawodnik.obecnyKlub}</p>
-          <p><strong>Kraj:</strong> {zawodnik.krajePochodzenia}</p>
+          <p><strong>Kraj: </strong> {zawodnik.krajePochodzenia.join(', ')}</p>
           <p><strong>Data urodzenia:</strong> {zawodnik.dataUrodzenia}</p>
           <p><strong>Wzrost:</strong> {zawodnik.wzrost}</p>
           <p><strong>Waga:</strong> {zawodnik.waga}</p>
@@ -163,8 +191,8 @@ const ZawodnikDetails = () => {
           <button onClick={handleTransferClick}> Wyślij transfer </button>
         )}
 
-        {isUserInRole(['ROLE_ADMIN','ROLE_MENADZER_KLUBU','ROLE_SKAUT']) && (
-          <button onClick={() => {}} disabled={isObserved}>
+        {!isSameClub && isUserInRole(['ROLE_ADMIN','ROLE_MENADZER_KLUBU','ROLE_SKAUT']) && (
+          <button onClick={handleObserwujClick} disabled={isObserved}>
             {isObserved ? "Obserwujesz" : `Obserwuj jako ${userRole === "ROLE_MENADZER_KLUBU" ? "menedżer" : "skaut"}`}
           </button>
         )}

@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.service.User;
 
+import dev.projekt_inzynierski.DTO.KlubDTO;
 import dev.projekt_inzynierski.DTO.Register.RegisterMenadzerDTO;
 import dev.projekt_inzynierski.DTO.Register.RegisterSkautDTO;
 import dev.projekt_inzynierski.DTO.Register.RegisterTrenerDTO;
@@ -150,5 +151,39 @@ public class AdminService {
         uzytkownikRepository.save(menadzer);
     }
 
-    //metoda do stworzenia admina ??? <- nie wiem czy to nam sie przyda
+    public void deleteTrener(KlubDTO request){
+        Klub klub = klubRepository.findById(request.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
+
+        Trener trenerDoZwolniena = klub.getTrener();
+
+        klub.setTrener(null);
+        uzytkownikRepository.delete(trenerDoZwolniena);
+        klubRepository.save(klub);
+    }
+
+
+    public void deleteSkaut(KlubDTO request){
+        Klub klub = klubRepository.findById(request.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
+
+        Skaut skautDoZwolniena = klub.getSkaut();
+
+        klub.setSkaut(null);
+        uzytkownikRepository.delete(skautDoZwolniena);
+        klubRepository.save(klub);
+    }
+
+    public void deleteMenadzer(KlubDTO request){
+        Klub klub = klubRepository.findById(request.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
+
+        Menadzer_klubu menadzerDoZwolniena = klub.getMenadzer_klubu();
+
+        klub.setMenadzer_klubu(null);
+        uzytkownikRepository.delete(menadzerDoZwolniena);
+        klubRepository.save(klub);
+    }
+
+
 }

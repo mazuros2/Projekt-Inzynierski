@@ -26,6 +26,14 @@ import UserTransfers from './components/UserTransfers';
 import ProtectedRoute from './service/ProtectedRoute.js';
 import StronaGlowna from './components/StronaGlowna.js';
 import CreateTrofeum from './components/CreateTrofeum.js';
+import RegisterTrenerByMenadzer from './components/RegisterTrenerByMenadzer.js';
+import RegisterSkautByMenadzer from './components/RegisterSkautByMenadzer.js';
+import RegisterZawodnikByMenadzer from './components/RegisterZawodnikByMenadzer.js';
+import RemoveTrenerByMenadzer from './components/RemoveTrenerByMenadzer.js';
+import RemoveSkautByMenadzer from './components/RemoveSkautByMenadzer.js';
+import RemoveTrener from './components/RemoveTrener.js';
+import RemoveSkaut from './components/RemoveSkaut.js';
+import RemoveMenadzer from './components/RemoveMenadzer.js';
 
 function App() {
   return (
@@ -85,6 +93,46 @@ function App() {
         element={ <ProtectedRoute allowedRoles={["ROLE_ADMIN", "ROLE_MENADZER_KLUBU"]}>
                   <AdminPanel /> 
                   </ProtectedRoute>} />
+
+                  <Route path="/createTrenerByMenadzer" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_MENADZER_KLUBU"]}> 
+                  <RegisterTrenerByMenadzer /> 
+                  </ProtectedRoute>} />       
+
+                  <Route path="/createSkautByMenadzer" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_MENADZER_KLUBU"]}> 
+                  <RegisterSkautByMenadzer /> 
+                  </ProtectedRoute>} /> 
+                  
+                  <Route path="/createZawodnikByMenadzer" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_MENADZER_KLUBU"]}> 
+                  <RegisterZawodnikByMenadzer /> 
+                  </ProtectedRoute>} /> 
+
+                  <Route path="/zwolnijTreneraByMenadzer" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_MENADZER_KLUBU"]}> 
+                  <RemoveTrenerByMenadzer /> 
+                  </ProtectedRoute>} />       
+                 
+                  <Route path="/zwolnijSkautaByMenadzer" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_MENADZER_KLUBU"]}> 
+                  <RemoveSkautByMenadzer /> 
+                  </ProtectedRoute>} />     
+
+                  <Route path="/zwolnijTrenera" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_ADMIN"]}> 
+                  <RemoveTrener /> 
+                  </ProtectedRoute>} />  
+                  
+                  <Route path="/zwolnijMenadzera" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_ADMIN"]}> 
+                  <RemoveMenadzer /> 
+                  </ProtectedRoute>} />
+                  
+                  <Route path="/zwolnijSkauta" 
+        element={ <ProtectedRoute allowedRoles={["ROLE_ADMIN"]}> 
+                  <RemoveSkaut /> 
+                  </ProtectedRoute>} />                 
         
         <Route path="/user-profile/zmianaDanych" element={<ZmianaDanych />} />
         <Route path="/zawodnicy/:id/transfer" element={<Transfer />} />

@@ -52,4 +52,53 @@ public interface KlubRepository extends JpaRepository<Klub,Long> {
             "FROM Klub k " +
             "WHERE LOWER(k.nazwa_klubu) LIKE LOWER(:nazwaKlubu)")
     List<KlubDTO> findKlubByNazwa(@Param("nazwaKlubu") String nazwaKlubu);
+
+    @Query("SELECT new dev.projekt_inzynierski.DTO.KlubByIdDTO(" +
+            "k.id, k.nazwa_klubu, k.rok_zalozenia, k.logo_url, " +
+            "k.liga.id, k.liga.nazwa_Ligi) " +
+            "FROM Klub k " +
+            "WHERE k.trener is null " +
+            "ORDER BY k.nazwa_klubu ASC")
+    List<KlubByIdDTO> getKlubywithoutTrener();
+
+    @Query("SELECT new dev.projekt_inzynierski.DTO.KlubByIdDTO(" +
+            "k.id, k.nazwa_klubu, k.rok_zalozenia, k.logo_url, " +
+            "k.liga.id, k.liga.nazwa_Ligi) " +
+            "FROM Klub k " +
+            "WHERE k.skaut is null " +
+            "ORDER BY k.nazwa_klubu ASC")
+    List<KlubByIdDTO> getKlubywithoutSkaut();
+
+    @Query("SELECT new dev.projekt_inzynierski.DTO.KlubByIdDTO(" +
+            "k.id, k.nazwa_klubu, k.rok_zalozenia, k.logo_url, " +
+            "k.liga.id, k.liga.nazwa_Ligi) " +
+            "FROM Klub k " +
+            "WHERE k.menadzer_klubu is null " +
+            "ORDER BY k.nazwa_klubu ASC")
+    List<KlubByIdDTO> getKlubywithoutMenadzer();
+
+    @Query("SELECT new dev.projekt_inzynierski.DTO.KlubByIdDTO(" +
+            "k.id, k.nazwa_klubu, k.rok_zalozenia, k.logo_url, " +
+            "k.liga.id, k.liga.nazwa_Ligi) " +
+            "FROM Klub k " +
+            "WHERE k.menadzer_klubu is not null " +
+            "ORDER BY k.nazwa_klubu ASC")
+    List<KlubByIdDTO> getKlubywithMenadzer();
+
+    @Query("SELECT new dev.projekt_inzynierski.DTO.KlubByIdDTO(" +
+            "k.id, k.nazwa_klubu, k.rok_zalozenia, k.logo_url, " +
+            "k.liga.id, k.liga.nazwa_Ligi) " +
+            "FROM Klub k " +
+            "WHERE k.trener is not null " +
+            "ORDER BY k.nazwa_klubu ASC")
+    List<KlubByIdDTO> getKlubywithTrener();
+
+    @Query("SELECT new dev.projekt_inzynierski.DTO.KlubByIdDTO(" +
+            "k.id, k.nazwa_klubu, k.rok_zalozenia, k.logo_url, " +
+            "k.liga.id, k.liga.nazwa_Ligi) " +
+            "FROM Klub k " +
+            "WHERE k.skaut is not null " +
+            "ORDER BY k.nazwa_klubu ASC")
+    List<KlubByIdDTO> getKlubywithSkaut();
+
 }

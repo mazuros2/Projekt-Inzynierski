@@ -27,6 +27,43 @@ public class KlubController {
         return ResponseEntity.ok(kluby);
     }
 
+    @GetMapping("/api/kluby/getKlubyWithoutTrener")
+    public ResponseEntity<List<KlubByIdDTO>> getKlubywithoutTrener(){
+        List<KlubByIdDTO> kluby = klubService.getKlubywithoutTrener();
+        return ResponseEntity.ok(kluby);
+    }
+
+    @GetMapping("/api/kluby/getKlubyWithoutSkaut")
+    public ResponseEntity<List<KlubByIdDTO>> getKlubyWithoutSkaut(){
+        List<KlubByIdDTO> kluby = klubService.getKlubywithoutSkaut();
+        return ResponseEntity.ok(kluby);
+    }
+
+    @GetMapping("/api/kluby/getKlubyWithoutMenadzer")
+    public ResponseEntity<List<KlubByIdDTO>> getKlubyWithoutMenadzer(){
+        List<KlubByIdDTO> kluby = klubService.getKlubywithoutMenadzer();
+        return ResponseEntity.ok(kluby);
+    }
+
+    @GetMapping("/api/kluby/zwolnienieMenadzera/getKlubyWithMenadzer")
+    public ResponseEntity<List<KlubByIdDTO>> getKlubyWithMenadzer(){
+        List<KlubByIdDTO> kluby = klubService.getKlubyWithMenadzer();
+        return ResponseEntity.ok(kluby);
+    }
+
+    @GetMapping("/api/kluby/zwolnienieTrenera/getKlubyWithTrener")
+    public ResponseEntity<List<KlubByIdDTO>> getKlubyWithTrener(){
+        List<KlubByIdDTO> kluby = klubService.getKlubyWithTrener();
+        return ResponseEntity.ok(kluby);
+    }
+
+    @GetMapping("/api/kluby/zwolnienieSkauta/getKlubyWithSkaut")
+    public ResponseEntity<List<KlubByIdDTO>> getKlubyWithSkaut(){
+        List<KlubByIdDTO> kluby = klubService.getKlubyWithSkaut();
+        return ResponseEntity.ok(kluby);
+    }
+
+
     @GetMapping("/{ligaId}/kluby")
     public ResponseEntity<List<KlubFromLigaDTO>> getKlubyByLigaId(@PathVariable long ligaId) {
         List<KlubFromLigaDTO> kluby = klubService.getAllKlubyByLigaId(ligaId);

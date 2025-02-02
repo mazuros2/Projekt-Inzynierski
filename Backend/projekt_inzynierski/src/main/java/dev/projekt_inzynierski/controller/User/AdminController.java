@@ -1,5 +1,6 @@
 package dev.projekt_inzynierski.controller.User;
 
+import dev.projekt_inzynierski.DTO.KlubDTO;
 import dev.projekt_inzynierski.DTO.Register.RegisterMenadzerDTO;
 import dev.projekt_inzynierski.DTO.Register.RegisterSkautDTO;
 import dev.projekt_inzynierski.DTO.Register.RegisterTrenerDTO;
@@ -8,10 +9,7 @@ import dev.projekt_inzynierski.configurationJWT.Authentication.UserRoleValidator
 import dev.projekt_inzynierski.service.User.AdminService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -51,6 +49,27 @@ public class AdminController {
         userRoleValidator.userRoleValidator("ROLE_ADMIN");
         adminService.createMenadzer(request);
         return ResponseEntity.ok("Konto Zawodnika zostało stworzone!");
+    }
+
+    @DeleteMapping("/zwolnijTrenera")
+    public ResponseEntity<String> zwolnijTrenera(@RequestBody KlubDTO request){
+        userRoleValidator.userRoleValidator( "ROLE_ADMIN");
+        adminService.deleteTrener(request);
+        return ResponseEntity.ok("Trener został zwolniony z klubu");
+    }
+
+    @DeleteMapping("/zwolnijSkauta")
+    public ResponseEntity<String> zwolnijSkauta(@RequestBody KlubDTO request){
+        userRoleValidator.userRoleValidator( "ROLE_ADMIN");
+        adminService.deleteSkaut(request);
+        return ResponseEntity.ok("Trener został zwolniony z klubu");
+    }
+
+    @DeleteMapping("/zwolnijMenadzera")
+    public ResponseEntity<String> zwolnijMenadzera(@RequestBody KlubDTO request){
+        userRoleValidator.userRoleValidator( "ROLE_ADMIN");
+        adminService.deleteMenadzer(request);
+        return ResponseEntity.ok("Trener został zwolniony z klubu");
     }
 
 }

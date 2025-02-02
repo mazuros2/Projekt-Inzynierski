@@ -7,7 +7,6 @@ import "../cssFolder/RegisterUser.css";
 const RejestracjaSkauta = () => {
   const navigate = useNavigate();
   const [kraje, setKraje] = useState([]);
-  const [kluby, setKluby] = useState([]);
   const [formData, setFormData] = useState({
     imie: "",
     nazwisko: "",
@@ -20,9 +19,7 @@ const RejestracjaSkauta = () => {
     krajePochodzenia: [],
   });
   const [showCountryList, setShowCountryList] = useState(false);
-  const [showClubList, setShowClubList] = useState(false);
  
-  // Pobranie danych (kluby i kraje)
   useEffect(() => {
     const token = sessionStorage.getItem("token");
     if (!token) {
@@ -30,20 +27,6 @@ const RejestracjaSkauta = () => {
       navigate("/logowanie");
       return;
     }
-
-    // Pobranie listy klubów
-    axios
-      .get("http://localhost:8080/api/kluby/getKlubyWithoutSkaut", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setKluby(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching clubs:", error);
-      });
 
     // Pobranie listy krajów
     axios
@@ -66,12 +49,6 @@ const RejestracjaSkauta = () => {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  // Zapis wybranego klubu
-  const handleClubSelect = (id, nazwa) => {
-    setFormData((prevState) => ({ ...prevState, idKlub: id }));
-    setShowClubList(false);
-    alert(`Wybrano klub: ${nazwa}`);
-  };
 
   // Zapis wybranego kraju
   const handleCountrySelect = (id, nazwa) => {
@@ -82,14 +59,13 @@ const RejestracjaSkauta = () => {
     alert(`Dodano kraj: ${nazwa}`);
   };
 
-  // Obsługa wysłania formularza
   const handleSubmit = (e) => {
     e.preventDefault();
     const token = sessionStorage.getItem("token");
 
     axios
       .post(
-        "http://localhost:8080/api/admin/createSkaut",
+        "http://localhost:8080/api/menadzer/createSkaut",
         formData,
         {
           headers: {
@@ -182,20 +158,6 @@ const RejestracjaSkauta = () => {
             onChange={handleInputChange}
             required
           />
-        </div>
-        <div className="form-group">
-          <button type="button" className="toggle-button" onClick={() => setShowClubList(!showClubList)}>
-            {showClubList ? "Ukryj listę klubów" : "Pokaż listę klubów"}
-          </button>
-          {showClubList && (
-            <ul className="dropdown-list">
-              {kluby.map((klub) => (
-                <li key={klub.id} onClick={() => handleClubSelect(klub.id, klub.nazwaKlubu)}>
-                  {klub.nazwaKlubu}
-                </li>
-              ))}
-            </ul>
-          )}
         </div>
         <div className="form-group">
           <button type="button" className="toggle-button" onClick={() => setShowCountryList(!showCountryList)}>

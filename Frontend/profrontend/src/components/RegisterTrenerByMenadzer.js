@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Navbar from '../components/Navbar';
+import Navbar from './Navbar';
 import "../cssFolder/RegisterUser.css";
 
-const RejestracjaSkauta = () => {
+const RegisterTrenerByM = () => {
   const navigate = useNavigate();
   const [kraje, setKraje] = useState([]);
-  const [kluby, setKluby] = useState([]);
   const [formData, setFormData] = useState({
     imie: "",
     nazwisko: "",
@@ -16,13 +15,12 @@ const RejestracjaSkauta = () => {
     haslo: "",
     pesel: "",
     dataUrodzenia: "",
+    licencjaTrenera: "",
     idKlub: null,
     krajePochodzenia: [],
   });
   const [showCountryList, setShowCountryList] = useState(false);
-  const [showClubList, setShowClubList] = useState(false);
- 
-  // Pobranie danych (kluby i kraje)
+
   useEffect(() => {
     const token = sessionStorage.getItem("token");
     if (!token) {
@@ -31,21 +29,6 @@ const RejestracjaSkauta = () => {
       return;
     }
 
-    // Pobranie listy klubów
-    axios
-      .get("http://localhost:8080/api/kluby/getKlubyWithoutSkaut", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setKluby(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching clubs:", error);
-      });
-
-    // Pobranie listy krajów
     axios
       .get("http://localhost:8080/api/krajpochodzenia/getkraje", {
         headers: {
@@ -66,13 +49,6 @@ const RejestracjaSkauta = () => {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  // Zapis wybranego klubu
-  const handleClubSelect = (id, nazwa) => {
-    setFormData((prevState) => ({ ...prevState, idKlub: id }));
-    setShowClubList(false);
-    alert(`Wybrano klub: ${nazwa}`);
-  };
-
   // Zapis wybranego kraju
   const handleCountrySelect = (id, nazwa) => {
     setFormData((prevState) => ({
@@ -89,7 +65,7 @@ const RejestracjaSkauta = () => {
 
     axios
       .post(
-        "http://localhost:8080/api/admin/createSkaut",
+        "http://localhost:8080/api/menadzer/createTrener",
         formData,
         {
           headers: {
@@ -98,12 +74,12 @@ const RejestracjaSkauta = () => {
         }
       )
       .then((response) => {
-        alert("Skaut został zarejestrowany pomyślnie!");
+        alert("Trener został zarejestrowany pomyślnie!");
         navigate("/");
       })
       .catch((error) => {
-        console.error("Błąd podczas rejestracji skauta:", error);
-        alert("Nie udało się zarejestrować skauta. Sprawdź dane i spróbuj ponownie.");
+        console.error("Błąd podczas rejestracji trenera:", error);
+        alert("Nie udało się zarejestrować trenera. Sprawdź dane i spróbuj ponownie.");
       });
   };
 
@@ -111,7 +87,7 @@ const RejestracjaSkauta = () => {
     <div>
       <Navbar/>
 
-      <h1>Rejestracja Skauta</h1>
+      <h1>Rejestracja Trenera</h1>
       <form onSubmit={handleSubmit} className="form-container">
       <div className="form-group">
           <label>Imię:</label>
@@ -125,7 +101,7 @@ const RejestracjaSkauta = () => {
         </div>
         <div className="form-group">
           <label>Nazwisko:</label>
-          <input className="input-register" 
+          <input className="input-register"
             type="text"
             name="nazwisko"
             value={formData.nazwisko}
@@ -184,19 +160,16 @@ const RejestracjaSkauta = () => {
           />
         </div>
         <div className="form-group">
-          <button type="button" className="toggle-button" onClick={() => setShowClubList(!showClubList)}>
-            {showClubList ? "Ukryj listę klubów" : "Pokaż listę klubów"}
-          </button>
-          {showClubList && (
-            <ul className="dropdown-list">
-              {kluby.map((klub) => (
-                <li key={klub.id} onClick={() => handleClubSelect(klub.id, klub.nazwaKlubu)}>
-                  {klub.nazwaKlubu}
-                </li>
-              ))}
-            </ul>
-          )}
+          <label>Licencja Trenera:</label>
+          <input className="input-register"
+            type="text"
+            name="licencjaTrenera"
+            value={formData.licencjaTrenera}
+            onChange={handleInputChange}
+            required
+          />
         </div>
+        
         <div className="form-group">
           <button type="button" className="toggle-button" onClick={() => setShowCountryList(!showCountryList)}>
             {showCountryList ? "Ukryj listę krajów" : "Pokaż listę krajów"}
@@ -211,10 +184,11 @@ const RejestracjaSkauta = () => {
             </ul>
           )}
         </div>
-        <button type="submit" className="submit-button">Zarejestruj Skauta</button>
+        
+        <button type="submit" className="submit-button">Zarejestruj Trenera</button>
       </form>
     </div>
   );
 };
 
-export default RejestracjaSkauta;
+export default RegisterTrenerByM;

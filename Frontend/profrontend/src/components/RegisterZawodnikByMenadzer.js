@@ -7,7 +7,6 @@ import Navbar from '../components/Navbar';
 const RejestracjaZawodnika = () => {
   const navigate = useNavigate();
   const [kraje, setKraje] = useState([]);
-  const [kluby, setKluby] = useState([]);
   const [pozycje, setPozycje] = useState([]);
   const [formData, setFormData] = useState({
     imie: "",
@@ -24,7 +23,6 @@ const RejestracjaZawodnika = () => {
     krajePochodzenia: [],
   });
   const [showCountryList, setShowCountryList] = useState(false);
-  const [showClubList, setShowClubList] = useState(false);
   const [showPositionList, setShowPositionList] = useState(false);
   const [errors, setErrors] = useState({});
   
@@ -36,21 +34,6 @@ const RejestracjaZawodnika = () => {
       return;
     }
 
-    
-    axios
-      .get("http://localhost:8080/kluby", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        setKluby(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching clubs:", error);
-      });
-
-    
     axios
       .get("http://localhost:8080/api/krajpochodzenia/getkraje", {
         headers: {
@@ -84,11 +67,6 @@ const RejestracjaZawodnika = () => {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleClubSelect = (id, nazwa) => {
-    setFormData((prevState) => ({ ...prevState, klubId: id }));
-    setShowClubList(false);
-    alert(`Wybrano klub: ${nazwa}`);
-  };
 
   const handleCountrySelect = (id, nazwa) => {
     setFormData((prevState) => ({
@@ -128,7 +106,7 @@ const RejestracjaZawodnika = () => {
 
 
     axios
-      .post("http://localhost:8080/api/admin/createZawodnik", formData, {
+      .post("http://localhost:8080/api/menadzer/createZawodnik", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -241,27 +219,6 @@ const RejestracjaZawodnika = () => {
       required
     />
     {errors.wzrost && <p className="error-message">{errors.wzrost}</p>}
-  </div>
-  <div className="form-group">
-    <button
-      type="button"
-      className="toggle-button"
-      onClick={() => setShowClubList(!showClubList)}
-    >
-      {showClubList ? "Ukryj listę klubów" : "Wybierz Klub"}
-    </button>
-    {showClubList && (
-      <ul className="dropdown-list">
-        {kluby.map((klub) => (
-          <li
-            key={klub.id}
-            onClick={() => handleClubSelect(klub.id, klub.nazwaKlubu)}
-          >
-            {klub.nazwaKlubu}
-          </li>
-        ))}
-      </ul>
-    )}
   </div>
   <div className="form-group">
     <button
