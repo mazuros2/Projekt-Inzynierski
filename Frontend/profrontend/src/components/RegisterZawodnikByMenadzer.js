@@ -85,26 +85,7 @@ const RejestracjaZawodnika = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const token = sessionStorage.getItem("token");
-
-    setErrors({}); // Resetujemy błędy przed nową walidacją
-
-    // Walidacja przed wysłaniem żądania
-    let newErrors = {};
-
-    if (formData.wzrost < 140) {
-        newErrors.wzrost = "Wzrost musi być większy lub równy 140 cm";
-    }
-    if (formData.waga < 20) {
-        newErrors.waga = "Waga musi być większa lub równa 20 kg";
-    }
-
-    // Jeśli są błędy, ustawiamy je w stanie i przerywamy wysyłanie formularza
-    if (Object.keys(newErrors).length > 0) {
-        setErrors(newErrors);
-        return;
-    }
-
-
+  
     axios
       .post("http://localhost:8080/api/menadzer/createZawodnik", formData, {
         headers: {
@@ -116,10 +97,15 @@ const RejestracjaZawodnika = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.error("Błąd podczas rejestracji zawodnika:", error);
-        alert("Nie udało się zarejestrować zawodnika. Sprawdź dane i spróbuj ponownie.");
+        if (error.response && error.response.data.errors) {
+          setErrors(error.response.data.errors);
+        } else {
+          console.error("Błąd podczas rejestracji zawodnika:", error);
+          alert("Nie udało się zarejestrować zawodnika. Sprawdź dane i spróbuj ponownie.");
+        }
       });
   };
+  
 
   return (
   <div>
@@ -127,25 +113,27 @@ const RejestracjaZawodnika = () => {
    
    <h1>Rejestracja Zawodnika</h1>
 <form onSubmit={handleSubmit} className="form-container">
-  <div className="form-group">
+<div className="form-group">
     <label>Imię:</label>
     <input className="input-register"
       type="text"
       name="imie"
-      placeholder="Imię"
+      value={formData.imie}
       onChange={handleInputChange}
       required
     />
+    {errors.imie && <p className="error-message-form">{errors.imie}</p>}
   </div>
   <div className="form-group">
     <label>Nazwisko:</label>
     <input className="input-register"
       type="text"
       name="nazwisko"
-      placeholder="Nazwisko"
+      value={formData.nazwisko}
       onChange={handleInputChange}
       required
     />
+    {errors.nazwisko && <p className="error-message-form">{errors.nazwisko}</p>}
   </div>
   <div className="form-group">
     <label>Email:</label>
@@ -153,9 +141,11 @@ const RejestracjaZawodnika = () => {
       type="email"
       name="email"
       placeholder="Email"
+      value={formData.email}
       onChange={handleInputChange}
       required
     />
+    {errors.email && <p className="error-message-form">{errors.email}</p>}
   </div>
   <div className="form-group">
     <label>Login:</label>
@@ -163,9 +153,11 @@ const RejestracjaZawodnika = () => {
       type="text"
       name="login"
       placeholder="Login"
+      value={formData.login}
       onChange={handleInputChange}
       required
     />
+    {errors.login && <p className="error-message-form">{errors.login}</p>}
   </div>
   <div className="form-group">
     <label>Hasło:</label>
@@ -184,8 +176,10 @@ const RejestracjaZawodnika = () => {
       name="pesel"
       placeholder="PESEL"
       onChange={handleInputChange}
+      value={formData.pesel}
       required
     />
+    {errors.pesel && <p className="error-message-form">{errors.pesel}</p>}
   </div>
   <div className="form-group">
     <label>Data Urodzenia:</label>
@@ -198,28 +192,30 @@ const RejestracjaZawodnika = () => {
   </div>
   <div className="form-group">
   <label>Waga:</label>
-    <input
-      className="input-register"
-      type="number"
-      name="waga"
-      placeholder="Waga (kg)"
-      onChange={handleInputChange}
-      required
-    />
-    {errors.waga && <p className="error-message">{errors.waga}</p>}
-  </div>
+  <input
+    className="input-register"
+    type="number"
+    name="waga"
+    placeholder="Waga (kg)"
+    onChange={handleInputChange}
+    value={formData.waga}
+    required
+  />
+  {errors.waga && <p className="error-message-form">{errors.waga}</p>}
+</div>
   <div className="form-group">
   <label>Wzrost:</label>
-    <input
-      className="input-register"
-      type="number"
-      name="wzrost"
-      placeholder="Wzrost (cm)"
-      onChange={handleInputChange}
-      required
-    />
-    {errors.wzrost && <p className="error-message">{errors.wzrost}</p>}
-  </div>
+  <input
+    className="input-register"
+    type="number"
+    name="wzrost"
+    placeholder="Wzrost (cm)"
+    onChange={handleInputChange}
+    value={formData.wzrost}
+    required
+  />
+  {errors.wzrost && <p className="error-message-form">{errors.wzrost}</p>}
+</div>
   <div className="form-group">
     <button
       type="button"

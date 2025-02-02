@@ -28,10 +28,6 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Uzytkownik implements UserDetails {
 
-    //dodawaj do każdego stringa NotBlank
-    //do localeDate @NotNull
-    //do int możemy dodać po prostu @Min() i jakaś wartość
-
     @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,6 +35,7 @@ public class Uzytkownik implements UserDetails {
 
     @Size(max = 50)
     @NotBlank
+    @Column(unique=true)
     private String login;
 
     @NotBlank
@@ -46,6 +43,7 @@ public class Uzytkownik implements UserDetails {
 
     @Size(max = 50)
     @Email
+    @Column(unique=true)
     private String email;
 
     @Size(max = 50)

@@ -21,7 +21,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -45,6 +47,22 @@ public class AdminService {
     }
 
     public void createTrener(RegisterTrenerDTO request){
+        Map<String, String> errors = new HashMap<>();
+
+        if (uzytkownikRepository.existsByLogin(request.getLogin())) {
+            errors.put("login", "Login jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByPesel(request.getPesel())) {
+            errors.put("pesel", "Pesel jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByEmail(request.getEmail())) {
+            errors.put("email", "Email jest już zajęty!");
+        }
+
+        if (!errors.isEmpty()) {
+            throw new IllegalArgumentException(errors.toString());
+        }
+
         Klub klub = klubRepository.findById(request.getIdKlub())
                 .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
 
@@ -68,6 +86,22 @@ public class AdminService {
     }
 
     public void createZawodnik(RegisterZawodnikDTO request) {
+        Map<String, String> errors = new HashMap<>();
+
+        if (uzytkownikRepository.existsByLogin(request.getLogin())) {
+            errors.put("login", "Login jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByPesel(request.getPesel())) {
+            errors.put("pesel", "Pesel jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByEmail(request.getEmail())) {
+            errors.put("email", "Email jest już zajęty!");
+        }
+
+        if (!errors.isEmpty()) {
+            throw new IllegalArgumentException(errors.toString());
+        }
+
         Klub klub = klubRepository.findById(request.getKlubId())
                 .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
 
@@ -108,6 +142,22 @@ public class AdminService {
     }
 
     public void createSkaut(RegisterSkautDTO request){
+        Map<String, String> errors = new HashMap<>();
+
+        if (uzytkownikRepository.existsByLogin(request.getLogin())) {
+            errors.put("login", "Login jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByPesel(request.getPesel())) {
+            errors.put("pesel", "Pesel jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByEmail(request.getEmail())) {
+            errors.put("email", "Email jest już zajęty!");
+        }
+
+        if (!errors.isEmpty()) {
+            throw new IllegalArgumentException(errors.toString());
+        }
+
         Klub klub = klubRepository.findById(request.getIdKlub())
                 .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
 
@@ -130,6 +180,22 @@ public class AdminService {
     }
 
     public void createMenadzer(RegisterMenadzerDTO request){
+        Map<String, String> errors = new HashMap<>();
+
+        if (uzytkownikRepository.existsByLogin(request.getLogin())) {
+            errors.put("login", "Login jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByPesel(request.getPesel())) {
+            errors.put("pesel", "Pesel jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByEmail(request.getEmail())) {
+            errors.put("email", "Email jest już zajęty!");
+        }
+
+        if (!errors.isEmpty()) {
+            throw new IllegalArgumentException(errors.toString());
+        }
+
         Klub klub = klubRepository.findById(request.getIdKlub())
                 .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu o takim id!"));
 

@@ -85,3 +85,7 @@ label {
 .submit-button:hover {
     background-color: rgb(145, 4, 16);
 }
+
+.error-message-form {
+    color: red;
+}

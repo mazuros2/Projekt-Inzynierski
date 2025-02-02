@@ -20,6 +20,7 @@ const RegisterTrenerByM = () => {
     krajePochodzenia: [],
   });
   const [showCountryList, setShowCountryList] = useState(false);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
@@ -78,8 +79,12 @@ const RegisterTrenerByM = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.error("Błąd podczas rejestracji trenera:", error);
-        alert("Nie udało się zarejestrować trenera. Sprawdź dane i spróbuj ponownie.");
+        if (error.response && error.response.data.errors) {
+          setErrors(error.response.data.errors);
+        } else {
+          console.error("Błąd podczas rejestracji zawodnika:", error);
+          alert("Nie udało się zarejestrować zawodnika. Sprawdź dane i spróbuj ponownie.");
+        }
       });
   };
 
@@ -90,65 +95,73 @@ const RegisterTrenerByM = () => {
       <h1>Rejestracja Trenera</h1>
       <form onSubmit={handleSubmit} className="form-container">
       <div className="form-group">
-          <label>Imię:</label>
-          <input className="input-register"
-            type="text"
-            name="imie"
-            value={formData.imie}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Nazwisko:</label>
-          <input className="input-register"
-            type="text"
-            name="nazwisko"
-            value={formData.nazwisko}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input className="input-register"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Login:</label>
-          <input className="input-register"
-            type="text"
-            name="login"
-            value={formData.login}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Hasło:</label>
-          <input className="input-register"
-            type="password"
-            name="haslo"
-            value={formData.haslo}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>PESEL:</label>
-          <input className="input-register"
-            type="text"
-            name="pesel"
-            value={formData.pesel}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
+    <label>Imię:</label>
+    <input className="input-register"
+      type="text"
+      name="imie"
+      value={formData.imie}
+      onChange={handleInputChange}
+      required
+    />
+    {errors.imie && <p className="error-message-form">{errors.imie}</p>}
+  </div>
+  <div className="form-group">
+    <label>Nazwisko:</label>
+    <input className="input-register"
+      type="text"
+      name="nazwisko"
+      value={formData.nazwisko}
+      onChange={handleInputChange}
+      required
+    />
+    {errors.nazwisko && <p className="error-message-form">{errors.nazwisko}</p>}
+  </div>
+  <div className="form-group">
+    <label>Email:</label>
+    <input className="input-register"
+      type="email"
+      name="email"
+      placeholder="Email"
+      value={formData.email}
+      onChange={handleInputChange}
+      required
+    />
+    {errors.email && <p className="error-message-form">{errors.email}</p>}
+  </div>
+  <div className="form-group">
+    <label>Login:</label>
+    <input className="input-register"
+      type="text"
+      name="login"
+      placeholder="Login"
+      value={formData.login}
+      onChange={handleInputChange}
+      required
+    />
+    {errors.login && <p className="error-message-form">{errors.login}</p>}
+  </div>
+  <div className="form-group">
+    <label>Hasło:</label>
+    <input className="input-register"
+      type="password"
+      name="haslo"
+      placeholder="Hasło"
+      onChange={handleInputChange}
+      required
+    />
+  </div>
+  <div className="form-group">
+    <label>PESEL:</label>
+    <input className="input-register"
+      type="text"
+      name="pesel"
+      placeholder="PESEL"
+      onChange={handleInputChange}
+      value={formData.pesel}
+      required
+    />
+    {errors.pesel && <p className="error-message-form">{errors.pesel}</p>}
+  </div>
         <div className="form-group">
           <label>Data Urodzenia:</label>
           <input className="input-register"
@@ -169,7 +182,7 @@ const RegisterTrenerByM = () => {
             required
           />
         </div>
-        
+
         <div className="form-group">
           <button type="button" className="toggle-button" onClick={() => setShowCountryList(!showCountryList)}>
             {showCountryList ? "Ukryj listę krajów" : "Pokaż listę krajów"}

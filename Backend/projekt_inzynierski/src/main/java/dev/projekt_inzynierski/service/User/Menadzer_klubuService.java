@@ -21,12 +21,15 @@ import dev.projekt_inzynierski.repository.Obecny_klubRepository;
 import dev.projekt_inzynierski.repository.PozycjaRepository;
 import dev.projekt_inzynierski.repository.User.UzytkownikRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import dev.projekt_inzynierski.repository.User.Menadzer_klubuRepository;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -84,6 +87,22 @@ public class Menadzer_klubuService {
     }
 
     public void createTrenerByMenadzer(RegisterTrenerDTO request, Long id_menadzera){
+        Map<String, String> errors = new HashMap<>();
+
+        if (uzytkownikRepository.existsByLogin(request.getLogin())) {
+            errors.put("login", "Login jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByPesel(request.getPesel())) {
+            errors.put("pesel", "Pesel jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByEmail(request.getEmail())) {
+            errors.put("email", "Email jest już zajęty!");
+        }
+
+        if (!errors.isEmpty()) {
+            throw new IllegalArgumentException(errors.toString());
+        }
+
         Long idKlubuMenadzera = menadzer_klubuRepository.getLongIdKlubuMenadzera(id_menadzera)
                 .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu dla menadżera!"));
 
@@ -110,6 +129,22 @@ public class Menadzer_klubuService {
     }
 
     public void createSkautByMenadzer(RegisterSkautDTO request, Long id_menadzera){
+        Map<String, String> errors = new HashMap<>();
+
+        if (uzytkownikRepository.existsByLogin(request.getLogin())) {
+            errors.put("login", "Login jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByPesel(request.getPesel())) {
+            errors.put("pesel", "Pesel jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByEmail(request.getEmail())) {
+            errors.put("email", "Email jest już zajęty!");
+        }
+
+        if (!errors.isEmpty()) {
+            throw new IllegalArgumentException(errors.toString());
+        }
+
         Long idKlubuMenadzera = menadzer_klubuRepository.getLongIdKlubuMenadzera(id_menadzera)
                 .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu dla menadżera!"));
 
@@ -135,6 +170,22 @@ public class Menadzer_klubuService {
     }
 
     public void createZawodnikByMenadzer(RegisterZawodnikDTO request, Long id_menadzera) {
+        Map<String, String> errors = new HashMap<>();
+
+        if (uzytkownikRepository.existsByLogin(request.getLogin())) {
+            errors.put("login", "Login jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByPesel(request.getPesel())) {
+            errors.put("pesel", "Pesel jest już zajęty!");
+        }
+        if (uzytkownikRepository.existsByEmail(request.getEmail())) {
+            errors.put("email", "Email jest już zajęty!");
+        }
+
+        if (!errors.isEmpty()) {
+            throw new IllegalArgumentException(errors.toString());
+        }
+
         Long idKlubuMenadzera = menadzer_klubuRepository.getLongIdKlubuMenadzera(id_menadzera)
                 .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono klubu dla menadżera!"));
 
