@@ -32,8 +32,8 @@ const ListaObserwowanych = () => {
 
     const endpoint =
       role === "ROLE_MENADZER_KLUBU"
-        ? "http://localhost:8080/api/skautingZawodnika/menadzer/listaZawodnikow"
-        : "http://localhost:8080/api/skautingZawodnika/skaut/listaZawodnikow";
+        ? `${process.env.REACT_APP_API_URL}/api/skautingZawodnika/menadzer/listaZawodnikow`
+        : `${process.env.REACT_APP_API_URL}/api/skautingZawodnika/skaut/listaZawodnikow`;
 
     axios
       .get(endpoint, {
@@ -59,8 +59,8 @@ const ListaObserwowanych = () => {
   
     const endpoint =
       userRole === "ROLE_MENADZER_KLUBU"
-        ? `http://localhost:8080/api/skautingZawodnika/menadzer/usunZawodnika/${idZawodnika}`
-        : `http://localhost:8080/api/skautingZawodnika/skaut/usunZawodnika/${idZawodnika}`;
+        ? `${process.env.REACT_APP_API_URL}/api/skautingZawodnika/menadzer/usunZawodnika/${idZawodnika}`
+        : `${process.env.REACT_APP_API_URL}/api/skautingZawodnika/skaut/usunZawodnika/${idZawodnika}`;
   
     axios
       .delete(endpoint, {

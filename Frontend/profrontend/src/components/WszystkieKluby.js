@@ -18,7 +18,7 @@ const WszystkieKluby = () => {
     }
 
     // Pobieranie listy klubów
-    axios.get('http://localhost:8080/kluby', {
+    axios.get(`${process.env.REACT_APP_API_URL}/kluby`, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => setKluby(response.data))

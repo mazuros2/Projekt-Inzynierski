@@ -18,7 +18,7 @@ const ZwolnijTrenera = () => {
     }
 
     axios
-      .delete("http://localhost:8080/api/menadzer/zwolnijTrenera", {
+      .delete(`${process.env.REACT_APP_API_URL}/api/menadzer/zwolnijTrenera`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

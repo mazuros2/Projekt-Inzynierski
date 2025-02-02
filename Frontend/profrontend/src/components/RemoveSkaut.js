@@ -22,7 +22,7 @@ const ZwolnijSkautaAdmin = () => {
     }
 
     axios
-      .get("http://localhost:8080/api/kluby/zwolnienieSkauta/getKlubyWithSkaut", {
+      .get(`${process.env.REACT_APP_API_URL}/api/kluby/zwolnienieSkauta/getKlubyWithSkaut`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => setKluby(response.data))
@@ -44,7 +44,7 @@ const ZwolnijSkautaAdmin = () => {
     const token = sessionStorage.getItem("token");
 
     axios
-      .delete("http://localhost:8080/api/admin/zwolnijSkauta", {
+      .delete(`${process.env.REACT_APP_API_URL}/api/admin/zwolnijSkauta`, {
         headers: { Authorization: `Bearer ${token}` },
         data: { id: selectedKlub.id, nazwaKlubu: selectedKlub.nazwaKlubu }, 
       })

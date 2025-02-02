@@ -24,7 +24,7 @@ const CreateTrofeum = () => {
     }
 
     axios
-      .get("http://localhost:8080/kluby", {
+      .get(`${process.env.REACT_APP_API_URL}/kluby`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -51,7 +51,7 @@ const CreateTrofeum = () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:8080/api/trofeum/createTrofeum",
+        `${process.env.REACT_APP_API_URL}/api/trofeum/createTrofeum`,
         formData,
         {
           headers: {

@@ -18,7 +18,7 @@ const TrenerDetails = () => {
     }
 
     axios
-      .get(`http://localhost:8080/trener/profil/${id}`, {
+      .get(`${process.env.REACT_APP_API_URL}/trener/profil/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

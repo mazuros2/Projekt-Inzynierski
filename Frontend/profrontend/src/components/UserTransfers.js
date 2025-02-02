@@ -36,8 +36,8 @@ const UserTransfers = () => {
     try {
       const token = sessionStorage.getItem('token');
       const endpoint = role === 'ROLE_MENADZER_KLUBU' 
-        ? `http://localhost:8080/${userId}/transfery`
-        : `http://localhost:8080/zawodnik/${userId}/transfery`;
+        ? `${process.env.REACT_APP_API_URL}/${userId}/transfery`
+        : `${process.env.REACT_APP_API_URL}/${userId}/transfery`;
 
       const response = await axios.get(endpoint, {
         headers: { Authorization: `Bearer ${token}` },
@@ -65,7 +65,7 @@ const UserTransfers = () => {
         id_klubDo: clubToId,
       });
 
-      await axios.post('http://localhost:8080/zaakceptuj', params, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/zaakceptuj`, params, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/x-www-form-urlencoded' },
       });
 
@@ -78,7 +78,7 @@ const UserTransfers = () => {
   const handleRejectTransfer = async (transferId) => {
     try {
       const token = sessionStorage.getItem('token');
-      await axios.post(`http://localhost:8080/odrzuc/${transferId}`, {}, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/odrzuc/${transferId}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
       });
       

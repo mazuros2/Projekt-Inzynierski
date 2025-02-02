@@ -22,7 +22,7 @@ const ZwolnijMenadzeraAdmin = () => {
     }
 
     axios
-      .get("http://localhost:8080/api/kluby/zwolnienieMenadzera/getKlubyWithMenadzer", {
+      .get(`${process.env.REACT_APP_API_URL}/api/kluby/zwolnienieMenadzera/getKlubyWithMenadzer`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => setKluby(response.data))
@@ -44,7 +44,7 @@ const ZwolnijMenadzeraAdmin = () => {
     const token = sessionStorage.getItem("token");
 
     axios
-      .delete("http://localhost:8080/api/admin/zwolnijMenadzera", {
+      .delete(`${process.env.REACT_APP_API_URL}/api/admin/zwolnijMenadzera`, {
         headers: { Authorization: `Bearer ${token}` },
         data: { id: selectedKlub.id, nazwaKlubu: selectedKlub.nazwaKlubu }, 
       })

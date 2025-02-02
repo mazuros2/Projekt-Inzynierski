@@ -18,7 +18,7 @@ const Liga = () => {
       }
 
       axios
-      .get("http://localhost:8080/ligii", {
+      .get(`${process.env.REACT_APP_API_URL}/ligii`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

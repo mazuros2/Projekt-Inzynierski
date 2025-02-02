@@ -35,7 +35,7 @@ const RejestracjaZawodnika = () => {
     }
 
     axios
-      .get("http://localhost:8080/api/krajpochodzenia/getkraje", {
+      .get(`${process.env.REACT_APP_API_URL}/api/krajpochodzenia/getkraje`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -49,7 +49,7 @@ const RejestracjaZawodnika = () => {
 
     
     axios
-      .get("http://localhost:8080/api/pozycja/getpozycje", {
+      .get(`${process.env.REACT_APP_API_URL}/api/pozycja/getpozycje`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -87,7 +87,7 @@ const RejestracjaZawodnika = () => {
     const token = sessionStorage.getItem("token");
   
     axios
-      .post("http://localhost:8080/api/menadzer/createZawodnik", formData, {
+      .post(`${process.env.REACT_APP_API_URL}/api/menadzer/createZawodnik`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

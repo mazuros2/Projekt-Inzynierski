@@ -27,7 +27,7 @@ const Klub = () => {
     }
 
     axios
-      .get(`http://localhost:8080/klub/${id}`, {
+      .get(`${process.env.REACT_APP_API_URL}/klub/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -41,7 +41,7 @@ const Klub = () => {
       });
 
     axios
-      .get(`http://localhost:8080/klub/${id}/zawodnicy`, {
+      .get(`${process.env.REACT_APP_API_URL}/klub/${id}/zawodnicy`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -55,7 +55,7 @@ const Klub = () => {
       });
 
     axios
-      .get(`http://localhost:8080/klub/${id}/trofea`, {
+      .get(`${process.env.REACT_APP_API_URL}/klub/${id}/trofea`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -69,7 +69,7 @@ const Klub = () => {
       });
 
     axios
-      .get(`http://localhost:8080/klub/${id}/trener`, {
+      .get(`${process.env.REACT_APP_API_URL}/klub/${id}/trener`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

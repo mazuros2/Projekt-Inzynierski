@@ -41,7 +41,7 @@ const Transfer = () => {
       }
 
       try {
-        const response = await axios.get(`http://localhost:8080/findKlubIdByZawodnik/${id}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/findKlubIdByZawodnik/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
 
@@ -65,7 +65,7 @@ const Transfer = () => {
       if (role === "ROLE_MENADZER_KLUBU" && userId) {
         try {
           const token = sessionStorage.getItem("token");
-          const response = await axios.get(`http://localhost:8080/getIdKlubuMenadzera/${userId}`, {
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/getIdKlubuMenadzera/${userId}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
 
@@ -104,7 +104,7 @@ const Transfer = () => {
     };
 
     axios
-      .post("http://localhost:8080/sendTransfer", transferRequest, {
+      .post(`${process.env.REACT_APP_API_URL}/sendTransfer`, transferRequest, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",

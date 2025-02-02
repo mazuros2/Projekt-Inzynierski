@@ -51,7 +51,7 @@ const MistrzowiePolski = () => {
 
   useEffect(() => {
     const authHeader = 'Basic ' + btoa('admin:admin');
-    axios.get('http://localhost:8080/trofeum/mistrzpolski', {
+    axios.get(`${process.env.REACT_APP_API_URL}/trofeum/mistrzpolski`, {
       headers: {
         'Authorization': authHeader,
       }

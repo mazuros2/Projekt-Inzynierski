@@ -42,7 +42,7 @@ const EdycjaDanychUzytkownika = () => {
     const fetchUserData = async () => {
       try {
         const token = sessionStorage.getItem("token");
-        const response = await axios.get(`http://localhost:8080/userDetails/${userId}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/userDetails/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -76,7 +76,7 @@ const EdycjaDanychUzytkownika = () => {
     }
 
     try {
-      await axios.put("http://localhost:8080/api/uzytkownik/zmienDane", formData, {
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/uzytkownik/zmienDane`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

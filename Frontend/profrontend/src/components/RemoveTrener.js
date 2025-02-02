@@ -22,7 +22,7 @@ const ZwolnijTreneraAdmin = () => {
     }
 
     axios
-      .get("http://localhost:8080/api/kluby/zwolnienieTrenera/getKlubyWithTrener", {
+      .get(`${process.env.REACT_APP_API_URL}/api/kluby/zwolnienieTrenera/getKlubyWithTrener`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => setKluby(response.data))
@@ -44,7 +44,7 @@ const ZwolnijTreneraAdmin = () => {
     const token = sessionStorage.getItem("token");
 
     axios
-      .delete("http://localhost:8080/api/admin/zwolnijTrenera", {
+      .delete(`${process.env.REACT_APP_API_URL}/api/admin/zwolnijTrenera`, {
         headers: { Authorization: `Bearer ${token}` },
         data: { id: selectedKlub.id, nazwaKlubu: selectedKlub.nazwaKlubu }, 
       })

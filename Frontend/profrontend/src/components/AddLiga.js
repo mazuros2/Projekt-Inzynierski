@@ -16,7 +16,7 @@ const AddLiga = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8080/addLiga', {
+    axios.post(`${process.env.REACT_APP_API_URL}/addLiga`, {
       ...formData,
       poziom_Ligi: parseInt(formData.poziom_Ligi) 
     }, {

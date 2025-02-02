@@ -22,7 +22,7 @@ const AdminPanel = () => {
     }
 
     axios
-      .get("http://localhost:8080/api/menadzer/klub/status", {
+      .get(`${process.env.REACT_APP_API_URL}/api/menadzer/klub/status`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

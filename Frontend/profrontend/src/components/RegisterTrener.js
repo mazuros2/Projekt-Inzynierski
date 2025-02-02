@@ -34,7 +34,7 @@ const RejestracjaTrenera = () => {
 
     
     axios
-      .get("http://localhost:8080/api/kluby/getKlubyWithoutTrener", {
+      .get(`${process.env.REACT_APP_API_URL}/api/kluby/getKlubyWithoutTrener`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,7 +48,7 @@ const RejestracjaTrenera = () => {
 
    
     axios
-      .get("http://localhost:8080/api/krajpochodzenia/getkraje", {
+      .get(`${process.env.REACT_APP_API_URL}/api/krajpochodzenia/getkraje`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -90,7 +90,7 @@ const RejestracjaTrenera = () => {
 
     axios
       .post(
-        "http://localhost:8080/api/admin/createTrener",
+        `${process.env.REACT_APP_API_URL}/api/admin/createTrener`,
         formData,
         {
           headers: {

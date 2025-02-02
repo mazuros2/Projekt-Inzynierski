@@ -21,7 +21,7 @@ const StronaGlowna = () => {
           return;
         }
 
-        axios.get(`http://localhost:8080/api/trofeum/pucharpolski/ostatnizdobywcy`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/api/trofeum/pucharpolski/ostatnizdobywcy`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -34,7 +34,7 @@ const StronaGlowna = () => {
             setError("Błąd podczas pobierania trofeów. Sprawdź uprawnienia.");
         });
 
-        axios.get(`http://localhost:8080/api/trofeum/mistrzpolski/ostatnizdobywcy`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/api/trofeum/mistrzpolski/ostatnizdobywcy`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -47,7 +47,7 @@ const StronaGlowna = () => {
                 setError("Błąd podczas pobierania trofeów. Sprawdź uprawnienia.");
         });
         
-        axios.get(`http://localhost:8080/api/transfery/ostatnie`, {
+        axios.get(`${process.env.REACT_APP_API_URL}/api/transfery/ostatnie`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

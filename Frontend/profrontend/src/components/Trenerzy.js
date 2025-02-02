@@ -25,7 +25,7 @@ const Trenerzy = () => {
     }
 
     axios
-      .get('http://localhost:8080/trenerzy', {
+      .get(`${process.env.REACT_APP_API_URL}/trenerzy`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -38,7 +38,7 @@ const Trenerzy = () => {
       });
 
       axios
-      .get("http://localhost:8080/api/krajpochodzenia/getkraje", {
+      .get(`${process.env.REACT_APP_API_URL}/api/krajpochodzenia/getkraje`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

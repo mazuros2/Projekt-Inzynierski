@@ -45,8 +45,8 @@ const ZawodnikDetails = () => {
   
     const endpoint = 
       userRole === "ROLE_MENADZER_KLUBU"
-        ? `http://localhost:8080/api/skautingZawodnika/menadzer/dodajZawodnika/${id}`
-        : `http://localhost:8080/api/skautingZawodnika/skaut/dodajZawodnika/${id}`;
+        ? `${process.env.REACT_APP_API_URL}/api/skautingZawodnika/menadzer/dodajZawodnika/${id}`
+        : `${process.env.REACT_APP_API_URL}/api/skautingZawodnika/skaut/dodajZawodnika/${id}`;
     axios
       .post(endpoint, null, {
         headers: {
@@ -75,7 +75,7 @@ const ZawodnikDetails = () => {
     }
 
     axios
-      .get(`http://localhost:8080/zawodnicy/profil/${id}`, {
+      .get(`${process.env.REACT_APP_API_URL}/zawodnicy/profil/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -87,7 +87,7 @@ const ZawodnikDetails = () => {
       });
 
     axios
-      .get(`http://localhost:8080/findKlubIdByZawodnik/${id}`, {
+      .get(`${process.env.REACT_APP_API_URL}/findKlubIdByZawodnik/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -107,7 +107,7 @@ const ZawodnikDetails = () => {
     const token = sessionStorage.getItem("token");
 
     axios
-      .get(`http://localhost:8080/getIdKlubuMenadzera/${userId}`, {
+      .get(`${process.env.REACT_APP_API_URL}/getIdKlubuMenadzera/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -127,7 +127,7 @@ const ZawodnikDetails = () => {
     const token = sessionStorage.getItem("token");
 
     axios
-      .get(`http://localhost:8080/walidacjaTransferu/${userId}/${id}`, {
+      .get(`${process.env.REACT_APP_API_URL}/walidacjaTransferu/${userId}/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

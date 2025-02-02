@@ -34,7 +34,7 @@ const RejestracjaSkauta = () => {
 
     // Pobranie listy klubów
     axios
-      .get("http://localhost:8080/api/kluby/getKlubyWithoutSkaut", {
+      .get(`${process.env.REACT_APP_API_URL}/api/kluby/getKlubyWithoutSkaut`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,7 +48,7 @@ const RejestracjaSkauta = () => {
 
     // Pobranie listy krajów
     axios
-      .get("http://localhost:8080/api/krajpochodzenia/getkraje", {
+      .get(`${process.env.REACT_APP_API_URL}/api/krajpochodzenia/getkraje`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -90,7 +90,7 @@ const RejestracjaSkauta = () => {
 
     axios
       .post(
-        "http://localhost:8080/api/admin/createSkaut",
+        `${process.env.REACT_APP_API_URL}/api/admin/createSkaut`,
         formData,
         {
           headers: {

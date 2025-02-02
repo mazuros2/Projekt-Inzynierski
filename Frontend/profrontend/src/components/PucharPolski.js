@@ -51,7 +51,7 @@ const PucharPolski = () => {
 
   useEffect(() => {
     const authHeader = 'Basic ' + btoa('admin:admin');
-    axios.get('http://localhost:8080/trofeum/pucharpolski', {
+    axios.get(`${process.env.REACT_APP_API_URL}/trofeum/pucharpolski`, {
       headers: {
         'Authorization': authHeader,
       }

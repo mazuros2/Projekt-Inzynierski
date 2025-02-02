@@ -20,7 +20,7 @@ const LigaKluby = () => {
       return;
     }
 
-    axios.get(`http://localhost:8080/${ligaId}/kluby`, {
+    axios.get(`${process.env.REACT_APP_API_URL}/${ligaId}/kluby`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then((response) => {
@@ -30,7 +30,7 @@ const LigaKluby = () => {
       console.error("Error fetching clubs:", error);
     });
 
-    axios.get(`http://localhost:8080/ligii/${ligaId}`, {
+    axios.get(`${process.env.REACT_APP_API_URL}/ligii/${ligaId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then((response) => {

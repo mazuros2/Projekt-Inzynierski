@@ -31,7 +31,7 @@ const RejestracjaSkauta = () => {
 
     // Pobranie listy krajów
     axios
-      .get("http://localhost:8080/api/krajpochodzenia/getkraje", {
+      .get(`${process.env.REACT_APP_API_URL}/api/krajpochodzenia/getkraje`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -65,7 +65,7 @@ const RejestracjaSkauta = () => {
     const token = sessionStorage.getItem("token");
   
     axios
-      .post("http://localhost:8080/api/menadzer/createSkaut", formData, {
+      .post(`${process.env.REACT_APP_API_URL}/api/menadzer/createSkaut`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

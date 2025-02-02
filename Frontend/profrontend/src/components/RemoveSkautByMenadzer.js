@@ -18,7 +18,7 @@ const ZwolnijSkauta = () => {
     }
 
     axios
-      .delete("http://localhost:8080/api/menadzer/zwolnijSkauta", {
+      .delete(`${process.env.REACT_APP_API_URL}/api/menadzer/zwolnijSkauta`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -31,7 +31,7 @@ const RegisterTrenerByM = () => {
     }
 
     axios
-      .get("http://localhost:8080/api/krajpochodzenia/getkraje", {
+      .get(`${process.env.REACT_APP_API_URL}/api/krajpochodzenia/getkraje`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -66,7 +66,7 @@ const RegisterTrenerByM = () => {
 
     axios
       .post(
-        "http://localhost:8080/api/menadzer/createTrener",
+        `${process.env.REACT_APP_API_URL}/api/menadzer/createTrener`,
         formData,
         {
           headers: {

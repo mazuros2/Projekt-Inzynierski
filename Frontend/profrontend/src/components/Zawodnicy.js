@@ -31,7 +31,7 @@ const WyswietlanieZawodnikow = () => {
     }
 
     axios
-      .get("http://localhost:8080/zawodnicy", {
+      .get(`${process.env.REACT_APP_API_URL}/zawodnicy`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -42,7 +42,7 @@ const WyswietlanieZawodnikow = () => {
       });
 
     axios
-      .get("http://localhost:8080/api/pozycja/getpozycje", {
+      .get(`${process.env.REACT_APP_API_URL}/api/pozycja/getpozycje`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -53,7 +53,7 @@ const WyswietlanieZawodnikow = () => {
       });
 
     axios
-      .get("http://localhost:8080/api/krajpochodzenia/getkraje", {
+      .get(`${process.env.REACT_APP_API_URL}/api/krajpochodzenia/getkraje`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
