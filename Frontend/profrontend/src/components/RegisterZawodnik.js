@@ -108,24 +108,11 @@ const RejestracjaZawodnika = () => {
     e.preventDefault();
     const token = sessionStorage.getItem("token");
 
-    setErrors({}); // Resetujemy błędy przed nową walidacją
-
-    // Walidacja przed wysłaniem żądania
-    let newErrors = {};
-
-    if (formData.wzrost < 140) {
-        newErrors.wzrost = "Wzrost musi być większy lub równy 140 cm";
+    const peselRegex = /^[0-9]*$/;
+    if (!peselRegex.test(formData.pesel)) {
+      setErrors((prev) => ({ ...prev, pesel: "PESEL może zawierać tylko cyfry" }));
+      return;
     }
-    if (formData.waga < 20) {
-        newErrors.waga = "Waga musi być większa lub równa 20 kg";
-    }
-
-    // Jeśli są błędy, ustawiamy je w stanie i przerywamy wysyłanie formularza
-    if (Object.keys(newErrors).length > 0) {
-        setErrors(newErrors);
-        return;
-    }
-
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/admin/createZawodnik`, formData, {
@@ -158,6 +145,7 @@ const RejestracjaZawodnika = () => {
     <input className="input-register"
       type="text"
       name="imie"
+      placeholder="Imię"
       value={formData.imie}
       onChange={handleInputChange}
       required
@@ -169,6 +157,7 @@ const RejestracjaZawodnika = () => {
     <input className="input-register"
       type="text"
       name="nazwisko"
+      placeholder="Nazwisko"
       value={formData.nazwisko}
       onChange={handleInputChange}
       required

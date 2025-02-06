@@ -14,6 +14,6 @@ public interface UzytkownikRepository extends JpaRepository<Uzytkownik,Long> {
     Optional<Uzytkownik> findById(Long id);
 
     boolean existsByLogin(String login);
-    boolean existsByPesel(int pesel);
+    boolean existsByPesel(String pesel);
     boolean existsByEmail(String email);
 }

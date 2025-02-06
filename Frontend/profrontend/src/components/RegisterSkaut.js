@@ -88,6 +88,12 @@ const RejestracjaSkauta = () => {
     e.preventDefault();
     const token = sessionStorage.getItem("token");
 
+    const peselRegex = /^[0-9]*$/;
+    if (!peselRegex.test(formData.pesel)) {
+      setErrors((prev) => ({ ...prev, pesel: "PESEL może zawierać tylko cyfry" }));
+      return;
+    }
+
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/api/admin/createSkaut`,
@@ -123,6 +129,7 @@ const RejestracjaSkauta = () => {
     <input className="input-register"
       type="text"
       name="imie"
+      placeholder="Imię"
       value={formData.imie}
       onChange={handleInputChange}
       required
@@ -134,6 +141,7 @@ const RejestracjaSkauta = () => {
     <input className="input-register"
       type="text"
       name="nazwisko"
+      placeholder="Nazwisko"
       value={formData.nazwisko}
       onChange={handleInputChange}
       required
