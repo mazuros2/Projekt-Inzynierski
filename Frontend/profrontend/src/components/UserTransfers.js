@@ -37,7 +37,7 @@ const UserTransfers = () => {
       const token = sessionStorage.getItem('token');
       const endpoint = role === 'ROLE_MENADZER_KLUBU' 
         ? `${process.env.REACT_APP_API_URL}/${userId}/transfery`
-        : `${process.env.REACT_APP_API_URL}/${userId}/transfery`;
+        : `${process.env.REACT_APP_API_URL}/zawodnik/${userId}/transfery`;
 
       const response = await axios.get(endpoint, {
         headers: { Authorization: `Bearer ${token}` },

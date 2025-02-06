@@ -24,3 +24,13 @@
 .zawodnik-details-buttons button:hover {
   background-color: rgb(145, 4, 16);
 }
+
+.info-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  color: green;
+  font-size: large;
+  font-weight: 300;
+}
