@@ -17,6 +17,6 @@ public class RegisterRequest {
     private String email;
     private String login;
     private String haslo;
-    private int pesel;
+    private String pesel;
     private LocalDate dataUrodzenia;
 }

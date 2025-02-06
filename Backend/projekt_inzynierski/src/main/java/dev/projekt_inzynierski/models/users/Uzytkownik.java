@@ -54,8 +54,9 @@ public class Uzytkownik implements UserDetails {
     @NotBlank
     private String nazwisko;
 
+    @Size(max = 11)
     @Column(unique=true)
-    private int pesel;
+    private String pesel;
 
     @Nullable
     private String profiloweURL;

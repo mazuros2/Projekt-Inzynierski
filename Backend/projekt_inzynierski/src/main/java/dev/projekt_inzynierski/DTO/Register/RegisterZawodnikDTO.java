@@ -12,7 +12,7 @@ public class RegisterZawodnikDTO {
     private String login;
     private String haslo;
     private LocalDate dataUrodzenia;
-    private int pesel;
+    private String pesel;
     private int wzrost;
     private int waga;
     private Long pozycjaId;

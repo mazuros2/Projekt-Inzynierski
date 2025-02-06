@@ -18,7 +18,7 @@ public class UzytkownikDTO {
     private String email;
     private String imie;
     private String nazwisko;
-    private int pesel;
+    private String pesel;
     private Role role;
 
 }

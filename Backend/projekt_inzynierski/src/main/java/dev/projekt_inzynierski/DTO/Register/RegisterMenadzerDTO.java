@@ -11,7 +11,7 @@ public class RegisterMenadzerDTO {
     private String email;
     private String login;
     private String haslo;
-    private int pesel;
+    private String pesel;
     private LocalDate dataUrodzenia;
     private Long idKlub;
     private Set<Long> krajePochodzenia;
